@@ -51,6 +51,17 @@ namespace FormChung
             ptb.Image = Image.FromFile(link);
             return ptb;
         }
+
+        private PictureBox AddIconTextBox(string icon, int startIndex)
+        {
+            var p = _txtChatBox.GetPositionFromCharIndex(startIndex);
+            PictureBox ptb = new PictureBox();
+            ptb.Size = new Size(20, 20);
+            ptb.Location = p;
+            var link = LinkHinh(icon);
+            ptb.Image = Image.FromFile(link);
+            return ptb;
+        }
         public string LinkHinh(string s)
         {
             string result = null;

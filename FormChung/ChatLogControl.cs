@@ -14,9 +14,32 @@ namespace FormChung
     public partial class ChatLogControl : UserControl
     {
         public string[] Icon = new string[] { ":D", ":p", ":e", "8/", "8)", "8o" };
+        //xác định chiều dài chuỗi trong textbox
+        //mục địch xác định đó là thao tác thêm hay xóa
+        private int textLegth = 0;
+        private int kpselectstart = 0;
         public ChatLogControl()
         {
             InitializeComponent();
+        }
+
+        private StringObject StringCode(string content, int startIndex = 0)
+        {
+            StringObject stringObject = new StringObject();
+            stringObject.Content = content;
+            stringObject.StartIndex = startIndex;
+            return stringObject;
+        }
+
+        private IconObject IconCode(string icon, int startIndex = 0)
+        {
+            var result = new IconObject();
+            result.Id = icon;
+            result.StartIndex = startIndex;
+            result.IconImage = AddIconTextBox(result.Id, result.StartIndex);
+            _txtChatBox.Controls.Add(result.IconImage);
+            ThayTheIconBangWhiteSpace(s);
+            return result;
         }
 
         public void Serialize(string input)
@@ -77,7 +100,69 @@ namespace FormChung
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            if (_txtChatBox.TextLength > textLegth)
+            {
+                string newString = RecentlyString();
+                if (!string.IsNullOrEmpty(CheckIconContainsInString(newString)))
+                {
+                    AddStringContainsIcon(newString);
+                }
+            }
+        }
 
+        private void AddStringContainsIcon(string newString)
+        {
+            var listISP = CreateListIStringParse(newString);
+        }
+
+        private IList<IStringParse> CreateListIStringParse(string str)
+        {
+            var tmpString = "";
+            for(int i=0; i<str.Length; i++)
+            {
+                tmpString += str[i];
+                var icon = CheckIconContainsInString(tmpString);
+                if (!string.IsNullOrEmpty(icon))
+                {
+
+                }
+            }
+            return null;
+        }
+
+        private IList<IStringParse> CreateListIStringParse(string str, string icon)
+        {
+            IList<IStringParse> tmpList = new List<IStringParse>();
+            var startIndexOfIconInStr = str.IndexOf(icon);
+            var iconLength = icon.Length;
+            string chuoi = str.Substring(0, startIndexOfIconInStr);
+            if (!string.IsNullOrEmpty(chuoi)) tmpList.Add(new StringObject(chuoi));
+
+
+            return null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns>ICON or null</returns>
+        private string CheckIconContainsInString(string str)
+        {
+            foreach(var item in Icon)
+            {
+                if (str.Contains(item))
+                    return item;
+            }
+            return null;
+        }
+
+        private string RecentlyString()
+        {
+            int stringLength = _txtChatBox.TextLength - textLegth;
+            int startIndex = _txtChatBox.TextLength - stringLength;
+            var recentlyString = _txtChatBox.Text.Substring(startIndex, stringLength);
+            return recentlyString;
         }
     }
 }

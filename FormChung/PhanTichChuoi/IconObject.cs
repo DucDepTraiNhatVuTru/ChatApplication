@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FormChung.PhanTichChuoi
 {
     public class IconObject : IStringParse
     {
-        public int Id { get; set; }
-        public string Content { get; set; }
+        public String Id{ get; set; }
+        public PictureBox IconImage { get; set; }
+
+        public int StartIndex { get; set; }
         public bool Parse(string input)
         {
-            throw new NotImplementedException();
+            if (!string.IsNullOrEmpty(input))
+                return false;
+            Id = input;
+            return true;
         }
     }
 }

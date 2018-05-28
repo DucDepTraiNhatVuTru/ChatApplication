@@ -8,11 +8,23 @@ namespace FormChung.PhanTichChuoi
 {
     public class StringObject : IStringParse
     {
-        public int Id { get; set; }
         public string Content { get; set; }
+
+        public int StartIndex { get; set; }
+
+        public StringObject()
+        {
+  
+        }
+        public StringObject(string content)
+        {
+            Content = content;
+        }
         public bool Parse(string input)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(input)) return false;
+            Content = input;
+            return true;
         }
     }
 }

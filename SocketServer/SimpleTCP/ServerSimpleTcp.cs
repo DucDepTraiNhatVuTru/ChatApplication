@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleTCP;
+using ChatProtocol.Packet;
 
 namespace SocketServer.SimpleTCP
 {
@@ -28,6 +29,10 @@ namespace SocketServer.SimpleTCP
         private void _server_DataReceived(object sender, Message e)
         {
             //xử lý chút ít ở đây
+            var packet = new BasicPacket();
+            if (!packet.Parse(e.Data))
+                return;
+
         }
 
         private void _server_ClientDisconnected(object sender, System.Net.Sockets.TcpClient e)

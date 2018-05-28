@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormChung", "FormChung\Form
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatProtocol", "ChatProtocol\ChatProtocol.csproj", "{148E8028-B9C6-4312-A6AF-E0DEC0AD09C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketServer", "SocketServer\SocketServer.csproj", "{05D16C42-F824-4AA2-BCD1-122E9B752C98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{148E8028-B9C6-4312-A6AF-E0DEC0AD09C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{148E8028-B9C6-4312-A6AF-E0DEC0AD09C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{148E8028-B9C6-4312-A6AF-E0DEC0AD09C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05D16C42-F824-4AA2-BCD1-122E9B752C98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05D16C42-F824-4AA2-BCD1-122E9B752C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05D16C42-F824-4AA2-BCD1-122E9B752C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05D16C42-F824-4AA2-BCD1-122E9B752C98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

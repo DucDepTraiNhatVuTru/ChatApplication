@@ -28,19 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this._rtbChatLog = new System.Windows.Forms.RichTextBox();
             this._txtChatBox = new System.Windows.Forms.TextBox();
             this._btnSend = new System.Windows.Forms.Button();
+            this._rtbChatLog = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
-            // 
-            // _rtbChatLog
-            // 
-            this._rtbChatLog.BackColor = System.Drawing.Color.White;
-            this._rtbChatLog.Location = new System.Drawing.Point(3, 3);
-            this._rtbChatLog.Name = "_rtbChatLog";
-            this._rtbChatLog.Size = new System.Drawing.Size(657, 291);
-            this._rtbChatLog.TabIndex = 0;
-            this._rtbChatLog.Text = "";
             // 
             // _txtChatBox
             // 
@@ -66,6 +57,15 @@
             this._btnSend.Text = "Gửi";
             this._btnSend.UseVisualStyleBackColor = false;
             // 
+            // _rtbChatLog
+            // 
+            this._rtbChatLog.BackColor = System.Drawing.Color.White;
+            this._rtbChatLog.Location = new System.Drawing.Point(3, 3);
+            this._rtbChatLog.Name = "_rtbChatLog";
+            this._rtbChatLog.Size = new System.Drawing.Size(657, 291);
+            this._rtbChatLog.TabIndex = 0;
+            this._rtbChatLog.Text = "";
+            // 
             // ChatLogControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -82,9 +82,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox _rtbChatLog;
         private System.Windows.Forms.TextBox _txtChatBox;
         private System.Windows.Forms.Button _btnSend;
+        private System.Windows.Forms.RichTextBox _rtbChatLog;
     }
 }

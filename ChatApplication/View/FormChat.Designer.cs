@@ -1,6 +1,6 @@
-﻿namespace ChatApplication
+﻿namespace ChatApplication.View
 {
-    partial class Form1
+    partial class FormChat
     {
         /// <summary>
         /// Required designer variable.
@@ -28,46 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this._btnClose = new System.Windows.Forms.Button();
-            this.chatLogControl1 = new FormChung.ChatLogControl();
+            this._rcChatlog = new Telerik.WinControls.UI.RadChat();
+            ((System.ComponentModel.ISupportInitialize)(this._rcChatlog)).BeginInit();
             this.SuspendLayout();
             // 
-            // _btnClose
+            // _rcChatlog
             // 
-            resources.ApplyResources(this._btnClose, "_btnClose");
-            this._btnClose.ForeColor = System.Drawing.Color.LightGray;
-            this._btnClose.Image = global::ChatApplication.Properties.Resources.exit;
-            this._btnClose.Name = "_btnClose";
-            this._btnClose.UseVisualStyleBackColor = true;
-            this._btnClose.Click += new System.EventHandler(this._btnClose_Click);
+            this._rcChatlog.Location = new System.Drawing.Point(4, 2);
+            this._rcChatlog.Name = "_rcChatlog";
+            this._rcChatlog.Size = new System.Drawing.Size(870, 389);
+            this._rcChatlog.TabIndex = 0;
+            this._rcChatlog.Text = "_radchatChatLog";
+            this._rcChatlog.TimeSeparatorInterval = System.TimeSpan.Parse("1.00:00:00");
             // 
-            // chatLogControl1
+            // FormChat
             // 
-            this.chatLogControl1.BackColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.chatLogControl1, "chatLogControl1");
-            this.chatLogControl1.Name = "chatLogControl1";
-            // 
-            // Form1
-            // 
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this._btnClose);
-            this.Controls.Add(this.chatLogControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            this.ClientSize = new System.Drawing.Size(875, 394);
+            this.Controls.Add(this._rcChatlog);
+            this.Name = "FormChat";
+            this.Text = "FormChat";
+            ((System.ComponentModel.ISupportInitialize)(this._rcChatlog)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private FormChung.ChatLogControl chatLogControl1;
-        private System.Windows.Forms.Button _btnClose;
+        private Telerik.WinControls.UI.RadChat _rcChatlog;
     }
 }
-

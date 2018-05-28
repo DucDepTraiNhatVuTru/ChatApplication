@@ -38,8 +38,16 @@ namespace FormChung
             result.StartIndex = startIndex;
             result.IconImage = AddIconTextBox(result.Id, result.StartIndex);
             _txtChatBox.Controls.Add(result.IconImage);
-            ThayTheIconBangWhiteSpace(s);
+            ThayTheIconBangWhiteSpace(icon);
             return result;
+        }
+
+        private void ThayTheIconBangWhiteSpace(string strIcon)
+        {
+            _txtChatBox.TextChanged -= new EventHandler(textBox1_TextChanged);
+            _txtChatBox.Text = _txtChatBox.Text.Replace(strIcon, "    ");
+            _txtChatBox.SelectionStart = kpselectstart + 3;
+            _txtChatBox.TextChanged += new EventHandler(textBox1_TextChanged);
         }
 
         public void Serialize(string input)
@@ -137,9 +145,11 @@ namespace FormChung
             var iconLength = icon.Length;
             string chuoi = str.Substring(0, startIndexOfIconInStr);
             if (!string.IsNullOrEmpty(chuoi)) tmpList.Add(new StringObject(chuoi));
-
-
-            return null;
+            tmpList.Add(IconCode(icon));
+            var vitricattiep = chuoi.Length + icon.Length;
+            chuoi = str.Substring(vitricattiep);
+            if (!string.IsNullOrEmpty(chuoi)) tmpList.Add(StringCode(chuoi));
+            return tmpList;
         }
 
         /// <summary>

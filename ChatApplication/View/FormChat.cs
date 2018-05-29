@@ -13,6 +13,7 @@ namespace ChatApplication.View
 {
     public partial class FormChat : Form
     {
+        //static Image img = Image.FromFile(@"‪C:\Users\DELL\Downloads\avartar.jpg");
         Author author = new Author(null, "Đức");
         public FormChat()
         {
@@ -22,8 +23,13 @@ namespace ChatApplication.View
             //_rcChatlog.ChatElement.SendButtonElement.
             //_rcChatlog.AutoAddUserMessages = false;
             _rcChatlog.Author = author;
+            //Bitmap bm = new Bitmap(Image.FromFile("‪‪D:\\ThucTap\\avartar.jpg"));
+            //_rcChatlog.Author.Avatar = bm;
+            /*RadImageItem img = new RadImageItem();
+            img.Image = Image.FromFile("‪‪D:\\ThucTap\\avartar.jpg");*/
         }
-        
+
+   
 
         private void SendButtonElement_Click(object sender, EventArgs e)
         {

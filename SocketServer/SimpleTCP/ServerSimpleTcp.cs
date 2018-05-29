@@ -29,9 +29,14 @@ namespace SocketServer.SimpleTCP
         private void _server_DataReceived(object sender, Message e)
         {
             //xử lý chút ít ở đây
-            var packet = new BasicPacket();
+            /*var packet = new BasicPacket();
             if (!packet.Parse(e.Data))
-                return;
+                return;*/
+            var tmp = SimpleTcpAdapter.Convert(e.TcpClient);
+            if (OnNewMessage != null)
+            {
+                OnNewMessage.Invoke(tmp, e.MessageString);
+            }
 
         }
 

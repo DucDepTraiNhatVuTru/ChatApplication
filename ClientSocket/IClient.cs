@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatDataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace ClientSocket
         void Disconnect();
         event Action<string> OnNewRecieve;
         void Send(string data);
+        void RequestCreateAccount(Account account);
     }
 }

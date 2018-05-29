@@ -124,6 +124,10 @@
     <None Include="Asset\createAccount.gif" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChatDataModel\ChatDataModel.csproj">
+      <Project>{6dbc97a4-3339-4614-8f88-ff5f8b49d47c}</Project>
+      <Name>ChatDataModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClientSocket\ClientSocket.csproj">
       <Project>{299cfe27-40eb-4b83-9f39-1c3ef93a3017}</Project>
       <Name>ClientSocket</Name>

@@ -1,4 +1,5 @@
-﻿using ClientSocket;
+﻿using ChatDataModel;
+using ClientSocket;
 using ClientSocket.SimpleTcp;
 using System;
 using System.Collections.Generic;
@@ -125,7 +126,7 @@ namespace ChatApplication.View
 
         private void _btnCreateAccount_Click(object sender, EventArgs e)
         {
-            _client.RequestCreateAccount()
+            _client.RequestCreateAccount(Account account);
         }
     }
 }

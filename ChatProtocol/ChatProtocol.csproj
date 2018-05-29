@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,9 +46,18 @@
     <Compile Include="Packet\BasicPacket.cs" />
     <Compile Include="Packet\IPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocol\CreateAccountProtocol.cs" />
     <Compile Include="Protocol\IProtocol.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChatDataModel\ChatDataModel.csproj">
+      <Project>{6dbc97a4-3339-4614-8f88-ff5f8b49d47c}</Project>
+      <Name>ChatDataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageConverter\ImageConverter.csproj">
+      <Project>{cfb156f4-4d54-4562-8bf1-dce3a33f9ecd}</Project>
+      <Name>ImageConverter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SocketServer\SocketServer.csproj">
       <Project>{05d16c42-f824-4aa2-bcd1-122e9b752c98}</Project>
       <Name>SocketServer</Name>

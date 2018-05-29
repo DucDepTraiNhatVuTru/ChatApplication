@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChatDataModel;
 using SimpleTCP;
 namespace ClientSocket.SimpleTcp
 {
@@ -37,6 +38,11 @@ namespace ClientSocket.SimpleTcp
         public void Send(string data)
         {
             _client.WriteLine(data);
+        }
+
+        public void RequestCreateAccount(Account account)
+        {
+            
         }
     }
 }

@@ -20,9 +20,9 @@ namespace ChatApplication.View
         private Point _oldPoint;
         public FormLogin()
         {
+            ConnectToServer();
             InitializeComponent();
             init();
-            ConnectToServer();
         }
 
         private void init()
@@ -121,6 +121,11 @@ namespace ChatApplication.View
             {
                 MessageBox.Show("Server đang bảo trì");
             }
+        }
+
+        private void _btnCreateAccount_Click(object sender, EventArgs e)
+        {
+            _client.RequestCreateAccount()
         }
     }
 }

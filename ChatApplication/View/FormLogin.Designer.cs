@@ -253,6 +253,7 @@
             this._btnCreateAccount.TabIndex = 6;
             this._btnCreateAccount.Text = "Create";
             this._btnCreateAccount.UseVisualStyleBackColor = false;
+            this._btnCreateAccount.Click += new System.EventHandler(this._btnCreateAccount_Click);
             // 
             // _lbNameSignUp
             // 

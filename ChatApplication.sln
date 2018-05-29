@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSocket", "ClientSocke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageConverter", "ImageConverter\ImageConverter.csproj", "{CFB156F4-4D54-4562-8BF1-DCE3A33F9ECD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatDataModel", "ChatDataModel\ChatDataModel.csproj", "{6DBC97A4-3339-4614-8F88-FF5F8B49D47C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{CFB156F4-4D54-4562-8BF1-DCE3A33F9ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFB156F4-4D54-4562-8BF1-DCE3A33F9ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFB156F4-4D54-4562-8BF1-DCE3A33F9ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DBC97A4-3339-4614-8F88-FF5F8B49D47C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DBC97A4-3339-4614-8F88-FF5F8B49D47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DBC97A4-3339-4614-8F88-FF5F8B49D47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DBC97A4-3339-4614-8F88-FF5F8B49D47C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

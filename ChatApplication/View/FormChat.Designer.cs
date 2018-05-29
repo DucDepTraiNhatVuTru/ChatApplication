@@ -40,6 +40,7 @@
             this._rcChatlog.TabIndex = 0;
             this._rcChatlog.Text = "_radchatChatLog";
             this._rcChatlog.TimeSeparatorInterval = System.TimeSpan.Parse("1.00:00:00");
+            this._rcChatlog.SendMessage += new Telerik.WinControls.UI.SendMessageEventHandler(this._rcChatlog_SendMessage);
             // 
             // FormChat
             // 

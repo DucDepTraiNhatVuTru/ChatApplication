@@ -11,5 +11,6 @@ namespace ClientSocket
         void Connect(string ip, int port);
         void Disconnect();
         event Action<string> OnNewRecieve;
+        void Send(string data);
     }
 }

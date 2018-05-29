@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClientSocket;
+using ClientSocket.SimpleTcp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,12 +15,14 @@ namespace ChatApplication.View
 {
     public partial class FormLogin : Form
     {
+        private IClient _client = new SimpleTCPClient();
         private bool _isMouseDown = false;
         private Point _oldPoint;
         public FormLogin()
         {
             InitializeComponent();
             init();
+            ConnectToServer();
         }
 
         private void init()
@@ -105,6 +109,18 @@ namespace ChatApplication.View
         {
             _panelSignUp.Visible = false;
             _panelLogin.Visible = true;
+        }
+
+        private void ConnectToServer()
+        {
+            try
+            {
+                _client.Connect("127.0.0.1", 2018);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Server đang bảo trì");
+            }
         }
     }
 }

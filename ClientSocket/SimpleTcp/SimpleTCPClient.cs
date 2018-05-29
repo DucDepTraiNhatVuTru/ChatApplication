@@ -8,8 +8,13 @@ namespace ClientSocket.SimpleTcp
 {
     public class SimpleTCPClient : IClient
     {
-        private SimpleTCPClient _client;
+        private SimpleTcpClient _client;
         public event Action<string> OnNewRecieve;
+
+        public SimpleTCPClient()
+        {
+            _client = new SimpleTcpClient();
+        }
 
         public void Connect(string ip, int port)
         {
@@ -19,7 +24,6 @@ namespace ClientSocket.SimpleTcp
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
             
@@ -28,6 +32,11 @@ namespace ClientSocket.SimpleTcp
         public void Disconnect()
         {
             _client.Disconnect();
+        }
+
+        public void Send(string data)
+        {
+            _client.WriteLine(data);
         }
     }
 }

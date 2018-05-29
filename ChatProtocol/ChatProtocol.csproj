@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="HandleFactory.cs" />
+    <Compile Include="Handle\CreateAccountRequestHandle.cs" />
+    <Compile Include="ProtocolFactory.cs" />
     <Compile Include="Handle\IHandle.cs" />
     <Compile Include="Packet\BasicPacket.cs" />
     <Compile Include="Packet\IPacket.cs" />

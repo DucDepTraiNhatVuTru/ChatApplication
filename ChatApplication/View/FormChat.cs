@@ -27,6 +27,7 @@ namespace ChatApplication.View
             //_rcChatlog.Author.Avatar = bm;
             /*RadImageItem img = new RadImageItem();
             img.Image = Image.FromFile("‪‪D:\\ThucTap\\avartar.jpg");*/
+            _rcChatlog.ChatElement.InputTextBox.AddBehavior(new Telerik.WinControls.PropertyChangeBehavior()
         }
 
    

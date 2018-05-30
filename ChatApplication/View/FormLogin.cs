@@ -126,7 +126,7 @@ namespace ChatApplication.View
 
         private void _btnCreateAccount_Click(object sender, EventArgs e)
         {
-            _client.RequestCreateAccount(Account account);
+            //_client.RequestCreateAccount(Account account);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,6 @@ namespace Database
         void Connect(string connectionString);
         void Disconnect();
         void ExecuteNonQuery(string sql);
-        DataSet GetData(string sql);
+        DbDataReader GetData(string sql);
     }
 }

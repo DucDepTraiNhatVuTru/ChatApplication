@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace Database.SQLServer
 {
@@ -45,14 +46,12 @@ namespace Database.SQLServer
             
         }
 
-        public DataSet GetData(string sql)
+        public DbDataReader GetData(string sql)
         {
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(sql, con);
-                DataSet dataset = new DataSet();
-                adapter.Fill(dataset);
-                return dataset;
+                SqlCommand cmd = new SqlCommand(sql, con);
+                return cmd.ExecuteReader();
             }
             catch (Exception ex)
             {

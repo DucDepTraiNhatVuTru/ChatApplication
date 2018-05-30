@@ -15,15 +15,42 @@ namespace ImageConverter
         public static byte[] ConvertImageToByteArray(Image image)
         {
             MemoryStream stream = new MemoryStream();
-            image.Save(stream, image.RawFormat);
+            image.Save(stream, ImageFormat.Jpeg);
             return stream.ToArray();
         }
 
         public static Image CovertByteArrayToImage(byte[] imageArray)
         {
-            MemoryStream ms = new MemoryStream(imageArray);
+            /*MemoryStream ms = new MemoryStream();
+            ms.Read(imageArray, 0, imageArray.Length);
             Image image = Image.FromStream(ms);
-            return image;
+            return image;*/
+            using(MemoryStream ms = new MemoryStream(imageArray))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
+        public static string ConvertImageToBase64(Image image)
+        {
+            using(MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, image.RawFormat);
+                byte[] arr = ms.ToArray();
+
+                string base64 = Convert.ToBase64String(arr);
+                return base64;
+            }
+        }
+
+        public static Image ConvertBase64ToImage(string base64)
+        {
+            byte[] arr = Convert.FromBase64String(base64);
+            using (var ms = new MemoryStream(arr, 0, arr.Length))
+            {
+                Image image = Image.FromStream(ms, true);
+                return image;
+            }
         }
     }
 }

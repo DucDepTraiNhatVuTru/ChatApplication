@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ChatDataModel;
 using SimpleTCP;
+using ChatProtocol.Protocol;
+using ChatProtocol.Packet;
+
 namespace ClientSocket.SimpleTcp
 {
     public class SimpleTCPClient : IClient
@@ -42,7 +45,12 @@ namespace ClientSocket.SimpleTcp
 
         public void RequestCreateAccount(Account account)
         {
-            
+            CreateAccountProtocol ptc = new CreateAccountProtocol();
+            ptc.Account = account;
+            BasicPacket packet = new BasicPacket();
+            packet.Opcode = 1;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
         }
     }
 }

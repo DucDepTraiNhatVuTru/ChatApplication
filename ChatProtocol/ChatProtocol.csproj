@@ -52,6 +52,10 @@
     <Compile Include="Protocol\IProtocol.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChatDAO\ChatDAO.csproj">
+      <Project>{5e106abf-a23c-420b-8dba-8c9fd9e52278}</Project>
+      <Name>ChatDAO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChatDataModel\ChatDataModel.csproj">
       <Project>{6dbc97a4-3339-4614-8f88-ff5f8b49d47c}</Project>
       <Name>ChatDataModel</Name>

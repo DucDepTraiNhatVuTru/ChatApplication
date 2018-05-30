@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SimpleTCP;
 using ChatProtocol.Packet;
+using ChatProtocol;
 
 namespace SocketServer.SimpleTCP
 {
@@ -28,14 +29,18 @@ namespace SocketServer.SimpleTCP
 
         private void _server_DataReceived(object sender, Message e)
         {
-            //xử lý chút ít ở đây
-            /*var packet = new BasicPacket();
-            if (!packet.Parse(e.Data))
-                return;*/
             var tmp = SimpleTcpAdapter.Convert(e.TcpClient);
+            var packet = new BasicPacket();
+            if (!packet.Parse(e.Data))
+                return;
+            var protocol = ProtocolFactory.CreateProtocol(packet.Opcode);
+            if (!protocol.Parse(Encoding.Unicode.GetString(packet.Data)))
+                return;
+            var handle = HandleFactory.CreateHandle(packet.Opcode);
+            string toView = handle.Handling(protocol, tmp);
             if (OnNewMessage != null)
             {
-                OnNewMessage.Invoke(tmp, e.MessageString);
+                OnNewMessage.Invoke(tmp, toView);
             }
 
         }

@@ -13,16 +13,18 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            /*Account account = new Account();
+            Account account = new Account();
             account.Email = "ngocdung@gmail.com";
             account.Password = "123456";
             account.Name = "Minh Đức";
-            account.Avatar = Image.FromFile(@"D:\ThucTap\avartar.jpg");
+            var image = Image.FromFile(@"D:\ThucTap\avartar.jpg");
+            Bitmap bm = new Bitmap(image, new Size(64, 64));
+            account.Avatar =(Image) bm;
             account.Gender = "Nu";
             account.TimeCreate = DateTime.Now;
             IAccountDAO accountDao = new AccountDAOSQL();
-            accountDao.Insert(account);*/
-            IAccountDAO account = new AccountDAOSQL();
+            accountDao.Insert(account);
+            /*IAccountDAO account = new AccountDAOSQL();
             Account acc = account.GetAccount("ngocdung@gmail.com");
             Console.WriteLine(acc.Email);
             Console.WriteLine(acc.Name);

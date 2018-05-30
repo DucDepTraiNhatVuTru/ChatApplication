@@ -35,7 +35,7 @@ namespace ImageConverter
         {
             using(MemoryStream ms = new MemoryStream())
             {
-                image.Save(ms, image.RawFormat);
+                image.Save(ms, ImageFormat.Jpeg);
                 byte[] arr = ms.ToArray();
 
                 string base64 = Convert.ToBase64String(arr);

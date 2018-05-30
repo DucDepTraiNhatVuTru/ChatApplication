@@ -51,6 +51,7 @@
             this._txtEmailSignUp = new System.Windows.Forms.TextBox();
             this._lbCreateAccountSignUp = new System.Windows.Forms.Label();
             this._ptbSignUp = new System.Windows.Forms.PictureBox();
+            this._cbbGender = new System.Windows.Forms.ComboBox();
             this._panelLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._ptbSignIn)).BeginInit();
             this._panelSignUp.SuspendLayout();
@@ -187,6 +188,7 @@
             // 
             this._panelSignUp.BackColor = System.Drawing.Color.White;
             this._panelSignUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this._panelSignUp.Controls.Add(this._cbbGender);
             this._panelSignUp.Controls.Add(this._lbBackToLogin);
             this._panelSignUp.Controls.Add(this._lbConfirmPasswordSignUp);
             this._panelSignUp.Controls.Add(this._txtConfirmPasswordSignUp);
@@ -274,7 +276,7 @@
             this._txtNameSignUp.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
             this._txtNameSignUp.Multiline = true;
             this._txtNameSignUp.Name = "_txtNameSignUp";
-            this._txtNameSignUp.Size = new System.Drawing.Size(275, 29);
+            this._txtNameSignUp.Size = new System.Drawing.Size(200, 29);
             this._txtNameSignUp.TabIndex = 6;
             // 
             // _lbPasswordSignUp
@@ -345,6 +347,18 @@
             this._ptbSignUp.TabIndex = 0;
             this._ptbSignUp.TabStop = false;
             // 
+            // _cbbGender
+            // 
+            this._cbbGender.FormattingEnabled = true;
+            this._cbbGender.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
+            this._cbbGender.Location = new System.Drawing.Point(239, 111);
+            this._cbbGender.Name = "_cbbGender";
+            this._cbbGender.Size = new System.Drawing.Size(52, 21);
+            this._cbbGender.TabIndex = 10;
+            this._cbbGender.Text = "Nam";
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -398,5 +412,6 @@
         private System.Windows.Forms.TextBox _txtEmailSignUp;
         private System.Windows.Forms.Label _lbCreateAccountSignUp;
         private System.Windows.Forms.PictureBox _ptbSignUp;
+        private System.Windows.Forms.ComboBox _cbbGender;
     }
 }

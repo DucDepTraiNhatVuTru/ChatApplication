@@ -32,7 +32,7 @@ namespace ServerApp
 
         private static void _server_OnNewMessage(IChatClient arg1, string arg2)
         {
-            Console.WriteLine(arg1.GetEndPoint().ToString() + " : " + arg2);
+            Console.WriteLine(arg2);
         }
 
         private static void _server_OnNewConnect(IChatClient obj)

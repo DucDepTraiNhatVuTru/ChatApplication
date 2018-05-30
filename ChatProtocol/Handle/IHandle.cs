@@ -10,6 +10,6 @@ namespace ChatProtocol.Handle
 {
     public interface IHandle
     {
-        void Handling(IProtocol protocol, IChatClient client);
+        string Handling(IProtocol protocol, IChatClient client);
     }
 }

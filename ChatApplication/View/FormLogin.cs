@@ -126,7 +126,28 @@ namespace ChatApplication.View
 
         private void _btnCreateAccount_Click(object sender, EventArgs e)
         {
-            //_client.RequestCreateAccount(Account account);
+            if (!CheckConfirmPassword())
+            {
+                MessageBox.Show("Password không giống nhau");
+            }
+            else
+            {
+                Account account = new Account();
+                account.Email = _txtEmailSignUp.Text;
+                account.Password = _txtPasswordSignUp.Text;
+                account.Name = _txtNameSignUp.Text;
+                account.Gender = _cbbGender.Text;
+                account.Avatar = Image.FromFile(@"D:\ThucTap\ChatApplication\ChatApplication\Asset\avatarNull.png");
+                account.TimeCreate = DateTime.Now;
+
+                _client.RequestCreateAccount(account);
+            }
+        }
+
+        private bool CheckConfirmPassword()
+        {
+            if (_txtPasswordSignUp.Text == _txtConfirmPasswordSignUp.Text) return true;
+            return false;
         }
     }
 }

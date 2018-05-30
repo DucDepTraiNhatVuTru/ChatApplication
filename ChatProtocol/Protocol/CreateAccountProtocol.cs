@@ -9,32 +9,32 @@ namespace ChatProtocol.Protocol
 {
     public class CreateAccountProtocol : IProtocol
     {
-        public Account account { get; set; }
+        public Account Account = new Account();
         public bool Parse(string data)
         {
             if (string.IsNullOrEmpty(data)) return false;
             var tach = data.Split('\0');
             if (tach.Length < 6) return false;
-            account.Email = tach[0];
-            account.Password = tach[1];
-            account.Name = tach[2];
-            account.Avatar = ImageConverter.ImageConverter.CovertByteArrayToImage(Encoding.Unicode.GetBytes(tach[3]));
-            account.Gender = tach[4];
+            Account.Email = tach[0];
+            Account.Password = tach[1];
+            Account.Name = tach[2];
+            Account.Avatar = ImageConverter.ImageConverter.ConvertBase64ToImage(tach[3]);
+            Account.Gender = tach[4];
             DateTime time;
             if (!DateTime.TryParse(tach[5], out time)) return false;
-            account.TimeCreate = time;
+            Account.TimeCreate = time;
             return true;
         }
 
         public byte[] ToBytes()
         {
             var data = "";
-            data += account.Email + "\0";
-            data += account.Password + "\0";
-            data += account.Name + "\0";
-            data += ImageConverter.ImageConverter.ConvertImageToByteArray(account.Avatar) + "\0";
-            data += account.Gender + "\0";
-            data += account.TimeCreate + "\0";
+            data += Account.Email + "\0";
+            data += Account.Password + "\0";
+            data += Account.Name + "\0";
+            data += ImageConverter.ImageConverter.ConvertImageToBase64(Account.Avatar) + "\0";
+            data += Account.Gender + "\0";
+            data += Account.TimeCreate + "\0";
             return Encoding.Unicode.GetBytes(data);
         }
     }

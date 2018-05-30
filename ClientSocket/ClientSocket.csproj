@@ -56,6 +56,10 @@
       <Project>{6dbc97a4-3339-4614-8f88-ff5f8b49d47c}</Project>
       <Name>ChatDataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ChatProtocol\ChatProtocol.csproj">
+      <Project>{148e8028-b9c6-4312-a6af-e0dec0ad09c9}</Project>
+      <Name>ChatProtocol</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

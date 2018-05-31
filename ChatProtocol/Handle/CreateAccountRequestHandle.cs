@@ -20,13 +20,14 @@ namespace ChatProtocol.Handle
             string toView = "[" + DateTime.Now + "] : request create Account ";
             try
             {
-                InsertAccount(ptc.Account);
+                IAccountDAO db = new AccountDAOSQL();
+                db.Insert(ptc.Account);
                 toView += "\n create account successful";
             }
-            catch (Exception )
+            catch (Exception ex)
             {
                 toView += "\n create account non successful , database error ";
-                throw;
+                throw new Exception(ex.Message);
             }
             return toView;
         }

@@ -18,8 +18,8 @@ namespace ChatProtocol.Packet
                 using (var read = new BinaryReader(stream))
                 {
                     Opcode = read.ReadByte();
-                    var Len = read.ReadInt16();
-                    if (Len < data.Length - 3)
+                    var Len = read.ReadInt32();
+                    if (Len < data.Length - 5)
                         return false;
                     Data = read.ReadBytes(Len);
                     return true;
@@ -34,7 +34,7 @@ namespace ChatProtocol.Packet
                 using (var w = new BinaryWriter(stream))
                 {
                     w.Write(Opcode);
-                    w.Write((short)Data.Length);
+                    w.Write((int)Data.Length);
                     w.Write(Data);
                     return stream.ToArray();
                 }

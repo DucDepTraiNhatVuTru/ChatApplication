@@ -24,8 +24,9 @@ namespace ChatDAO
             try
             {
                 Connect();
+                string avatarBase64 = ImageConverter.ImageConverter.ConvertImageToBase64(account.Avatar);
                 string sql = "insert into Account(Email, Password, Name, Avatar, Gender, TimeCreate) ";
-                sql += "values ('" + account.Email + "','" + account.Password + "','" + account.Name + "','" + ImageConverter.ImageConverter.ConvertImageToBase64(account.Avatar) + "','" + account.Gender + "','" + account.TimeCreate + "')";
+                sql += "values ('" + account.Email + "','" + account.Password + "','" + account.Name + "','" + avatarBase64 + "','" + account.Gender + "','" + account.TimeCreate + "')";
                 con.ExecuteNonQuery(sql);
             }
             catch (Exception ex)

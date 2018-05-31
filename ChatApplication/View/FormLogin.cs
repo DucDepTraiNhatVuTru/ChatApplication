@@ -137,7 +137,7 @@ namespace ChatApplication.View
                 account.Password = _txtPasswordSignUp.Text;
                 account.Name = _txtNameSignUp.Text;
                 account.Gender = _cbbGender.Text;
-                account.Avatar = Image.FromFile(@"D:\ThucTap\ChatApplication\ChatApplication\Asset\avatarNull.png");
+                account.Avatar = Image.FromFile(@"D:\ThucTap\avartar.jpg");
                 account.TimeCreate = DateTime.Now;
 
                 _client.RequestCreateAccount(account);

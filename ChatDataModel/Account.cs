@@ -12,7 +12,7 @@ namespace ChatDataModel
         public string Email { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
-        public Image Avatar { get; set; }
+        public string AvatarDriveID { get; set; }
         public string Gender { get; set; }
         public DateTime TimeCreate { get; set; }
     }

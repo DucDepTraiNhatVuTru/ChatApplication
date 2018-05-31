@@ -18,17 +18,27 @@ namespace ChatProtocol.Handle
         {
             var ptc = protocol as CreateAccountProtocol;
             string toView = "[" + DateTime.Now + "] : request create Account ";
-            try
+
+            //kiểm tra coi email đăng ký đã tồn tại không cái đã
+            if (!IsAccountExist(ptc.Account.Email))
             {
-                IAccountDAO db = new AccountDAOSQL();
-                db.Insert(ptc.Account);
-                toView += "\n create account successful";
+                // gửi lỗi về đã tồn tại account.Email về
+                toView += "\n create account non successful , email is used";
             }
-            catch (Exception ex)
+            else
             {
-                toView += "\n create account non successful , database error ";
-                throw new Exception(ex.Message);
+                try
+                {
+                    InsertAccount(ptc.Account);
+                    toView += "\n create account successful";
+                }
+                catch (Exception ex)
+                {
+                    toView += "\n create account non successful , database error ";
+                    throw new Exception(ex.Message);
+                }
             }
+            
             return toView;
         }
 
@@ -46,6 +56,24 @@ namespace ChatProtocol.Handle
                     throw new Exception(ex.Message);
                 }
                 
+            }
+        }
+
+        private static bool IsAccountExist(string email)
+        {
+            lock (syncLock)
+            {
+                try
+                {
+                    IAccountDAO db = new AccountDAOSQL();
+                    var account = db.GetAccount(email);
+                    if (account == null) return false;
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
             }
         }
     }

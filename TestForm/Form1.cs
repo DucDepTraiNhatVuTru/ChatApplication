@@ -19,7 +19,7 @@ namespace TestForm
             InitializeComponent();
             AccountDAOSQL account = new AccountDAOSQL();
            Account acc = account.GetAccount("ngocdung@gmail.com");
-            pictureBox1.Image = acc.Avatar;
+           // pictureBox1.Image = acc.Avatar;
         }
     }
 }

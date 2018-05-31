@@ -137,9 +137,8 @@ namespace ChatApplication.View
                 account.Password = _txtPasswordSignUp.Text;
                 account.Name = _txtNameSignUp.Text;
                 account.Gender = _cbbGender.Text;
-                account.Avatar = Image.FromFile(@"D:\ThucTap\avartar.jpg");
+                account.AvatarDriveID = "1TQEHP_vvCYZC3oMiDbaB7-F36rkw1RMP";
                 account.TimeCreate = DateTime.Now;
-
                 _client.RequestCreateAccount(account);
             }
         }

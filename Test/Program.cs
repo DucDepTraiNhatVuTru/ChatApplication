@@ -19,7 +19,7 @@ namespace Test
             account.Name = "Minh Đức";
             var image = Image.FromFile(@"D:\ThucTap\avartar.jpg");
             Bitmap bm = new Bitmap(image, new Size(64, 64));
-            account.Avatar =(Image) bm;
+            //account.Avatar =(Image) bm;
             account.Gender = "Nu";
             account.TimeCreate = DateTime.Now;
             IAccountDAO accountDao = new AccountDAOSQL();

@@ -18,7 +18,7 @@ namespace ChatProtocol.Protocol
             Account.Email = tach[0];
             Account.Password = tach[1];
             Account.Name = tach[2];
-            Account.Avatar = ImageConverter.ImageConverter.ConvertBase64ToImage(tach[3]);
+            Account.AvatarDriveID = tach[3];
             Account.Gender = tach[4];
             DateTime time;
             if (!DateTime.TryParse(tach[5], out time)) return false;
@@ -32,7 +32,7 @@ namespace ChatProtocol.Protocol
             data += Account.Email + "\0";
             data += Account.Password + "\0";
             data += Account.Name + "\0";
-            data += ImageConverter.ImageConverter.ConvertImageToBase64(Account.Avatar) + "\0";
+            data += Account.AvatarDriveID + "\0";
             data += Account.Gender + "\0";
             data += Account.TimeCreate + "\0";
             return Encoding.Unicode.GetBytes(data);

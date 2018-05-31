@@ -22,7 +22,7 @@ namespace ChatProtocol.Handle
             //kiểm tra coi email đăng ký đã tồn tại không cái đã
             if (!IsAccountExist(ptc.Account.Email))
             {
-                // gửi lỗi về đã tồn tại account.Email về
+                // gửi lỗi về đã tồn tại account.Email về`
                 toView += "\n create account non successful , email is used";
             }
             else

@@ -45,6 +45,7 @@
     <Compile Include="HandleFactory.cs" />
     <Compile Include="Handle\CreateAccountRequestHandle.cs" />
     <Compile Include="Handle\CreateAccountResponseHandle.cs" />
+    <Compile Include="Handle\LoginRequestHandle.cs" />
     <Compile Include="ProtocolFactory.cs" />
     <Compile Include="Handle\IHandle.cs" />
     <Compile Include="Packet\BasicPacket.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Protocol\CreateAccountProtocol.cs" />
     <Compile Include="Protocol\CreateAccountResponseProtocol.cs" />
     <Compile Include="Protocol\IProtocol.cs" />
+    <Compile Include="Protocol\LoginRequestProtocol.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChatDAO\ChatDAO.csproj">

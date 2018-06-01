@@ -15,6 +15,8 @@ namespace ChatProtocol
             {
                 case 1:
                     return new CreateAccountRequestHandle();
+                case 3:
+                    return new LoginRequestHandle();
                 default:
                     throw new Exception("chưa hỗ trợ opcode!");
             }

@@ -11,5 +11,6 @@ namespace ChatDAO
     {
         void Insert(Account account);
         Account GetAccount(string email);
+        Account GetAccount(string email, string password);
     }
 }

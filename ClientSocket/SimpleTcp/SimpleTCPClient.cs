@@ -7,17 +7,32 @@ using ChatDataModel;
 using SimpleTCP;
 using ChatProtocol.Protocol;
 using ChatProtocol.Packet;
+using ChatProtocol;
 
 namespace ClientSocket.SimpleTcp
 {
     public class SimpleTCPClient : IClient
     {
         private SimpleTcpClient _client;
-        public event Action<string> OnNewRecieve;
+        public event Action<byte,IProtocol> OnNewRecieve;
 
         public SimpleTCPClient()
         {
             _client = new SimpleTcpClient();
+            _client.DataReceived += _client_DataReceived;
+        }
+
+        private void _client_DataReceived(object sender, Message e)
+        {
+            var packet = new BasicPacket();
+            if (!packet.Parse(e.Data))
+                return;
+            var protocol = ProtocolFactory.CreateProtocol(packet.Opcode);
+            if (!protocol.Parse(Encoding.Unicode.GetString(packet.Data)))
+                return;
+
+            if (OnNewRecieve != null)
+                OnNewRecieve.Invoke(packet.Opcode,protocol);
         }
 
         public void Connect(string ip, int port)

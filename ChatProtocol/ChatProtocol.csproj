@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +44,7 @@
   <ItemGroup>
     <Compile Include="HandleFactory.cs" />
     <Compile Include="Handle\CreateAccountRequestHandle.cs" />
+    <Compile Include="Handle\CreateAccountResponseHandle.cs" />
     <Compile Include="ProtocolFactory.cs" />
     <Compile Include="Handle\IHandle.cs" />
     <Compile Include="Packet\BasicPacket.cs" />

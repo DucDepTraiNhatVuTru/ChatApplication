@@ -1,4 +1,5 @@
 ﻿using ChatDataModel;
+using ChatProtocol.Protocol;
 using ClientSocket;
 using ClientSocket.SimpleTcp;
 using System;
@@ -24,6 +25,13 @@ namespace ChatApplication.View
             ConnectToServer();
             InitializeComponent();
             init();
+            _client.OnNewRecieve += _client_OnNewRecieve;
+        }
+
+        private void _client_OnNewRecieve(byte opcode, IProtocol ptc)
+        {
+            var handle = ChatApplication.Handle.HandleFactory.CreateHandle(opcode);
+            handle.Handling(ptc, this);
         }
 
         private void init()
@@ -147,6 +155,15 @@ namespace ChatApplication.View
         {
             if (_txtPasswordSignUp.Text == _txtConfirmPasswordSignUp.Text) return true;
             return false;
+        }
+
+        public void CleanTextBox()
+        {
+            _txtEmailSignUp.Text = "";
+            _txtPasswordSignUp.Text = "";
+            _txtConfirmPasswordSignUp.Text = "";
+            _txtNameSignUp.Text = "";
+            _cbbGender.Text = "Nam";
         }
     }
 }

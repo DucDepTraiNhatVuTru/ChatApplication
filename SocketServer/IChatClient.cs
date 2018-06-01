@@ -11,5 +11,6 @@ namespace SocketServer
     {
         void Disconnect();
         EndPoint GetEndPoint();
+        void ResponseCreateAccount(int isSuccess, string message);
     }
 }

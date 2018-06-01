@@ -7,6 +7,7 @@ using ChatProtocol.Protocol;
 using SocketServer;
 using ChatDataModel;
 using ChatDAO;
+using System.Windows.Forms;
 
 namespace ChatProtocol.Handle
 {
@@ -22,7 +23,8 @@ namespace ChatProtocol.Handle
             //kiểm tra coi email đăng ký đã tồn tại không cái đã
             if (!IsAccountExist(ptc.Account.Email))
             {
-                // gửi lỗi về đã tồn tại account.Email về`
+                // gửi lỗi về đã tồn tại account.Email về
+                client.ResponseCreateAccount(0, "email is uesed!");
                 toView += "\n create account non successful , email is used";
             }
             else
@@ -67,7 +69,7 @@ namespace ChatProtocol.Handle
                 {
                     IAccountDAO db = new AccountDAOSQL();
                     var account = db.GetAccount(email);
-                    if (account == null) return false;
+                    if (account.Email == email) return false;
                     return true;
                 }
                 catch (Exception ex)
@@ -76,5 +78,6 @@ namespace ChatProtocol.Handle
                 }
             }
         }
+        
     }
 }

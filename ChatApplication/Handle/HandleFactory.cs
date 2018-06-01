@@ -1,11 +1,10 @@
-﻿using ChatProtocol.Handle;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatProtocol
+namespace ChatApplication.Handle
 {
     public class HandleFactory
     {
@@ -13,10 +12,10 @@ namespace ChatProtocol
         {
             switch (opcode)
             {
-                case 1:
-                    return new CreateAccountRequestHandle();
+                case 2:
+                    return new CreateAccountResponseHandle();
                 default:
-                    throw new Exception("chưa hỗ trợ opcode!");
+                    throw new Exception("Chưa hỗ trợ opcode");
             }
         }
     }

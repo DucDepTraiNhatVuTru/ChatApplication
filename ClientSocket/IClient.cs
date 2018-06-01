@@ -1,4 +1,5 @@
 ﻿using ChatDataModel;
+using ChatProtocol.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ClientSocket
     {
         void Connect(string ip, int port);
         void Disconnect();
-        event Action<string> OnNewRecieve;
+        event Action<byte,IProtocol> OnNewRecieve;
         void Send(string data);
         void RequestCreateAccount(Account account);
     }

@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using ChatProtocol.Protocol;
+using ChatProtocol.Packet;
 
 namespace SocketServer.SimpleTCP
 {
@@ -28,6 +30,17 @@ namespace SocketServer.SimpleTCP
         public EndPoint GetEndPoint()
         {
             return _client.Client.RemoteEndPoint;
+        }
+
+        public void ResponseCreateAccount(int isSuccess, string message)
+        {
+            var ptc = new CreateAccountResponseProtocol();
+            ptc.IsSuccess = isSuccess;
+            ptc.Message = message;
+            var packet = new BasicPacket();
+            packet.Opcode = 2;
+            packet.Data = ptc.ToBytes();
+            _client.Client.Send(packet.ToBytes());
         }
     }
 }

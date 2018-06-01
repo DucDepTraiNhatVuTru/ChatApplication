@@ -54,7 +54,12 @@
     <Compile Include="SimpleTCP\ServerSimpleTcp.cs" />
     <Compile Include="SimpleTCP\SimpleTcpAdapter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ChatDataModel\ChatDataModel.csproj">
+      <Project>{6DBC97A4-3339-4614-8F88-FF5F8B49D47C}</Project>
+      <Name>ChatDataModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

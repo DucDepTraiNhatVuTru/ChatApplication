@@ -14,6 +14,8 @@ namespace ChatApplication.Handle
             {
                 case 2:
                     return new CreateAccountResponseHandle();
+                case 4:
+                    return new LoginResponseHandle();
                 default:
                     throw new Exception("Chưa hỗ trợ opcode");
             }

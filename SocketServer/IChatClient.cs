@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatDataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,5 +13,6 @@ namespace SocketServer
         void Disconnect();
         EndPoint GetEndPoint();
         void ResponseCreateAccount(int isSuccess, string message);
+        void ResponseLogin(int isAccept, Account account);
     }
 }

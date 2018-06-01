@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChatProtocol.Protocol;
 using ChatProtocol.Packet;
+using ChatDataModel;
 
 namespace SocketServer.SimpleTCP
 {
@@ -39,6 +40,17 @@ namespace SocketServer.SimpleTCP
             ptc.Message = message;
             var packet = new BasicPacket();
             packet.Opcode = 2;
+            packet.Data = ptc.ToBytes();
+            _client.Client.Send(packet.ToBytes());
+        }
+
+        public void ResponseLogin(int isAccept, Account account)
+        {
+            var ptc = new LoginResponseProtocol();
+            ptc.IsAccept = isAccept;
+            ptc.Account = account;
+            var packet = new BasicPacket();
+            packet.Opcode = 4;
             packet.Data = ptc.ToBytes();
             _client.Client.Send(packet.ToBytes());
         }

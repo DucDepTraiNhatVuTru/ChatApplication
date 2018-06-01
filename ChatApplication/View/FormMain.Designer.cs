@@ -31,7 +31,7 @@
             this._btnClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this._ptbAvatar = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this._lbUserName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,15 +66,15 @@
             this._ptbAvatar.TabIndex = 2;
             this._ptbAvatar.TabStop = false;
             // 
-            // label2
+            // _lbUserName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(112, 42);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 21);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "User Name";
+            this._lbUserName.AutoSize = true;
+            this._lbUserName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._lbUserName.Location = new System.Drawing.Point(112, 42);
+            this._lbUserName.Name = "_lbUserName";
+            this._lbUserName.Size = new System.Drawing.Size(88, 21);
+            this._lbUserName.TabIndex = 3;
+            this._lbUserName.Text = "User Name";
             // 
             // FormMain
             // 
@@ -82,7 +82,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(280, 523);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this._lbUserName);
             this.Controls.Add(this._ptbAvatar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._btnClose);
@@ -100,6 +100,6 @@
         private System.Windows.Forms.Button _btnClose;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox _ptbAvatar;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label _lbUserName;
     }
 }

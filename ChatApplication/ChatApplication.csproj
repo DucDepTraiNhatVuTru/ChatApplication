@@ -64,6 +64,7 @@
     <Compile Include="Handle\CreateAccountResponseHandle.cs" />
     <Compile Include="Handle\HandleFactory.cs" />
     <Compile Include="Handle\IHandle.cs" />
+    <Compile Include="Handle\LoginResponseHandle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\FormChat.cs">
@@ -138,6 +139,10 @@
     <ProjectReference Include="..\ClientSocket\ClientSocket.csproj">
       <Project>{299cfe27-40eb-4b83-9f39-1c3ef93a3017}</Project>
       <Name>ClientSocket</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoogleDriveApiv3\GoogleDriveApiv3.csproj">
+      <Project>{4A04BDEA-6817-4679-8C08-7B096BD8F9CC}</Project>
+      <Name>GoogleDriveApiv3</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

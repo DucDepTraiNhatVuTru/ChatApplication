@@ -26,6 +26,7 @@ namespace ChatApplication.View
             InitializeComponent();
             init();
             _client.OnNewRecieve += _client_OnNewRecieve;
+            
         }
 
         private void _client_OnNewRecieve(byte opcode, IProtocol ptc)
@@ -102,7 +103,7 @@ namespace ChatApplication.View
             _lbPassword.Visible = false;
             _txtEmail.Visible = false;
             _txtPassword.Visible = false;
-            button1.Visible = false;
+            _btnSignin.Visible = false;
             /*
             _lbCreateNewAccount.Hide();
             _lbDangNhap.Hide();
@@ -164,6 +165,31 @@ namespace ChatApplication.View
             _txtConfirmPasswordSignUp.Text = "";
             _txtNameSignUp.Text = "";
             _cbbGender.Text = "Nam";
+        }
+
+        public IClient GetClient()
+        {
+            return _client;
+        }
+
+        private void _btnSignin_Click(object sender, EventArgs e)
+        {
+            if (CheckSignInTextBoxIsNullOrEmpty())
+            {
+                MessageBox.Show("Vui lòng điền đày đủ thông tin!", "Thông báo");
+            }
+            else
+            {
+                _client.RequestLogin(_txtEmail.Text, _txtPassword.Text);
+            }
+        }
+        private bool CheckSignInTextBoxIsNullOrEmpty()
+        {
+            if (string.IsNullOrEmpty(_txtEmail.Text) || string.IsNullOrEmpty(_txtPassword.Text))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

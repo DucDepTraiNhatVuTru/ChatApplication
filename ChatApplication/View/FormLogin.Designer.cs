@@ -30,7 +30,7 @@
         {
             this._panelLogin = new System.Windows.Forms.Panel();
             this._lbCreateNewAccount = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this._btnSignin = new System.Windows.Forms.Button();
             this._lbPassword = new System.Windows.Forms.Label();
             this._txtPassword = new System.Windows.Forms.TextBox();
             this._lbEmail = new System.Windows.Forms.Label();
@@ -39,6 +39,7 @@
             this._ptbSignIn = new System.Windows.Forms.PictureBox();
             this._btnClose = new System.Windows.Forms.Button();
             this._panelSignUp = new System.Windows.Forms.Panel();
+            this._cbbGender = new System.Windows.Forms.ComboBox();
             this._lbBackToLogin = new System.Windows.Forms.Label();
             this._lbConfirmPasswordSignUp = new System.Windows.Forms.Label();
             this._txtConfirmPasswordSignUp = new System.Windows.Forms.TextBox();
@@ -51,7 +52,6 @@
             this._txtEmailSignUp = new System.Windows.Forms.TextBox();
             this._lbCreateAccountSignUp = new System.Windows.Forms.Label();
             this._ptbSignUp = new System.Windows.Forms.PictureBox();
-            this._cbbGender = new System.Windows.Forms.ComboBox();
             this._panelLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._ptbSignIn)).BeginInit();
             this._panelSignUp.SuspendLayout();
@@ -63,7 +63,7 @@
             this._panelLogin.BackColor = System.Drawing.Color.White;
             this._panelLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this._panelLogin.Controls.Add(this._lbCreateNewAccount);
-            this._panelLogin.Controls.Add(this.button1);
+            this._panelLogin.Controls.Add(this._btnSignin);
             this._panelLogin.Controls.Add(this._lbPassword);
             this._panelLogin.Controls.Add(this._txtPassword);
             this._panelLogin.Controls.Add(this._lbEmail);
@@ -88,19 +88,20 @@
             this._lbCreateNewAccount.Text = "Create new account";
             this._lbCreateNewAccount.Click += new System.EventHandler(this._lbCreateNewAccount_Click);
             // 
-            // button1
+            // _btnSignin
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(408, 208);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 34);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = false;
+            this._btnSignin.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this._btnSignin.FlatAppearance.BorderSize = 0;
+            this._btnSignin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnSignin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnSignin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this._btnSignin.Location = new System.Drawing.Point(408, 208);
+            this._btnSignin.Name = "_btnSignin";
+            this._btnSignin.Size = new System.Drawing.Size(123, 34);
+            this._btnSignin.TabIndex = 6;
+            this._btnSignin.Text = "Login";
+            this._btnSignin.UseVisualStyleBackColor = false;
+            this._btnSignin.Click += new System.EventHandler(this._btnSignin_Click);
             // 
             // _lbPassword
             // 
@@ -201,11 +202,23 @@
             this._panelSignUp.Controls.Add(this._txtEmailSignUp);
             this._panelSignUp.Controls.Add(this._lbCreateAccountSignUp);
             this._panelSignUp.Controls.Add(this._ptbSignUp);
-            this._panelSignUp.Location = new System.Drawing.Point(124, 51);
+            this._panelSignUp.Location = new System.Drawing.Point(124, 62);
             this._panelSignUp.Name = "_panelSignUp";
             this._panelSignUp.Size = new System.Drawing.Size(548, 342);
             this._panelSignUp.TabIndex = 2;
             this._panelSignUp.Visible = false;
+            // 
+            // _cbbGender
+            // 
+            this._cbbGender.FormattingEnabled = true;
+            this._cbbGender.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
+            this._cbbGender.Location = new System.Drawing.Point(239, 111);
+            this._cbbGender.Name = "_cbbGender";
+            this._cbbGender.Size = new System.Drawing.Size(52, 21);
+            this._cbbGender.TabIndex = 10;
+            this._cbbGender.Text = "Nam";
             // 
             // _lbBackToLogin
             // 
@@ -347,18 +360,6 @@
             this._ptbSignUp.TabIndex = 0;
             this._ptbSignUp.TabStop = false;
             // 
-            // _cbbGender
-            // 
-            this._cbbGender.FormattingEnabled = true;
-            this._cbbGender.Items.AddRange(new object[] {
-            "Nam",
-            "Nữ"});
-            this._cbbGender.Location = new System.Drawing.Point(239, 111);
-            this._cbbGender.Name = "_cbbGender";
-            this._cbbGender.Size = new System.Drawing.Size(52, 21);
-            this._cbbGender.TabIndex = 10;
-            this._cbbGender.Text = "Nam";
-            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,7 +396,7 @@
         private System.Windows.Forms.Label _lbPassword;
         private System.Windows.Forms.TextBox _txtPassword;
         private System.Windows.Forms.Label _lbEmail;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button _btnSignin;
         private System.Windows.Forms.Button _btnClose;
         private System.Windows.Forms.Label _lbCreateNewAccount;
         private System.Windows.Forms.PictureBox _ptbSignIn;

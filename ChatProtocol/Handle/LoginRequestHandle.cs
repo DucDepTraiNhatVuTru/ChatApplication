@@ -18,16 +18,20 @@ namespace ChatProtocol.Handle
             var ptc = protocol as LoginRequestProtocol;
             string toView = "[" + DateTime.Now + "] : request login ";
             int isAccept = 0;
-            if (GetAccount(ptc.Email, ptc.Password).Email != ptc.Email)
+            var account = GetAccount(ptc.Email, ptc.Password);
+            if (account.Email != ptc.Email)
             {
+                //trả về 0 nếu không trùng
                 isAccept = 0;
                 toView += "\n reject login";
                 return toView;
             }
-            
+            //trả về 1 nếu đúng
+            isAccept = 1;
+            client.ResponseLogin(isAccept, account);
+            toView += "\n accept login";
 
-            
-            
+            //chắc còn phải gửi về tùm lum thứ kiểu danh sách bạn bè.
             return toView;
         }
 

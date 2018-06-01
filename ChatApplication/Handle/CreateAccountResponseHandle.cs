@@ -16,7 +16,10 @@ namespace ChatApplication.Handle
             var ptc = protocol as CreateAccountResponseProtocol;
             if (ptc.IsSuccess == 0)
             {
-                f.CleanTextBox();
+                f.Invoke(new MethodInvoker(delegate ()
+                {
+                    f.CleanTextBox();
+                }));
             }
             MessageBox.Show(ptc.Message);
         }

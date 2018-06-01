@@ -21,7 +21,7 @@ namespace ChatApplication.Handle
                     f.CleanTextBox();
                 }));
             }
-            MessageBox.Show(ptc.Message);
+            MessageBox.Show(ptc.Message,"Thông báo");
         }
     }
 }

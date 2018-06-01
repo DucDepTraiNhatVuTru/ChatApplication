@@ -19,6 +19,7 @@ namespace ChatDAO
         {
             con.Connect(@"Data Source=MINHDUC\SQLEXPRESS;Initial Catalog=ChatDB;Persist Security Info=True;User ID=sa;Password=123456");
         }
+
         public void Insert(Account account)
         {
             try
@@ -56,6 +57,38 @@ namespace ChatDAO
                         account.AvatarDriveID = data.GetString(3);
                         account.Gender = data.GetString(4);
                         account.TimeCreate =(DateTime) data.GetValue(5);
+                    }
+                }
+                return account;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
+        }
+
+        public Account GetAccount(string email, string password)
+        {
+            try
+            {
+                Connect();
+                string sql = "select * from Account where Email = '" + email + "' and Password = '" + password + "'";
+                var data = con.GetData(sql);
+                Account account = new Account();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        account.Email = data.GetString(0);
+                        account.Password = data.GetString(1);
+                        account.Name = data.GetString(2);
+                        account.AvatarDriveID = data.GetString(3);
+                        account.Gender = data.GetString(4);
+                        account.TimeCreate = (DateTime)data.GetValue(5);
                     }
                 }
                 return account;

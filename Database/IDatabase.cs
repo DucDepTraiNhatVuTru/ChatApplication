@@ -12,7 +12,7 @@ namespace Database
     {
         void Connect(string connectionString);
         void Disconnect();
-        void ExecuteNonQuery(string sql);
+        int ExecuteNonQuery(string sql);
         DbDataReader GetData(string sql);
     }
 }

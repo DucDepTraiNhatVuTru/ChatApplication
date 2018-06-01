@@ -16,5 +16,6 @@ namespace ClientSocket
         void Send(string data);
         void RequestCreateAccount(Account account);
         void RequestLogin(string email, string password);
+        void RequestUpdateAvatar(string email, string driveFileId);
     }
 }

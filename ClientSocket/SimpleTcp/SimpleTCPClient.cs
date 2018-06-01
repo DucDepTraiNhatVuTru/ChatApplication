@@ -78,5 +78,16 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void RequestUpdateAvatar(string email,string driveFileId)
+        {
+            var ptc = new UpdateAvatarRequestProtocol();
+            ptc.Email = email;
+            ptc.DriveFileId = driveFileId;
+            var packet = new BasicPacket();
+            packet.Opcode = 5;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

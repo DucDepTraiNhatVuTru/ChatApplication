@@ -54,5 +54,16 @@ namespace SocketServer.SimpleTCP
             packet.Data = ptc.ToBytes();
             _client.Client.Send(packet.ToBytes());
         }
+
+        public void ResponseUpdateAvatar(int isSuccess, string driveFileId)
+        {
+            var ptc = new UpdateAvatarResponseProtocol();
+            ptc.IsSuccess = isSuccess;
+            ptc.DriveFileId = driveFileId;
+            var packet = new BasicPacket();
+            packet.Opcode = 6;
+            packet.Data = ptc.ToBytes();
+            _client.Client.Send(packet.ToBytes());
+        }
     }
 }

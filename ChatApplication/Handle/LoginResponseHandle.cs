@@ -22,16 +22,12 @@ namespace ChatApplication.Handle
                 return;
             }
 
-            Thread thread = new Thread(delegate ()
-            {
-                FormMain main = new FormMain(f.GetClient(), ptc.Account);
-                main.ShowDialog();
-            });
-            thread.Start();
 
             f.Invoke(new MethodInvoker(delegate ()
             {
-                f.Close();
+                f.Hide();
+                FormMain main = new FormMain(f.GetClient(), ptc.Account);
+                main.ShowDialog();
             }));
             
         }

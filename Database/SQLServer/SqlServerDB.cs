@@ -32,12 +32,12 @@ namespace Database.SQLServer
             }
         }
 
-        public void ExecuteNonQuery(string sql)
+        public int ExecuteNonQuery(string sql)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.ExecuteNonQuery();
+                return cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

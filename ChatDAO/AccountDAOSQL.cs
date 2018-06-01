@@ -102,5 +102,23 @@ namespace ChatDAO
                 con.Disconnect();
             }
         }
+
+        public int UpdateAvatar(string email, string driveFileId)
+        {
+            try
+            {
+                Connect();
+                string sql = "UPDATE Account SET Avatar = '" + driveFileId + "' WHERE Email = '" + email + "'";
+                return con.ExecuteNonQuery(sql);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
+        }
     }
 }

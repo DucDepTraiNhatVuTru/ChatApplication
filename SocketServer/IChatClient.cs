@@ -14,5 +14,6 @@ namespace SocketServer
         EndPoint GetEndPoint();
         void ResponseCreateAccount(int isSuccess, string message);
         void ResponseLogin(int isAccept, Account account);
+        void ResponseUpdateAvatar(int isSuccess, string driveFileId);
     }
 }

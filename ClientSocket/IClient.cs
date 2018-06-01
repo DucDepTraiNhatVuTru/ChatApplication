@@ -15,5 +15,6 @@ namespace ClientSocket
         event Action<byte,IProtocol> OnNewRecieve;
         void Send(string data);
         void RequestCreateAccount(Account account);
+        void RequestLogin(string email, string password);
     }
 }

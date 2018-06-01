@@ -17,6 +17,17 @@ namespace ChatProtocol.Handle
         {
             var ptc = protocol as LoginRequestProtocol;
             string toView = "[" + DateTime.Now + "] : request login ";
+            int isAccept = 0;
+            if (GetAccount(ptc.Email, ptc.Password).Email != ptc.Email)
+            {
+                isAccept = 0;
+                toView += "\n reject login";
+                return toView;
+            }
+            
+
+            
+            
             return toView;
         }
 

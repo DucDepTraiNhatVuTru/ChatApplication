@@ -55,6 +55,7 @@
     <Compile Include="Protocol\CreateAccountResponseProtocol.cs" />
     <Compile Include="Protocol\IProtocol.cs" />
     <Compile Include="Protocol\LoginRequestProtocol.cs" />
+    <Compile Include="Protocol\LoginResponseProtocol.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChatDAO\ChatDAO.csproj">

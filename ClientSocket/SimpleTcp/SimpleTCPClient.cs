@@ -67,5 +67,16 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void RequestLogin(string email, string password)
+        {
+            var ptc = new LoginRequestProtocol();
+            ptc.Email = email;
+            ptc.Password = password;
+            var packet = new BasicPacket();
+            packet.Opcode = 3;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

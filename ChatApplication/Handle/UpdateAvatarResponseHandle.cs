@@ -24,11 +24,15 @@ namespace ChatApplication.Handle
                 }));
                 return;
             }
-
-            f.Invoke(new MethodInvoker(delegate ()
+            else
             {
-                f.UpdateAvatar(ptc.DriveFileId);
-            }));
+                f.Invoke(new MethodInvoker(delegate ()
+                {
+                    f.UpdateAvatar(ptc.DriveFileId);
+                }));
+                    
+            }
+            
         }
     }
 }

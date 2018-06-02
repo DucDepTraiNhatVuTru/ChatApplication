@@ -35,6 +35,11 @@ namespace ChatApplication.View
             handle.Handling(ptc, this);
         }
 
+        public void ExitEventReceive()
+        {
+            _client.OnNewRecieve -= _client_OnNewRecieve;
+        }
+
         private void init()
         {
             _ptbSignIn.SizeMode = PictureBoxSizeMode.StretchImage;

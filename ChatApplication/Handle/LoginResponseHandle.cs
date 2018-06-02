@@ -26,8 +26,15 @@ namespace ChatApplication.Handle
             f.Invoke(new MethodInvoker(delegate ()
             {
                 f.Hide();
-                FormMain main = new FormMain(f.GetClient(), ptc.Account);
-                main.ShowDialog();
+                f.ExitEventReceive();
+                Thread thread = new Thread(delegate ()
+                {
+                    FormMain main = new FormMain(f.GetClient(), ptc.Account);
+                    main.ShowDialog();
+                });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+                f.Close();
             }));
             
         }

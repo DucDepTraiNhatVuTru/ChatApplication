@@ -14,7 +14,7 @@ namespace ChatProtocol.Protocol
         {
             if (string.IsNullOrEmpty(data)) return false;
             var tach = data.Split('\0');
-            if (tach.Length < 0) return false;
+            if (tach.Length < 2) return false;
             int isSuccess = 0;
             if (!int.TryParse(tach[0], out isSuccess)) return false;
             IsSuccess = isSuccess;

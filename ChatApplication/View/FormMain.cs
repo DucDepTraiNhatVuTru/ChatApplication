@@ -28,6 +28,13 @@ namespace ChatApplication.View
             _client = client;
             _account = account;
             Init();
+            _client.OnNewRecieve += _client_OnNewRecieve;
+        }
+
+        private void _client_OnNewRecieve(byte opcode, ChatProtocol.Protocol.IProtocol ptc)
+        {
+            var handle = ChatApplication.Handle.HandleFactory.CreateHandle(opcode);
+            handle.Handling(ptc, this);
         }
 
         private void Init()
@@ -37,14 +44,16 @@ namespace ChatApplication.View
             _lbUserName.Text = _account.Name;
             Thread thread = new Thread(delegate ()
             {
+                var file = GoogleDriveFilesRepository.DownloadFile(_account.AvatarDriveID);
                 _ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
-                _ptbAvatar.Image = Image.FromStream(GoogleDriveFilesRepository.DownloadFile(_account.AvatarDriveID));
+                _ptbAvatar.Image = Image.FromStream(file);
             });
             thread.Start();
         }
         private void _btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+            FindForm().Close();
         }
         
         private void _ptbChinhSua_Click(object sender, EventArgs e)
@@ -69,6 +78,11 @@ namespace ChatApplication.View
                 _ptbAvatar.Image = Image.FromStream(file);
             });
             thread.Start();
+        }
+
+        public PictureBox GetPictureBoxAvatar()
+        {
+            return _ptbAvatar;
         }
     }
 }

@@ -35,8 +35,8 @@
             this._btnClose = new System.Windows.Forms.Button();
             this._rpvMain = new Telerik.WinControls.UI.RadPageView();
             this._rpvPageListFriend = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this._radlvFriendList = new Telerik.WinControls.UI.RadListView();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._rpvMain)).BeginInit();
@@ -118,14 +118,6 @@
             this._rpvPageListFriend.Size = new System.Drawing.Size(259, 337);
             this._rpvPageListFriend.Text = "Friend List";
             // 
-            // radPageViewPage2
-            // 
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(112F, 28F);
-            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
-            this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(259, 337);
-            this.radPageViewPage2.Text = "radPageViewPage2";
-            // 
             // _radlvFriendList
             // 
             this._radlvFriendList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -133,6 +125,15 @@
             this._radlvFriendList.Name = "_radlvFriendList";
             this._radlvFriendList.Size = new System.Drawing.Size(259, 337);
             this._radlvFriendList.TabIndex = 0;
+            this._radlvFriendList.ThemeName = "ControlDefault";
+            // 
+            // radPageViewPage2
+            // 
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(112F, 28F);
+            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage2.Name = "radPageViewPage2";
+            this.radPageViewPage2.Size = new System.Drawing.Size(259, 337);
+            this.radPageViewPage2.Text = "radPageViewPage2";
             // 
             // FormMain
             // 

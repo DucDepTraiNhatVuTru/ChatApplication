@@ -26,8 +26,13 @@ namespace ChatApplication.View
         public FormMain()
         {
             InitializeComponent();
+            _radlvFriendList.AllowEdit = false;
+            _radlvFriendList.AllowRemove = false;
+            _radlvFriendList.ItemSpacing = 5;
+            _radlvFriendList.ShowGridLines = true;
             _radlvFriendList.VisualItemCreating += VisualItemCreating;
             _radlvFriendList.ItemDataBound += _radlvFriendList_ItemDataBound;
+            
             _radlvFriendList.ItemSize = new Size(_radlvFriendList.ItemSize.Width, 50);
             BindingList<User> listUser = new BindingList<User>();
             for (int i = 0; i < 10; i++)
@@ -35,17 +40,17 @@ namespace ChatApplication.View
                 listUser.Add(new User(Image.FromFile(Path.Combine(@"D:\ThucTap","avartar.jpg")),"Minh Đức"));
             }
             _radlvFriendList.DataSource = listUser;
+            _radlvFriendList.DisplayMember = "Name";
         }
 
         private void _radlvFriendList_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             e.Item.Image = ImageConverter.ImageResize.ResizeImage(((User)e.Item.DataBoundItem).Avatar,48,48);
-            e.Item.Text = ((User)e.Item.DataBoundItem).Name;
         }
 
         void VisualItemCreating(object sender, ListViewVisualItemCreatingEventArgs e)
         {
-            e.VisualItem = new CustomItemListFriends();
+           // e.VisualItem = new CustomItemListFriends();
         }
 
         public FormMain(IClient client, Account account)

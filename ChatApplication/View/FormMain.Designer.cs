@@ -33,8 +33,16 @@
             this._ptbChinhSua = new System.Windows.Forms.PictureBox();
             this._ptbAvatar = new System.Windows.Forms.PictureBox();
             this._btnClose = new System.Windows.Forms.Button();
+            this._rpvMain = new Telerik.WinControls.UI.RadPageView();
+            this._rpvPageListFriend = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
+            this._radlvFriendList = new Telerik.WinControls.UI.RadListView();
             ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._rpvMain)).BeginInit();
+            this._rpvMain.SuspendLayout();
+            this._rpvPageListFriend.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._radlvFriendList)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -89,12 +97,50 @@
             this._btnClose.UseVisualStyleBackColor = true;
             this._btnClose.Click += new System.EventHandler(this._btnClose_Click);
             // 
+            // _rpvMain
+            // 
+            this._rpvMain.Controls.Add(this._rpvPageListFriend);
+            this._rpvMain.Controls.Add(this.radPageViewPage2);
+            this._rpvMain.Location = new System.Drawing.Point(-1, 144);
+            this._rpvMain.Name = "_rpvMain";
+            this._rpvMain.SelectedPage = this._rpvPageListFriend;
+            this._rpvMain.Size = new System.Drawing.Size(280, 385);
+            this._rpvMain.TabIndex = 5;
+            this._rpvMain.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this._rpvMain.GetChildAt(0))).ItemSpacing = 0;
+            // 
+            // _rpvPageListFriend
+            // 
+            this._rpvPageListFriend.Controls.Add(this._radlvFriendList);
+            this._rpvPageListFriend.ItemSize = new System.Drawing.SizeF(67F, 28F);
+            this._rpvPageListFriend.Location = new System.Drawing.Point(10, 37);
+            this._rpvPageListFriend.Name = "_rpvPageListFriend";
+            this._rpvPageListFriend.Size = new System.Drawing.Size(259, 337);
+            this._rpvPageListFriend.Text = "Friend List";
+            // 
+            // radPageViewPage2
+            // 
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(112F, 28F);
+            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage2.Name = "radPageViewPage2";
+            this.radPageViewPage2.Size = new System.Drawing.Size(259, 337);
+            this.radPageViewPage2.Text = "radPageViewPage2";
+            // 
+            // _radlvFriendList
+            // 
+            this._radlvFriendList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._radlvFriendList.Location = new System.Drawing.Point(0, 0);
+            this._radlvFriendList.Name = "_radlvFriendList";
+            this._radlvFriendList.Size = new System.Drawing.Size(259, 337);
+            this._radlvFriendList.TabIndex = 0;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(280, 523);
+            this.Controls.Add(this._rpvMain);
             this.Controls.Add(this._ptbChinhSua);
             this.Controls.Add(this._lbUserName);
             this.Controls.Add(this._ptbAvatar);
@@ -105,6 +151,10 @@
             this.Text = "FormTest";
             ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._rpvMain)).EndInit();
+            this._rpvMain.ResumeLayout(false);
+            this._rpvPageListFriend.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._radlvFriendList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,5 +167,9 @@
         private System.Windows.Forms.PictureBox _ptbAvatar;
         private System.Windows.Forms.Label _lbUserName;
         private System.Windows.Forms.PictureBox _ptbChinhSua;
+        private Telerik.WinControls.UI.RadPageView _rpvMain;
+        private Telerik.WinControls.UI.RadPageViewPage _rpvPageListFriend;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
+        private Telerik.WinControls.UI.RadListView _radlvFriendList;
     }
 }

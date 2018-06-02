@@ -41,6 +41,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Download\Projectas\ProjectChat\Chat\FormChung\bin\Debug\FormChung.dll</HintPath>
     </Reference>
+    <Reference Include="ImageConverter">
+      <HintPath>..\ChatProtocol\bin\Debug\ImageConverter.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleTCP, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleTCP.1.0.24\lib\net45\SimpleTCP.dll</HintPath>
       <Private>True</Private>
@@ -61,6 +64,8 @@
     <Reference Include="TelerikCommon, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custom\CustomItemListFriends.cs" />
+    <Compile Include="Custom\User.cs" />
     <Compile Include="Handle\CreateAccountResponseHandle.cs" />
     <Compile Include="Handle\HandleFactory.cs" />
     <Compile Include="Handle\IHandle.cs" />

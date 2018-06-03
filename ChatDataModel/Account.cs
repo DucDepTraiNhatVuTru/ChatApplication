@@ -28,5 +28,16 @@ namespace ChatDataModel
             Gender = gender;
             TimeCreate = timeCreate;
         }
+
+        public override string ToString()
+        {
+            var account = Email + "\v";
+            account += Password + "\v";
+            account += Name + "\v";
+            account += AvatarDriveID + "\v";
+            account += Gender += "\v";
+            account += TimeCreate + "\v";
+            return account;
+        }
     }
 }

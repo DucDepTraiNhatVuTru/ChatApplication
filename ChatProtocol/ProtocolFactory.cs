@@ -25,6 +25,10 @@ namespace ChatProtocol
                     return new UpdateAvatarRequestProtocol();
                 case 6:
                     return new UpdateAvatarResponseProtocol();
+                case 7:
+                    return new GetListFriendsRequestProtocol();
+                case 8:
+                    return new GetListFriendsResponseProtocol();
                 default:
                     throw new Exception("chưa hỗ trợ opcode");
             }

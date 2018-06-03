@@ -28,15 +28,10 @@ namespace ImageConverter
             path.AddEllipse(0 - edge / 2, 0 - edge / 2, edge, edge);
             Region region = new Region(path);
             graphic.SetClip(region, CombineMode.Replace);
-            graphic.SmoothingMode = SmoothingMode.AntiAlias;
+            graphic.DrawEllipse(new Pen(Brushes.White),new Rectangle());
+            graphic.SmoothingMode = SmoothingMode.HighQuality;
             graphic.DrawImage(image, 0 - edge / 2, 0 - edge / 2, edge, edge);
             graphic.Dispose();
-
-            /*graphic.Clear(Color.White);
-            Brush brush = new SolidBrush(ColorTranslator.FromHtml("#eeeeee"));
-            graphic.FillEllipse(brush, 0, 0, edge - 1, edge - 1);
-            graphic.DrawImage(image, 0, 0, edge, edge);
-            graphic.Dispose();*/
             return (Image)bitmap;
         }
     }

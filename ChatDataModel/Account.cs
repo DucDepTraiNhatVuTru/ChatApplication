@@ -15,5 +15,18 @@ namespace ChatDataModel
         public string AvatarDriveID { get; set; }
         public string Gender { get; set; }
         public DateTime TimeCreate { get; set; }
+
+        public Account()
+        {
+        }
+        public Account(string email, string password, string name, string driveFileId, string gender, DateTime timeCreate)
+        {
+            Email = email;
+            Password = password;
+            Name = name;
+            AvatarDriveID = driveFileId;
+            Gender = gender;
+            TimeCreate = timeCreate;
+        }
     }
 }

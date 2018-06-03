@@ -13,5 +13,6 @@ namespace ChatDAO
         Account GetAccount(string email);
         Account GetAccount(string email, string password);
         int UpdateAvatar(string email, string driveFileId);
+        List<Account> GetFriendList(string email);
     }
 }

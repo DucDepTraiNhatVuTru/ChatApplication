@@ -45,7 +45,7 @@ namespace ChatApplication.View
 
         private void _radlvFriendList_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
-            e.Item.Image = ImageConverter.ImageResize.ResizeImage(((User)e.Item.DataBoundItem).Avatar,48,48);
+            e.Item.Image = ImageConverter.ImageResize.ResizeImageCircle(((User)e.Item.DataBoundItem).Avatar,46);
         }
 
         void VisualItemCreating(object sender, ListViewVisualItemCreatingEventArgs e)

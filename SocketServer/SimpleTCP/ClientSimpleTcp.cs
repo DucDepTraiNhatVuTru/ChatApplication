@@ -44,6 +44,16 @@ namespace SocketServer.SimpleTCP
             _client.Client.Send(packet.ToBytes());
         }
 
+        public void ResponseGetListFriends(List<Account> listFriends)
+        {
+            var ptc = new GetListFriendsResponseProtocol();
+            ptc.ListAccount = listFriends;
+            var packet = new BasicPacket();
+            packet.Opcode = 8;
+            packet.Data = ptc.ToBytes();
+            _client.Client.Send(packet.ToBytes());
+        }
+
         public void ResponseLogin(int isAccept, Account account)
         {
             var ptc = new LoginResponseProtocol();

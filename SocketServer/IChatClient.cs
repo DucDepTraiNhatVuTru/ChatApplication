@@ -15,5 +15,6 @@ namespace SocketServer
         void ResponseCreateAccount(int isSuccess, string message);
         void ResponseLogin(int isAccept, Account account);
         void ResponseUpdateAvatar(int isSuccess, string driveFileId);
+        void ResponseGetListFriends(List<Account> listFriends);
     }
 }

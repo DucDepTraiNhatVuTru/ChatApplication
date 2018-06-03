@@ -89,5 +89,15 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void RequsetGetListFriend(string email)
+        {
+            var ptc = new GetListFriendsRequestProtocol();
+            ptc.Email = email;
+            var packet = new BasicPacket();
+            packet.Opcode = 7;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

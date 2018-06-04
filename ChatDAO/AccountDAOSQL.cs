@@ -126,7 +126,7 @@ namespace ChatDAO
             try
             {
                 Connect();
-                string sql = "SELECT * FROM Account WHERE User1 = '" + email + "' or User2 = '" + email + "'";
+                string sql = "SELECT * FROM Account WHERE Email = (SELECT User1 FROM Friend WHERE User2 = '" + email + "') OR Email = (SELECT User2 FROM Friend WHERE User1 = '" + email + "')";
                 var data = con.GetData(sql);
                 List<Account> listFriends = new List<Account>();
                 if (data.HasRows)

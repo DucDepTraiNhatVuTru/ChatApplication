@@ -23,6 +23,7 @@ namespace ChatApplication.View
     {
         private IClient _client;
         private Account _account;
+        private IDictionary<string, FormChat> FormChatOpening = new Dictionary<string, FormChat>();
         public FormMain()
         {
             InitializeComponent();
@@ -82,7 +83,31 @@ namespace ChatApplication.View
             _radlvFriendList.VisualItemCreating += VisualItemCreating;
             _radlvFriendList.ItemDataBound += _radlvFriendList_ItemDataBound;
             _radlvFriendList.ItemSize = new Size(_radlvFriendList.ItemSize.Width, 50);
+            _radlvFriendList.ItemMouseClick += _radlvFriendList_ItemMouseClick;
         }
+
+        private void _radlvFriendList_ItemMouseClick(object sender, ListViewItemEventArgs e)
+        {
+            var form = GetFormChatOpening(e.Item.Value.ToString());
+            if (form!=null)
+            {
+                form.Invoke(new MethodInvoker(delegate ()
+                {
+                    form.Focus();
+                }));
+                return;
+            }
+            Thread thread = new Thread(delegate ()
+            {
+                var formChat = new FormChat();
+                FormChatOpening.Add(e.Item.Value.ToString(), formChat);
+                formChat
+                formChat.ShowDialog();
+            });
+            thread.Start();
+        }
+
+
         private void _btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -128,6 +153,18 @@ namespace ChatApplication.View
             _radlvFriendList.DataSource = listUser;
             _radlvFriendList.DisplayMember = "Name";
             _radlvFriendList.ValueMember = "Email";
+        }
+
+        private FormChat GetFormChatOpening(string key)
+        {
+            foreach(var item in FormChatOpening)
+            {
+                if (item.Key == key)
+                {
+                    return item.Value;
+                }
+            }
+            return null;
         }
     }
 }

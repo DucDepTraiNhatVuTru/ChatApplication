@@ -50,6 +50,7 @@
             this.Controls.Add(this._rcChatlog);
             this.Name = "FormChat";
             this.Text = "FormChat";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormChat_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this._rcChatlog)).EndInit();
             this.ResumeLayout(false);
 

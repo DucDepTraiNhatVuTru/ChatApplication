@@ -31,6 +31,8 @@ namespace ChatProtocol.Handle
             client.ResponseLogin(isAccept, account);
             toView += "\n accept login";
 
+            Instance.OnlineUser.Add(ptc.Email, client);
+
             //chắc còn phải gửi về tùm lum thứ kiểu danh sách bạn bè.
             return toView;
         }

@@ -101,7 +101,6 @@ namespace ChatApplication.View
             {
                 var formChat = new FormChat();
                 FormChatOpening.Add(e.Item.Value.ToString(), formChat);
-                formChat
                 formChat.ShowDialog();
             });
             thread.Start();

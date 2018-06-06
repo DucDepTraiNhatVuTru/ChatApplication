@@ -18,5 +18,6 @@ namespace ClientSocket
         void RequestLogin(string email, string password);
         void RequestUpdateAvatar(string email, string driveFileId);
         void RequsetGetListFriend(string email);
+        void SendMessage(ChatMessage message);
     }
 }

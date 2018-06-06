@@ -99,5 +99,15 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void SendMessage(ChatMessage message)
+        {
+            var ptc = new MessageProtocol();
+            ptc.Message = message;
+            var packet = new BasicPacket();
+            packet.Opcode = 9;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

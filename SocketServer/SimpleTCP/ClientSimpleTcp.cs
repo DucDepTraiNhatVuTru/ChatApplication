@@ -75,5 +75,15 @@ namespace SocketServer.SimpleTCP
             packet.Data = ptc.ToBytes();
             _client.Client.Send(packet.ToBytes());
         }
+
+        public void SendMessage(ChatMessage message)
+        {
+            var ptc = new MessageProtocol();
+            ptc.Message = message;
+            var packet = new BasicPacket();
+            packet.Opcode = 9;
+            packet.Data = ptc.ToBytes();
+            _client.Client.Send(packet.ToBytes());
+        }
     }
 }

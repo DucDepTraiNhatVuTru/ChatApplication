@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChatProtocol.Protocol
 {
-    public class ChatProtocol:IProtocol
+    public class MessageProtocol:IProtocol
     {
         public ChatMessage Message = new ChatMessage();
 

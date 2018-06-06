@@ -29,6 +29,8 @@ namespace ChatProtocol
                     return new GetListFriendsRequestProtocol();
                 case 8:
                     return new GetListFriendsResponseProtocol();
+                case 9:
+                    return new MessageProtocol();
                 default:
                     throw new Exception("chưa hỗ trợ opcode");
             }

@@ -54,6 +54,7 @@
     <Compile Include="Packet\BasicPacket.cs" />
     <Compile Include="Packet\IPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocol\ChatProtocol.cs" />
     <Compile Include="Protocol\CreateAccountProtocol.cs" />
     <Compile Include="Protocol\CreateAccountResponseProtocol.cs" />
     <Compile Include="Protocol\GetListFriendsRequestProtocol.cs" />

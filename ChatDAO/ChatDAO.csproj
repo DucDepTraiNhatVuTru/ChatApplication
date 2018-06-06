@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountDAOSQL.cs" />
+    <Compile Include="SQL\AccountDAOSQL.cs" />
+    <Compile Include="SQL\ChatMessageDAOSQL.cs" />
     <Compile Include="IAccountDAO.cs" />
+    <Compile Include="IChatMessageDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

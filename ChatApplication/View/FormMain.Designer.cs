@@ -147,7 +147,7 @@
             this.Controls.Add(this._ptbAvatar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._btnClose);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMain";
             this.Text = "FormTest";
             ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).EndInit();

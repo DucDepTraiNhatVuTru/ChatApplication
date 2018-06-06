@@ -33,8 +33,12 @@ namespace ChatApplication.View
         {
             try
             {
-                var image = Image.FromStream(GoogleDriveFilesRepository.DownloadFile(((Account)e.Item.DataBoundItem).AvatarDriveID));
-                e.Item.Image = ImageConverter.ImageResize.ResizeImageCircle(image, 46);
+                Thread thread = new Thread(delegate ()
+                {
+                    var image = Image.FromStream(GoogleDriveFilesRepository.DownloadFile(((Account)e.Item.DataBoundItem).AvatarDriveID));
+                    e.Item.Image = ImageConverter.ImageResize.ResizeImageCircle(image, 46);
+                });
+                thread.Start();
             }
             catch(Exception ex)
             {

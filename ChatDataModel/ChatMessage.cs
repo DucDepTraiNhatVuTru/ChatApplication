@@ -14,5 +14,18 @@ namespace ChatDataModel
         public string Message { get; set; }
         public string ImageMessageDriveID { get; set; }
         public DateTime TimeSend { get; set; }
+
+        public ChatMessage()
+        {
+
+        }
+        public ChatMessage(string sender, string receiver, string message, string imageDriveId, DateTime time)
+        {
+            Sender = sender;
+            Receiver = receiver;
+            Message = message;
+            ImageMessageDriveID = imageDriveId;
+            TimeSend = time;
+        }
     }
 }

@@ -74,6 +74,7 @@
     <Compile Include="Handle\UpdateAvatarResponseHandle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Instance.cs" />
     <Compile Include="View\FormChat.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -10,5 +10,6 @@ namespace ChatDAO
     public interface IChatMessageDAO
     {
         int Insert(ChatMessage message);
+        List<ChatMessage> AllMessage(string user1, string user2);
     }
 }

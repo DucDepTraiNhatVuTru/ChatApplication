@@ -14,7 +14,11 @@ namespace Test
         static void Main(string[] args)
         {
             IChatMessageDAO db = new ChatMessageDAOSQL();
-            db.Insert(new ChatMessage("minhduc@gmail.com", "ngocdung@gmail.com", "xin chào! test", "", DateTime.Now));
+            var meslist = db.AllMessage("ngocdung@gmail.com","minhduc@gmail.com" );
+            foreach(var item in meslist)
+            {
+                Console.WriteLine(item.Message);
+            }
             Console.ReadLine();
         }
     }

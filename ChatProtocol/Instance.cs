@@ -1,4 +1,5 @@
-﻿using SocketServer;
+﻿using ChatDataModel;
+using SocketServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace ChatProtocol
     public class Instance
     {
         public static IDictionary<string, IChatClient> OnlineUser = new Dictionary<string, IChatClient>();
+        public static List<ChatMessage> MessageHadNotSended = new List<ChatMessage>();
     }
 }

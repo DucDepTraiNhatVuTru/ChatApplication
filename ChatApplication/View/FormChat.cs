@@ -55,7 +55,7 @@ namespace ChatApplication.View
         private void _rcChatlog_SendMessage(object sender, SendMessageEventArgs e)
         {
             ChatTextMessage mesage = e.Message as ChatTextMessage;
-            //_client.Send(mesage.Message);
+            _client.SendMessage(new ChatDataModel.ChatMessage(Instance.CurrentUser.Email, _user.Email, mesage.Message, "", mesage.TimeStamp));
         }
 
         private void FormChat_FormClosed(object sender, FormClosedEventArgs e)

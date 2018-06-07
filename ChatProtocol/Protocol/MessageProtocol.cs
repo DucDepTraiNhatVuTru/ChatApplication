@@ -15,10 +15,13 @@ namespace ChatProtocol.Protocol
         {
             if (string.IsNullOrEmpty(data)) return false;
             var tach = data.Split('\0');
-            if (tach.Length < 6) return false;
-            int id = 0;
-            if (!int.TryParse(tach[0], out id)) return false;
-            Message.Id = id;
+            if (tach.Length < 4) return false;
+            if (!string.IsNullOrEmpty(tach[0]))
+            {
+                int id = 0;
+                if (!int.TryParse(tach[0], out id)) return false;
+                Message.Id = id;
+            }
             Message.Sender = tach[1];
             Message.Receiver = tach[2];
             Message.Message = tach[3];

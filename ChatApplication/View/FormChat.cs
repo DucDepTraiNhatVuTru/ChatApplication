@@ -11,6 +11,9 @@ using Telerik.WinControls.UI;
 using ClientSocket;
 using ClientSocket.SimpleTcp;
 using ChatDataModel;
+using GoogleDriveApiv3;
+using ChatApplication.Util;
+using System.IO;
 
 namespace ChatApplication.View
 {
@@ -19,13 +22,12 @@ namespace ChatApplication.View
         private IClient _client;
         private Account _user;
         public event Action<string> OnClose;
-        Author author = new Author(null, "Đức");
+        Author author;
         string data = "";
         public FormChat()
         {
             //_client.Connect("127.0.0.1", 2018);
             InitializeComponent();
-            _rcChatlog.ChatElement.SendButtonElement.Click += SendButtonElement_Click;
             
             //_rcChatlog.ChatElement.SendButtonElement.
             //_rcChatlog.AutoAddUserMessages = false;
@@ -34,7 +36,6 @@ namespace ChatApplication.View
             //_rcChatlog.Author.Avatar = bm;
             /*RadImageItem img = new RadImageItem();
             img.Image = Image.FromFile("‪‪D:\\ThucTap\\avartar.jpg");*/
-            _rcChatlog.ChatElement.InputTextBox.TextChanged += InputTextBox_TextChanged;
         }
 
         public FormChat(IClient client, Account account)
@@ -42,20 +43,19 @@ namespace ChatApplication.View
             InitializeComponent();
             _client = client;
             _user = account;
-        }
-
-        private void InputTextBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void SendButtonElement_Click(object sender, EventArgs e)
-        {
+            Stream image;
+            lock (this)
+            {
+                image = GoogleDriveFilesRepository.DownloadFile(Instance.CurrentUser.AvatarDriveID);
+            }
+            author = new Author(Image.FromStream(image), _user.Name);
+            _rcChatlog.Author = author;
         }
 
         private void _rcChatlog_SendMessage(object sender, SendMessageEventArgs e)
         {
             ChatTextMessage mesage = e.Message as ChatTextMessage;
-            _client.Send(mesage.Message);
+            //_client.Send(mesage.Message);
         }
 
         private void FormChat_FormClosed(object sender, FormClosedEventArgs e)

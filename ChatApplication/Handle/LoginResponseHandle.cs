@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using ChatProtocol.Protocol;
 using ChatApplication.View;
 using System.Threading;
+using ChatApplication.Util;
 
 namespace ChatApplication.Handle
 {
@@ -22,6 +23,10 @@ namespace ChatApplication.Handle
                 return;
             }
 
+            lock (this)
+            {
+                Instance.CurrentUser = ptc.Account;
+            }
 
             f.Invoke(new MethodInvoker(delegate ()
             {

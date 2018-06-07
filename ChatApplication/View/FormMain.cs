@@ -37,7 +37,10 @@ namespace ChatApplication.View
                 Thread thread = new Thread(delegate ()
                 {
                     var image = Image.FromStream(GoogleDriveFilesRepository.DownloadFile(((Account)e.Item.DataBoundItem).AvatarDriveID));
-                    e.Item.Image = ImageConverter.ImageResize.ResizeImageCircle(image, 46);
+                    _radlvFriendList.Invoke(new MethodInvoker(delegate ()
+                    {
+                        e.Item.Image = ImageConverter.ImageResize.ResizeImageCircle(image, 46);
+                    }));
                 });
                 thread.Start();
             }
@@ -77,9 +80,9 @@ namespace ChatApplication.View
             _lbUserName.Text = _account.Name;
             Thread thread = new Thread(delegate ()
             {
-                var file = GoogleDriveFilesRepository.DownloadFile(_account.AvatarDriveID);
-                _ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
-                _ptbAvatar.Image = Image.FromStream(file);
+                    var file = GoogleDriveFilesRepository.DownloadFile(_account.AvatarDriveID);
+                    _ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+                    _ptbAvatar.Image = Image.FromStream(file);
             });
             thread.Start();
             _radlvFriendList.AllowRemove = false;
@@ -140,9 +143,9 @@ namespace ChatApplication.View
         {
             Thread thread = new Thread(delegate ()
             {
-                var file = GoogleDriveFilesRepository.DownloadFile(driveFileId);
-                _ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
-                _ptbAvatar.Image = Image.FromStream(file);
+                    var file = GoogleDriveFilesRepository.DownloadFile(driveFileId);
+                    _ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+                    _ptbAvatar.Image = Image.FromStream(file);
             });
             thread.Start();
         }

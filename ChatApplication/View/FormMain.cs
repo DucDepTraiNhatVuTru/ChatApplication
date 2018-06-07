@@ -16,6 +16,7 @@ using Telerik.WinControls.UI;
 using Telerik.WinControls.Layouts;
 using Telerik.WinControls.Primitives;
 using System.IO;
+using ChatApplication.Util;
 
 namespace ChatApplication.View
 {
@@ -54,12 +55,12 @@ namespace ChatApplication.View
 
         public FormMain(IClient client, Account account)
         {
-            
             InitializeComponent();
             _client = client;
             _account = account;
             Init();
-            _client.OnNewRecieve += _client_OnNewRecieve; _radlvFriendList.AllowEdit = false;
+            _client.OnNewRecieve += _client_OnNewRecieve;
+            _radlvFriendList.AllowEdit = false;
             _client.RequsetGetListFriend(account.Email);
         }
 
@@ -101,15 +102,20 @@ namespace ChatApplication.View
                 }));
                 return;
             }
+            var formChat = new FormChat(_client,GetAccountFromFriendList(e.Item.Value.ToString()));
+            formChat.OnClose += Form_OnClose;
             Thread thread = new Thread(delegate ()
             {
-                var formChat = new FormChat();
                 FormChatOpening.Add(e.Item.Value.ToString(), formChat);
                 formChat.ShowDialog();
             });
             thread.Start();
         }
 
+        private void Form_OnClose(string email)
+        {
+            FormChatOpening.Remove(email);
+        }
 
         private void _btnClose_Click(object sender, EventArgs e)
         {
@@ -165,6 +171,18 @@ namespace ChatApplication.View
                 if (item.Key == key)
                 {
                     return item.Value;
+                }
+            }
+            return null;
+        }
+
+        private Account GetAccountFromFriendList(string email)
+        {
+            foreach(var item in Instance.ListFriends)
+            {
+                if (item.Email == email)
+                {
+                    return item;
                 }
             }
             return null;

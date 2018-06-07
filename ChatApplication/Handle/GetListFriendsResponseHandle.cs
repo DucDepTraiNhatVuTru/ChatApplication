@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using ChatProtocol.Protocol;
 using ChatApplication.View;
 using System.Threading;
+using ChatApplication.Util;
 
 namespace ChatApplication.Handle
 {
@@ -16,15 +17,10 @@ namespace ChatApplication.Handle
         {
             var ptc = protocol as GetListFriendsResponseProtocol;
             var f = form as FormMain;
-
+            Instance.ListFriends = ptc.ListAccount;
             f.Invoke(new MethodInvoker(delegate ()
             {
                 f.LoadFriendList(ptc.ListAccount);
-                /*Thread thread = new Thread(delegate ()
-                {
-                   
-                });
-                thread.Start();*/
             }));
         }
     }

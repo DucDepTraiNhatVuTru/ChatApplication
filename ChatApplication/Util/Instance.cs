@@ -10,5 +10,6 @@ namespace ChatApplication.Util
     public class Instance
     {
         public static Account CurrentUser = new Account();
+        public static List<Account> ListFriends = new List<Account>();
     }
 }

@@ -71,6 +71,7 @@
     <Compile Include="Handle\HandleFactory.cs" />
     <Compile Include="Handle\IHandle.cs" />
     <Compile Include="Handle\LoginResponseHandle.cs" />
+    <Compile Include="Handle\MessageHandle.cs" />
     <Compile Include="Handle\UpdateAvatarResponseHandle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

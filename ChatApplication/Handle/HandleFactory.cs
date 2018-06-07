@@ -20,6 +20,8 @@ namespace ChatApplication.Handle
                     return new UpdateAvatarResponseHandle();
                 case 8:
                     return new GetListFriendsResponseHandle();
+                case 9:
+                    return new MessageHandle();
                 default:
                     throw new Exception("Chưa hỗ trợ opcode");
             }

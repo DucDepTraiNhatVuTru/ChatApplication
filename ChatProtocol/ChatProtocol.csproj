@@ -47,6 +47,7 @@
     <Compile Include="Handle\CreateAccountResponseHandle.cs" />
     <Compile Include="Handle\GetListFriendsRequestHandle.cs" />
     <Compile Include="Handle\LoginRequestHandle.cs" />
+    <Compile Include="Handle\MessageHandle.cs" />
     <Compile Include="Handle\UpdateAvatarHandle.cs" />
     <Compile Include="Instance.cs" />
     <Compile Include="ProtocolFactory.cs" />

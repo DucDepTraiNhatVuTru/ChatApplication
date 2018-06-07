@@ -22,7 +22,7 @@ namespace ChatApplication.View
         private IClient _client;
         private Account _user;
         public event Action<string> OnClose;
-        Author author;
+        Author authorMe, authorFriend;
         string data = "";
         public FormChat()
         {
@@ -31,7 +31,6 @@ namespace ChatApplication.View
             
             //_rcChatlog.ChatElement.SendButtonElement.
             //_rcChatlog.AutoAddUserMessages = false;
-            _rcChatlog.Author = author;
             //Bitmap bm = new Bitmap(Image.FromFile("‪‪D:\\ThucTap\\avartar.jpg"));
             //_rcChatlog.Author.Avatar = bm;
             /*RadImageItem img = new RadImageItem();
@@ -43,13 +42,17 @@ namespace ChatApplication.View
             InitializeComponent();
             _client = client;
             _user = account;
-            Stream image;
+            Stream imageMe,imageFriend;
+            string myName = "";
             lock (this)
             {
-                image = GoogleDriveFilesRepository.DownloadFile(Instance.CurrentUser.AvatarDriveID);
+                imageMe = GoogleDriveFilesRepository.DownloadFile(Instance.CurrentUser.AvatarDriveID);
+                myName = Instance.CurrentUser.Name;
             }
-            author = new Author(Image.FromStream(image), _user.Name);
-            _rcChatlog.Author = author;
+            imageFriend = GoogleDriveFilesRepository.DownloadFile(_user.AvatarDriveID);
+            authorMe = new Author(Image.FromStream(imageMe), myName);
+            authorFriend = new Author(Image.FromStream(imageFriend), _user.Name);
+            _rcChatlog.Author = authorMe;
         }
 
         private void _rcChatlog_SendMessage(object sender, SendMessageEventArgs e)
@@ -62,6 +65,12 @@ namespace ChatApplication.View
         {
             if (OnClose != null)
                 OnClose.Invoke(_user.Email);
+        }
+
+        public void ReceiveTextMessage(ChatDataModel.ChatMessage message)
+        {
+            ChatTextMessage mess = new ChatTextMessage(message.Message, authorFriend, message.TimeSend);
+            _rcChatlog.AddMessage(mess);
         }
     }
 }

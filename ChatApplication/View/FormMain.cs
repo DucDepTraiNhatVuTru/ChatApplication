@@ -24,7 +24,7 @@ namespace ChatApplication.View
     {
         private IClient _client;
         private Account _account;
-        private IDictionary<string, FormChat> FormChatOpening = new Dictionary<string, FormChat>();
+        public IDictionary<string, FormChat> FormChatOpening = new Dictionary<string, FormChat>();
         public FormMain()
         {
             InitializeComponent();

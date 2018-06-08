@@ -109,5 +109,16 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void RequestGetHistory(string personOne, string personTwo)
+        {
+            var ptc = new HistoryChatRequestProtocol();
+            ptc.PersonOne = personOne;
+            ptc.PersonTwo = personTwo;
+            var packet = new BasicPacket();
+            packet.Opcode = 11;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

@@ -14,6 +14,7 @@ using ChatDataModel;
 using GoogleDriveApiv3;
 using ChatApplication.Util;
 using System.IO;
+using System.Threading;
 
 namespace ChatApplication.View
 {
@@ -23,18 +24,9 @@ namespace ChatApplication.View
         private Account _user;
         public event Action<string> OnClose;
         Author authorMe, authorFriend;
-        string data = "";
         public FormChat()
         {
-            //_client.Connect("127.0.0.1", 2018);
             InitializeComponent();
-            
-            //_rcChatlog.ChatElement.SendButtonElement.
-            //_rcChatlog.AutoAddUserMessages = false;
-            //Bitmap bm = new Bitmap(Image.FromFile("‪‪D:\\ThucTap\\avartar.jpg"));
-            //_rcChatlog.Author.Avatar = bm;
-            /*RadImageItem img = new RadImageItem();
-            img.Image = Image.FromFile("‪‪D:\\ThucTap\\avartar.jpg");*/
         }
 
         public FormChat(IClient client, Account account)
@@ -65,6 +57,11 @@ namespace ChatApplication.View
         {
             if (OnClose != null)
                 OnClose.Invoke(_user.Email);
+        }
+
+        private void FormChat_Load(object sender, EventArgs e)
+        {
+            _client.RequestGetHistory(Instance.CurrentUser.Email, _user.Email);
         }
 
         public void ReceiveTextMessage(ChatDataModel.ChatMessage message)

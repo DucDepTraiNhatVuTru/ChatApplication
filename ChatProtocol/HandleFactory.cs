@@ -23,6 +23,8 @@ namespace ChatProtocol
                     return new GetListFriendsRequestHandle();
                 case 9:
                     return new MessageHandle();
+                case 11:
+                    return new GetChatHistoryHandle();
                 default:
                     throw new Exception("chưa hỗ trợ opcode!");
             }

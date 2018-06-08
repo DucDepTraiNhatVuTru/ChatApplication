@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChatProtocol.Protocol;
 using ChatApplication.View;
+using System.Threading;
 
 namespace ChatApplication.Handle
 {
@@ -26,6 +27,19 @@ namespace ChatApplication.Handle
                     {
                         formChat.ReceiveTextMessage(ptc.Message);
                     }));
+                }
+                else
+                {
+                    f.OpenFormChat(ptc.Message.Sender);
+                    Thread.Sleep(100);
+                    if (f.FormChatOpening.TryGetValue(ptc.Message.Sender, out formChat))
+                    {
+                        //formChat.ReceiveTextMessage(ptc.Message);
+                        formChat.Invoke(new MethodInvoker(delegate ()
+                        {
+                            formChat.ReceiveTextMessage(ptc.Message);
+                        }));
+                    }
                 }
             }));
         }

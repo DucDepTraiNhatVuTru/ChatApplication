@@ -96,8 +96,13 @@ namespace ChatApplication.View
 
         private void _radlvFriendList_ItemMouseClick(object sender, ListViewItemEventArgs e)
         {
-            var form = GetFormChatOpening(e.Item.Value.ToString());
-            if (form!=null)
+            OpenFormChat(e.Item.Value.ToString());
+        }
+
+        public void OpenFormChat(string email)
+        {
+            var form = GetFormChatOpening(email);
+            if (form != null)
             {
                 form.Invoke(new MethodInvoker(delegate ()
                 {
@@ -105,16 +110,18 @@ namespace ChatApplication.View
                 }));
                 return;
             }
-            var formChat = new FormChat(_client,GetAccountFromFriendList(e.Item.Value.ToString()));
+            var formChat = new FormChat(_client, GetAccountFromFriendList(email));
             formChat.OnClose += Form_OnClose;
             Thread thread = new Thread(delegate ()
             {
-                FormChatOpening.Add(e.Item.Value.ToString(), formChat);
+                lock (this)
+                {
+                    FormChatOpening.Add(email, formChat);
+                }
                 formChat.ShowDialog();
             });
             thread.Start();
         }
-
         private void Form_OnClose(string email)
         {
             FormChatOpening.Remove(email);

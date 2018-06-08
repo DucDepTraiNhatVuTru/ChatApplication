@@ -37,5 +37,17 @@ namespace ChatDataModel
             ImageMessageDriveID = imageDriveId;
             TimeSend = time;
         }
+
+        public override string ToString()
+        {
+            var data = "";
+            data += Id + "\v";
+            data += Sender + "\v";
+            data += Receiver + "\v";
+            data += Message + "\v";
+            data += ImageMessageDriveID + "\v";
+            data += TimeSend + "\v";
+            return data;
+        }
     }
 }

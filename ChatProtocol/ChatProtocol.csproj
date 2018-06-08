@@ -55,7 +55,8 @@
     <Compile Include="Packet\BasicPacket.cs" />
     <Compile Include="Packet\IPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Protocol\GetHistoryChatRequestProtocol.cs" />
+    <Compile Include="Protocol\HistoryChatRequestProtocol.cs" />
+    <Compile Include="Protocol\HistoryChatResponseProtocol.cs" />
     <Compile Include="Protocol\MessageProtocol.cs" />
     <Compile Include="Protocol\CreateAccountProtocol.cs" />
     <Compile Include="Protocol\CreateAccountResponseProtocol.cs" />

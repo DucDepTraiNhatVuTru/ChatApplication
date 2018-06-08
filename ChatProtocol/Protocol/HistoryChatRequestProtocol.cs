@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatProtocol.Protocol
 {
-    public class GetHistoryChatRequestProtocol : IProtocol
+    public class HistoryChatRequestProtocol : IProtocol
     {
         public string PersonOne { get; set; }
         public string PersonTwo { get; set; }

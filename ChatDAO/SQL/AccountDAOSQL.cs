@@ -126,7 +126,7 @@ namespace ChatDAO
             try
             {
                 Connect();
-                string sql = "SELECT * FROM Account WHERE Email = (SELECT User1 FROM Friend WHERE User2 = '" + email + "') OR Email = (SELECT User2 FROM Friend WHERE User1 = '" + email + "')";
+                string sql = "SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account,((SELECT User1 FROM Friend WHERE User2 = '" + email + "' UNION SELECT User2 FROM Friend WHERE User1 ='" + email + "')) AS T WHERE Account.Email = T.User1";
                 var data = con.GetData(sql);
                 List<Account> listFriends = new List<Account>();
                 if (data.HasRows)
@@ -146,7 +146,51 @@ namespace ChatDAO
             }
             catch (Exception ex)
             {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
+        }
 
+        public List<string> EmailsFriends(string email)
+        {
+            List<string> emails = new List<string>();
+            try
+            {
+                Connect();
+                /*string sql = "SELECT * FROM Account WHERE Email = (SELECT User1 FROM Friend WHERE User2 = '" + email + "') OR Email = (SELECT User2 FROM Friend WHERE User1 = '" + email + "')";*/
+                string sql = "(SELECT User1 FROM Friend WHERE User2 = '" + email + "') UNION (SELECT User2 FROM Friend WHERE User1 = '" + email + "')";
+                var data = con.GetData(sql);
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        var user = data.GetString(0);
+                        emails.Add(user);
+                    }
+                }
+
+                return emails;
+                /*var data = con.GetData(sql);
+                 List<Account> listFriends = new List<Account>();
+                 if (data.HasRows)
+                 {
+                     while (data.Read())
+                     {
+                         var userEmail = data.GetString(0);
+                         var password = data.GetString(1);
+                         var name = data.GetString(2);
+                         var driveFileID = data.GetString(3);
+                         var gender = data.GetString(4);
+                         var time = (DateTime)data.GetValue(5);
+                         listFriends.Add(new Account(userEmail, password, name, driveFileID, gender, time));
+                     }
+                 }*/
+            }
+            catch (Exception ex)
+            {
                 throw new Exception(ex.Message);
             }
             finally

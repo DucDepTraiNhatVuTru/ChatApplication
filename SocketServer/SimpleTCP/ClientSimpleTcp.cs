@@ -18,6 +18,7 @@ namespace SocketServer.SimpleTCP
         public ClientSimpleTcp(TcpClient client)
         {
             this._client = client;
+            _client.Client.NoDelay = true;
         }
 
         public void Disconnect()

@@ -13,6 +13,7 @@ namespace ChatProtocol.Handle
     public class LoginRequestHandle : IHandle
     {
         private object syncLock = new object();
+        private object syncLock1 = new object();
         public string Handling(IProtocol protocol, IChatClient client)
         {
             var ptc = protocol as LoginRequestProtocol;
@@ -33,7 +34,8 @@ namespace ChatProtocol.Handle
 
             Instance.OnlineUser.Add(ptc.Email, client);
 
-            //chắc còn phải gửi về tùm lum thứ kiểu danh sách bạn bè.
+            SendMessageHadNotSended(client, ptc.Email);
+
             return toView;
         }
 
@@ -44,6 +46,26 @@ namespace ChatProtocol.Handle
                 IAccountDAO db = new AccountDAOSQL();
                 Account account = db.GetAccount(email, password);
                 return account;
+            }
+        }
+
+        private void SendMessageHadNotSended(IChatClient client, string email)
+        {
+            List<ChatMessage> list;
+            lock (syncLock1)
+            {
+                list = Instance.MessageHadNotSended;
+            }
+            foreach(var item in list)
+            {
+                if (item.Receiver == email)
+                {
+                    client.SendMessage(item);
+                    lock (syncLock1)
+                    {
+                        Instance.MessageHadNotSended.Remove(item);
+                    }
+                }
             }
         }
     }

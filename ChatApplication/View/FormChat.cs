@@ -22,6 +22,7 @@ namespace ChatApplication.View
     {
         private IClient _client;
         private Account _user;
+        public List<ChatDataModel.ChatMessage> AllMessage = new List<ChatDataModel.ChatMessage>();
         public event Action<string> OnClose;
         Author authorMe, authorFriend;
         public FormChat()
@@ -45,6 +46,10 @@ namespace ChatApplication.View
             authorMe = new Author(Image.FromStream(imageMe), myName);
             authorFriend = new Author(Image.FromStream(imageFriend), _user.Name);
             _rcChatlog.Author = authorMe;
+            //gửi yêu cầu lấy lịch sử chat
+            _client.RequestGetHistory(Instance.CurrentUser.Email, _user.Email);
+            /*ChatTimeSeparatorItemElement a = new ChatTimeSeparatorItemElement();
+            a.Text = "Hú";*/
         }
 
         private void _rcChatlog_SendMessage(object sender, SendMessageEventArgs e)
@@ -61,13 +66,31 @@ namespace ChatApplication.View
 
         private void FormChat_Load(object sender, EventArgs e)
         {
-            _client.RequestGetHistory(Instance.CurrentUser.Email, _user.Email);
+            
         }
 
         public void ReceiveTextMessage(ChatDataModel.ChatMessage message)
         {
             ChatTextMessage mess = new ChatTextMessage(message.Message, authorFriend, message.TimeSend);
             _rcChatlog.AddMessage(mess);
+        }
+
+        public void AddMessageHistory()
+        {
+            var me = Instance.CurrentUser.Email;
+            foreach(var item in AllMessage)
+            {
+                if (item.Sender == me)
+                {
+                    ChatTextMessage message = new ChatTextMessage(item.Message, authorMe, item.TimeSend);
+                    _rcChatlog.AddMessage(message);
+                }
+                else
+                {
+                    ChatTextMessage message = new ChatTextMessage(item.Message, authorFriend, item.TimeSend);
+                    _rcChatlog.AddMessage(message);
+                }
+            }
         }
     }
 }

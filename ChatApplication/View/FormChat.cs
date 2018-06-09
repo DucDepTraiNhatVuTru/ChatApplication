@@ -25,6 +25,9 @@ namespace ChatApplication.View
         public List<ChatDataModel.ChatMessage> AllMessage = new List<ChatDataModel.ChatMessage>();
         public event Action<string> OnClose;
         Author authorMe, authorFriend;
+        private string mediaMessageDriveId = "";
+        private Image imageWillSend;
+        private PictureBox controlsAdded;
         public FormChat()
         {
             InitializeComponent();
@@ -48,14 +51,57 @@ namespace ChatApplication.View
             _rcChatlog.Author = authorMe;
             //gửi yêu cầu lấy lịch sử chat
             _client.RequestGetHistory(Instance.CurrentUser.Email, _user.Email);
-            /*ChatTimeSeparatorItemElement a = new ChatTimeSeparatorItemElement();
-            a.Text = "Hú";*/
+            _rcChatlog.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
+            _rcChatlog.ChatElement.SendButtonElement.Click += SendButtonElement_Click;
+        }
+
+        private void SendButtonElement_Click(object sender, EventArgs e)
+        {
+            ChatMediaMessage message = new ChatMediaMessage(imageWillSend, imageWillSend.Size, null, authorMe, DateTime.Now);
+            _client.SendMessage(new ChatDataModel.ChatMessage(Instance.CurrentUser.Email, _user.Email, "", mediaMessageDriveId, DateTime.Now));
+            _rcChatlog.AddMessage(message);
+            mediaMessageDriveId = "";
+            this.Controls.Remove(controlsAdded);
+            this.Size = new Size(this.Size.Width, this.Size.Height - 70);
+        }
+
+        private void ShowToolbarButtonElement_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Choose Image";
+            dialog.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = dialog.InitialDirectory + @"\" + dialog.FileName;
+                var fileID = GoogleDriveFilesRepository.UploadFile(path.Substring(1));
+                mediaMessageDriveId = fileID;
+                PictureBox picture = new PictureBox();
+                picture.Size = new Size(64, 64);
+                picture.Location = new Point(0, this.Size.Height - 30);
+                imageWillSend = Image.FromFile(Path.Combine(dialog.InitialDirectory, dialog.FileName));
+                picture.Image = imageWillSend;
+                picture.SizeMode = PictureBoxSizeMode.StretchImage;
+                controlsAdded = picture;
+                this.Size = new Size(this.Size.Width, this.Size.Height + 70);
+                this.Controls.Add(picture);
+            }
         }
 
         private void _rcChatlog_SendMessage(object sender, SendMessageEventArgs e)
         {
-            ChatTextMessage mesage = e.Message as ChatTextMessage;
-            _client.SendMessage(new ChatDataModel.ChatMessage(Instance.CurrentUser.Email, _user.Email, mesage.Message, "", mesage.TimeStamp));
+            if (mediaMessageDriveId == "")
+            {
+                ChatMediaMessage message = e.Message as ChatMediaMessage;
+                _client.SendMessage(new ChatDataModel.ChatMessage(Instance.CurrentUser.Email, _user.Email, "", mediaMessageDriveId, DateTime.Now));
+                _rcChatlog.AddMessage(message);
+                mediaMessageDriveId = "";
+            }
+            else
+            {
+                ChatTextMessage mesage = e.Message as ChatTextMessage;
+                _client.SendMessage(new ChatDataModel.ChatMessage(Instance.CurrentUser.Email, _user.Email, mesage.Message, "", mesage.TimeStamp));
+            }
         }
 
         private void FormChat_FormClosed(object sender, FormClosedEventArgs e)
@@ -71,7 +117,25 @@ namespace ChatApplication.View
 
         public void ReceiveTextMessage(ChatDataModel.ChatMessage message)
         {
-            ChatTextMessage mess = new ChatTextMessage(message.Message, authorFriend, message.TimeSend);
+            if (!string.IsNullOrEmpty(message.ImageMessageDriveID))
+            {
+                var stream = GoogleDriveFilesRepository.DownloadFile(message.ImageMessageDriveID);
+                var img = Image.FromStream(stream);
+                ChatMediaMessage mess = new ChatMediaMessage(img, img.Size, null, authorFriend, message.TimeSend);
+                _rcChatlog.AddMessage(mess);
+            }
+            else
+            {
+                ChatTextMessage mess = new ChatTextMessage(message.Message, authorFriend, message.TimeSend);
+                _rcChatlog.AddMessage(mess);
+            }
+        }
+
+        public void ReceiveMediaMessage(ChatDataModel.ChatMessage message)
+        {
+            var stream = GoogleDriveFilesRepository.DownloadFile(message.ImageMessageDriveID);
+            var img = Image.FromStream(stream);
+            ChatMediaMessage mess = new ChatMediaMessage(img, img.Size, null, authorFriend, message.TimeSend);
             _rcChatlog.AddMessage(mess);
         }
 

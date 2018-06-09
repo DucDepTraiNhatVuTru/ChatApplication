@@ -120,6 +120,7 @@ namespace ChatApplication.View
                 }
                 formChat.ShowDialog();
             });
+            thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
         }
         private void Form_OnClose(string email)

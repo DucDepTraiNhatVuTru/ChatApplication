@@ -19,6 +19,25 @@ namespace ImageConverter
             return (Image)bitmap;
         }
 
+        public static Image ResizeImage(Image image, float percentage)
+        {
+            //size cũ
+            int originalW = image.Width;
+            int originalH = image.Height;
+            //size mới
+            int resizedW = (int)(originalW * percentage);
+            int resizedH = (int)(originalH * percentage);
+            Bitmap bmp = new Bitmap(resizedW, resizedH);
+            //tạo 1 graphic mới từ Bitmap
+            Graphics graphic = Graphics.FromImage((Image)bmp);
+            //vẽ lại ảnh ban đầu lên bmp theo kích thước mới
+            graphic.DrawImage(image, 0, 0, resizedW, resizedH);
+            //giải phóng tài nguyên mà graphic đang giữ
+            graphic.Dispose();
+            //return the image
+            return (Image)bmp;
+        }
+
         public static Image ResizeImageCircle(Image image, int edge)
         {
             var bitmap = new Bitmap(edge, edge);

@@ -20,5 +20,6 @@ namespace ClientSocket
         void RequsetGetListFriend(string email);
         void SendMessage(ChatMessage message);
         void RequestGetHistory(string personOne, string personTwo);
+        void Logout(string email);
     }
 }

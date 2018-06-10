@@ -120,5 +120,15 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void Logout(string email)
+        {
+            var ptc = new LogoutProtocol();
+            ptc.Email = email;
+            var packet = new BasicPacket();
+            packet.Opcode = 99;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

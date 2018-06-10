@@ -48,6 +48,7 @@
     <Compile Include="Handle\GetChatHistoryHandle.cs" />
     <Compile Include="Handle\GetListFriendsRequestHandle.cs" />
     <Compile Include="Handle\LoginRequestHandle.cs" />
+    <Compile Include="Handle\LogoutHandle.cs" />
     <Compile Include="Handle\MessageHandle.cs" />
     <Compile Include="Handle\UpdateAvatarHandle.cs" />
     <Compile Include="Instance.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\HistoryChatRequestProtocol.cs" />
     <Compile Include="Protocol\HistoryChatResponseProtocol.cs" />
+    <Compile Include="Protocol\LogoutProtocol.cs" />
     <Compile Include="Protocol\MessageProtocol.cs" />
     <Compile Include="Protocol\CreateAccountProtocol.cs" />
     <Compile Include="Protocol\CreateAccountResponseProtocol.cs" />

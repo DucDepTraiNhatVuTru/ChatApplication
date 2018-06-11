@@ -28,6 +28,22 @@ namespace ChatApplication.View
         private string mediaMessageDriveId = "";
         private Image imageWillSend;
         private FormChung.Picture controlsAdded;
+        private bool _isGotHistory = false;
+        public List<ChatDataModel.ChatMessage> Messages = new List<ChatDataModel.ChatMessage>();
+        public bool IsGotHistory
+        {
+            get
+            {
+                return _isGotHistory;
+            }
+            set
+            {
+                _isGotHistory = value;
+                if (IsGotHistoryChange != null)
+                    IsGotHistoryChange(null, EventArgs.Empty);
+            }
+        } 
+        public event EventHandler IsGotHistoryChange;
         public FormChat()
         {
             InitializeComponent();
@@ -46,6 +62,9 @@ namespace ChatApplication.View
                 myName = Instance.CurrentUser.Name;
             }
             imageFriend = GoogleDriveFilesRepository.DownloadFile(_user.AvatarDriveID);
+            _ptbFriendsAvatar.Image = Image.FromStream(imageFriend);
+            _ptbFriendsAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            _lbFriendsName.Text = _user.Name;
             authorMe = new Author(Image.FromStream(imageMe), myName);
             authorFriend = new Author(Image.FromStream(imageFriend), _user.Name);
             _rcChatlog.Author = authorMe;
@@ -53,21 +72,36 @@ namespace ChatApplication.View
             _client.RequestGetHistory(Instance.CurrentUser.Email, _user.Email);
             _rcChatlog.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
             _rcChatlog.ChatElement.SendButtonElement.Click += SendButtonElement_Click;
+            
+        }
+
+        /*private void FormChat_IsGotHistoryChange(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ok");
+            /*if (_isGotHistory)
+            {
+               foreach(var item in Messages)
+                {
+                    ReceiveTextMessage(item);
+                    Messages.Remove(item);
+                }
+            }
+        }*/
+
+        public void Do()
+        {
+            if (_isGotHistory)
+            {
+                foreach (var item in Messages)
+                {
+                    ReceiveTextMessage(item);
+                    Messages.Remove(item);
+                }
+            }
         }
 
         private void SendButtonElement_Click(object sender, EventArgs e)
-        {/*
-            Image temp = null;
-            if (imageWillSend.Size.Height > 128 )
-            {
-                float percentage = 128 / imageWillSend.Size.Height;
-                temp = ImageConverter.ImageResize.ResizeImagePercentage(imageWillSend, percentage);
-            }
-            else if (imageWillSend.Size.Width > 128)
-            {
-                float percentage = 128 / imageWillSend.Size.Width;
-                temp = ImageConverter.ImageResize.ResizeImagePercentage(imageWillSend, percentage);
-            }*/
+        {
             if (mediaMessageDriveId != "")
             {
                 ChatMediaMessage message = new ChatMediaMessage(imageWillSend, new Size(128, 128), null, authorMe, DateTime.Now);
@@ -91,18 +125,9 @@ namespace ChatApplication.View
                 string path = dialog.InitialDirectory + @"\" + dialog.FileName;
                 var fileID = GoogleDriveFilesRepository.UploadFile(path.Substring(1));
                 mediaMessageDriveId = fileID;
-                /*PictureBox picture = new PictureBox();
-                picture.Size = new Size(64, 64);
-                picture.Location = new Point(0, _rcChatlog.Size.Height - 30);
-                imageWillSend = Image.FromFile(Path.Combine(dialog.InitialDirectory, dialog.FileName));
-                picture.Image = imageWillSend;
-                picture.SizeMode = PictureBoxSizeMode.StretchImage;
-                controlsAdded = picture;
-                this.Size = new Size(this.Size.Width, this.Size.Height + 70);
-                _rcChatlog.Controls.Add(picture);*/
                 FormChung.Picture picture = new FormChung.Picture();
                 picture.Close += Picture_Close;
-                picture.Location = new Point(2, _rcChatlog.Size.Height - 80);
+                picture.Location = new Point(2, _rcChatlog.Size.Height - 100);
                 imageWillSend = Image.FromFile(Path.Combine(dialog.InitialDirectory, dialog.FileName));
                 picture.AddImage(imageWillSend);
                 controlsAdded = picture;
@@ -141,17 +166,7 @@ namespace ChatApplication.View
             {
                 var stream = GoogleDriveFilesRepository.DownloadFile(message.ImageMessageDriveID);
                 var img = Image.FromStream(stream);
-                /*if (img.Size.Height > 128)
-                {
-                    float percentage = 128 / imageWillSend.Size.Height;
-                    img = ImageConverter.ImageResize.ResizeImagePercentage(imageWillSend, percentage);
-                }
-                else if (img.Size.Width > 128)
-                {
-                    float percentage = 128 / imageWillSend.Size.Width;
-                    img = ImageConverter.ImageResize.ResizeImagePercentage(imageWillSend, percentage);
-                }*/
-                ChatMediaMessage mess = new ChatMediaMessage(img, new Size(128,128), null, authorFriend, message.TimeSend);
+                ChatMediaMessage mess = new ChatMediaMessage(img, new Size(128, 128), null, authorFriend, message.TimeSend);
                 _rcChatlog.AddMessage(mess);
                 return;
             }
@@ -159,7 +174,7 @@ namespace ChatApplication.View
             {
                 ChatTextMessage mess = new ChatTextMessage(message.Message, authorFriend, message.TimeSend);
                 _rcChatlog.AddMessage(mess);
-            }
+            }           
         }
 
         public void ReceiveMediaMessage(ChatDataModel.ChatMessage message)
@@ -175,7 +190,7 @@ namespace ChatApplication.View
             var me = Instance.CurrentUser.Email;
             foreach(var item in AllMessage)
             {
-                if (item.ImageMessageDriveID != null)
+                if (item.ImageMessageDriveID != "")
                 {
                     var image = GoogleDriveFilesRepository.DownloadFile(item.ImageMessageDriveID);
                     if (item.Sender == me)
@@ -189,7 +204,7 @@ namespace ChatApplication.View
                         _rcChatlog.AddMessage(message);
                     }
                 }
-                else
+                else if(item.Message!="")
                 {
                     if (item.Sender == me)
                     {
@@ -203,6 +218,7 @@ namespace ChatApplication.View
                     }
                 }
             }
+            //IsGotHistory = true;
         }
     }
 }

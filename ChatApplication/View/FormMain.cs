@@ -112,6 +112,10 @@ namespace ChatApplication.View
             }
             var formChat = new FormChat(_client, GetAccountFromFriendList(email));
             formChat.OnClose += Form_OnClose;
+            /*formChat.IsGotHistoryChange += delegate
+            {
+                form.Do();
+            };*/
             Thread thread = new Thread(delegate ()
             {
                 lock (this)
@@ -123,6 +127,7 @@ namespace ChatApplication.View
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
         }
+
         private void Form_OnClose(string email)
         {
             FormChatOpening.Remove(email);

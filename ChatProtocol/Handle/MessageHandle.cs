@@ -19,15 +19,6 @@ namespace ChatProtocol.Handle
             var ptc = protocol as MessageProtocol;
             string toView = "[" + DateTime.Now + "] [" + client.GetEndPoint() + "] [user:" + ptc.Message.Sender + "] send a message to [user:" + ptc.Message.Receiver + "]";
 
-            if (!IsUserOnline(ptc.Message.Receiver))
-            {
-                lock (lockInstance)
-                {
-                    Instance.MessageHadNotSended.Add(ptc.Message);
-                    return toView;
-                }
-            }
-            GetUserOnline(ptc.Message.Receiver).SendMessage(ptc.Message);
             try
             {
                 InsertMessage(ptc.Message);
@@ -36,6 +27,18 @@ namespace ChatProtocol.Handle
             {
                 toView += "\n Can't not update this Message to database \n detail : " + ex.Message;
             }
+
+            if (!IsUserOnline(ptc.Message.Receiver))
+            {
+                lock (lockInstance)
+                {
+                    Instance.MessageHadNotSended.Add(ptc.Message);
+                    return toView;
+                }
+            }
+
+            GetUserOnline(ptc.Message.Receiver).SendMessage(ptc.Message);
+            
             return toView;
         }
 

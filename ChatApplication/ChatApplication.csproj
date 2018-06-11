@@ -79,6 +79,12 @@
     <Compile Include="View\FormChat.Designer.cs">
       <DependentUpon>FormChat.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormChatGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormChatGroups.Designer.cs">
+      <DependentUpon>FormChatGroups.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     </Compile>
     <EmbeddedResource Include="View\FormChat.resx">
       <DependentUpon>FormChat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormChatGroups.resx">
+      <DependentUpon>FormChatGroups.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

@@ -34,7 +34,7 @@ namespace ChatProtocol.Handle
 
             Instance.OnlineUser.Add(ptc.Email, client);
 
-            SendMessageHadNotSended(client, ptc.Email);
+            //SendMessageHadNotSended(client, ptc.Email);
 
             return toView;
         }
@@ -51,8 +51,18 @@ namespace ChatProtocol.Handle
 
         private void SendMessageHadNotSended(IChatClient client, string email)
         {
-            List<ChatMessage> list;
-            lock (syncLock1)
+            //List<ChatMessage> list = Instance.MessageHadNotSended;
+
+            foreach(var item in Instance.MessageHadNotSended.ToList())
+            {
+                if (item.Receiver == email)
+                {
+                    client.SendMessage(item);
+                    Instance.MessageHadNotSended.Remove(item);
+                }
+            }
+            
+            /*lock (syncLock1)
             {
                 list = Instance.MessageHadNotSended;
             }
@@ -66,7 +76,7 @@ namespace ChatProtocol.Handle
                         Instance.MessageHadNotSended.Remove(item);
                     }
                 }
-            }
+            }*/
         }
     }
 }

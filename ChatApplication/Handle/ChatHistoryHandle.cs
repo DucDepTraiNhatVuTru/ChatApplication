@@ -41,7 +41,7 @@ namespace ChatApplication.Handle
                     {
                         formChat.AllMessage = ptc.Messages;
                         formChat.AddMessageHistory();
-                        formChat.Show();
+                        //formChat.Show();
                     }));
                 }
             }));

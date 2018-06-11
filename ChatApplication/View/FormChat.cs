@@ -72,7 +72,7 @@ namespace ChatApplication.View
             _client.RequestGetHistory(Instance.CurrentUser.Email, _user.Email);
             _rcChatlog.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
             _rcChatlog.ChatElement.SendButtonElement.Click += SendButtonElement_Click;
-            
+            _rcChatlog.ChatElement.MessagesViewElement.BackColor = Color.White;
         }
 
         /*private void FormChat_IsGotHistoryChange(object sender, EventArgs e)
@@ -108,7 +108,7 @@ namespace ChatApplication.View
                 _client.SendMessage(new ChatDataModel.ChatMessage(Instance.CurrentUser.Email, _user.Email, "", mediaMessageDriveId, DateTime.Now));
                 _rcChatlog.AddMessage(message);
                 mediaMessageDriveId = "";
-                this.Controls.Remove(controlsAdded);
+                _rcChatlog.Controls.Remove(controlsAdded);
                 _rcChatlog.ChatElement.InputTextBox.TextBoxItem.Enabled = true;
                 _rcChatlog.ChatElement.InputTextBox.TextBoxItem.Text = "";
             }
@@ -127,7 +127,7 @@ namespace ChatApplication.View
                 mediaMessageDriveId = fileID;
                 FormChung.Picture picture = new FormChung.Picture();
                 picture.Close += Picture_Close;
-                picture.Location = new Point(2, _rcChatlog.Size.Height - 100);
+                picture.Location = new Point(2, _rcChatlog.Size.Height - 110);
                 imageWillSend = Image.FromFile(Path.Combine(dialog.InitialDirectory, dialog.FileName));
                 picture.AddImage(imageWillSend);
                 controlsAdded = picture;

@@ -63,7 +63,6 @@ namespace ChatApplication.View
             _account = account;
             Init();
             _client.OnNewRecieve += _client_OnNewRecieve;
-            _radlvFriendList.AllowEdit = false;
             _client.RequsetGetListFriend(account.Email);
         }
 
@@ -85,6 +84,8 @@ namespace ChatApplication.View
                     _ptbAvatar.Image = Image.FromStream(file);
             });
             thread.Start();
+
+            _radlvFriendList.AllowEdit = false;
             _radlvFriendList.AllowRemove = false;
             _radlvFriendList.ItemSpacing = 5;
             _radlvFriendList.ShowGridLines = true;
@@ -98,6 +99,7 @@ namespace ChatApplication.View
 
         private void InitGroupsChat()
         {
+            _radLVGroupChat.AllowEdit = false;
             _radLVGroupChat.AllowRemove = false;
             _radLVGroupChat.ItemSpacing = 5;
             _radLVGroupChat.ShowGridLines = true;
@@ -107,7 +109,13 @@ namespace ChatApplication.View
 
         private void _radLVGroupChat_ItemMouseClick(object sender, ListViewItemEventArgs e)
         {
-            //_client.RequestGetGroup(Instance.CurrentUser.Email);
+            var formChatGroup = new FormChatGroups(_client, e.Item.Text.ToString());
+            Thread thread = new Thread(delegate ()
+            {
+                formChatGroup.ShowDialog();
+            });
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
         }
 
         private void _radlvFriendList_ItemMouseClick(object sender, ListViewItemEventArgs e)
@@ -128,10 +136,6 @@ namespace ChatApplication.View
             }
             var formChat = new FormChat(_client, GetAccountFromFriendList(email));
             formChat.OnClose += Form_OnClose;
-            /*formChat.IsGotHistoryChange += delegate
-            {
-                form.Do();
-            };*/
             Thread thread = new Thread(delegate ()
             {
                 lock (this)

@@ -173,21 +173,6 @@ namespace ChatDAO
                 }
 
                 return emails;
-                /*var data = con.GetData(sql);
-                 List<Account> listFriends = new List<Account>();
-                 if (data.HasRows)
-                 {
-                     while (data.Read())
-                     {
-                         var userEmail = data.GetString(0);
-                         var password = data.GetString(1);
-                         var name = data.GetString(2);
-                         var driveFileID = data.GetString(3);
-                         var gender = data.GetString(4);
-                         var time = (DateTime)data.GetValue(5);
-                         listFriends.Add(new Account(userEmail, password, name, driveFileID, gender, time));
-                     }
-                 }*/
             }
             catch (Exception ex)
             {

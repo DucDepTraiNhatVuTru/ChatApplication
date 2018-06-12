@@ -183,5 +183,39 @@ namespace ChatDAO
                 con.Disconnect();
             }
         }
+
+        public List<Account> GetUserInGroup(string groupId)
+        {
+            try
+            {
+                Connect();
+                string sql = "SELECT Email, Password, Name, Avatar, Gender, TimeCreate FROM Account,(SELECT  UserInGroup.UserEmail FROM UserInGroup WHERE UserInGroup.GroupId = '"+groupId+"') AS T WHERE Account.Email = T.UserEmail";
+                var data = con.GetData(sql);
+                List<Account> accounts = new List<Account>();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        string email = data.GetString(0);
+                        string password = data.GetString(1);
+                        string name = data.GetString(2);
+                        string avatar = data.GetString(3);
+                        string gender = data.GetString(4);
+                        DateTime time = (DateTime)data.GetValue(5);
+                        accounts.Add(new Account(email, password, name, avatar, gender, time));
+                    }
+                }
+                return accounts;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
+        }
     }
 }

@@ -15,5 +15,6 @@ namespace ChatDAO
         int UpdateAvatar(string email, string driveFileId);
         List<Account> GetFriendList(string email);
         List<string> EmailsFriends(string email);
+        List<Account> GetUserInGroup(string groupId);
     }
 }

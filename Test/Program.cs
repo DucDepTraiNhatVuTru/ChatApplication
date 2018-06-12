@@ -14,8 +14,8 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            IGroupDAO db = new GroupsDAOSQL();
-            var l = db.GetListGroup("minhduc@gmail.com");
+            IAccountDAO db = new AccountDAOSQL();
+            var l = db.GetUserInGroup("agrrrrr");
             foreach(var item in l)
             {
                 Console.WriteLine(item.Name);

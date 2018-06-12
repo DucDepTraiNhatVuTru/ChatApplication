@@ -92,6 +92,22 @@ namespace ChatApplication.View
             _radlvFriendList.ItemDataBound += _radlvFriendList_ItemDataBound;
             _radlvFriendList.ItemSize = new Size(_radlvFriendList.ItemSize.Width, 50);
             _radlvFriendList.ItemMouseClick += _radlvFriendList_ItemMouseClick;
+
+            InitGroupsChat();
+        }
+
+        private void InitGroupsChat()
+        {
+            _radLVGroupChat.AllowRemove = false;
+            _radLVGroupChat.ItemSpacing = 5;
+            _radLVGroupChat.ShowGridLines = true;
+            _radLVGroupChat.ItemSize = new Size(_radLVGroupChat.ItemSize.Width, 50);
+            _radLVGroupChat.ItemMouseClick += _radLVGroupChat_ItemMouseClick;
+        }
+
+        private void _radLVGroupChat_ItemMouseClick(object sender, ListViewItemEventArgs e)
+        {
+            //_client.RequestGetGroup(Instance.CurrentUser.Email);
         }
 
         private void _radlvFriendList_ItemMouseClick(object sender, ListViewItemEventArgs e)
@@ -171,13 +187,26 @@ namespace ChatApplication.View
         public void LoadFriendList(List<Account> accounts)
         {
             BindingList<Account> listUser = new BindingList<Account>();
-           foreach(var item in accounts)
+            foreach (var item in accounts)
             {
                 listUser.Add(item);
             }
             _radlvFriendList.DataSource = listUser;
             _radlvFriendList.DisplayMember = "Name";
             _radlvFriendList.ValueMember = "Email";
+            SendRequestGetListGroup();
+        }
+
+        public void LoadGroupList(List<Group> groups)
+        {
+            BindingList<Group> listGroup = new BindingList<Group>();
+            foreach(var item in groups)
+            {
+                listGroup.Add(item);
+            }
+            _radLVGroupChat.DataSource = listGroup;
+            _radLVGroupChat.DisplayMember = "Name";
+            _radLVGroupChat.ValueMember = "Id";
         }
 
         private FormChat GetFormChatOpening(string key)
@@ -202,6 +231,11 @@ namespace ChatApplication.View
                 }
             }
             return null;
+        }
+
+        public void SendRequestGetListGroup()
+        {
+            _client.RequestGetGroup(_account.Email);
         }
     }
 }

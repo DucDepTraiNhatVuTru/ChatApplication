@@ -18,5 +18,6 @@ namespace SocketServer
         void ResponseGetListFriends(List<Account> listFriends);
         void SendMessage(ChatMessage message);
         void ResponseGetChatHistory(List<ChatMessage> messages);
+        void ResponseGetGroups(List<Group> groups);
     }
 }

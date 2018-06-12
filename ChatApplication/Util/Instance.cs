@@ -11,5 +11,6 @@ namespace ChatApplication.Util
     {
         public static Account CurrentUser = new Account();
         public static List<Account> ListFriends = new List<Account>();
+        public static List<Group> ListGroups = new List<Group>();
     }
 }

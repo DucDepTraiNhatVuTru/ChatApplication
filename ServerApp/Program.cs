@@ -16,6 +16,7 @@ namespace ServerApp
             Console.WriteLine("press enter to start server");
             Console.ReadLine();
             _server.Start("127.0.0.1", 2018);
+            Console.WriteLine("server is started!");
             _server.OnNewConnect += _server_OnNewConnect;
             _server.OnNewMessage += _server_OnNewMessage;
 

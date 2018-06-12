@@ -64,6 +64,7 @@
     <Compile Include="Custom\User.cs" />
     <Compile Include="Handle\ChatHistoryHandle.cs" />
     <Compile Include="Handle\CreateAccountResponseHandle.cs" />
+    <Compile Include="Handle\GetGroupHandle.cs" />
     <Compile Include="Handle\GetListFriendsResponseHandle.cs" />
     <Compile Include="Handle\HandleFactory.cs" />
     <Compile Include="Handle\IHandle.cs" />

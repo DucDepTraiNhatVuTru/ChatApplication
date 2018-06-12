@@ -74,32 +74,7 @@ namespace ChatApplication.View
             _rcChatlog.ChatElement.SendButtonElement.Click += SendButtonElement_Click;
             _rcChatlog.ChatElement.MessagesViewElement.BackColor = Color.White;
         }
-
-        /*private void FormChat_IsGotHistoryChange(object sender, EventArgs e)
-        {
-            MessageBox.Show("Ok");
-            /*if (_isGotHistory)
-            {
-               foreach(var item in Messages)
-                {
-                    ReceiveTextMessage(item);
-                    Messages.Remove(item);
-                }
-            }
-        }*/
-
-        public void Do()
-        {
-            if (_isGotHistory)
-            {
-                foreach (var item in Messages)
-                {
-                    ReceiveTextMessage(item);
-                    Messages.Remove(item);
-                }
-            }
-        }
-
+        
         private void SendButtonElement_Click(object sender, EventArgs e)
         {
             if (mediaMessageDriveId != "")

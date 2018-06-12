@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SimpleTCP;
 using ChatProtocol.Packet;
 using ChatProtocol;
+using System.Threading;
 
 namespace SocketServer.SimpleTCP
 {
@@ -29,20 +30,23 @@ namespace SocketServer.SimpleTCP
 
         private void _server_DataReceived(object sender, Message e)
         {
-            var tmp = SimpleTcpAdapter.Convert(e.TcpClient);
-            var packet = new BasicPacket();
-            if (!packet.Parse(e.Data))
-                return;
-            var protocol = ProtocolFactory.CreateProtocol(packet.Opcode);
-            if (!protocol.Parse(Encoding.Unicode.GetString(packet.Data)))
-                return;
-            var handle = HandleFactory.CreateHandle(packet.Opcode);
-            string toView = handle.Handling(protocol, tmp);
-            if (OnNewMessage != null)
+            Thread thread = new Thread(delegate ()
             {
-                OnNewMessage.Invoke(tmp, toView);
-            }
-
+                var tmp = SimpleTcpAdapter.Convert(e.TcpClient);
+                var packet = new BasicPacket();
+                if (!packet.Parse(e.Data))
+                    return;
+                var protocol = ProtocolFactory.CreateProtocol(packet.Opcode);
+                if (!protocol.Parse(Encoding.Unicode.GetString(packet.Data)))
+                    return;
+                var handle = HandleFactory.CreateHandle(packet.Opcode);
+                string toView = handle.Handling(protocol, tmp);
+                if (OnNewMessage != null)
+                {
+                    OnNewMessage.Invoke(tmp, toView);
+                }
+            });
+            thread.Start();
         }
 
         private void _server_ClientDisconnected(object sender, System.Net.Sockets.TcpClient e)

@@ -24,6 +24,8 @@ namespace ChatApplication.Handle
                     return new MessageHandle();
                 case 12:
                     return new ChatHistoryHandle();
+                case 14:
+                    return new GetGroupHandle();
                 default:
                     throw new Exception("Chưa hỗ trợ opcode");
             }

@@ -130,5 +130,15 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void RequestGetGroup(string email)
+        {
+            var ptc = new GetGroupChatRequestProtocol();
+            ptc.Email = email;
+            var packet = new BasicPacket();
+            packet.Opcode = 13;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

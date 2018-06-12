@@ -21,5 +21,6 @@ namespace ClientSocket
         void SendMessage(ChatMessage message);
         void RequestGetHistory(string personOne, string personTwo);
         void Logout(string email);
+        void RequestGetGroup(string email);
     }
 }

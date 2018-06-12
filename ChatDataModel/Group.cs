@@ -25,5 +25,29 @@ namespace ChatDataModel
             UserCreate = userCreate;
             TimeCreate = time;
         }
+
+        public override string ToString()
+        {
+            var data = "";
+            data += Id + "\v";
+            data += Name + "\v";
+            data += UserCreate + "\v";
+            data += TimeCreate + "\v";
+            return data;
+        }
+
+        public bool Parse(string data)
+        {
+            if (string.IsNullOrEmpty(data)) return false;
+            var tach = data.Split('\v');
+            if (tach.Length < 4) return false;
+            Id = tach[0];
+            Name = tach[1];
+            UserCreate = tach[2];
+            DateTime time;
+            if (!DateTime.TryParse(tach[3], out time)) return false;
+            TimeCreate = time;
+            return true;
+        }
     }
 }

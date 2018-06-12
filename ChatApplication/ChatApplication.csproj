@@ -66,6 +66,7 @@
     <Compile Include="Handle\CreateAccountResponseHandle.cs" />
     <Compile Include="Handle\GetGroupHandle.cs" />
     <Compile Include="Handle\GetListFriendsResponseHandle.cs" />
+    <Compile Include="Handle\GetUserInGroupHandle.cs" />
     <Compile Include="Handle\HandleFactory.cs" />
     <Compile Include="Handle\IHandle.cs" />
     <Compile Include="Handle\LoginResponseHandle.cs" />

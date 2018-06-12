@@ -22,5 +22,6 @@ namespace ClientSocket
         void RequestGetHistory(string personOne, string personTwo);
         void Logout(string email);
         void RequestGetGroup(string email);
+        void RequestGetUserInGroup(string email, string groupId);
     }
 }

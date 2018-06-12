@@ -27,6 +27,8 @@ namespace ChatProtocol
                     return new GetChatHistoryHandle();
                 case 13:
                     return new GetGroupHandle();
+                case 15:
+                    return new GetUserInGroupHandle();
                 default:
                     throw new Exception("chưa hỗ trợ opcode!");
             }

@@ -39,5 +39,21 @@ namespace ChatDataModel
             account += TimeCreate + "\v";
             return account;
         }
+
+        public bool Parse(string data)
+        {
+            if (string.IsNullOrEmpty(data)) return false;
+            var tach = data.Split('\v');
+            if (tach.Length < 6) return false;
+            Email = tach[0];
+            Password = tach[1];
+            Name = tach[2];
+            AvatarDriveID = tach[3];
+            Gender = tach[4];
+            DateTime time;
+            if (!DateTime.TryParse(tach[5], out time)) return false;
+            TimeCreate = time;
+            return true;
+        }
     }
 }

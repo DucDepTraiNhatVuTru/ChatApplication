@@ -25,6 +25,7 @@ namespace ChatApplication.View
         private IClient _client;
         private Account _account;
         public IDictionary<string, FormChat> FormChatOpening = new Dictionary<string, FormChat>();
+        public IDictionary<string, FormChatGroups> FormChatGroupsOpening = new Dictionary<string, FormChatGroups>();
         public FormMain()
         {
             InitializeComponent();
@@ -107,9 +108,12 @@ namespace ChatApplication.View
             _radLVGroupChat.ItemMouseClick += _radLVGroupChat_ItemMouseClick;
         }
 
+
+        //click vào item trong groupChat
         private void _radLVGroupChat_ItemMouseClick(object sender, ListViewItemEventArgs e)
         {
-            var formChatGroup = new FormChatGroups(_client, e.Item.Text.ToString());
+            var formChatGroup = new FormChatGroups(_client, GetGroupFromListGroup(e.Item.Value.ToString()));
+            FormChatGroupsOpening.Add(e.Item.Value.ToString(), formChatGroup);
             Thread thread = new Thread(delegate ()
             {
                 formChatGroup.ShowDialog();
@@ -230,6 +234,18 @@ namespace ChatApplication.View
             foreach(var item in Instance.ListFriends)
             {
                 if (item.Email == email)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        private Group GetGroupFromListGroup(string groupId)
+        {
+            foreach(var item in Instance.ListGroups)
+            {
+                if (item.Id == groupId)
                 {
                     return item;
                 }

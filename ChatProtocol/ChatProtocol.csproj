@@ -48,6 +48,7 @@
     <Compile Include="Handle\GetChatHistoryHandle.cs" />
     <Compile Include="Handle\GetGroupHandle.cs" />
     <Compile Include="Handle\GetListFriendsRequestHandle.cs" />
+    <Compile Include="Handle\GetUserInGroupHandle.cs" />
     <Compile Include="Handle\LoginRequestHandle.cs" />
     <Compile Include="Handle\LogoutHandle.cs" />
     <Compile Include="Handle\MessageHandle.cs" />
@@ -60,6 +61,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\GetGroupChatRequestProtocol.cs" />
     <Compile Include="Protocol\GetGroupChatResponseProtocol.cs" />
+    <Compile Include="Protocol\GetUserInGroupResponseProtocol.cs" />
+    <Compile Include="Protocol\GetUserInGroupResquestProtocol.cs" />
     <Compile Include="Protocol\HistoryChatRequestProtocol.cs" />
     <Compile Include="Protocol\HistoryChatResponseProtocol.cs" />
     <Compile Include="Protocol\LogoutProtocol.cs" />

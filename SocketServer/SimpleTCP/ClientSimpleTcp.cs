@@ -75,6 +75,17 @@ namespace SocketServer.SimpleTCP
             _client.Client.Send(packet.ToBytes());
         }
 
+        public void ResponseGetUserInGroup(string groupID,List<Account> accounts)
+        {
+            var ptc = new GetUserInGroupResponseProtocol();
+            ptc.Accounts = accounts;
+            ptc.GroupId = groupID;
+            var packet = new BasicPacket();
+            packet.Opcode = 16;
+            packet.Data = ptc.ToBytes();
+            _client.Client.Send(packet.ToBytes());
+        }
+
         public void ResponseLogin(int isAccept, Account account)
         {
             var ptc = new LoginResponseProtocol();

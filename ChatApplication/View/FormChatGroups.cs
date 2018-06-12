@@ -45,6 +45,7 @@ namespace ChatApplication.View
             LoadMyAvatar(_me.AvatarDriveID);
             _client.RequestGetUserInGroup(_me.Email, _group.Id);
             InitLV();
+            _radchatChatGroup.Author = _authorMe;
             _radchatChatGroup.SendMessage += _radchatChatGroup_SendMessage;
         }
 
@@ -56,7 +57,6 @@ namespace ChatApplication.View
 
         private void InitLV()
         {
-            _radchatChatGroup.Author = _authorMe;
             _radLVListFriendInGroup.AllowEdit = false;
             _radLVListFriendInGroup.ItemSize = new Size(_radLVListFriendInGroup.Size.Width, 26);
             _radLVListFriendInGroup.ItemDataBound += _radLVListFriendInGroup_ItemDataBound;

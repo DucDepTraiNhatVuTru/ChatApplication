@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using ChatProtocol.Protocol;
 using SocketServer;
 using ChatDAO.SQL;
+using ChatDataModel;
+using ChatDAO;
 
 namespace ChatProtocol.Handle
 {
@@ -26,6 +28,16 @@ namespace ChatProtocol.Handle
             {
                 toView += "\n insert group message failed!";
             }
+
+            var accounts = GetUserInGroupExceptMe(ptc.message.GroupReceive, ptc.message.Sender);
+            foreach(var item in accounts)
+            {
+                IChatClient clt;
+                if(Instance.OnlineUser.TryGetValue(item.Email,out clt))
+                {
+                    clt.SendGroupMessage(ptc.message);
+                }
+            }
             return toView;
         }
 
@@ -38,6 +50,13 @@ namespace ChatProtocol.Handle
             }
         }
 
-        
+        private List<Account> GetUserInGroupExceptMe(string groupId, string email)
+        {
+            lock (synLock1)
+            {
+                IAccountDAO db = new AccountDAOSQL();
+                return db.GetUserInGroupExceptMe(groupId, email);
+            }
+        }
     }
 }

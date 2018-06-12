@@ -28,6 +28,8 @@ namespace ChatApplication.Handle
                     return new GetGroupHandle();
                 case 16:
                     return new GetUserInGroupHandle();
+                case 17:
+                    return new GroupMessageHandle();
                 default:
                     throw new Exception("Chưa hỗ trợ opcode");
             }

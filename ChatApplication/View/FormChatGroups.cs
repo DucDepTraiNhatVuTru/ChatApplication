@@ -23,7 +23,7 @@ namespace ChatApplication.View
         private Group _group;
         private Author _authorMe;
         private Account _me;
-        private List<Author> _authorFriends = new List<Author>();
+        private IDictionary<string, Author> _authorFriends = new Dictionary<string, Author>();
         private List<Account> _userInGroup = new List<Account>();
 
         public FormChatGroups()
@@ -69,7 +69,7 @@ namespace ChatApplication.View
                     var image = Image.FromStream(GoogleDriveFilesRepository.DownloadFile(((Account)e.Item.DataBoundItem).AvatarDriveID));
                     lock (this)
                     {
-                        _authorFriends.Add(new Author(image, ((Account)e.Item.DataBoundItem).Name));
+                        _authorFriends.Add(((Account)e.Item.DataBoundItem).Email, new Author(image, ((Account)e.Item.DataBoundItem).Name));
                     }
             _radLVListFriendInGroup.Invoke(new MethodInvoker(delegate ()
             {
@@ -101,6 +101,14 @@ namespace ChatApplication.View
             _radLVListFriendInGroup.DataSource = listUser;
             _radLVListFriendInGroup.DisplayMember = "Name";
             _radLVListFriendInGroup.ValueMember = "Id";
+        }
+
+        public void ReceiveMessage(ChatGroupMessage message)
+        {
+            Author auth;
+            if (!_authorFriends.TryGetValue(message.Sender, out auth)) return;
+            var mess = new ChatTextMessage(message.Message, auth, message.TimeSend);
+            _radchatChatGroup.AddMessage(mess);
         }
     }
 }

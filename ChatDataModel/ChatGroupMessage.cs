@@ -8,7 +8,7 @@ namespace ChatDataModel
 {
     public class ChatGroupMessage
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Sender { get; set; }
         public string GroupReceive { get; set; }
         public string Message { get; set; }

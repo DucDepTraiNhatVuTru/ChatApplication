@@ -16,5 +16,6 @@ namespace ChatDAO
         List<Account> GetFriendList(string email);
         List<string> EmailsFriends(string email);
         List<Account> GetUserInGroup(string groupId);
+        List<Account> GetUserInGroupExceptMe(string groupId, string email);
     }
 }

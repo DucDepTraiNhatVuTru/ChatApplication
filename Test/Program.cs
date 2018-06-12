@@ -15,7 +15,7 @@ namespace Test
         static void Main(string[] args)
         {
             IAccountDAO db = new AccountDAOSQL();
-            var l = db.GetUserInGroup("agrrrrr");
+            var l = db.GetUserInGroupExceptMe("agrrrrr","minhduc@gmail.com");
             foreach(var item in l)
             {
                 Console.WriteLine(item.Name);

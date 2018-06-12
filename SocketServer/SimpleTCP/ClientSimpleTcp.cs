@@ -108,6 +108,16 @@ namespace SocketServer.SimpleTCP
             _client.Client.Send(packet.ToBytes());
         }
 
+        public void SendGroupMessage(ChatGroupMessage message)
+        {
+            var ptc = new GroupMessageProtocol();
+            ptc.message = message;
+            var packet = new BasicPacket();
+            packet.Opcode = 17;
+            packet.Data = ptc.ToBytes();
+            _client.Client.Send(packet.ToBytes());
+        }
+
         public void SendMessage(ChatMessage message)
         {
             var ptc = new MessageProtocol();

@@ -34,7 +34,6 @@ namespace ChatApplication.View
         public FormChatGroups(IClient client, Group group)
         {
             InitializeComponent();
-            InitLV();
             _client = client;
             _group = group;
             _lbGroupName.Text = group.Name;
@@ -45,10 +44,19 @@ namespace ChatApplication.View
             _authorMe = new Author(null, _me.Name);
             LoadMyAvatar(_me.AvatarDriveID);
             _client.RequestGetUserInGroup(_me.Email, _group.Id);
+            InitLV();
+            _radchatChatGroup.SendMessage += _radchatChatGroup_SendMessage;
+        }
+
+        private void _radchatChatGroup_SendMessage(object sender, SendMessageEventArgs e)
+        {
+            ChatTextMessage mesage = e.Message as ChatTextMessage;
+            _client.SendGroupMessage(new ChatGroupMessage(_me.Email, _group.Id, mesage.Message, "", DateTime.Now));
         }
 
         private void InitLV()
         {
+            _radchatChatGroup.Author = _authorMe;
             _radLVListFriendInGroup.AllowEdit = false;
             _radLVListFriendInGroup.ItemSize = new Size(_radLVListFriendInGroup.Size.Width, 26);
             _radLVListFriendInGroup.ItemDataBound += _radLVListFriendInGroup_ItemDataBound;

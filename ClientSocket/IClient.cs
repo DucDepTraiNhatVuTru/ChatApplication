@@ -23,5 +23,6 @@ namespace ClientSocket
         void Logout(string email);
         void RequestGetGroup(string email);
         void RequestGetUserInGroup(string email, string groupId);
+        void SendGroupMessage(ChatGroupMessage message);
     }
 }

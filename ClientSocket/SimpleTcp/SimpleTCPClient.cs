@@ -151,5 +151,15 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void SendGroupMessage(ChatGroupMessage message)
+        {
+            var ptc = new GroupMessageProtocol();
+            ptc.message = message;
+            var packet = new BasicPacket();
+            packet.Opcode = 17;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

@@ -172,5 +172,16 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void RequestGetFriendNotInGroup(string email, string groupId)
+        {
+            var ptc = new GetFriendNotInGroupRequestProtocol();
+            ptc.Email = email;
+            ptc.GroupId = groupId;
+            var packet = new BasicPacket();
+            packet.Opcode = 21;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

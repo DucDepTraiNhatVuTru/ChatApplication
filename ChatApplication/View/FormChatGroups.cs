@@ -49,7 +49,13 @@ namespace ChatApplication.View
             _radchatChatGroup.Author = _authorMe;
             _radchatChatGroup.SendMessage += _radchatChatGroup_SendMessage;
             _radchatChatGroup.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
-            
+            _btnAddUserToGroup.Click += _btnAddUserToGroup_Click;
+        }
+
+        private void _btnAddUserToGroup_Click(object sender, EventArgs e)
+        {
+            FormAddUserToGroup form = new FormAddUserToGroup(_client, _userInGroup);
+            form.ShowDialog();
         }
 
         private void ShowToolbarButtonElement_Click(object sender, EventArgs e)

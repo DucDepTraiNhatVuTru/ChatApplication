@@ -77,6 +77,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Instance.cs" />
+    <Compile Include="View\FormAddUserToGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormAddUserToGroup.Designer.cs">
+      <DependentUpon>FormAddUserToGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormChat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\FormAddUserToGroup.resx">
+      <DependentUpon>FormAddUserToGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormChat.resx">
       <DependentUpon>FormChat.cs</DependentUpon>
     </EmbeddedResource>

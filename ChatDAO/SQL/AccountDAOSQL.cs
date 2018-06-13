@@ -250,5 +250,39 @@ namespace ChatDAO
                 con.Disconnect();
             }
         }
+
+        public List<Account> GetListFriendNotInGroup(string email, string groupId)
+        {
+            try
+            {
+                Connect();
+                string sql = "(SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account,(SELECT User1 FROM Friend WHERE User2 ='" + email + "' UNION SELECT User2 FROM Friend WHERE User1= '" + email + "') AS LISTFRIEND WHERE LISTFRIEND.User1 = Account.Email) EXCEPT (SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account, (SELECT UserInGroup.UserEmail FROM UserInGroup WHERE  UserInGroup.GroupId='" + groupId + "' AND UserInGroup.UserEmail!='" + email + "') AS FRIENDINGROUP WHERE FRIENDINGROUP.UserEmail = Account.Email)";
+                var data = con.GetData(sql);
+                var accounts = new List<Account>();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        string userEmail = data.GetString(0);
+                        string password = data.GetString(1);
+                        string name = data.GetString(2);
+                        string avatar = data.GetString(3);
+                        string gender = data.GetString(4);
+                        DateTime time = (DateTime)data.GetValue(5);
+                        accounts.Add(new Account(userEmail, password, name, avatar, gender, time));
+                    }
+                }
+                return accounts;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
+        }
     }
 }

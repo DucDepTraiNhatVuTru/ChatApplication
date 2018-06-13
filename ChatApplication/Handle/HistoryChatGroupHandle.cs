@@ -19,11 +19,12 @@ namespace ChatApplication.Handle
             f.Invoke(new MethodInvoker(delegate ()
             {
                 FormChatGroups formChatGroup;
-                if (!f.FormChatGroupsOpening.TryGetValue(message.GroupReceive,out formChatGroup))
+                if (f.FormChatGroupsOpening.TryGetValue(message.GroupReceive,out formChatGroup))
                 {
                     formChatGroup.Invoke(new MethodInvoker(delegate ()
                     {
-                        formChatGroup.LoadHistory(ptc.Messages);
+                        formChatGroup.messages = ptc.Messages;
+                        formChatGroup.LoadHistory();
                     }));
                 }
             }));

@@ -25,6 +25,7 @@ namespace ChatApplication.View
         private Account _me;
         private IDictionary<string, Author> _authorFriends = new Dictionary<string, Author>();
         private List<Account> _userInGroup = new List<Account>();
+        public List<ChatGroupMessage> messages = new List<ChatGroupMessage>();
 
         public FormChatGroups()
         {
@@ -43,12 +44,12 @@ namespace ChatApplication.View
             }
             _authorMe = new Author(null, _me.Name);
             LoadMyAvatar(_me.AvatarDriveID);
-            //_client.RequestGetUserInGroup(_me.Email, _group.Id);
+            _client.RequestGetUserInGroup(_me.Email, _group.Id);
             InitLV();
             _radchatChatGroup.Author = _authorMe;
             _radchatChatGroup.SendMessage += _radchatChatGroup_SendMessage;
             _radchatChatGroup.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
-            _client.RequestGetHistoryGroupChat(_me.Email, _group.Id);
+            
         }
 
         private void ShowToolbarButtonElement_Click(object sender, EventArgs e)
@@ -120,6 +121,9 @@ namespace ChatApplication.View
             _radLVListFriendInGroup.DataSource = listUser;
             _radLVListFriendInGroup.DisplayMember = "Name";
             _radLVListFriendInGroup.ValueMember = "Id";
+            
+            //lấy lịch sử chat
+            _client.RequestGetHistoryGroupChat(_me.Email, _group.Id);
         }
 
         public void ReceiveMessage(ChatGroupMessage message)
@@ -141,7 +145,7 @@ namespace ChatApplication.View
             }
         }
 
-        public void LoadHistory(List<ChatGroupMessage> messages)
+        public void LoadHistory()
         {
             foreach(var item in messages)
             {
@@ -149,30 +153,40 @@ namespace ChatApplication.View
                 {
                     var download = GoogleDriveFilesRepository.DownloadFile(item.ImageMessageDriveId);
                     var img = ResizeImagePercentage(Image.FromStream(download));
-                    Author auth;
+                    
                     if (item.Sender == _me.Email)
                     {
-                        auth = _authorMe;
+                        ChatMediaMessage mess = new ChatMediaMessage(img, img.Size, "", _authorMe, item.TimeSend);
+                        _radchatChatGroup.AddMessage(mess);
                     }
-                    else
+                    else if(item.Sender !=_me.Email)
                     {
-                        _authorFriends.TryGetValue(item.Sender, out auth);
+                        Author auth;
+                        if (_authorFriends.TryGetValue(item.Sender, out auth))
+                        {
+                            ChatMediaMessage mess = new ChatMediaMessage(img, img.Size, "", auth, item.TimeSend);
+                            _radchatChatGroup.AddMessage(mess);
+                        }
                     }
-                    ChatMediaMessage mess = new ChatMediaMessage(img, img.Size, "", auth, item.TimeSend);
-                    _radchatChatGroup.AddMessage(mess);
+                    
                 }
                 else if (item.Message != "") { 
-                    Author auth;
+                    
                     if (item.Sender == _me.Email)
                     {
-                        auth = _authorMe;
+                        ChatTextMessage mess = new ChatTextMessage(item.Message, _authorMe, item.TimeSend);
+                        _radchatChatGroup.AddMessage(mess);
                     }
-                    else
+                    else if(item.Sender == _me.Email)
                     {
-                        _authorFriends.TryGetValue(item.Sender, out auth);
+                        Author auth;
+                        if (_authorFriends.TryGetValue(item.Sender, out auth))
+                        {
+                            ChatTextMessage mess = new ChatTextMessage(item.Message, auth, item.TimeSend);
+                            _radchatChatGroup.AddMessage(mess);
+                        }
                     }
-                    ChatTextMessage mess = new ChatTextMessage(item.Message, auth, item.TimeSend);
-                    _radchatChatGroup.AddMessage(mess);
+                    
                 }
             }
         }

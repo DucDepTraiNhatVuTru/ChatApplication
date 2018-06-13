@@ -69,8 +69,12 @@ namespace ChatApplication.View
 
         private void _client_OnNewRecieve(byte opcode, ChatProtocol.Protocol.IProtocol ptc)
         {
-            var handle = ChatApplication.Handle.HandleFactory.CreateHandle(opcode);
-            handle.Handling(ptc, this);
+            Thread thread = new Thread(delegate ()
+            {
+                var handle = ChatApplication.Handle.HandleFactory.CreateHandle(opcode);
+                handle.Handling(ptc, this);
+            });
+            thread.Start();
         }
 
         private void Init()

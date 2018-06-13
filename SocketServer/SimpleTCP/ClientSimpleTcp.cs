@@ -137,5 +137,15 @@ namespace SocketServer.SimpleTCP
             packet.Data = ptc.ToBytes();
             _client.Client.Send(packet.ToBytes());
         }
+
+        public void ResponseFriendNotInGroup(List<Account> accounts)
+        {
+            var ptc = new GetListFriendsResponseProtocol();
+            ptc.ListAccount = accounts;
+            var packet = new BasicPacket();
+            packet.Opcode = 22;
+            packet.Data = ptc.ToBytes();
+            _client.Client.Send(packet.ToBytes());
+        }
     }
 }

@@ -22,5 +22,6 @@ namespace SocketServer
         void ResponseGetUserInGroup(string groupID, List<Account> accounts);
         void SendGroupMessage(ChatGroupMessage message);
         void ResponseGetChatGroupHistory(List<ChatGroupMessage> messages);
+        void ResponseFriendNotInGroup(List<Account> accounts);
     }
 }

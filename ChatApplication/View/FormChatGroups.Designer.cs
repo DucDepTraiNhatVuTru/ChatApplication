@@ -33,6 +33,7 @@
             this._lbGroupName = new System.Windows.Forms.Label();
             this._btnAddUserToGroup = new System.Windows.Forms.Button();
             this._btnOutOfGroup = new System.Windows.Forms.Button();
+            this.dotsRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.DotsRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this._radchatChatGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._radLVListFriendInGroup)).BeginInit();
             this.SuspendLayout();
@@ -87,6 +88,13 @@
             this._btnOutOfGroup.Text = "Out";
             this._btnOutOfGroup.UseVisualStyleBackColor = false;
             // 
+            // dotsRingWaitingBarIndicatorElement1
+            // 
+            this.dotsRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.dotsRingWaitingBarIndicatorElement1.Name = "dotsRingWaitingBarIndicatorElement1";
+            this.dotsRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.dotsRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
+            // 
             // FormChatGroups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,5 +122,6 @@
         private System.Windows.Forms.Label _lbGroupName;
         private System.Windows.Forms.Button _btnAddUserToGroup;
         private System.Windows.Forms.Button _btnOutOfGroup;
+        private Telerik.WinControls.UI.DotsRingWaitingBarIndicatorElement dotsRingWaitingBarIndicatorElement1;
     }
 }

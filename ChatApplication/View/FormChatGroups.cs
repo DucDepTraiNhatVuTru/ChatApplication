@@ -26,7 +26,7 @@ namespace ChatApplication.View
         private IDictionary<string, Author> _authorFriends = new Dictionary<string, Author>();
         private List<Account> _userInGroup = new List<Account>();
         public List<ChatGroupMessage> messages = new List<ChatGroupMessage>();
-
+        private RadWaitingBar waitingBar;
         public FormChatGroups()
         {
             InitializeComponent();
@@ -44,6 +44,7 @@ namespace ChatApplication.View
             }
             _authorMe = new Author(null, _me.Name);
             LoadMyAvatar(_me.AvatarDriveID);
+            AddWaitingBar();
             _client.RequestGetUserInGroup(_me.Email, _group.Id);
             InitLV();
             _radchatChatGroup.Author = _authorMe;
@@ -195,6 +196,7 @@ namespace ChatApplication.View
                     
                 }
             }
+            _radchatChatGroup.Controls.Remove(waitingBar);
         }
 
         public Image ResizeImagePercentage(Image image)
@@ -205,6 +207,24 @@ namespace ChatApplication.View
                 return ImageConverter.ImageResize.ResizeImagePercentage(image, percentage);
             }
             return image;
+        }
+
+        private void AddWaitingBar()
+        {
+            Thread thread = new Thread(delegate ()
+            {
+                waitingBar = new RadWaitingBar();
+                waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+                waitingBar.Size = new Size(_radchatChatGroup.Size.Width, _radchatChatGroup.Height);
+                waitingBar.WaitingSpeed = 10;
+                waitingBar.BackColor = Color.White;
+                _radchatChatGroup.Invoke(new MethodInvoker(delegate ()
+                {
+                    _radchatChatGroup.Controls.Add(waitingBar);
+                    waitingBar.StartWaiting();
+                }));
+            });
+            thread.Start();
         }
 
         private void FormChatGroups_FormClosing(object sender, FormClosingEventArgs e)

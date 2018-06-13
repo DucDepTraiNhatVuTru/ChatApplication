@@ -17,7 +17,19 @@ namespace ChatProtocol.Handle
         {
             var ptc = protocol as GetFriendNotInGroupRequestProtocol;
             var toView = "[" + DateTime.Now + "] [" + client.GetEndPoint() + "] [user: " + ptc.Email+"] get list friend not in group [" + ptc.GroupId + "]";
-
+            List<Account> accounts = new List<Account>();
+            try
+            {
+                accounts = GetAccountNotInGroup(ptc.Email, ptc.GroupId);
+            }
+            catch (Exception ex)
+            {
+                toView += "\n Get List Account not in Group Failed \n detail: " + ex.Message;
+                return toView;
+            }
+            if (accounts.Count > 0)
+                client.ResponseFriendNotInGroup(accounts);
+            toView += "\n send list friend not in group chat successful";
             return toView;
         }
 

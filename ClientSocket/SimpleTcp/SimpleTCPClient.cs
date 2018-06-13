@@ -161,5 +161,16 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void RequestGetHistoryGroupChat(string email, string groupId)
+        {
+            var ptc = new HistoryChatGroupRequestProtocol();
+            ptc.Email = email;
+            ptc.GroupId = groupId;
+            var packet = new BasicPacket();
+            packet.Opcode = 19;
+            packet.Data = ptc.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

@@ -43,10 +43,29 @@ namespace ChatApplication.View
             }
             _authorMe = new Author(null, _me.Name);
             LoadMyAvatar(_me.AvatarDriveID);
-            _client.RequestGetUserInGroup(_me.Email, _group.Id);
+            //_client.RequestGetUserInGroup(_me.Email, _group.Id);
             InitLV();
             _radchatChatGroup.Author = _authorMe;
             _radchatChatGroup.SendMessage += _radchatChatGroup_SendMessage;
+            _radchatChatGroup.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
+            _client.RequestGetHistoryGroupChat(_me.Email, _group.Id);
+        }
+
+        private void ShowToolbarButtonElement_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Choose Image";
+            dialog.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = dialog.InitialDirectory + @"\" + dialog.FileName;
+                var fileID = GoogleDriveFilesRepository.UploadFile(path.Substring(1));
+                _client.SendGroupMessage(new ChatGroupMessage(_me.Email, _group.Id, "", fileID, DateTime.Now));
+                var displayImage = Image.FromFile(Path.Combine(dialog.InitialDirectory, dialog.FileName));
+                var displayImageResize = ResizeImagePercentage(displayImage);
+                ChatMediaMessage message = new ChatMediaMessage(displayImageResize, displayImageResize.Size, null, _authorMe, DateTime.Now);
+                _radchatChatGroup.AddMessage(message);
+            }
         }
 
         private void _radchatChatGroup_SendMessage(object sender, SendMessageEventArgs e)
@@ -107,8 +126,69 @@ namespace ChatApplication.View
         {
             Author auth;
             if (!_authorFriends.TryGetValue(message.Sender, out auth)) return;
-            var mess = new ChatTextMessage(message.Message, auth, message.TimeSend);
-            _radchatChatGroup.AddMessage(mess);
+            if (message.Message != "")
+            {
+                var mess = new ChatTextMessage(message.Message, auth, message.TimeSend);
+                _radchatChatGroup.AddMessage(mess);
+            }
+            else if (message.ImageMessageDriveId != "")
+            {
+                var download = GoogleDriveFilesRepository.DownloadFile(message.ImageMessageDriveId);
+                var image = Image.FromStream(download);
+                var displayImage = ResizeImagePercentage(image);
+                var mess = new ChatMediaMessage(displayImage, displayImage.Size, null, auth, message.TimeSend);
+                _radchatChatGroup.AddMessage(mess);
+            }
+        }
+
+        public void LoadHistory(List<ChatGroupMessage> messages)
+        {
+            foreach(var item in messages)
+            {
+                if (item.ImageMessageDriveId!="")
+                {
+                    var download = GoogleDriveFilesRepository.DownloadFile(item.ImageMessageDriveId);
+                    var img = ResizeImagePercentage(Image.FromStream(download));
+                    Author auth;
+                    if (item.Sender == _me.Email)
+                    {
+                        auth = _authorMe;
+                    }
+                    else
+                    {
+                        _authorFriends.TryGetValue(item.Sender, out auth);
+                    }
+                    ChatMediaMessage mess = new ChatMediaMessage(img, img.Size, "", auth, item.TimeSend);
+                    _radchatChatGroup.AddMessage(mess);
+                }
+                else if (item.Message != "") { 
+                    Author auth;
+                    if (item.Sender == _me.Email)
+                    {
+                        auth = _authorMe;
+                    }
+                    else
+                    {
+                        _authorFriends.TryGetValue(item.Sender, out auth);
+                    }
+                    ChatTextMessage mess = new ChatTextMessage(item.Message, auth, item.TimeSend);
+                    _radchatChatGroup.AddMessage(mess);
+                }
+            }
+        }
+
+        public Image ResizeImagePercentage(Image image)
+        {
+            if (image.Size.Width > 256 || image.Size.Height > 256)
+            {
+                float percentage = (float)256 / Math.Max(image.Size.Width, image.Size.Height);
+                return ImageConverter.ImageResize.ResizeImagePercentage(image, percentage);
+            }
+            return image;
+        }
+
+        private void FormChatGroups_FormClosing(object sender, FormClosingEventArgs e)
+        {
         }
     }
 }

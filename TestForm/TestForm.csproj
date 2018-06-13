@@ -88,6 +88,14 @@
       <Project>{6dbc97a4-3339-4614-8f88-ff5f8b49d47c}</Project>
       <Name>ChatDataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FormChung\FormChung.csproj">
+      <Project>{684B69A7-1EFE-484D-BEB8-17033F0F1D39}</Project>
+      <Name>FormChung</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageConverter\ImageConverter.csproj">
+      <Project>{cfb156f4-4d54-4562-8bf1-dce3a33f9ecd}</Project>
+      <Name>ImageConverter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

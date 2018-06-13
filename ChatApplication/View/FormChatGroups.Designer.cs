@@ -99,6 +99,7 @@
             this.Controls.Add(this._radchatChatGroup);
             this.Name = "FormChatGroups";
             this.Text = "FormChatGroups";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormChatGroups_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this._radchatChatGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._radLVListFriendInGroup)).EndInit();
             this.ResumeLayout(false);

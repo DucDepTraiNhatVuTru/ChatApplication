@@ -11,5 +11,6 @@ namespace ChatDAO
     {
         int Insert(Group group);
         List<Group> GetListGroup(string email);
+        int InsertUserToGroup(string email, string groupId);
     }
 }

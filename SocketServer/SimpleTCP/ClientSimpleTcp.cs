@@ -65,6 +65,16 @@ namespace SocketServer.SimpleTCP
             _client.Client.Send(packet.ToBytes());
         }
 
+        public void ResponseGetChatGroupHistory(List<ChatGroupMessage> messages)
+        {
+            var ptc = new HistoryChatGroupResponseProtocol();
+            ptc.Messages = messages;
+            var packet = new BasicPacket();
+            packet.Opcode = 20;
+            packet.Data = ptc.ToBytes();
+            _client.Client.Send(packet.ToBytes());
+        }
+
         public void ResponseGetListFriends(List<Account> listFriends)
         {
             var ptc = new GetListFriendsResponseProtocol();

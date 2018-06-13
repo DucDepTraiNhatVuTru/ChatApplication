@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatDataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace ChatDAO.SQL
     public interface IChatGroupMessageDAO
     {
         int Insert(ChatDataModel.ChatGroupMessage message);
+        List<ChatGroupMessage> GetMessages(string groupId);
     }
 }

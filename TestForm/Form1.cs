@@ -17,9 +17,9 @@ namespace TestForm
         public Form1()
         {
             InitializeComponent();
-            AccountDAOSQL account = new AccountDAOSQL();
-           Account acc = account.GetAccount("ngocdung@gmail.com");
-           // pictureBox1.Image = acc.Avatar;
+            pictureBox1.Image = Image.FromFile(@"C:\Users\DELL\Desktop\_bd_9710_1.jpg");
+            var iage = ImageConverter.ImageResize.ResizeImagePercentage(pictureBox1.Image, 0.1f);
+            pictureBox2.Image = iage;
         }
     }
 }

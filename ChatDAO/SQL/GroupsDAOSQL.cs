@@ -66,5 +66,10 @@ namespace ChatDAO.SQL
                 con.Disconnect();
             }
         }
+
+        public int InsertUserToGroup(string email, string groupId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

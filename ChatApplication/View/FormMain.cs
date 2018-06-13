@@ -113,9 +113,13 @@ namespace ChatApplication.View
         private void _radLVGroupChat_ItemMouseClick(object sender, ListViewItemEventArgs e)
         {
             var formChatGroup = new FormChatGroups(_client, GetGroupFromListGroup(e.Item.Value.ToString()));
-            FormChatGroupsOpening.Add(e.Item.Value.ToString(), formChatGroup);
+            
             Thread thread = new Thread(delegate ()
             {
+                lock (this)
+                {
+                    FormChatGroupsOpening.Add(e.Item.Value.ToString(), formChatGroup);
+                }
                 formChatGroup.ShowDialog();
             });
             thread.SetApartmentState(ApartmentState.STA);

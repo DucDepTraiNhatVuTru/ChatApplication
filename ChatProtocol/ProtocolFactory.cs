@@ -45,6 +45,10 @@ namespace ChatProtocol
                     return new GetUserInGroupResponseProtocol();
                 case 17:
                     return new GroupMessageProtocol();
+                case 19:
+                    return new HistoryChatGroupRequestProtocol();
+                case 20:
+                    return new HistoryChatGroupResponseProtocol();
                 default:
                     throw new Exception("chưa hỗ trợ opcode");
             }

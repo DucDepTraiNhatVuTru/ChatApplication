@@ -69,6 +69,13 @@ namespace ChatApplication.View
             _radListFriendToAddToGroup.AllowEdit = false;
             _radListFriendToAddToGroup.ItemDataBound += _radListFriendToAddToGroup_ItemDataBound;
             _radListFriendToAddToGroup.ItemSize = new Size(_radListFriendToAddToGroup.ItemSize.Width - 2, 35);
+            _radListFriendToAddToGroup.ItemMouseClick += _radListFriendToAddToGroup_ItemMouseClick;
+        }
+
+        private void _radListFriendToAddToGroup_ItemMouseClick(object sender, Telerik.WinControls.UI.ListViewItemEventArgs e)
+        {
+            _client.RequestAddUserToGroup(((Account)e.Item.DataBoundItem).Email, _group.Id);
+            _radListFriendToAddToGroup.Items.Remove(e.Item);
         }
 
         private void _radListFriendToAddToGroup_ItemDataBound(object sender, Telerik.WinControls.UI.ListViewItemEventArgs e)

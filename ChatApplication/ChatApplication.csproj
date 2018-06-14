@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Custom\CustomItemListFriends.cs" />
     <Compile Include="Custom\User.cs" />
+    <Compile Include="Handle\AddUserToGroupHandle.cs" />
     <Compile Include="Handle\ChatHistoryHandle.cs" />
     <Compile Include="Handle\CreateAccountResponseHandle.cs" />
     <Compile Include="Handle\GetGroupHandle.cs" />

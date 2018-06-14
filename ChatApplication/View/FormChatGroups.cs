@@ -119,6 +119,9 @@ namespace ChatApplication.View
 
         public void LoadListUserInGroup(List<Account> accounts)
         {
+            _radLVListFriendInGroup.DataSource = null;
+            _radLVListFriendInGroup.Items.Clear();
+            _authorFriends.Clear();
             _userInGroup = accounts;
             BindingList<Account> listUser = new BindingList<Account>();
             foreach (var item in accounts)

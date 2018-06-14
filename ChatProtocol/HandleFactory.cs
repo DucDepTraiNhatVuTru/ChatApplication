@@ -35,6 +35,8 @@ namespace ChatProtocol
                     return new HistoryChatGroupHandle();
                 case 21:
                     return new GetFriendNotInGroupHandle();
+                case 23:
+                    return new AddUserInGroupHandle();
                 default:
                     throw new Exception("chưa hỗ trợ opcode!");
             }

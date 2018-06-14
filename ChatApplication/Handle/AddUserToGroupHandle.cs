@@ -9,24 +9,16 @@ using ChatApplication.View;
 
 namespace ChatApplication.Handle
 {
-    public class GetUserInGroupHandle : IHandle
+    public class AddUserToGroupHandle : IHandle
     {
         public void Handling(IProtocol protocol, Form form)
         {
-            var ptc =protocol as GetUserInGroupResponseProtocol;
+            var ptc = protocol as AddUserInGroupResponseProtocol;
             if (!(form is FormMain)) return;
             var f = form as FormMain;
-
             f.Invoke(new MethodInvoker(delegate ()
             {
-                FormChatGroups formChatGroups;
-                if(f.FormChatGroupsOpening.TryGetValue(ptc.GroupId,out formChatGroups))
-                {
-                    formChatGroups.Invoke(new MethodInvoker(delegate ()
-                    {
-                        formChatGroups.LoadListUserInGroup(ptc.Accounts);
-                    }));
-                }
+                f.SendRequestGetUserInGroup(ptc.GroupId);
             }));
         }
     }

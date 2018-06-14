@@ -53,6 +53,10 @@ namespace ChatProtocol
                     return new GetFriendNotInGroupRequestProtocol();
                 case 22:
                     return new GetListFriendsResponseProtocol();
+                case 23:
+                    return new AddUsersToGroupRequestProtocol();
+                case 24:
+                    return new AddUserInGroupResponseProtocol();
                 default:
                     throw new Exception("chưa hỗ trợ opcode");
             }

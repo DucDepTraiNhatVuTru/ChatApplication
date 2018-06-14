@@ -183,5 +183,21 @@ namespace ClientSocket.SimpleTcp
             packet.Data = ptc.ToBytes();
             _client.Write(packet.ToBytes());
         }
+
+        public void RequestAddUserToGroup(string email, string groupId)
+        {
+            var ptc = new AddUsersToGroupRequestProtocol();
+            ptc.Email = email;
+            ptc.GroupId = groupId;
+            SendPacket(23, ptc);
+        }
+
+        private void SendPacket(byte opcode, IProtocol protocol)
+        {
+            var packet = new BasicPacket();
+            packet.Opcode = opcode;
+            packet.Data = protocol.ToBytes();
+            _client.Write(packet.ToBytes());
+        }
     }
 }

@@ -69,7 +69,42 @@ namespace ChatDAO.SQL
 
         public int InsertUserToGroup(string email, string groupId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Connect();
+                var sql = "INSERT INTO UserInGroup VALUES ('" + email + "','" + groupId + "')";
+                return con.ExecuteNonQuery(sql);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
+        }
+
+        public bool IsUserJoinGroupChat(string email, string groupId)
+        {
+            try
+            {
+                Connect();
+                var sql = "SELECT * FROM UserInGroup WHERE UserEmail ='" + email + "' AND GroupId = '" + groupId + "'";
+                var data = con.GetData(sql);
+                if (data.HasRows) return true;
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
         }
     }
 }

@@ -26,5 +26,6 @@ namespace ClientSocket
         void SendGroupMessage(ChatGroupMessage message);
         void RequestGetHistoryGroupChat(string email, string groupId);
         void RequestGetFriendNotInGroup(string email, string groupId);
+        void RequestAddUserToGroup(string email, string groupId);
     }
 }

@@ -147,5 +147,21 @@ namespace SocketServer.SimpleTCP
             packet.Data = ptc.ToBytes();
             _client.Client.Send(packet.ToBytes());
         }
+
+        public void ResponseAddFriendToGroup(int isSuccess, string groupId)
+        {
+            var ptc = new AddUserInGroupResponseProtocol();
+            ptc.IsSuccessful = isSuccess;
+            ptc.GroupId = groupId;
+            SendPacket(24, ptc);
+        }
+
+        private void SendPacket(byte opcode, IProtocol protocol)
+        {
+            var packet = new BasicPacket();
+            packet.Opcode = opcode;
+            packet.Data = protocol.ToBytes();
+            _client.Client.Send(packet.ToBytes());
+        }
     }
 }

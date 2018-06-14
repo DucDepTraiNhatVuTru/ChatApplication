@@ -265,5 +265,13 @@ namespace ChatApplication.View
         {
             _client.RequestGetGroup(_account.Email);
         }
+
+        public void SendRequestGetUserInGroup(string groupId)
+        {
+            _client.RequestGetUserInGroup(_account.Email, groupId);
+            /*FormChatGroups form;
+            FormChatGroupsOpening.TryGetValue(groupId, out form);
+            form.Refresh();*/
+        }
     }
 }

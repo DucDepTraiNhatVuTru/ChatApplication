@@ -88,6 +88,17 @@ namespace ChatApplication.View
             _radLVListFriendInGroup.AllowEdit = false;
             _radLVListFriendInGroup.ItemSize = new Size(_radLVListFriendInGroup.Size.Width, 26);
             _radLVListFriendInGroup.ItemDataBound += _radLVListFriendInGroup_ItemDataBound;
+            _radLVListFriendInGroup.ItemMouseDown += _radLVListFriendInGroup_ItemMouseDown;
+        }
+
+        private void _radLVListFriendInGroup_ItemMouseDown(object sender, ListViewItemMouseEventArgs e)
+        {
+            if (e.OriginalEventArgs.Button == MouseButtons.Right) MessageBox.Show("helloooooo");
+        }
+
+        private void _radLVListFriendInGroup_ItemMouseClick(object sender, ListViewItemEventArgs e)
+        {
+            
         }
 
         private void _radLVListFriendInGroup_ItemDataBound(object sender, ListViewItemEventArgs e)

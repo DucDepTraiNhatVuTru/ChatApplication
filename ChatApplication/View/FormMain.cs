@@ -273,5 +273,17 @@ namespace ChatApplication.View
             FormChatGroupsOpening.TryGetValue(groupId, out form);
             form.Refresh();*/
         }
+
+        public void RemoveGroup(string groupId)
+        {
+            foreach(var item in Instance.ListGroups)
+            {
+                if (item.Id == groupId)
+                {
+                    Instance.ListGroups.Remove(item);
+                }
+            }
+            LoadGroupList(Instance.ListGroups);
+        }
     }
 }

@@ -87,6 +87,7 @@
             this._btnOutOfGroup.TabIndex = 3;
             this._btnOutOfGroup.Text = "Out";
             this._btnOutOfGroup.UseVisualStyleBackColor = false;
+            this._btnOutOfGroup.Click += new System.EventHandler(this._btnOutOfGroup_Click);
             // 
             // dotsRingWaitingBarIndicatorElement1
             // 

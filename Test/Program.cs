@@ -21,7 +21,7 @@ namespace Test
                  Console.WriteLine(item.Name);
              }*/
             IGroupDAO db = new GroupsDAOSQL();
-            db.InsertUserToGroup("ngocdung@gmail.com", "abcd");
+            db.DeleteUserInGroup("ngocdung@gmail.com", "abcd");
             
             Console.ReadLine();
         }

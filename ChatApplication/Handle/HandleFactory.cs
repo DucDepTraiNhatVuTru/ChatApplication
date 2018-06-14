@@ -36,6 +36,8 @@ namespace ChatApplication.Handle
                     return new GetListFriendNotInGroupHandle();
                 case 24:
                     return new AddUserToGroupHandle();
+                case 26:
+                    return new LeaveGroupHandle();
                 default:
                     throw new Exception("Chưa hỗ trợ opcode");
             }

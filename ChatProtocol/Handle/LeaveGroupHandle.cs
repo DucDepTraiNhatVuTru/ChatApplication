@@ -24,6 +24,7 @@ namespace ChatProtocol.Handle
             try
             {
                 rowAffect = Delete(ptc.Email, ptc.GroupId);
+                toView.Message += "\n delete in db successful , " + rowAffect + " "+ptc.Email;
             }
             catch (Exception ex)
             {
@@ -31,10 +32,9 @@ namespace ChatProtocol.Handle
                 return toView.ToString();
             }
 
-            toView.Message += "\n delete in db successful";
-
             //gửi lại  đã xóa được hay chưa
             client.ResponseLeaveGroup(rowAffect, ptc.GroupId);
+
             if (rowAffect == 0) return toView.Message;
             //gửi lại cho các member trong nhóm danh sách thành viên mới
             List<Account> accounts = new List<Account>();
@@ -45,6 +45,7 @@ namespace ChatProtocol.Handle
             catch (Exception ex)
             {
                 toView.Message += "\n failed get list account to send new list uer in group \n Detail: " + ex.Message;
+                return toView.ToString();
             }
             if (accounts.Count > 0)
             {

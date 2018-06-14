@@ -32,6 +32,8 @@ namespace ChatApplication.Handle
                     return new GroupMessageHandle();
                 case 20:
                     return new HistoryChatGroupHandle();
+                case 22:
+                    return new GetListFriendNotInGroupHandle();
                 default:
                     throw new Exception("Chưa hỗ trợ opcode");
             }

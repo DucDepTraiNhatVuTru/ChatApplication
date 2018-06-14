@@ -44,7 +44,7 @@ namespace ChatApplication.View
             }
             _authorMe = new Author(null, _me.Name);
             LoadMyAvatar(_me.AvatarDriveID);
-            AddWaitingBar();
+            //AddWaitingBar();
             _client.RequestGetUserInGroup(_me.Email, _group.Id);
             InitLV();
             _radchatChatGroup.Author = _authorMe;
@@ -55,7 +55,7 @@ namespace ChatApplication.View
 
         private void _btnAddUserToGroup_Click(object sender, EventArgs e)
         {
-            FormAddUserToGroup form = new FormAddUserToGroup(_client, _userInGroup);
+            FormAddUserToGroup form = new FormAddUserToGroup(_client, _group);
             form.ShowDialog();
         }
 
@@ -209,7 +209,7 @@ namespace ChatApplication.View
             return image;
         }
 
-        private void AddWaitingBar()
+        public void AddWaitingBar()
         {
             Thread thread = new Thread(delegate ()
             {

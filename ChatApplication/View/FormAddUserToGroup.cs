@@ -26,7 +26,7 @@ namespace ChatApplication.View
             InitializeComponent();
         }
 
-        FormAddUserToGroup(IClient client, Group group)
+        public FormAddUserToGroup(IClient client, Group group)
         {
             InitializeComponent();
             _client = client;
@@ -36,10 +36,21 @@ namespace ChatApplication.View
                 _me = Instance.CurrentUser;
             }
             initListFriend();
-
+            _client.OnNewRecieve += _client_OnNewRecieve;
+            _client.RequestGetFriendNotInGroup(_me.Email, _group.Id);
         }
 
-        public FormAddUserToGroup(IClient client, List<Account> listFriendInGroup)
+        private void _client_OnNewRecieve(byte opcode, ChatProtocol.Protocol.IProtocol protocol)
+        {
+            Thread thread = new Thread(delegate ()
+            {
+                var handle = ChatApplication.Handle.HandleFactory.CreateHandle(opcode);
+                handle.Handling(protocol, this);
+            });
+            thread.Start();
+        }
+
+        /*public FormAddUserToGroup(IClient client, List<Account> listFriendInGroup)
         {
             InitializeComponent();
             _client = client;
@@ -49,7 +60,7 @@ namespace ChatApplication.View
                 _listFriend = Instance.ListFriends;
             }
             initListFriend();
-        }
+        }*/
 
         private void initListFriend()
         {
@@ -97,19 +108,21 @@ namespace ChatApplication.View
             return list;
         }
 
-        private void LoadAccountToListView(List<Account> accounts)
+        public void LoadAccountToListView(List<Account> accounts)
         {
-            if (accounts.Count > 0)
+            BindingList<Account> listUser = new BindingList<Account>();
+            foreach (var item in accounts)
             {
-                BindingList<Account> listUser = new BindingList<Account>();
-                foreach (var item in accounts)
-                {
-                    listUser.Add(item);
-                }
-                _radListFriendToAddToGroup.DataSource = listUser;
-                _radListFriendToAddToGroup.DisplayMember = "Name";
-                _radListFriendToAddToGroup.ValueMember = "Id";
+                listUser.Add(item);
             }
+            _radListFriendToAddToGroup.DataSource = listUser;
+            _radListFriendToAddToGroup.DisplayMember = "Name";
+            _radListFriendToAddToGroup.ValueMember = "Id";
+        }
+
+        private void FormAddUserToGroup_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _client.OnNewRecieve -= _client_OnNewRecieve;
         }
     }
 }

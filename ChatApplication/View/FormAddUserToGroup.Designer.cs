@@ -72,6 +72,7 @@
             this.Controls.Add(this._btnOK);
             this.Name = "FormAddUserToGroup";
             this.Text = "FormAddUserToGroup";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormAddUserToGroup_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this._radListFriendToAddToGroup)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

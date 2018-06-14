@@ -17,7 +17,7 @@ namespace ChatProtocol.Protocol
             if (tach.Length < 2) return false;
             Email = tach[0];
             GroupId = tach[1];
-            return false;
+            return true;
         }
 
         public byte[] ToBytes()

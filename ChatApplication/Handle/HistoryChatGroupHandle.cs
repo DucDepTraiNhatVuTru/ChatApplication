@@ -23,6 +23,7 @@ namespace ChatApplication.Handle
                 {
                     formChatGroup.Invoke(new MethodInvoker(delegate ()
                     {
+                        formChatGroup.AddWaitingBar();
                         formChatGroup.messages = ptc.Messages;
                         formChatGroup.LoadHistory();
                     }));

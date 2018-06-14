@@ -16,7 +16,7 @@ namespace ChatProtocol.Protocol
             var tach = data.Split('\0');
             if (tach.Length < 2) return false;
             Email = tach[0];
-            GroupId = GroupId;
+            GroupId = tach[1];
             return true;
         }
 

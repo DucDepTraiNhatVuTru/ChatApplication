@@ -281,6 +281,7 @@ namespace ChatApplication.View
                 if (item.Id == groupId)
                 {
                     Instance.ListGroups.Remove(item);
+                    break;
                 }
             }
             LoadGroupList(Instance.ListGroups);

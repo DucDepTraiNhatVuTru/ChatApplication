@@ -246,7 +246,7 @@ namespace ChatApplication.View
 
         private void _btnOutOfGroup_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_me.Email, _group.Id);
+            //MessageBox.Show(_me.Email, _group.Id);
             _client.RequestLeaveGroup(_me.Email, _group.Id);
         }
     }

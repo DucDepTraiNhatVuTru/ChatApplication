@@ -18,6 +18,25 @@ namespace ChatDAO.SQL
             con.Connect(@"Data Source=MINHDUC\SQLEXPRESS;Initial Catalog=ChatDB;Persist Security Info=True;User ID=sa;Password=123456");
         }
 
+        public int DeleteUserInGroup(string email, string groupId)
+        {
+            try
+            {
+                Connect();
+                var sql = "DELETE FROM UserInGroup WHERE UserEmail='" + email + "' AND GroupId = '" + groupId + "'";
+                return con.ExecuteNonQuery(sql);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
+        }
+
         public List<Group> GetListGroup(string email)
         {
             try

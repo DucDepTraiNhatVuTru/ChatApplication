@@ -163,5 +163,13 @@ namespace SocketServer.SimpleTCP
             packet.Data = protocol.ToBytes();
             _client.Client.Send(packet.ToBytes());
         }
+
+        public void ResponseLeaveGroup(int isSuccess, string groupId)
+        {
+            var ptc = new LeaveGroupResponseProtocol();
+            ptc.GroupId = groupId;
+            ptc.IsSuccess = isSuccess;
+            SendPacket(26, ptc);
+        }
     }
 }

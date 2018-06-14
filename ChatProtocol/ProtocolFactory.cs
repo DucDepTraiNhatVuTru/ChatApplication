@@ -57,6 +57,8 @@ namespace ChatProtocol
                     return new AddUsersToGroupRequestProtocol();
                 case 24:
                     return new AddUserInGroupResponseProtocol();
+                case 25:
+                    return new LeaveGroupRequestProtocol();
                 default:
                     throw new Exception("chưa hỗ trợ opcode");
             }

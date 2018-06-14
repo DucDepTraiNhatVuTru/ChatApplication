@@ -15,6 +15,9 @@ namespace ChatProtocol.Handle
     public class AddUserInGroupHandle : IHandle
     {
         private object syncLock = new object();
+        private object synclock1 = new object();
+        private object synclock2 = new object();
+        private object synclock3 = new object();
         public string Handling(IProtocol protocol, IChatClient client)
         {
             var ptc = protocol as AddUsersToGroupRequestProtocol;
@@ -34,6 +37,18 @@ namespace ChatProtocol.Handle
 
             client.ResponseAddFriendToGroup(isSuccess, ptc.GroupId);
 
+            if (isSuccess == 1)
+            {
+                var accounts = GetUserInGroup(ptc.GroupId);
+                foreach (var item in accounts)
+                {
+                    IChatClient _client = null;
+                    if (item.Email != ptc.EmailRequest && !Instance.OnlineUser.TryGetValue(item.Email, out client))
+                    {
+                        _client.ResponseGetUserInGroup(ptc.GroupId, accounts);
+                    }
+                }
+            }
             List<Group> listGroup = new List<Group>();
             try
             {
@@ -61,10 +76,28 @@ namespace ChatProtocol.Handle
 
         private List<Group> GetListGroup(string email)
         {
-            lock (this)
+            lock (synclock1)
             {
                 IGroupDAO db = new GroupsDAOSQL();
                 return db.GetListGroup(email);
+            }
+        }
+
+        private List<Account> GetAccountExceptMe(string email, string groupId)
+        {
+            lock (synclock2)
+            {
+                IAccountDAO db = new AccountDAOSQL();
+                return db.GetUserInGroupExceptMe(groupId, email);
+            }
+        }
+
+        private List<Account> GetUserInGroup(string groupId)
+        {
+            lock (synclock3)
+            {
+                IAccountDAO db = new AccountDAOSQL();
+                return db.GetUserInGroup(groupId);
             }
         }
     }

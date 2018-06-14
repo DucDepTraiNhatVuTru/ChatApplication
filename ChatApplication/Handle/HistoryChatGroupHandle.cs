@@ -26,6 +26,7 @@ namespace ChatApplication.Handle
                         formChatGroup.AddWaitingBar();
                         formChatGroup.messages = ptc.Messages;
                         formChatGroup.LoadHistory();
+                        formChatGroup.RemoveWaitingBar();
                     }));
                 }
             }));

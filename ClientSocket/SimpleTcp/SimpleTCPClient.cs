@@ -184,11 +184,12 @@ namespace ClientSocket.SimpleTcp
             _client.Write(packet.ToBytes());
         }
 
-        public void RequestAddUserToGroup(string email, string groupId)
+        public void RequestAddUserToGroup(string email, string groupId, string emailRequest)
         {
             var ptc = new AddUsersToGroupRequestProtocol();
             ptc.Email = email;
             ptc.GroupId = groupId;
+            ptc.EmailRequest = emailRequest;
             SendPacket(23, ptc);
         }
 
@@ -198,6 +199,14 @@ namespace ClientSocket.SimpleTcp
             packet.Opcode = opcode;
             packet.Data = protocol.ToBytes();
             _client.Write(packet.ToBytes());
+        }
+
+        public void RequestLeaveGroup(string email, string groupId)
+        {
+            var ptc = new LeaveGroupRequestProtocol();
+            ptc.Email = email;
+            ptc.GroupId = groupId;
+            SendPacket(25, ptc);
         }
     }
 }

@@ -13,5 +13,6 @@ namespace ChatDAO
         List<Group> GetListGroup(string email);
         int InsertUserToGroup(string email, string groupId);
         bool IsUserJoinGroupChat(string email, string groupId);
+        int DeleteUserInGroup(string email, string groupId);
     }
 }

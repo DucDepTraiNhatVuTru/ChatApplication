@@ -74,7 +74,7 @@ namespace ChatApplication.View
 
         private void _radListFriendToAddToGroup_ItemMouseClick(object sender, Telerik.WinControls.UI.ListViewItemEventArgs e)
         {
-            _client.RequestAddUserToGroup(((Account)e.Item.DataBoundItem).Email, _group.Id);
+            _client.RequestAddUserToGroup(((Account)e.Item.DataBoundItem).Email, _group.Id, _me.Email);
             _radListFriendToAddToGroup.Items.Remove(e.Item);
         }
 

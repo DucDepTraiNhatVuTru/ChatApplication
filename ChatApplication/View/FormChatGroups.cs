@@ -27,6 +27,7 @@ namespace ChatApplication.View
         private List<Account> _userInGroup = new List<Account>();
         public List<ChatGroupMessage> messages = new List<ChatGroupMessage>();
         private RadWaitingBar waitingBar;
+        private bool _isLoadHistory = false;
         public FormChatGroups()
         {
             InitializeComponent();
@@ -131,9 +132,12 @@ namespace ChatApplication.View
             _radLVListFriendInGroup.DataSource = listUser;
             _radLVListFriendInGroup.DisplayMember = "Name";
             _radLVListFriendInGroup.ValueMember = "Id";
-            
+
             //lấy lịch sử chat
-            _client.RequestGetHistoryGroupChat(_me.Email, _group.Id);
+            if (!_isLoadHistory)
+            {
+                _client.RequestGetHistoryGroupChat(_me.Email, _group.Id);
+            }
         }
 
         public void ReceiveMessage(ChatGroupMessage message)
@@ -199,7 +203,8 @@ namespace ChatApplication.View
                     
                 }
             }
-            _radchatChatGroup.Controls.Remove(waitingBar);
+            _isLoadHistory = true;
+            //_radchatChatGroup.Controls.Remove(waitingBar);
         }
 
         public Image ResizeImagePercentage(Image image)
@@ -232,6 +237,11 @@ namespace ChatApplication.View
 
         private void FormChatGroups_FormClosing(object sender, FormClosingEventArgs e)
         {
+        }
+
+        public void RemoveWaitingBar()
+        {
+            _radchatChatGroup.Controls.Remove(waitingBar);
         }
     }
 }

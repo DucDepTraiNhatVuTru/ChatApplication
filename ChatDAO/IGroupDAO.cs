@@ -14,5 +14,6 @@ namespace ChatDAO
         int InsertUserToGroup(string email, string groupId);
         bool IsUserJoinGroupChat(string email, string groupId);
         int DeleteUserInGroup(string email, string groupId);
+        bool IsUserCreateGroup(string email, string groupId);
     }
 }

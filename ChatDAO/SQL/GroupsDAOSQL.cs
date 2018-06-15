@@ -105,6 +105,26 @@ namespace ChatDAO.SQL
             }
         }
 
+        public bool IsUserCreateGroup(string email, string groupId)
+        {
+            try
+            {
+                Connect();
+                var sql = "SELECT * FROM GroupChat WHERE Id='" + groupId + "' AND UserCreate='" + email + "'";
+                var data = con.GetData(sql);
+                if (data.HasRows) return true;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
+        }
+
         public bool IsUserJoinGroupChat(string email, string groupId)
         {
             try

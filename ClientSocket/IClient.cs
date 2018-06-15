@@ -28,5 +28,6 @@ namespace ClientSocket
         void RequestGetFriendNotInGroup(string email, string groupId);
         void RequestAddUserToGroup(string email, string groupId, string emailRequest);
         void RequestLeaveGroup(string email, string groupId);
+        void RequestKickUserOutGroup(string emailRequest, string kickEmail, string groupId);
     }
 }

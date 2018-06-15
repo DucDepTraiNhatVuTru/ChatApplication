@@ -208,5 +208,14 @@ namespace ClientSocket.SimpleTcp
             ptc.GroupId = groupId;
             SendPacket(25, ptc);
         }
+
+        public void RequestKickUserOutGroup(string emailRequest, string kickEmail, string groupId)
+        {
+            var ptc = new KickUserOutGroupRequestProtocol();
+            ptc.EmailRequest = emailRequest;
+            ptc.KickEmail = kickEmail;
+            ptc.GroupId = groupId;
+            SendPacket(27, ptc);
+        }
     }
 }

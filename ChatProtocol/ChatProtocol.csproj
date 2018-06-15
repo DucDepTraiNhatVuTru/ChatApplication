@@ -53,6 +53,7 @@
     <Compile Include="Handle\GetUserInGroupHandle.cs" />
     <Compile Include="Handle\GroupMessageHandle.cs" />
     <Compile Include="Handle\HistoryChatGroupHandle.cs" />
+    <Compile Include="Handle\KickUserOutGroupHandle.cs" />
     <Compile Include="Handle\LeaveGroupHandle.cs" />
     <Compile Include="Handle\LoginRequestHandle.cs" />
     <Compile Include="Handle\LogoutHandle.cs" />
@@ -76,6 +77,8 @@
     <Compile Include="Protocol\HistoryChatGroupResponseProtocol.cs" />
     <Compile Include="Protocol\HistoryChatRequestProtocol.cs" />
     <Compile Include="Protocol\HistoryChatResponseProtocol.cs" />
+    <Compile Include="Protocol\KickUserOutGroupRequestProtocol.cs" />
+    <Compile Include="Protocol\KickUserOutGroupResponseProtocol.cs" />
     <Compile Include="Protocol\LeaveGroupRequestProtocol.cs" />
     <Compile Include="Protocol\LeaveGroupResponseProtocol.cs" />
     <Compile Include="Protocol\LogoutProtocol.cs" />

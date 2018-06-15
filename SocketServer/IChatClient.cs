@@ -25,5 +25,6 @@ namespace SocketServer
         void ResponseFriendNotInGroup(List<Account> accounts);
         void ResponseAddFriendToGroup(int isSuccess,string groupId);
         void ResponseLeaveGroup(int isSuccess, string groupId);
+        void ResponseKickUserOutGroup(int isSuccess, string groupId, string email, string message);
     }
 }

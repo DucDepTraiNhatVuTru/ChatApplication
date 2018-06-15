@@ -38,6 +38,8 @@ namespace ChatApplication.Handle
                     return new AddUserToGroupHandle();
                 case 26:
                     return new LeaveGroupHandle();
+                case 28:
+                    return new KickUserOutGroupHandle();
                 default:
                     throw new Exception("Chưa hỗ trợ opcode");
             }

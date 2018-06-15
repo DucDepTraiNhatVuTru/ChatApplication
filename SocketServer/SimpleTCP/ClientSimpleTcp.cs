@@ -171,5 +171,15 @@ namespace SocketServer.SimpleTCP
             ptc.IsSuccess = isSuccess;
             SendPacket(26, ptc);
         }
+
+        public void ResponseKickUserOutGroup(int isSuccess,string groupId,string email, string message)
+        {
+            var ptc = new KickUserOutGroupResponseProtocol();
+            ptc.IsSuccess = isSuccess;
+            ptc.Message = message;
+            ptc.GroupId = groupId;
+            ptc.Email = email;
+            SendPacket(28, ptc);
+        }
     }
 }

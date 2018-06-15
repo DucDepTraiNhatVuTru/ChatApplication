@@ -39,6 +39,8 @@ namespace ChatProtocol
                     return new AddUserInGroupHandle();
                 case 25:
                     return new LeaveGroupHandle();
+                case 27:
+                    return new KickUserOutGroupHandle();
                 default:
                     throw new Exception("chưa hỗ trợ opcode!");
             }

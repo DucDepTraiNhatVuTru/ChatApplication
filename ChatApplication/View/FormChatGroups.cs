@@ -93,7 +93,18 @@ namespace ChatApplication.View
 
         private void _radLVListFriendInGroup_ItemMouseDown(object sender, ListViewItemMouseEventArgs e)
         {
-            if (e.OriginalEventArgs.Button == MouseButtons.Right) MessageBox.Show("helloooooo");
+            if (e.OriginalEventArgs.Button == MouseButtons.Right)
+            {
+                ContextMenuStrip menu = new ContextMenuStrip();
+                ToolStripMenuItem kick = new ToolStripMenuItem();
+                kick.Text = "mời ra khỏi phòng";
+                kick.Click += delegate
+                {
+                    _client.RequestKickUserOutGroup(_me.Email, ((Account)e.Item.DataBoundItem).Email, _group.Id);
+                };
+                menu.Items.Add(kick);
+                menu.Show(_radLVListFriendInGroup, e.OriginalEventArgs.Location);
+            }
         }
 
         private void _radLVListFriendInGroup_ItemMouseClick(object sender, ListViewItemEventArgs e)
@@ -172,6 +183,7 @@ namespace ChatApplication.View
 
         public void LoadHistory()
         {
+            //AddWaitingBar();
             foreach(var item in messages)
             {
                 if (item.ImageMessageDriveId!="")
@@ -192,6 +204,12 @@ namespace ChatApplication.View
                             ChatMediaMessage mess = new ChatMediaMessage(img, img.Size, "", auth, item.TimeSend);
                             _radchatChatGroup.AddMessage(mess);
                         }
+                        else
+                        {
+                            Author author = new Author(null, item.Sender);
+                            ChatMediaMessage mess = new ChatMediaMessage(img, img.Size, "", author, item.TimeSend);
+                            _radchatChatGroup.AddMessage(mess);
+                        }
                     }
                     
                 }
@@ -210,10 +228,17 @@ namespace ChatApplication.View
                             ChatTextMessage mess = new ChatTextMessage(item.Message, auth, item.TimeSend);
                             _radchatChatGroup.AddMessage(mess);
                         }
+                        else
+                        {
+                            Author author = new Author(null, item.Sender);
+                            ChatTextMessage mess = new ChatTextMessage(item.Message, auth, item.TimeSend);
+                            _radchatChatGroup.AddMessage(mess);
+                        }
                     }
                     
                 }
             }
+            //RemoveWaitingBar();
             _isLoadHistory = true;
             //_radchatChatGroup.Controls.Remove(waitingBar);
         }
@@ -259,6 +284,24 @@ namespace ChatApplication.View
         {
             //MessageBox.Show(_me.Email, _group.Id);
             _client.RequestLeaveGroup(_me.Email, _group.Id);
+        }
+
+        public void RemoveItemInListUserInGroup(string email)
+        {
+            foreach(var item in _userInGroup)
+            {
+                if (item.Email == email)
+                {
+                    _userInGroup.Remove(item);
+                    break;
+                }
+            }
+            LoadListUserInGroup(_userInGroup);
+        }
+
+        public void ShowMessage(string message, string tittle)
+        {
+            MessageBox.Show(message, tittle);
         }
     }
 }

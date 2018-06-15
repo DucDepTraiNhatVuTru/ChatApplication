@@ -73,6 +73,7 @@
     <Compile Include="Handle\HandleFactory.cs" />
     <Compile Include="Handle\HistoryChatGroupHandle.cs" />
     <Compile Include="Handle\IHandle.cs" />
+    <Compile Include="Handle\KickUserOutGroupHandle.cs" />
     <Compile Include="Handle\LeaveGroupHandle.cs" />
     <Compile Include="Handle\LoginResponseHandle.cs" />
     <Compile Include="Handle\MessageHandle.cs" />

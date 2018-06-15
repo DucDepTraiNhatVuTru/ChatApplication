@@ -37,6 +37,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ChatProtocol\bin\Debug\ChatProtocol.dll</HintPath>
     </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.27, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="ImageConverter">
       <HintPath>..\ChatProtocol\bin\Debug\ImageConverter.dll</HintPath>
     </Reference>
@@ -99,6 +100,12 @@
     <Compile Include="View\FormChatGroups.Designer.cs">
       <DependentUpon>FormChatGroups.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormCreateGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormCreateGroup.Designer.cs">
+      <DependentUpon>FormCreateGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormChatGroups.resx">
       <DependentUpon>FormChatGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormCreateGroup.resx">
+      <DependentUpon>FormCreateGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

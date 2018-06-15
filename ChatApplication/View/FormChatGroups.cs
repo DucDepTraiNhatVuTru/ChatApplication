@@ -97,7 +97,7 @@ namespace ChatApplication.View
             {
                 ContextMenuStrip menu = new ContextMenuStrip();
                 ToolStripMenuItem kick = new ToolStripMenuItem();
-                kick.Text = "mời ra khỏi phòng";
+                kick.Text = "Mời " + ((Account)e.Item.DataBoundItem).Name + " rời khỏi nhóm chat";
                 kick.Click += delegate
                 {
                     _client.RequestKickUserOutGroup(_me.Email, ((Account)e.Item.DataBoundItem).Email, _group.Id);

@@ -1,6 +1,9 @@
-Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
-Telerik.WinControls.UI.RadImageEditor, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
-Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
-Telerik.WinControls.RadThemeManager, Telerik.WinControls, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
 Telerik.WinControls.UI.RadWaitingBar, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadImageEditor, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadStatusStrip, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.RadThemeManager, Telerik.WinControls, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadTitleBar, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
 Telerik.WinControls.UI.RadChat, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadRibbonBar, Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e

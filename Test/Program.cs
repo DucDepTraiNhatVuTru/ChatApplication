@@ -20,9 +20,12 @@ namespace Test
              {
                  Console.WriteLine(item.Name);
              }*/
-            IGroupDAO db = new GroupsDAOSQL();
-            db.DeleteUserInGroup("ngocdung@gmail.com", "abcd");
-            
+            IAccountDAO db = new AccountDAOSQL();
+            var l = db.FindUserExceptFriend("minhduc@gmail.com", "công vinh");
+            foreach (var item in l)
+            {
+                Console.WriteLine(item.Name);
+            }
             Console.ReadLine();
         }
     }

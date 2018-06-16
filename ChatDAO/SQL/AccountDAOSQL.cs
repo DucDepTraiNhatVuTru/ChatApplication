@@ -284,5 +284,38 @@ namespace ChatDAO
                 con.Disconnect();
             }
         }
+
+        public List<Account> FindUserExceptFriend(string email, string query)
+        {
+            try
+            {
+                Connect();
+                var sql = "(SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account WHERE Account.Email LIKE '%" + query + "%' OR Account.Name LIKE '%" + query + "%') EXCEPT ( SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account,((SELECT Friend.User1 FROM Friend WHERE Friend.User2='" + email + "')  UNION (SELECT Friend.User2 FROM Friend WHERE Friend.User1='" + email + "')) AS T WHERE Account.Email = T.User1)";
+                var data = con.GetData(sql);
+                var accounts = new List<Account>();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        string userEmail = data.GetString(0);
+                        string password = data.GetString(1);
+                        string name = data.GetString(2);
+                        string avatar = data.GetString(3);
+                        string gender = data.GetString(4);
+                        DateTime time = (DateTime)data.GetValue(5);
+                        accounts.Add(new Account(userEmail, password, name, avatar, gender, time));
+                    }
+                }
+                return accounts;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
+        }
     }
 }

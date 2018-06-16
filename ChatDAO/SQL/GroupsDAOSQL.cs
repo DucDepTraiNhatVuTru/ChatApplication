@@ -73,7 +73,7 @@ namespace ChatDAO.SQL
             try
             {
                 Connect();
-                string sql = "INSERT INTO Group VALUES ('" + group.Id + "','" + group.Name + "','" + group.UserCreate + "','" + group.TimeCreate + "')";
+                string sql = "INSERT INTO GroupChat VALUES ('" + group.Id + "',N'" + group.Name + "','" + group.UserCreate + "','" + group.TimeCreate + "')";
                 return con.ExecuteNonQuery(sql);
             }
             catch (Exception ex)

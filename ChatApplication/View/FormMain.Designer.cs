@@ -29,20 +29,22 @@
         private void InitializeComponent()
         {
             this._lbUserName = new System.Windows.Forms.Label();
-            this._ptbChinhSua = new System.Windows.Forms.PictureBox();
-            this._ptbAvatar = new System.Windows.Forms.PictureBox();
             this._radlvFriendList = new Telerik.WinControls.UI.RadListView();
             this._tabControlMain = new System.Windows.Forms.TabControl();
             this._tabPageFriend = new System.Windows.Forms.TabPage();
             this._tabPageGroupChat = new System.Windows.Forms.TabPage();
             this._radLVGroupChat = new Telerik.WinControls.UI.RadListView();
-            ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).BeginInit();
+            this._btnAddFriend = new System.Windows.Forms.Button();
+            this._btnCreateGroupChat = new System.Windows.Forms.Button();
+            this._ptbChinhSua = new System.Windows.Forms.PictureBox();
+            this._ptbAvatar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._radlvFriendList)).BeginInit();
             this._tabControlMain.SuspendLayout();
             this._tabPageFriend.SuspendLayout();
             this._tabPageGroupChat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._radLVGroupChat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // _lbUserName
@@ -54,26 +56,6 @@
             this._lbUserName.Size = new System.Drawing.Size(88, 21);
             this._lbUserName.TabIndex = 3;
             this._lbUserName.Text = "User Name";
-            // 
-            // _ptbChinhSua
-            // 
-            this._ptbChinhSua.Image = global::ChatApplication.Properties.Resources.pen;
-            this._ptbChinhSua.InitialImage = null;
-            this._ptbChinhSua.Location = new System.Drawing.Point(85, 87);
-            this._ptbChinhSua.Name = "_ptbChinhSua";
-            this._ptbChinhSua.Size = new System.Drawing.Size(20, 21);
-            this._ptbChinhSua.TabIndex = 4;
-            this._ptbChinhSua.TabStop = false;
-            this._ptbChinhSua.Click += new System.EventHandler(this._ptbChinhSua_Click);
-            // 
-            // _ptbAvatar
-            // 
-            this._ptbAvatar.Image = global::ChatApplication.Properties.Resources.hello;
-            this._ptbAvatar.Location = new System.Drawing.Point(5, 12);
-            this._ptbAvatar.Name = "_ptbAvatar";
-            this._ptbAvatar.Size = new System.Drawing.Size(100, 96);
-            this._ptbAvatar.TabIndex = 2;
-            this._ptbAvatar.TabStop = false;
             // 
             // _radlvFriendList
             // 
@@ -126,12 +108,52 @@
             this._radLVGroupChat.Size = new System.Drawing.Size(259, 373);
             this._radLVGroupChat.TabIndex = 0;
             // 
+            // _btnAddFriend
+            // 
+            this._btnAddFriend.Location = new System.Drawing.Point(115, 78);
+            this._btnAddFriend.Name = "_btnAddFriend";
+            this._btnAddFriend.Size = new System.Drawing.Size(39, 30);
+            this._btnAddFriend.TabIndex = 7;
+            this._btnAddFriend.Text = "button1";
+            this._btnAddFriend.UseVisualStyleBackColor = true;
+            // 
+            // _btnCreateGroupChat
+            // 
+            this._btnCreateGroupChat.Image = global::ChatApplication.Properties.Resources.Group;
+            this._btnCreateGroupChat.Location = new System.Drawing.Point(160, 78);
+            this._btnCreateGroupChat.Name = "_btnCreateGroupChat";
+            this._btnCreateGroupChat.Size = new System.Drawing.Size(39, 30);
+            this._btnCreateGroupChat.TabIndex = 8;
+            this._btnCreateGroupChat.UseVisualStyleBackColor = true;
+            // 
+            // _ptbChinhSua
+            // 
+            this._ptbChinhSua.Image = global::ChatApplication.Properties.Resources.pen;
+            this._ptbChinhSua.InitialImage = null;
+            this._ptbChinhSua.Location = new System.Drawing.Point(85, 87);
+            this._ptbChinhSua.Name = "_ptbChinhSua";
+            this._ptbChinhSua.Size = new System.Drawing.Size(20, 21);
+            this._ptbChinhSua.TabIndex = 4;
+            this._ptbChinhSua.TabStop = false;
+            this._ptbChinhSua.Click += new System.EventHandler(this._ptbChinhSua_Click);
+            // 
+            // _ptbAvatar
+            // 
+            this._ptbAvatar.Image = global::ChatApplication.Properties.Resources.hello;
+            this._ptbAvatar.Location = new System.Drawing.Point(5, 12);
+            this._ptbAvatar.Name = "_ptbAvatar";
+            this._ptbAvatar.Size = new System.Drawing.Size(100, 96);
+            this._ptbAvatar.TabIndex = 2;
+            this._ptbAvatar.TabStop = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(280, 523);
+            this.Controls.Add(this._btnCreateGroupChat);
+            this.Controls.Add(this._btnAddFriend);
             this.Controls.Add(this._tabControlMain);
             this.Controls.Add(this._ptbChinhSua);
             this.Controls.Add(this._lbUserName);
@@ -139,13 +161,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMain";
             this.Text = "FormTest";
-            ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._radlvFriendList)).EndInit();
             this._tabControlMain.ResumeLayout(false);
             this._tabPageFriend.ResumeLayout(false);
             this._tabPageGroupChat.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._radLVGroupChat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,5 +182,7 @@
         private System.Windows.Forms.TabPage _tabPageFriend;
         private System.Windows.Forms.TabPage _tabPageGroupChat;
         private Telerik.WinControls.UI.RadListView _radLVGroupChat;
+        private System.Windows.Forms.Button _btnAddFriend;
+        private System.Windows.Forms.Button _btnCreateGroupChat;
     }
 }

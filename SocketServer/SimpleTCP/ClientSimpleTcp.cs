@@ -181,5 +181,13 @@ namespace SocketServer.SimpleTCP
             ptc.Email = email;
             SendPacket(28, ptc);
         }
+
+        public void ResponseCreateGroupChat(int isSuccess, List<Group> groups)
+        {
+            var ptc = new CreateGroupResponseProtocol();
+            ptc.IsSuccess = isSuccess;
+            ptc.Groups = groups;
+            SendPacket(30, ptc);
+        }
     }
 }

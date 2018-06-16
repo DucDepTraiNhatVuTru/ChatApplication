@@ -65,6 +65,10 @@ namespace ChatProtocol
                     return new KickUserOutGroupRequestProtocol();
                 case 28:
                     return new KickUserOutGroupResponseProtocol();
+                case 29:
+                    return new CreateGroupRequestProtocol();
+                case 30:
+                    return new CreateGroupResponseProtocol();
                 default:
                     throw new Exception("chưa hỗ trợ opcode");
             }

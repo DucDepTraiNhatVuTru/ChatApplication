@@ -217,5 +217,13 @@ namespace ClientSocket.SimpleTcp
             ptc.GroupId = groupId;
             SendPacket(27, ptc);
         }
+
+        public void RequestCreateGroupChat(Group group, List<string> accounts)
+        {
+            var ptc = new CreateGroupRequestProtocol();
+            ptc.Group = group;
+            ptc.Accounts = accounts;
+            SendPacket(29, ptc);
+        }
     }
 }

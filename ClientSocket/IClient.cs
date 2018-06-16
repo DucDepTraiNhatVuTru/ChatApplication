@@ -29,5 +29,6 @@ namespace ClientSocket
         void RequestAddUserToGroup(string email, string groupId, string emailRequest);
         void RequestLeaveGroup(string email, string groupId);
         void RequestKickUserOutGroup(string emailRequest, string kickEmail, string groupId);
+        void RequestCreateGroupChat(Group group, List<string> accounts);
     }
 }

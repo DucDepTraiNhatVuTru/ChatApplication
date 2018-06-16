@@ -26,5 +26,6 @@ namespace SocketServer
         void ResponseAddFriendToGroup(int isSuccess,string groupId);
         void ResponseLeaveGroup(int isSuccess, string groupId);
         void ResponseKickUserOutGroup(int isSuccess, string groupId, string email, string message);
+        void ResponseCreateGroupChat(int isSuccess, List<Group> groups);
     }
 }

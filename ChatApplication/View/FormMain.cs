@@ -99,7 +99,16 @@ namespace ChatApplication.View
             _radlvFriendList.ItemSize = new Size(_radlvFriendList.ItemSize.Width, 50);
             _radlvFriendList.ItemMouseClick += _radlvFriendList_ItemMouseClick;
 
+            _btnCreateGroupChat.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            _btnCreateGroupChat.Click += _btnCreateGroupChat_Click;
+
             InitGroupsChat();
+        }
+
+        private void _btnCreateGroupChat_Click(object sender, EventArgs e)
+        {
+            FormCreateGroup formCreateGroup = new FormCreateGroup(_client);
+            formCreateGroup.ShowDialog();
         }
 
         private void InitGroupsChat()

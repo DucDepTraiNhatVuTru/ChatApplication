@@ -74,6 +74,7 @@
             this._btnCreateGroup.TabIndex = 3;
             this._btnCreateGroup.Text = "Tạo Nhóm Chat";
             this._btnCreateGroup.UseVisualStyleBackColor = false;
+            this._btnCreateGroup.Click += new System.EventHandler(this._btnCreateGroup_Click);
             // 
             // label2
             // 

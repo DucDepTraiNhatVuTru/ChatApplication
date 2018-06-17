@@ -225,5 +225,13 @@ namespace ClientSocket.SimpleTcp
             ptc.Accounts = accounts;
             SendPacket(29, ptc);
         }
+
+        public void RequestFindFriend(string email, string query)
+        {
+            var ptc = new FindUserRequestProtocol();
+            ptc.Email = email;
+            ptc.Query = query;
+            SendPacket(31, ptc);
+        }
     }
 }

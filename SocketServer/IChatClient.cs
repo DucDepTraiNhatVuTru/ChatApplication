@@ -27,5 +27,6 @@ namespace SocketServer
         void ResponseLeaveGroup(int isSuccess, string groupId);
         void ResponseKickUserOutGroup(int isSuccess, string groupId, string email, string message);
         void ResponseCreateGroupChat(int isSuccess, List<Group> groups);
+        void ResponseUserDugOut(List<Account> accounts);
     }
 }

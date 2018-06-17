@@ -189,5 +189,12 @@ namespace SocketServer.SimpleTCP
             ptc.Groups = groups;
             SendPacket(30, ptc);
         }
+
+        public void ResponseUserDugOut(List<Account> accounts)
+        {
+            var ptc = new GetListFriendsResponseProtocol();
+            ptc.ListAccount = accounts;
+            SendPacket(32, ptc);
+        }
     }
 }

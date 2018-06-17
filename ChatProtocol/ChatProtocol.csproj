@@ -47,6 +47,7 @@
     <Compile Include="Handle\CreateAccountRequestHandle.cs" />
     <Compile Include="Handle\CreateAccountResponseHandle.cs" />
     <Compile Include="Handle\CreateGroupChatHandle.cs" />
+    <Compile Include="Handle\FindUserRequestHandle.cs" />
     <Compile Include="Handle\GetChatHistoryHandle.cs" />
     <Compile Include="Handle\GetFriendNotInGroupHandle.cs" />
     <Compile Include="Handle\GetGroupHandle.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Protocol\AddUsersToGroupRequestProtocol.cs" />
     <Compile Include="Protocol\CreateGroupResponseProtocol.cs" />
     <Compile Include="Protocol\CreateGroupRequestProtocol.cs" />
+    <Compile Include="Protocol\FindUserRequestProtocol.cs" />
     <Compile Include="Protocol\GetFriendNotInGroupRequestProtocol.cs" />
     <Compile Include="Protocol\GetGroupChatRequestProtocol.cs" />
     <Compile Include="Protocol\GetGroupChatResponseProtocol.cs" />

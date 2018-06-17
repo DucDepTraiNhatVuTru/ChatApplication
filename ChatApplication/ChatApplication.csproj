@@ -83,6 +83,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Instance.cs" />
+    <Compile Include="View\FormAddFriend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormAddFriend.Designer.cs">
+      <DependentUpon>FormAddFriend.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormAddUserToGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,12 @@
     <Compile Include="View\FormCreateGroup.Designer.cs">
       <DependentUpon>FormCreateGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormFindFriends.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormFindFriends.Designer.cs">
+      <DependentUpon>FormFindFriends.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +142,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\FormAddFriend.resx">
+      <DependentUpon>FormAddFriend.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormAddUserToGroup.resx">
       <DependentUpon>FormAddUserToGroup.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormCreateGroup.resx">
       <DependentUpon>FormCreateGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormFindFriends.resx">
+      <DependentUpon>FormFindFriends.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

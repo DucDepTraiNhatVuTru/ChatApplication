@@ -1,4 +1,5 @@
-﻿using ClientSocket;
+﻿using ChatDataModel;
+using ClientSocket;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,15 +15,31 @@ namespace ChatApplication.View
     public partial class FormAddFriend : Form
     {
         private IClient _client;
+        private Account _account;
+        private Image _avatar;
         public FormAddFriend()
         {
             InitializeComponent();
         }
 
-        public FormAddFriend(IClient client)
+        public FormAddFriend(IClient client,Account account, Image image)
         {
             InitializeComponent();
             _client = client;
+            _account = account;
+            _avatar = image;
+
+            _ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            LoadForm();
+        }
+
+        private void LoadForm()
+        {
+            _ptbAvatar.Image = _avatar;
+            _lbName.Text = _account.Name;
+            _lbGender.Text = _account.Gender;
+            _lbCreateTime.Text = _account.TimeCreate.ToString();
         }
     }
 }

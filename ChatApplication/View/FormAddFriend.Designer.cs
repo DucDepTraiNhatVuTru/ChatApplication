@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this._ptbAvatar = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this._lbName = new System.Windows.Forms.Label();
             this._lbGender = new System.Windows.Forms.Label();
             this._lbCreateTime = new System.Windows.Forms.Label();
             this._btnAddFriend = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // _ptbAvatar
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 53);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(103, 108);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this._ptbAvatar.Location = new System.Drawing.Point(12, 53);
+            this._ptbAvatar.Name = "_ptbAvatar";
+            this._ptbAvatar.Size = new System.Drawing.Size(103, 108);
+            this._ptbAvatar.TabIndex = 0;
+            this._ptbAvatar.TabStop = false;
             // 
             // label1
             // 
@@ -109,10 +109,10 @@
             this.Controls.Add(this._lbGender);
             this.Controls.Add(this._lbName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this._ptbAvatar);
             this.Name = "FormAddFriend";
             this.Text = "FormAddFriend";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,7 +120,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox _ptbAvatar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label _lbName;
         private System.Windows.Forms.Label _lbGender;

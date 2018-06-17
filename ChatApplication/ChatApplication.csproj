@@ -67,6 +67,7 @@
     <Compile Include="Handle\ChatHistoryHandle.cs" />
     <Compile Include="Handle\CreateAccountResponseHandle.cs" />
     <Compile Include="Handle\CreateGroupResponseHandle.cs" />
+    <Compile Include="Handle\FindUserHandle.cs" />
     <Compile Include="Handle\GetGroupHandle.cs" />
     <Compile Include="Handle\GetListFriendNotInGroupHandle.cs" />
     <Compile Include="Handle\GetListFriendsResponseHandle.cs" />

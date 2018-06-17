@@ -71,6 +71,8 @@ namespace ChatProtocol
                     return new CreateGroupResponseProtocol();
                 case 31:
                     return new FindUserRequestProtocol();
+                case 32:
+                    return new GetListFriendsResponseProtocol();
                 default:
                     throw new Exception("chưa hỗ trợ opcode");
             }

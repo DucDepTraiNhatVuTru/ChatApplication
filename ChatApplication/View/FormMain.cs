@@ -102,7 +102,15 @@ namespace ChatApplication.View
             _btnCreateGroupChat.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             _btnCreateGroupChat.Click += _btnCreateGroupChat_Click;
 
+            _btnAddFriend.Click += _btnAddFriend_Click;
+
             InitGroupsChat();
+        }
+
+        private void _btnAddFriend_Click(object sender, EventArgs e)
+        {
+            FormFindFriends form = new FormFindFriends(_client);
+            form.ShowDialog();
         }
 
         private void _btnCreateGroupChat_Click(object sender, EventArgs e)

@@ -26,8 +26,11 @@ namespace ChatProtocol.Handle
             catch (Exception ex)
             {
                 toView.Message += "error to find user \n detail : " + ex.Message;
+                return toView.ToString();
             }
-
+            if (accounts.Count < 0)
+                toView.Message += "\n list empty";
+            client.ResponseUserDugOut(accounts);
             return toView.ToString();
         }
 

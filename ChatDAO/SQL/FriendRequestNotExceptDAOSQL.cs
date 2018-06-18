@@ -47,7 +47,7 @@ namespace ChatDAO.SQL
             try
             {
                 Connect();
-                var sql = "SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account,(SELECT FriendRequestNotExcepted.Sender FROM FriendRequestNotExcepted WHERE FriendRequestNotExcepted.Sender = '" + email + "') AS T WHERE T.Receiver = Account.Email";
+                var sql = "SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account,(SELECT FriendRequestNotExcepted.Receiver FROM FriendRequestNotExcepted WHERE FriendRequestNotExcepted.Sender = '" + email + "') AS T WHERE T.Receiver = Account.Email";
                 var data = con.GetData(sql);
                 var accounts = new List<Account>();
                 if (data.HasRows)

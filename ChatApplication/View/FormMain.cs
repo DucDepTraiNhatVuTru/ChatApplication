@@ -117,6 +117,7 @@ namespace ChatApplication.View
                 _client.RequestGetListFriendRequest(_account.Email);
             if (!_client.IsSending)
                 _client.RequsetGetListFriend(_account.Email);
+            _client.RequestGetListFriendIRequest(_account.Email);
 
         }
 

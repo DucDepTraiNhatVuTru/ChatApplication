@@ -255,5 +255,13 @@ namespace ClientSocket.SimpleTcp
             ptc.Email = email;
             SendPacket(37, ptc);
         }
+
+        public void RequestDeleteFriendInvatation(string sender, string receiver)
+        {
+            var ptc = new AskBeFriendRequestProtocol();
+            ptc.SenderEmail = sender;
+            ptc.ReceiverEmail = receiver;
+            SendPacket(39, ptc);
+        }
     }
 }

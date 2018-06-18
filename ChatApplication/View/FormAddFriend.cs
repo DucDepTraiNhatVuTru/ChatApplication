@@ -57,12 +57,14 @@ namespace ChatApplication.View
                 {
                     this.Close();
                 }
+                _isSendFriendRequest = true;
             }
             else
             {
-                // gửi yêu cầu xóa lời mời kết bạn
+                _client.RequestDeleteFriendInvatation(_me.Email, _account.Email);
                 _lbThongBao.Text = "";
                 _btnAddFriend.Text = "Gửi lời mời kết bạn";
+                _isSendFriendRequest = false;
             }
         }
 

@@ -40,5 +40,19 @@ namespace ChatProtocol.Packet
                 }
             }
         }
+
+        public static byte[] ToByte(byte opcode,int length, byte[] data)
+        {
+            using (var stream = new MemoryStream())
+            {
+                using (var w = new BinaryWriter(stream))
+                {
+                    w.Write(opcode);
+                    w.Write((int)length);
+                    w.Write(data);
+                    return stream.ToArray();
+                }
+            }
+        }
     }
 }

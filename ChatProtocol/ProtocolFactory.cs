@@ -82,6 +82,10 @@ namespace ChatProtocol
                     return new GetListAskBeFriendRequestProtocol();
                 case 36:
                     return new GetListFriendsResponseProtocol();
+                case 37:
+                    return new GetListAskBeFriendRequestProtocol();
+                case 38:
+                    return new GetListFriendsResponseProtocol();
                 default:
                     throw new Exception("chưa hỗ trợ opcode");
             }

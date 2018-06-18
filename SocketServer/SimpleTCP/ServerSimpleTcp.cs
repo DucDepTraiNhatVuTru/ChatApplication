@@ -8,6 +8,7 @@ using SimpleTCP;
 using ChatProtocol.Packet;
 using ChatProtocol;
 using System.Threading;
+using System.IO;
 
 namespace SocketServer.SimpleTCP
 {
@@ -30,12 +31,38 @@ namespace SocketServer.SimpleTCP
 
         private void _server_DataReceived(object sender, Message e)
         {
+            Console.WriteLine("Packet Weight : " + e.Data.Count() + " bytes");
             Thread thread = new Thread(delegate ()
             {
                 var tmp = SimpleTcpAdapter.Convert(e.TcpClient);
                 var packet = new BasicPacket();
                 if (!packet.Parse(e.Data))
+                {
+
+                    var packets = SplitPacket(e.Data);
+                    foreach (var pk in packets)
+                    {
+                        Thread.Sleep(50);
+                        Thread t = new Thread(delegate ()
+                        {
+                            var pack = new BasicPacket();
+                            if (!pack.Parse(pk))
+                                return;
+                            var ptc = ProtocolFactory.CreateProtocol(pack.Opcode);
+                            if (!ptc.Parse(Encoding.Unicode.GetString(pack.Data)))
+                                return;
+                            var handling = HandleFactory.CreateHandle(pack.Opcode);
+                            string toview = handling.Handling(ptc, tmp);
+                            if (OnNewMessage != null)
+                            {
+                                OnNewMessage.Invoke(tmp, toview);
+                            }
+                        });
+                        t.Start();
+                    }
+
                     return;
+                }
                 var protocol = ProtocolFactory.CreateProtocol(packet.Opcode);
                 if (!protocol.Parse(Encoding.Unicode.GetString(packet.Data)))
                     return;
@@ -46,6 +73,7 @@ namespace SocketServer.SimpleTCP
                     OnNewMessage.Invoke(tmp, toView);
                 }
             });
+            thread.Priority = ThreadPriority.Highest;
             thread.Start();
         }
 
@@ -67,6 +95,37 @@ namespace SocketServer.SimpleTCP
             if (OnNewConnect != null)
             {
                 OnNewConnect.Invoke(tmpClient);
+            }
+        }
+
+        private List<byte[]> SplitPacket(byte[] data)
+        {
+            var result = new List<byte[]>();
+            using (var stream = new MemoryStream(data))
+            {
+                using (var read = new BinaryReader(stream))
+                {
+                    while (true)
+                    {
+                        byte opcode;
+                        int length;
+                        byte[] dt;
+                        try
+                        {
+                            opcode = read.ReadByte();
+                            length = read.ReadInt32();
+                            dt = read.ReadBytes(length);
+                        }
+                        catch(Exception)
+                        {
+                            return result;
+                        }
+                        
+
+                        result.Add(BasicPacket.ToByte(opcode, length, dt));
+                        if (stream.Length <= 1) return result;
+                    }
+                }
             }
         }
 

@@ -84,9 +84,9 @@ namespace ChatApplication.View
             _lbUserName.Text = _account.Name;
             Thread thread = new Thread(delegate ()
             {
-                    var file = GoogleDriveFilesRepository.DownloadFile(_account.AvatarDriveID);
-                    _ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
-                    _ptbAvatar.Image = Image.FromStream(file);
+                var file = GoogleDriveFilesRepository.DownloadFile(_account.AvatarDriveID);
+                _ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+                _ptbAvatar.Image = Image.FromStream(file);
             });
             thread.Start();
 
@@ -107,6 +107,17 @@ namespace ChatApplication.View
             InitGroupsChat();
 
             InitListFriendRequest();
+
+            if (!_client.IsSending)
+            {
+                SendRequestGetListGroup();
+            }
+
+            if (!_client.IsSending)
+                _client.RequestGetListFriendRequest(_account.Email);
+            if (!_client.IsSending)
+                _client.RequsetGetListFriend(_account.Email);
+
         }
 
         private void InitListFriendRequest()
@@ -116,7 +127,7 @@ namespace ChatApplication.View
             _radLVFriendRequest.ItemSize = new Size(_radLVFriendRequest.Size.Width - 3, 45);
             _radLVFriendRequest.ItemDataBound += _radLVFriendRequest_ItemDataBound;
             //yêu càu lấy listFriendRequest
-            _client.RequestGetListFriendRequest(_account.Email);
+            
         }
 
         private void _radLVFriendRequest_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -252,7 +263,7 @@ namespace ChatApplication.View
             _radlvFriendList.DataSource = listUser;
             _radlvFriendList.DisplayMember = "Name";
             _radlvFriendList.ValueMember = "Email";
-            SendRequestGetListGroup();
+            
         }
 
         public void LoadGroupList(List<Group> groups)
@@ -305,7 +316,10 @@ namespace ChatApplication.View
 
         public void SendRequestGetListGroup()
         {
-            _client.RequestGetGroup(_account.Email);
+            lock (this)
+            {
+                _client.RequestGetGroup(_account.Email);
+            }
         }
 
         public void SendRequestGetUserInGroup(string groupId)
@@ -339,12 +353,12 @@ namespace ChatApplication.View
             _radLVFriendRequest.DataSource = list;
             _radLVFriendRequest.DisplayMember = "Name";
             _radLVFriendRequest.ValueMember = "Id";
-            _client.RequsetGetListFriend(_account.Email);
         }
 
         public void UpdateFriendRequestCount(int number)
         {
-            _tabPageFriendRequest.Text = "(" + number + ") " + _tabPageFriendRequest.Text;
+            if (number > 0)
+                _tabPageFriendRequest.Text = "(" + number + ") " + _tabPageFriendRequest.Text;
         }
     }
 }

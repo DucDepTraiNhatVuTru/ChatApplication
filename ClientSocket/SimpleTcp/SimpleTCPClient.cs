@@ -15,6 +15,7 @@ namespace ClientSocket.SimpleTcp
     public class SimpleTCPClient : IClient
     {
         private SimpleTcpClient _client;
+        public bool IsSending { get; set; }
         public event Action<byte,IProtocol> OnNewRecieve;
 
         public SimpleTCPClient()
@@ -96,9 +97,7 @@ namespace ClientSocket.SimpleTcp
             var ptc = new GetListFriendsRequestProtocol();
             ptc.Email = email;
             var packet = new BasicPacket();
-            packet.Opcode = 7;
-            packet.Data = ptc.ToBytes();
-            _client.Write(packet.ToBytes());
+            SendPacket(7, ptc);
         }
 
         public void SendMessage(ChatMessage message)
@@ -137,9 +136,7 @@ namespace ClientSocket.SimpleTcp
             var ptc = new GetGroupChatRequestProtocol();
             ptc.Email = email;
             var packet = new BasicPacket();
-            packet.Opcode = 13;
-            packet.Data = ptc.ToBytes();
-            _client.Write(packet.ToBytes());
+            SendPacket(13, ptc);
         }
 
         public void RequestGetUserInGroup(string email, string groupId)
@@ -196,10 +193,12 @@ namespace ClientSocket.SimpleTcp
 
         private void SendPacket(byte opcode, IProtocol protocol)
         {
+            IsSending = true;
             var packet = new BasicPacket();
             packet.Opcode = opcode;
             packet.Data = protocol.ToBytes();
             _client.Write(packet.ToBytes());
+            IsSending = false;
         }
 
         public void RequestLeaveGroup(string email, string groupId)
@@ -248,6 +247,13 @@ namespace ClientSocket.SimpleTcp
             var ptc = new GetListAskBeFriendRequestProtocol();
             ptc.Email = email;
             SendPacket(35, ptc);
+        }
+
+        public void RequestGetListFriendIRequest(string email)
+        {
+            var ptc = new GetListAskBeFriendRequestProtocol();
+            ptc.Email = email;
+            SendPacket(37, ptc);
         }
     }
 }

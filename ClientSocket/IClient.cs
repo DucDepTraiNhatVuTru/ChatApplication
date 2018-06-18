@@ -12,6 +12,7 @@ namespace ClientSocket
     {
         void Connect(string ip, int port);
         void Disconnect();
+        bool IsSending { get; set; }
         event Action<byte,IProtocol> OnNewRecieve;
         void Send(string data);
         void RequestCreateAccount(Account account);
@@ -33,5 +34,6 @@ namespace ClientSocket
         void RequestFindFriend(string email, string query);
         void SendFriendRequest(string sender, string receiver);
         void RequestGetListFriendRequest(string email);
+        void RequestGetListFriendIRequest(string email);
     }
 }

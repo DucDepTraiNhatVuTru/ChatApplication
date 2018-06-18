@@ -19,6 +19,7 @@ namespace ChatApplication.View
         private Account _account;
         private Account _me;
         private Image _avatar;
+        private bool _isSendFriendRequest = false;
         public FormAddFriend()
         {
             InitializeComponent();
@@ -31,6 +32,14 @@ namespace ChatApplication.View
             _account = account;
             _avatar = image;
 
+            _isSendFriendRequest = CheckIsSendFriendRequest(_account);
+
+            if (_isSendFriendRequest)
+            {
+                _btnAddFriend.Text = "Hủy lời mời kết bạn";
+                _lbThongBao.Text = "bạn đã gửi lời mời kết bạn cho " + _account.Name;
+            }
+
             lock (this) { _me = Instance.CurrentUser; }
 
             _ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -41,10 +50,19 @@ namespace ChatApplication.View
 
         private void _btnAddFriend_Click(object sender, EventArgs e)
         {
-            _client.SendFriendRequest(_me.Email, _account.Email);
-            if(MessageBox.Show("Đã gửi yêu cầu kết bạn!", "Thông báo") == DialogResult.OK)
+            if (!_isSendFriendRequest)
             {
-                this.Close();
+                _client.SendFriendRequest(_me.Email, _account.Email);
+                if (MessageBox.Show("Đã gửi yêu cầu kết bạn!", "Thông báo") == DialogResult.OK)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                // gửi yêu cầu xóa lời mời kết bạn
+                _lbThongBao.Text = "";
+                _btnAddFriend.Text = "Gửi lời mời kết bạn";
             }
         }
 
@@ -55,5 +73,19 @@ namespace ChatApplication.View
             _lbGender.Text = _account.Gender;
             _lbCreateTime.Text = _account.TimeCreate.ToString();
         }
+
+        private bool CheckIsSendFriendRequest(Account account)
+        {
+            foreach(var item in Instance.ListUserAskAddFriend)
+            {
+                if (account.Email == item.Email)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        
     }
 }

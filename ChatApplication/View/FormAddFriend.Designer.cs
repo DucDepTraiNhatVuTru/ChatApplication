@@ -34,6 +34,7 @@
             this._lbGender = new System.Windows.Forms.Label();
             this._lbCreateTime = new System.Windows.Forms.Label();
             this._btnAddFriend = new System.Windows.Forms.Button();
+            this._lbThongBao = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,12 +99,23 @@
             this._btnAddFriend.Text = "Gửi lời mời kết bạn";
             this._btnAddFriend.UseVisualStyleBackColor = false;
             // 
+            // _lbThongBao
+            // 
+            this._lbThongBao.AutoSize = true;
+            this._lbThongBao.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._lbThongBao.ForeColor = System.Drawing.Color.Red;
+            this._lbThongBao.Location = new System.Drawing.Point(12, 188);
+            this._lbThongBao.Name = "_lbThongBao";
+            this._lbThongBao.Size = new System.Drawing.Size(0, 21);
+            this._lbThongBao.TabIndex = 6;
+            // 
             // FormAddFriend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(370, 227);
+            this.Controls.Add(this._lbThongBao);
             this.Controls.Add(this._btnAddFriend);
             this.Controls.Add(this._lbCreateTime);
             this.Controls.Add(this._lbGender);
@@ -126,5 +138,6 @@
         private System.Windows.Forms.Label _lbGender;
         private System.Windows.Forms.Label _lbCreateTime;
         private System.Windows.Forms.Button _btnAddFriend;
+        private System.Windows.Forms.Label _lbThongBao;
     }
 }

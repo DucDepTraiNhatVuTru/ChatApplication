@@ -28,6 +28,7 @@ namespace SocketServer.Handle
                 toView.Message += "error get list account from db \n detail : " + ex.Message;
                 return toView.ToString();
             }
+            client.ResponseGetListUserIRequestAddFriend(accounts);
             return toView.ToString();
         }
 

@@ -45,6 +45,8 @@ namespace ChatProtocol
                     return new CreateGroupChatHandle();
                 case 31:
                     return new FindUserRequestHandle();
+                case 33:
+                    return new AskBeFriendRequestHandle();
                 default:
                     throw new Exception("chưa hỗ trợ opcode!");
             }

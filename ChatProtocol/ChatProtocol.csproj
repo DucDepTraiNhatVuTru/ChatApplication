@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Instance.cs" />
     <Compile Include="ProtocolFactory.cs" />
     <Compile Include="Packet\BasicPacket.cs" />
     <Compile Include="Packet\IPacket.cs" />

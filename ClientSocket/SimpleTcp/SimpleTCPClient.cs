@@ -239,7 +239,7 @@ namespace ClientSocket.SimpleTcp
             var ptc = new AskBeFriendRequestProtocol();
             ptc.SenderEmail = sender;
             ptc.ReceiverEmail = receiver;
-            SendPacket(32, ptc);
+            SendPacket(33, ptc);
         }
     }
 }

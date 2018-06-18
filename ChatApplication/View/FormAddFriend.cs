@@ -42,7 +42,10 @@ namespace ChatApplication.View
         private void _btnAddFriend_Click(object sender, EventArgs e)
         {
             _client.SendFriendRequest(_me.Email, _account.Email);
-            MessageBox.Show("Đã gửi yêu cầu kết bạn!", "Thông báo");
+            if(MessageBox.Show("Đã gửi yêu cầu kết bạn!", "Thông báo") == DialogResult.OK)
+            {
+                this.Close();
+            }
         }
 
         private void LoadForm()

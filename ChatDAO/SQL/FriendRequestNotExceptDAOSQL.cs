@@ -21,6 +21,7 @@ namespace ChatDAO.SQL
         {
             try
             {
+                Connect();
                 var sql = "INSERT INTO FriendRequestNotExcepted VALUES ('" + requets.Sender + "','" + requets.Receiver + "','" + requets.Time + "')";
                 return con.ExecuteNonQuery(sql);
             }

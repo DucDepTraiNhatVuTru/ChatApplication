@@ -7,12 +7,14 @@ using ChatProtocol.Protocol;
 using SocketServer;
 using ChatDataModel;
 using ChatDAO.SQL;
+using ChatDAO;
 
 namespace ChatProtocol.Handle
 {
     public class AskBeFriendRequestHandle : IHandle
     {
         private object synlock = new object();
+        private object synlock1 = new object();
         public string Handling(IProtocol protocol, IChatClient client)
         {
             var ptc = protocol as AskBeFriendRequestProtocol;
@@ -20,7 +22,7 @@ namespace ChatProtocol.Handle
             IChatClient _client;
             if(Instance.OnlineUser.TryGetValue(ptc.ReceiverEmail, out _client))
             {
-                //gửi đi cho thằng receiver
+                _client.SendFriendRequestToUser(GetAccount(ptc.SenderEmail));
                 toView.Message += " send friend request successful!";
             }
 
@@ -44,6 +46,15 @@ namespace ChatProtocol.Handle
             {
                 var db = new FriendRequestNotExceptDAOSQL();
                 return db.Insert(request);
+            }
+        }
+
+        private Account GetAccount(string email)
+        {
+            lock (synlock1)
+            {
+                var db = new AccountDAOSQL();
+                return db.GetAccount(email);
             }
         }
     }

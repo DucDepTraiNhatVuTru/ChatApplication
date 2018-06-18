@@ -44,6 +44,8 @@ namespace ChatApplication.Handle
                     return new CreateGroupResponseHandle();
                 case 32:
                     return new FindUserHandle();
+                case 34:
+                    return new AskBeFriendHandle();
                 default:
                     throw new Exception("Chưa hỗ trợ opcode");
             }

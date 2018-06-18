@@ -79,6 +79,7 @@
     <Compile Include="Handle\IHandle.cs" />
     <Compile Include="Handle\KickUserOutGroupHandle.cs" />
     <Compile Include="Handle\LeaveGroupHandle.cs" />
+    <Compile Include="Handle\ListUserAskBeFriend.cs" />
     <Compile Include="Handle\LoginResponseHandle.cs" />
     <Compile Include="Handle\MessageHandle.cs" />
     <Compile Include="Handle\UpdateAvatarResponseHandle.cs" />

@@ -32,5 +32,6 @@ namespace ClientSocket
         void RequestCreateGroupChat(Group group, List<string> accounts);
         void RequestFindFriend(string email, string query);
         void SendFriendRequest(string sender, string receiver);
+        void RequestGetListFriendRequest(string email);
     }
 }

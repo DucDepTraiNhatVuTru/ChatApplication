@@ -11,5 +11,6 @@ namespace ChatDAO
     public interface IFriendRequestNotExceptDAO
     {
         int Insert(FriendResquestNotExcept requets);
+        List<Account> GetRequest(string email);
     }
 }

@@ -8,6 +8,7 @@ using SimpleTCP;
 using ChatProtocol.Protocol;
 using ChatProtocol.Packet;
 using ChatProtocol;
+using SocketServer.Protocol;
 
 namespace ClientSocket.SimpleTcp
 {
@@ -240,6 +241,13 @@ namespace ClientSocket.SimpleTcp
             ptc.SenderEmail = sender;
             ptc.ReceiverEmail = receiver;
             SendPacket(33, ptc);
+        }
+
+        public void RequestGetListFriendRequest(string email)
+        {
+            var ptc = new GetListAskBeFriendRequestProtocol();
+            ptc.Email = email;
+            SendPacket(35, ptc);
         }
     }
 }

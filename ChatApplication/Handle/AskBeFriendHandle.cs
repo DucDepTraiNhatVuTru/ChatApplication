@@ -19,6 +19,7 @@ namespace ChatApplication.Handle
             f.Invoke(new MethodInvoker(delegate ()
             {
                 f.LoadListUserFriendRequest(ptc.ListAccount);
+                f.UpdateFriendRequestCount(ptc.ListAccount.Count);
             }));
         }
     }

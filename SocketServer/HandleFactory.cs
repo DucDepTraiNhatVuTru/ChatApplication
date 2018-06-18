@@ -1,4 +1,5 @@
 ﻿using ChatProtocol.Handle;
+using SocketServer.Handle;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,8 @@ namespace ChatProtocol
                     return new FindUserRequestHandle();
                 case 33:
                     return new AskBeFriendRequestHandle();
+                case 35:
+                    return new GetListAskBeFriendRequestHandle();
                 default:
                     throw new Exception("chưa hỗ trợ opcode!");
             }

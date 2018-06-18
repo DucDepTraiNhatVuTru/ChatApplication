@@ -46,6 +46,8 @@ namespace ChatApplication.Handle
                     return new FindUserHandle();
                 case 34:
                     return new AskBeFriendHandle();
+                case 36:
+                    return new AskBeFriendHandle();
                 default:
                     throw new Exception("Chưa hỗ trợ opcode");
             }

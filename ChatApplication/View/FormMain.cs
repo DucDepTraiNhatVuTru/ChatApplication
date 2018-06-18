@@ -64,7 +64,7 @@ namespace ChatApplication.View
             _account = account;
             Init();
             _client.OnNewRecieve += _client_OnNewRecieve;
-            _client.RequsetGetListFriend(account.Email);
+            
         }
 
         private void _client_OnNewRecieve(byte opcode, ChatProtocol.Protocol.IProtocol ptc)
@@ -116,6 +116,7 @@ namespace ChatApplication.View
             _radLVFriendRequest.ItemSize = new Size(_radLVFriendRequest.Size.Width - 3, 45);
             _radLVFriendRequest.ItemDataBound += _radLVFriendRequest_ItemDataBound;
             //yêu càu lấy listFriendRequest
+            _client.RequestGetListFriendRequest(_account.Email);
         }
 
         private void _radLVFriendRequest_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -338,6 +339,12 @@ namespace ChatApplication.View
             _radLVFriendRequest.DataSource = list;
             _radLVFriendRequest.DisplayMember = "Name";
             _radLVFriendRequest.ValueMember = "Id";
+            _client.RequsetGetListFriend(_account.Email);
+        }
+
+        public void UpdateFriendRequestCount(int number)
+        {
+            _tabPageFriendRequest.Text = "(" + number + ") " + _tabPageFriendRequest.Text;
         }
     }
 }

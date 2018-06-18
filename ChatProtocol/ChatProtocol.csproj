@@ -57,6 +57,7 @@
     <Compile Include="Protocol\GetFriendNotInGroupRequestProtocol.cs" />
     <Compile Include="Protocol\GetGroupChatRequestProtocol.cs" />
     <Compile Include="Protocol\GetGroupChatResponseProtocol.cs" />
+    <Compile Include="Protocol\GetListAskFriendRequestProtocol.cs" />
     <Compile Include="Protocol\GetUserInGroupResponseProtocol.cs" />
     <Compile Include="Protocol\GetUserInGroupResquestProtocol.cs" />
     <Compile Include="Protocol\GroupMessageProtocol.cs" />

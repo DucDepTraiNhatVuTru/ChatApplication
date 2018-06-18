@@ -14,7 +14,7 @@ namespace ChatProtocol.Protocol
         {
             if(string.IsNullOrEmpty(data))return false;
             var tach = data.Split('\0');
-            if (tach.Length < 1) return false;
+            //if (tach.Length < 1) return false;
             foreach(var item in tach)
             {
                 var account = ParseAccount(item);

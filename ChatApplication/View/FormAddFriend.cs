@@ -1,4 +1,5 @@
-﻿using ChatDataModel;
+﻿using ChatApplication.Util;
+using ChatDataModel;
 using ClientSocket;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace ChatApplication.View
     {
         private IClient _client;
         private Account _account;
+        private Account _me;
         private Image _avatar;
         public FormAddFriend()
         {
@@ -29,9 +31,18 @@ namespace ChatApplication.View
             _account = account;
             _avatar = image;
 
+            lock (this) { _me = Instance.CurrentUser; }
+
             _ptbAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            _btnAddFriend.Click += _btnAddFriend_Click;
 
             LoadForm();
+        }
+
+        private void _btnAddFriend_Click(object sender, EventArgs e)
+        {
+            _client.SendFriendRequest(_me.Email, _account.Email);
+            MessageBox.Show("Đã gửi yêu cầu kết bạn!", "Thông báo");
         }
 
         private void LoadForm()

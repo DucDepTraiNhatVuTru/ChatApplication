@@ -233,5 +233,13 @@ namespace ClientSocket.SimpleTcp
             ptc.Query = query;
             SendPacket(31, ptc);
         }
+
+        public void SendFriendRequest(string sender, string receiver)
+        {
+            var ptc = new AskBeFriendRequestProtocol();
+            ptc.SenderEmail = sender;
+            ptc.ReceiverEmail = receiver;
+            SendPacket(32, ptc);
+        }
     }
 }

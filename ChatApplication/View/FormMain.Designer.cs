@@ -38,6 +38,8 @@
             this._btnCreateGroupChat = new System.Windows.Forms.Button();
             this._ptbChinhSua = new System.Windows.Forms.PictureBox();
             this._ptbAvatar = new System.Windows.Forms.PictureBox();
+            this._tabPageFriendRequest = new System.Windows.Forms.TabPage();
+            this._radLVFriendRequest = new Telerik.WinControls.UI.RadListView();
             ((System.ComponentModel.ISupportInitialize)(this._radlvFriendList)).BeginInit();
             this._tabControlMain.SuspendLayout();
             this._tabPageFriend.SuspendLayout();
@@ -45,6 +47,8 @@
             ((System.ComponentModel.ISupportInitialize)(this._radLVGroupChat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).BeginInit();
+            this._tabPageFriendRequest.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._radLVFriendRequest)).BeginInit();
             this.SuspendLayout();
             // 
             // _lbUserName
@@ -70,6 +74,7 @@
             // 
             this._tabControlMain.Controls.Add(this._tabPageFriend);
             this._tabControlMain.Controls.Add(this._tabPageGroupChat);
+            this._tabControlMain.Controls.Add(this._tabPageFriendRequest);
             this._tabControlMain.Location = new System.Drawing.Point(5, 114);
             this._tabControlMain.Name = "_tabControlMain";
             this._tabControlMain.SelectedIndex = 0;
@@ -85,7 +90,7 @@
             this._tabPageFriend.Padding = new System.Windows.Forms.Padding(3);
             this._tabPageFriend.Size = new System.Drawing.Size(265, 379);
             this._tabPageFriend.TabIndex = 0;
-            this._tabPageFriend.Text = "Friends";
+            this._tabPageFriend.Text = "Bạn bè";
             this._tabPageFriend.UseVisualStyleBackColor = true;
             // 
             // _tabPageGroupChat
@@ -97,7 +102,7 @@
             this._tabPageGroupChat.Padding = new System.Windows.Forms.Padding(3);
             this._tabPageGroupChat.Size = new System.Drawing.Size(265, 379);
             this._tabPageGroupChat.TabIndex = 1;
-            this._tabPageGroupChat.Text = "Groups Chat";
+            this._tabPageGroupChat.Text = "Nhóm Chat";
             this._tabPageGroupChat.UseVisualStyleBackColor = true;
             // 
             // _radLVGroupChat
@@ -146,6 +151,24 @@
             this._ptbAvatar.TabIndex = 2;
             this._ptbAvatar.TabStop = false;
             // 
+            // _tabPageFriendRequest
+            // 
+            this._tabPageFriendRequest.Controls.Add(this._radLVFriendRequest);
+            this._tabPageFriendRequest.Location = new System.Drawing.Point(4, 22);
+            this._tabPageFriendRequest.Name = "_tabPageFriendRequest";
+            this._tabPageFriendRequest.Size = new System.Drawing.Size(265, 379);
+            this._tabPageFriendRequest.TabIndex = 2;
+            this._tabPageFriendRequest.Text = "Lời mời kết bạn";
+            this._tabPageFriendRequest.UseVisualStyleBackColor = true;
+            // 
+            // _radLVFriendRequest
+            // 
+            this._radLVFriendRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._radLVFriendRequest.Location = new System.Drawing.Point(0, 0);
+            this._radLVFriendRequest.Name = "_radLVFriendRequest";
+            this._radLVFriendRequest.Size = new System.Drawing.Size(265, 379);
+            this._radLVFriendRequest.TabIndex = 9;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,6 +191,8 @@
             ((System.ComponentModel.ISupportInitialize)(this._radLVGroupChat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).EndInit();
+            this._tabPageFriendRequest.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._radLVFriendRequest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,5 +209,7 @@
         private Telerik.WinControls.UI.RadListView _radLVGroupChat;
         private System.Windows.Forms.Button _btnAddFriend;
         private System.Windows.Forms.Button _btnCreateGroupChat;
+        private System.Windows.Forms.TabPage _tabPageFriendRequest;
+        private Telerik.WinControls.UI.RadListView _radLVFriendRequest;
     }
 }

@@ -196,5 +196,12 @@ namespace SocketServer.SimpleTCP
             ptc.ListAccount = accounts;
             SendPacket(32, ptc);
         }
+
+        public void SendFriendRequestToUser(Account sender)
+        {
+            var ptc = new AskBeFriendResponseProtocol();
+            ptc.UserRequest = sender;
+            SendPacket(34, ptc);
+        }
     }
 }

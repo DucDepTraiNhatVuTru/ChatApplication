@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IFriendRequestNotExceptDAO.cs" />
     <Compile Include="IGroupDAO.cs" />
     <Compile Include="SQL\AccountDAOSQL.cs" />
     <Compile Include="SQL\ChatGroupMessageDAOSQL.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="IAccountDAO.cs" />
     <Compile Include="IChatMessageDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQL\FriendRequestNotExceptDAOSQL.cs" />
     <Compile Include="SQL\GroupsDAOSQL.cs" />
     <Compile Include="IChatGroupMessageDAO.cs" />
   </ItemGroup>

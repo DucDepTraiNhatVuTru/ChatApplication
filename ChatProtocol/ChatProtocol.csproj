@@ -42,33 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HandleFactory.cs" />
-    <Compile Include="Handle\AddUserInGroupHandle.cs" />
-    <Compile Include="Handle\CreateAccountRequestHandle.cs" />
-    <Compile Include="Handle\CreateAccountResponseHandle.cs" />
-    <Compile Include="Handle\CreateGroupChatHandle.cs" />
-    <Compile Include="Handle\FindUserRequestHandle.cs" />
-    <Compile Include="Handle\GetChatHistoryHandle.cs" />
-    <Compile Include="Handle\GetFriendNotInGroupHandle.cs" />
-    <Compile Include="Handle\GetGroupHandle.cs" />
-    <Compile Include="Handle\GetListFriendsRequestHandle.cs" />
-    <Compile Include="Handle\GetUserInGroupHandle.cs" />
-    <Compile Include="Handle\GroupMessageHandle.cs" />
-    <Compile Include="Handle\HistoryChatGroupHandle.cs" />
-    <Compile Include="Handle\KickUserOutGroupHandle.cs" />
-    <Compile Include="Handle\LeaveGroupHandle.cs" />
-    <Compile Include="Handle\LoginRequestHandle.cs" />
-    <Compile Include="Handle\LogoutHandle.cs" />
-    <Compile Include="Handle\MessageHandle.cs" />
-    <Compile Include="Handle\UpdateAvatarHandle.cs" />
     <Compile Include="Instance.cs" />
     <Compile Include="ProtocolFactory.cs" />
-    <Compile Include="Handle\IHandle.cs" />
     <Compile Include="Packet\BasicPacket.cs" />
     <Compile Include="Packet\IPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\AddUserInGroupResponseProtocol.cs" />
     <Compile Include="Protocol\AddUsersToGroupRequestProtocol.cs" />
+    <Compile Include="Protocol\AskBeFriendRequestProtocol.cs" />
+    <Compile Include="Protocol\AskBeFriendResponseProtocol.cs" />
     <Compile Include="Protocol\CreateGroupResponseProtocol.cs" />
     <Compile Include="Protocol\CreateGroupRequestProtocol.cs" />
     <Compile Include="Protocol\FindUserRequestProtocol.cs" />

@@ -105,6 +105,30 @@ namespace ChatApplication.View
             _btnAddFriend.Click += _btnAddFriend_Click;
 
             InitGroupsChat();
+
+            InitListFriendRequest();
+        }
+
+        private void InitListFriendRequest()
+        {
+            _radLVFriendRequest.AllowEdit = false;
+            _radLVFriendRequest.AllowRemove = false;
+            _radLVFriendRequest.ItemSize = new Size(_radLVFriendRequest.Size.Width - 3, 45);
+            _radLVFriendRequest.ItemDataBound += _radLVFriendRequest_ItemDataBound;
+            //yêu càu lấy listFriendRequest
+        }
+
+        private void _radLVFriendRequest_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            Thread thread = new Thread(delegate ()
+            {
+                var image = Image.FromStream(GoogleDriveFilesRepository.DownloadFile(((Account)e.Item.DataBoundItem).AvatarDriveID));
+                _radlvFriendList.Invoke(new MethodInvoker(delegate ()
+                {
+                    e.Item.Image = ImageConverter.ImageResize.ResizeImageCircle(image, 42);
+                }));
+            });
+            thread.Start();
         }
 
         private void _btnAddFriend_Click(object sender, EventArgs e)
@@ -302,6 +326,18 @@ namespace ChatApplication.View
                 }
             }
             LoadGroupList(Instance.ListGroups);
+        }
+
+        public void LoadListUserFriendRequest(List<Account> accounts)
+        {
+            BindingList<Account> list = new BindingList<Account>();
+            foreach(var item in accounts)
+            {
+                list.Add(item);
+            }
+            _radLVFriendRequest.DataSource = list;
+            _radLVFriendRequest.DisplayMember = "Name";
+            _radLVFriendRequest.ValueMember = "Id";
         }
     }
 }

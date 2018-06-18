@@ -47,6 +47,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HandleFactory.cs" />
+    <Compile Include="Handle\AddUserInGroupHandle.cs" />
+    <Compile Include="Handle\AskBeFriendRequestHandle.cs" />
+    <Compile Include="Handle\CreateAccountRequestHandle.cs" />
+    <Compile Include="Handle\CreateAccountResponseHandle.cs" />
+    <Compile Include="Handle\CreateGroupChatHandle.cs" />
+    <Compile Include="Handle\FindUserRequestHandle.cs" />
+    <Compile Include="Handle\GetChatHistoryHandle.cs" />
+    <Compile Include="Handle\GetFriendNotInGroupHandle.cs" />
+    <Compile Include="Handle\GetGroupHandle.cs" />
+    <Compile Include="Handle\GetListFriendsRequestHandle.cs" />
+    <Compile Include="Handle\GetUserInGroupHandle.cs" />
+    <Compile Include="Handle\GroupMessageHandle.cs" />
+    <Compile Include="Handle\HistoryChatGroupHandle.cs" />
+    <Compile Include="Handle\IHandle.cs" />
+    <Compile Include="Handle\KickUserOutGroupHandle.cs" />
+    <Compile Include="Handle\LeaveGroupHandle.cs" />
+    <Compile Include="Handle\LoginRequestHandle.cs" />
+    <Compile Include="Handle\LogoutHandle.cs" />
+    <Compile Include="Handle\MessageHandle.cs" />
+    <Compile Include="Handle\UpdateAvatarHandle.cs" />
     <Compile Include="IChatClient.cs" />
     <Compile Include="IChatServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,6 +76,10 @@
     <Compile Include="SimpleTCP\SimpleTcpAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChatDAO\ChatDAO.csproj">
+      <Project>{5E106ABF-A23C-420B-8DBA-8C9FD9E52278}</Project>
+      <Name>ChatDAO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChatDataModel\ChatDataModel.csproj">
       <Project>{6DBC97A4-3339-4614-8F88-FF5F8B49D47C}</Project>
       <Name>ChatDataModel</Name>

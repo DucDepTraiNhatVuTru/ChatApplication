@@ -18,6 +18,30 @@ namespace ChatDAO.SQL
             con.Connect(@"Data Source=MINHDUC\SQLEXPRESS;Initial Catalog=ChatDB;Persist Security Info=True;User ID=sa;Password=123456");
         }
 
+        public int Delete(FriendResquestNotExcept request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int DeleteByMe(FriendResquestNotExcept request)
+        {
+            try
+            {
+                Connect();
+                var sql = "DELETE FROM FriendRequestNotExcepted WHERE Sender = '" + request.Sender + "'AND Receiver = '" + request.Receiver + "'";
+                return con.ExecuteNonQuery(sql);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Disconnect();
+            }
+        }
+
         public List<Account> GetMyRequest(string email)
         {
             try

@@ -13,5 +13,6 @@ namespace ChatDAO
         int Insert(FriendResquestNotExcept requets);
         List<Account> GetRequest(string email);
         List<Account> GetMyRequest(string email);
+        int DeleteByMe(FriendResquestNotExcept request);
     }
 }

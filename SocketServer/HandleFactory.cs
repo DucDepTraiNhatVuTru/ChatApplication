@@ -54,6 +54,8 @@ namespace ChatProtocol
                     return new GetListUserIAskedBeFriendHandle();
                 case 39:
                     return new DeleteFriendInvitation();
+                case 41:
+                    return new AcceptAddFriendHandle();
                 default:
                     throw new Exception("chưa hỗ trợ opcode!");
             }

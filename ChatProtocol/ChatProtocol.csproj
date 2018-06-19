@@ -46,6 +46,7 @@
     <Compile Include="Packet\BasicPacket.cs" />
     <Compile Include="Packet\IPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocol\AcceptFriendRequestProtocol.cs" />
     <Compile Include="Protocol\AddUserInGroupResponseProtocol.cs" />
     <Compile Include="Protocol\AddUsersToGroupRequestProtocol.cs" />
     <Compile Include="Protocol\AskBeFriendRequestProtocol.cs" />

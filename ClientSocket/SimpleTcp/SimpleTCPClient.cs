@@ -263,5 +263,14 @@ namespace ClientSocket.SimpleTcp
             ptc.ReceiverEmail = receiver;
             SendPacket(39, ptc);
         }
+
+        public void RequestAcceptAddFriend(int isAccept, string userRequest, string userAccept)
+        {
+            var ptc = new AcceptFriendRequestProtocol();
+            ptc.IsAccept = isAccept;
+            ptc.UserAccept = userAccept;
+            ptc.UserRequest = userRequest;
+            SendPacket(41, ptc);
+        }
     }
 }

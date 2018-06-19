@@ -98,6 +98,7 @@ namespace ChatApplication.View
             _radlvFriendList.ItemDataBound += _radlvFriendList_ItemDataBound;
             _radlvFriendList.ItemSize = new Size(_radlvFriendList.ItemSize.Width, 50);
             _radlvFriendList.ItemMouseClick += _radlvFriendList_ItemMouseClick;
+            _radlvFriendList.ItemMouseDown += _radlvFriendList_ItemMouseDown;
 
             _btnCreateGroupChat.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             _btnCreateGroupChat.Click += _btnCreateGroupChat_Click;
@@ -123,9 +124,44 @@ namespace ChatApplication.View
 
         }
 
+        private void _radlvFriendList_ItemMouseDown(object sender, ListViewItemMouseEventArgs e)
+        {
+            if (e.OriginalEventArgs.Button == MouseButtons.Right)
+            {
+                ContextMenuStrip menu = new ContextMenuStrip();
+                ToolStripMenuItem cancelFriend = new ToolStripMenuItem();
+                cancelFriend.Text = "Hủy kết bạn";
+                cancelFriend.Click += delegate
+                {
+                    var dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((Account)e.Item.DataBoundItem).Name + " khỏi danh sách bạn bè?", "Cảnh báo!", MessageBoxButtons.YesNoCancel);
+
+                };
+                menu.Items.Add(cancelFriend);
+                menu.Show(_radlvFriendList, e.OriginalEventArgs.Location);
+            }
+        }
+
         private void _radLVFriendRequest_ItemMouseClick(object sender, ListViewItemEventArgs e)
         {
-            var dialogResult = MessageBox.Show("ddddd", "Lời mời kết bạn", MessageBoxButtons.YesNo);
+            var dialogResult = MessageBox.Show(((Account)e.Item.DataBoundItem).Name + " đã gửi một lời mời kết bạn!", "Lời mời kết bạn", MessageBoxButtons.YesNoCancel);
+            // isAccept = 1 là đồng ý
+            // isAccept = 0 là hủy
+            int isAccept = -1;
+            if (dialogResult == DialogResult.Yes)
+            {
+                isAccept = 1;
+            }
+            else if(dialogResult == DialogResult.No)
+            {
+                isAccept = 0;
+            }
+            else if (dialogResult == DialogResult.Cancel)
+            {
+                return;
+            }
+            _client.RequestAcceptAddFriend(1, ((Account)e.Item.DataBoundItem).Email, _account.Email);
+            _radLVFriendRequest.Items.Remove(e.Item);
+            UpdateFriendRequestCount(_radLVFriendRequest.Items.Count);
         }
 
         private void InitListFriendRequest()
@@ -134,8 +170,6 @@ namespace ChatApplication.View
             _radLVFriendRequest.AllowRemove = false;
             _radLVFriendRequest.ItemSize = new Size(_radLVFriendRequest.Size.Width - 3, 45);
             _radLVFriendRequest.ItemDataBound += _radLVFriendRequest_ItemDataBound;
-            //yêu càu lấy listFriendRequest
-            
         }
 
         private void _radLVFriendRequest_ItemDataBound(object sender, ListViewItemEventArgs e)

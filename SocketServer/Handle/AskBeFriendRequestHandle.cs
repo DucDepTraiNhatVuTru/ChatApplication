@@ -15,6 +15,7 @@ namespace ChatProtocol.Handle
     {
         private object synlock = new object();
         private object synlock1 = new object();
+        private object synlock2 = new object();
         public string Handling(IProtocol protocol, IChatClient client)
         {
             var ptc = protocol as AskBeFriendRequestProtocol;
@@ -22,7 +23,7 @@ namespace ChatProtocol.Handle
             IChatClient _client;
             if(Instance.OnlineUser.TryGetValue(ptc.ReceiverEmail, out _client))
             {
-                _client.SendFriendRequestToUser(GetAccount(ptc.SenderEmail));
+                _client.ResponseGetListUserRequestAddFriend(ListRequestOfUser(ptc.ReceiverEmail));
                 toView.Message += " send friend request successful!";
             }
 
@@ -34,8 +35,23 @@ namespace ChatProtocol.Handle
             }
             catch (Exception ex)
             {
-                toView.Message += "\n insert request to db Failed \n detail : " + ex.Message;
+                toView.Message += "\n insert request to db Failed \n detail : " + ex.Message; ;
+                return toView.ToString();
             }
+
+            var accounts = new List<Account>();
+            try
+            {
+                accounts = GetRequestIAsk(ptc.SenderEmail);
+            }
+            catch (Exception ex)
+            {
+
+                toView.Message += "error get list user from db \n detail : " + ex.Message;
+                return toView.ToString();
+            }
+
+            client.ResponseGetListUserIRequestAddFriend(accounts);
 
             return toView.ToString();
         }
@@ -55,6 +71,24 @@ namespace ChatProtocol.Handle
             {
                 var db = new AccountDAOSQL();
                 return db.GetAccount(email);
+            }
+        }
+
+        private List<Account> ListRequestOfUser(string email)
+        {
+            lock (synlock1)
+            {
+                var db = new FriendRequestNotExceptDAOSQL();
+                return db.GetRequest(email);
+            }
+        }
+
+        private List<Account> GetRequestIAsk(string email)
+        {
+            lock (synlock2)
+            {
+                var db = new FriendRequestNotExceptDAOSQL();
+                return db.GetMyRequest(email);
             }
         }
     }

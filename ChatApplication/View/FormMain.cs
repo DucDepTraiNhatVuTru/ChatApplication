@@ -359,7 +359,8 @@ namespace ChatApplication.View
         public void UpdateFriendRequestCount(int number)
         {
             if (number > 0)
-                _tabPageFriendRequest.Text = "(" + number + ") " + _tabPageFriendRequest.Text;
+                _tabPageFriendRequest.Text = "(" + number + ") Lời mời kết bạn";
+            else _tabPageFriendRequest.Text = "Lời mời kết bạn";
         }
     }
 }

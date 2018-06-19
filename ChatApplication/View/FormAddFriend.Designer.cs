@@ -102,7 +102,7 @@
             // _lbThongBao
             // 
             this._lbThongBao.AutoSize = true;
-            this._lbThongBao.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._lbThongBao.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._lbThongBao.ForeColor = System.Drawing.Color.Red;
             this._lbThongBao.Location = new System.Drawing.Point(12, 188);
             this._lbThongBao.Name = "_lbThongBao";

@@ -60,6 +60,7 @@
     <Compile Include="Protocol\GetListAskFriendRequestProtocol.cs" />
     <Compile Include="Protocol\GetUserInGroupResponseProtocol.cs" />
     <Compile Include="Protocol\GetUserInGroupResquestProtocol.cs" />
+    <Compile Include="Protocol\GetUserRequestAddFriendResponseProtocol.cs" />
     <Compile Include="Protocol\GroupMessageProtocol.cs" />
     <Compile Include="Protocol\HistoryChatGroupRequestProtocol.cs" />
     <Compile Include="Protocol\HistoryChatGroupResponseProtocol.cs" />

@@ -206,8 +206,9 @@ namespace SocketServer.SimpleTCP
 
         public void ResponseGetListUserRequestAddFriend(List<Account> accounts)
         {
-            var ptc = new GetListFriendsResponseProtocol();
-            ptc.ListAccount = accounts;
+            var ptc = new GetUserRequestAddFriendResponseProtocol();
+            ptc.Count = accounts.Count;
+            ptc.Accounts = accounts;
             SendPacket(36, ptc);
         }
 

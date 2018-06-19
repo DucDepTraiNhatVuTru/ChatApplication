@@ -53,10 +53,12 @@ namespace ChatApplication.View
             if (!_isSendFriendRequest)
             {
                 _client.SendFriendRequest(_me.Email, _account.Email);
-                if (MessageBox.Show("Đã gửi yêu cầu kết bạn!", "Thông báo") == DialogResult.OK)
+                /*if (MessageBox.Show("Đã gửi yêu cầu kết bạn!", "Thông báo") == DialogResult.OK)
                 {
                     this.Close();
-                }
+                }*/
+                _lbThongBao.Text = "Đã gửi lời mời kết bạn";
+                _btnAddFriend.Text = "Hủy lời mời kết bạn";
                 _isSendFriendRequest = true;
             }
             else
@@ -88,6 +90,6 @@ namespace ChatApplication.View
             return false;
         }
 
-        
+       
     }
 }

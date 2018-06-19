@@ -81,7 +81,7 @@ namespace ChatProtocol
                 case 35:
                     return new GetListAskBeFriendRequestProtocol();
                 case 36:
-                    return new GetListFriendsResponseProtocol();
+                    return new GetUserRequestAddFriendResponseProtocol();
                 case 37:
                     return new GetListAskBeFriendRequestProtocol();
                 case 38:

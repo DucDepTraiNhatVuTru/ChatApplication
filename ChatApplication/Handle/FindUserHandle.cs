@@ -16,10 +16,13 @@ namespace ChatApplication.Handle
             var ptc = protocol as GetListFriendsResponseProtocol;
             if (!(form is FormFindFriends)) return;
             var f = form as FormFindFriends;
-            f.Invoke(new MethodInvoker(delegate ()
+            if (f.IsHandleCreated)
             {
-                f.LoadUserResult(ptc.ListAccount);
-            }));
+                f.Invoke(new MethodInvoker(delegate ()
+                {
+                    f.LoadUserResult(ptc.ListAccount);
+                }));
+            }
         }
     }
 }

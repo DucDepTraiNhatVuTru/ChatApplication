@@ -72,6 +72,7 @@
             this.Controls.Add(this._txtSearch);
             this.Name = "FormFindFriends";
             this.Text = "FormFindFriends";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormFindFriends_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this._radLVSearchResult)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

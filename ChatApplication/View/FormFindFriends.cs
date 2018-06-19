@@ -88,6 +88,7 @@ namespace ChatApplication.View
 
         public void LoadUserResult(List<Account> accounts)
         {
+            _radLVSearchResult.Items.Clear();
             BindingList<Account> list = new BindingList<Account>();
             foreach(var item in accounts)
             {
@@ -96,6 +97,11 @@ namespace ChatApplication.View
             _radLVSearchResult.DataSource = list;
             _radLVSearchResult.DisplayMember = "Name";
             _radLVSearchResult.ValueMember = "Id";
+        }
+
+        private void FormFindFriends_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

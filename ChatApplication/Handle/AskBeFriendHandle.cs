@@ -13,13 +13,13 @@ namespace ChatApplication.Handle
     {
         public void Handling(IProtocol protocol, Form form)
         {
-            var ptc = protocol as GetListFriendsResponseProtocol;
+            var ptc = protocol as GetUserRequestAddFriendResponseProtocol;
             if (!(form is FormMain)) return;
             var f = form as FormMain;
             f.Invoke(new MethodInvoker(delegate ()
             {
-                f.LoadListUserFriendRequest(ptc.ListAccount);
-                f.UpdateFriendRequestCount(ptc.ListAccount.Count);
+                f.LoadListUserFriendRequest(ptc.Accounts);
+                f.UpdateFriendRequestCount(ptc.Count);
             }));
         }
     }

@@ -16,6 +16,23 @@ namespace ChatDAO.SQL
         {
             con.Connect(@"Data Source=MINHDUC\SQLEXPRESS;Initial Catalog=ChatDB;Persist Security Info=True;User ID=sa;Password=123456");
         }
+
+        public int Delete(string email1, string email2)
+        {
+            try
+            {
+                Connect();
+                var sql = "DELETE FROM Friend WHERE (User1 = '" + email1 + "' AND User2 = '" + email2 + "') OR (User2 = '" + email1 + "' AND User1 = '" + email2 + "')";
+                return con.ExecuteNonQuery(sql);
+            }
+            catch (Exception exx)
+            {
+
+                throw new Exception(exx.Message);
+            }
+            finally { con.Disconnect(); }
+        }
+
         public int Insert(string email1, string email2)
         {
             try

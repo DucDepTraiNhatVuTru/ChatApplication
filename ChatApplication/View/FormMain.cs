@@ -133,11 +133,15 @@ namespace ChatApplication.View
                 cancelFriend.Text = "Hủy kết bạn";
                 cancelFriend.Click += delegate
                 {
-                    var dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((Account)e.Item.DataBoundItem).Name + " khỏi danh sách bạn bè?", "Cảnh báo!", MessageBoxButtons.YesNoCancel);
-
+                    var dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((Account)e.Item.DataBoundItem).Name + " khỏi danh sách bạn bè?", "Cảnh báo!", MessageBoxButtons.OKCancel);
+                    if (dialogResult == DialogResult.OK) _client.RequetsDeleteFriend(_account.Email, ((Account)e.Item.DataBoundItem).Email);
                 };
                 menu.Items.Add(cancelFriend);
                 menu.Show(_radlvFriendList, e.OriginalEventArgs.Location);
+            }
+            if(e.OriginalEventArgs.Button == MouseButtons.Left)
+            {
+                OpenFormChat(e.Item.Value.ToString());
             }
         }
 
@@ -227,7 +231,7 @@ namespace ChatApplication.View
 
         private void _radlvFriendList_ItemMouseClick(object sender, ListViewItemEventArgs e)
         {
-            OpenFormChat(e.Item.Value.ToString());
+            
         }
 
         public void OpenFormChat(string email)

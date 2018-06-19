@@ -80,6 +80,7 @@
     <Compile Include="Protocol\IProtocol.cs" />
     <Compile Include="Protocol\LoginRequestProtocol.cs" />
     <Compile Include="Protocol\LoginResponseProtocol.cs" />
+    <Compile Include="Protocol\DeleteFriendRequestProtocol.cs" />
     <Compile Include="Protocol\UpdateAvatarRequestProtocol.cs" />
     <Compile Include="Protocol\UpdateAvatarResponseProtocol.cs" />
     <Compile Include="Ulti\ToViewStringFormat.cs" />

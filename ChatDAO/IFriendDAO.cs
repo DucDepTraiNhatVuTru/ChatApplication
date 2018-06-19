@@ -9,5 +9,6 @@ namespace ChatDAO
     public interface IFriendDAO
     {
         int Insert(string email1, string email2);
+        int Delete(string email1, string email2);
     }
 }

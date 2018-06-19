@@ -20,12 +20,7 @@ namespace ChatProtocol.Handle
         {
             var ptc = protocol as AskBeFriendRequestProtocol;
             var toView = new Ulti.ToViewStringFormat(DateTime.Now, client.GetEndPoint().ToString(), ptc.SenderEmail, "Send a friend requset to user[" + ptc.ReceiverEmail + "]");
-            IChatClient _client;
-            if(Instance.OnlineUser.TryGetValue(ptc.ReceiverEmail, out _client))
-            {
-                _client.ResponseGetListUserRequestAddFriend(ListRequestOfUser(ptc.ReceiverEmail));
-                toView.Message += " send friend request successful!";
-            }
+            
 
             try
             {
@@ -37,6 +32,13 @@ namespace ChatProtocol.Handle
             {
                 toView.Message += "\n insert request to db Failed \n detail : " + ex.Message; ;
                 return toView.ToString();
+            }
+
+            IChatClient _client = null;
+            if (Instance.OnlineUser.TryGetValue(ptc.ReceiverEmail, out _client))
+            {
+                _client.ResponseGetListUserRequestAddFriend(ListRequestOfUser(ptc.ReceiverEmail));
+                toView.Message += " send friend request successful!";
             }
 
             var accounts = new List<Account>();

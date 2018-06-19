@@ -104,6 +104,8 @@ namespace ChatApplication.View
 
             _btnAddFriend.Click += _btnAddFriend_Click;
 
+            _radLVFriendRequest.ItemMouseClick += _radLVFriendRequest_ItemMouseClick;
+
             InitGroupsChat();
 
             InitListFriendRequest();
@@ -119,6 +121,11 @@ namespace ChatApplication.View
                 _client.RequsetGetListFriend(_account.Email);
             _client.RequestGetListFriendIRequest(_account.Email);
 
+        }
+
+        private void _radLVFriendRequest_ItemMouseClick(object sender, ListViewItemEventArgs e)
+        {
+            var dialogResult = MessageBox.Show("ddddd", "Lời mời kết bạn", MessageBoxButtons.YesNo);
         }
 
         private void InitListFriendRequest()

@@ -16,11 +16,14 @@ namespace ChatApplication.Handle
             var ptc = protocol as GetUserRequestAddFriendResponseProtocol;
             if (!(form is FormMain)) return;
             var f = form as FormMain;
-            f.Invoke(new MethodInvoker(delegate ()
+            if (f.IsHandleCreated)
             {
-                f.LoadListUserFriendRequest(ptc.Accounts);
-                f.UpdateFriendRequestCount(ptc.Count);
-            }));
+                f.Invoke(new MethodInvoker(delegate ()
+                {
+                    f.LoadListUserFriendRequest(ptc.Accounts);
+                    f.UpdateFriendRequestCount(ptc.Count);
+                }));
+            }
         }
     }
 }

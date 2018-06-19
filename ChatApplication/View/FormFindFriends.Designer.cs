@@ -36,6 +36,7 @@
             // 
             // _txtSearch
             // 
+            this._txtSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._txtSearch.Location = new System.Drawing.Point(12, 12);
             this._txtSearch.Multiline = true;
             this._txtSearch.Name = "_txtSearch";

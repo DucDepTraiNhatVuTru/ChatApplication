@@ -276,7 +276,7 @@ namespace ClientSocket.SimpleTcp
         public void RequetsDeleteFriend(string emailRequest, string emailDelete)
         {
             var ptc = new DeleteFriendRequestProtocol();
-            ptc.UserRequest = emailDelete;
+            ptc.UserRequest = emailRequest;
             ptc.UserDelete = emailDelete;
             SendPacket(43, ptc);
         }

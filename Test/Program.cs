@@ -20,12 +20,8 @@ namespace Test
              {
                  Console.WriteLine(item.Name);
              }*/
-            IAccountDAO db = new AccountDAOSQL();
-            var l = db.FindUserExceptFriend("minhduc@gmail.com", "công vinh");
-            foreach (var item in l)
-            {
-                Console.WriteLine(item.Name);
-            }
+            var db = new FriendDAOSQL();
+            Console.WriteLine(db.Delete("minhduc@gmail.com", "tranthanh@gmail.com"));
             Console.ReadLine();
         }
     }

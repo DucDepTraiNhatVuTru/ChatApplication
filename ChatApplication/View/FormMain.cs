@@ -133,8 +133,10 @@ namespace ChatApplication.View
                 cancelFriend.Text = "Hủy kết bạn";
                 cancelFriend.Click += delegate
                 {
-                    var dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((Account)e.Item.DataBoundItem).Name + " khỏi danh sách bạn bè?", "Cảnh báo!", MessageBoxButtons.OKCancel);
-                    if (dialogResult == DialogResult.OK) _client.RequetsDeleteFriend(_account.Email, ((Account)e.Item.DataBoundItem).Email);
+                     var dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((Account)e.Item.DataBoundItem).Name + " khỏi danh sách bạn bè?", "Cảnh báo!", MessageBoxButtons.OKCancel);
+                     if (dialogResult == DialogResult.OK) { _client.RequetsDeleteFriend(_account.Email, ((Account)e.Item.DataBoundItem).Email);
+                         _radlvFriendList.Items.Remove(e.Item);
+                     }
                 };
                 menu.Items.Add(cancelFriend);
                 menu.Show(_radlvFriendList, e.OriginalEventArgs.Location);

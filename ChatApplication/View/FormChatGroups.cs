@@ -26,7 +26,7 @@ namespace ChatApplication.View
         private IDictionary<string, Author> _authorFriends = new Dictionary<string, Author>();
         private List<Account> _userInGroup = new List<Account>();
         public List<ChatGroupMessage> messages = new List<ChatGroupMessage>();
-        private RadWaitingBar waitingBar;
+        private RadWaitingBar waitingBarControl = null;
         private bool _isLoadHistory = false;
         public FormChatGroups()
         {
@@ -45,7 +45,6 @@ namespace ChatApplication.View
             }
             _authorMe = new Author(null, _me.Name);
             LoadMyAvatar(_me.AvatarDriveID);
-            //AddWaitingBar();
             _client.RequestGetUserInGroup(_me.Email, _group.Id);
             InitLV();
             _radchatChatGroup.Author = _authorMe;
@@ -126,6 +125,7 @@ namespace ChatApplication.View
                 e.Item.Image = ImageConverter.ImageResize.ResizeImageCircle(image, 23);
             }));
                 });
+            thread.Priority = ThreadPriority.Highest;
             thread.Start();
         }
 
@@ -183,7 +183,6 @@ namespace ChatApplication.View
 
         public void LoadHistory()
         {
-            //AddWaitingBar();
             foreach(var item in messages)
             {
                 if (item.ImageMessageDriveId!="")
@@ -220,7 +219,7 @@ namespace ChatApplication.View
                         ChatTextMessage mess = new ChatTextMessage(item.Message, _authorMe, item.TimeSend);
                         _radchatChatGroup.AddMessage(mess);
                     }
-                    else if(item.Sender == _me.Email)
+                    else if(item.Sender != _me.Email)
                     {
                         Author auth;
                         if (_authorFriends.TryGetValue(item.Sender, out auth))
@@ -231,16 +230,14 @@ namespace ChatApplication.View
                         else
                         {
                             Author author = new Author(null, item.Sender);
-                            ChatTextMessage mess = new ChatTextMessage(item.Message, auth, item.TimeSend);
+                            ChatTextMessage mess = new ChatTextMessage(item.Message, author, item.TimeSend);
                             _radchatChatGroup.AddMessage(mess);
                         }
                     }
                     
                 }
             }
-            //RemoveWaitingBar();
             _isLoadHistory = true;
-            //_radchatChatGroup.Controls.Remove(waitingBar);
         }
 
         public Image ResizeImagePercentage(Image image)
@@ -257,11 +254,12 @@ namespace ChatApplication.View
         {
             Thread thread = new Thread(delegate ()
             {
-                waitingBar = new RadWaitingBar();
+                RadWaitingBar waitingBar = new RadWaitingBar();
                 waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
                 waitingBar.Size = new Size(_radchatChatGroup.Size.Width, _radchatChatGroup.Height);
                 waitingBar.WaitingSpeed = 10;
                 waitingBar.BackColor = Color.White;
+                waitingBarControl = waitingBar;
                 _radchatChatGroup.Invoke(new MethodInvoker(delegate ()
                 {
                     _radchatChatGroup.Controls.Add(waitingBar);
@@ -277,7 +275,7 @@ namespace ChatApplication.View
 
         public void RemoveWaitingBar()
         {
-            _radchatChatGroup.Controls.Remove(waitingBar);
+            _radchatChatGroup.Controls.Remove(waitingBarControl);
         }
 
         private void _btnOutOfGroup_Click(object sender, EventArgs e)

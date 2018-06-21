@@ -30,14 +30,6 @@ namespace ChatApplication.Handle
                 else
                 {
                     f.OpenFormChat(ptc.Message.Sender);
-                    Thread.Sleep(50);
-                    if (f.FormChatOpening.TryGetValue(ptc.Message.Sender, out formChat))
-                    {
-                        formChat.Invoke(new MethodInvoker(delegate ()
-                        {
-                            formChat.ReceiveTextMessage(ptc.Message);
-                        }));
-                    }
                 }
             }));
         }

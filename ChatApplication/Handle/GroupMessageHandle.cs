@@ -18,10 +18,17 @@ namespace ChatApplication.Handle
 
             f.Invoke(new MethodInvoker(delegate ()
             {
-                FormChatGroups formChatGroup;
-                if (f.FormChatGroupsOpening.TryGetValue(ptc.message.GroupReceive,out formChatGroup))
+                FormChatGroups formChatGroup = null;
+                if (f.FormChatGroupsOpening.TryGetValue(ptc.message.GroupReceive, out formChatGroup))
                 {
-                    formChatGroup.ReceiveMessage(ptc.message);
+                    formChatGroup.Invoke(new MethodInvoker(delegate ()
+                    {
+                        formChatGroup.ReceiveMessage(ptc.message);
+                    }));
+                }
+                else
+                {
+                    f.OpenFormChatGroup(ptc.message.GroupReceive);
                 }
             }));
         }

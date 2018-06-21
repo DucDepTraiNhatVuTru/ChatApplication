@@ -52,6 +52,8 @@ namespace ChatApplication.View
             _radchatChatGroup.SendMessage += _radchatChatGroup_SendMessage;
             _radchatChatGroup.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
             _btnAddUserToGroup.Click += _btnAddUserToGroup_Click;
+
+            _client.RequestGetHistoryGroupChat(_me.Email, _group.Id);
         }
 
         private void _btnAddUserToGroup_Click(object sender, EventArgs e)
@@ -143,8 +145,8 @@ namespace ChatApplication.View
 
         public void LoadListUserInGroup(List<Account> accounts)
         {
-            _radLVListFriendInGroup.DataSource = null;
-            _radLVListFriendInGroup.Items.Clear();
+            /*_radLVListFriendInGroup.DataSource = null;
+            _radLVListFriendInGroup.Items.Clear();*/
             _authorFriends.Clear();
             _userInGroup = accounts;
             BindingList<Account> listUser = new BindingList<Account>();
@@ -155,12 +157,6 @@ namespace ChatApplication.View
             _radLVListFriendInGroup.DataSource = listUser;
             _radLVListFriendInGroup.DisplayMember = "Name";
             _radLVListFriendInGroup.ValueMember = "Id";
-
-            //lấy lịch sử chat
-            if (!_isLoadHistory)
-            {
-                _client.RequestGetHistoryGroupChat(_me.Email, _group.Id);
-            }
         }
 
         public void ReceiveMessage(ChatGroupMessage message)

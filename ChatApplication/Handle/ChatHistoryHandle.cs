@@ -39,8 +39,10 @@ namespace ChatApplication.Handle
                 {
                     formChat.Invoke(new MethodInvoker(delegate ()
                     {
+                        formChat.AddWaitingBar();
                         formChat.AllMessage = ptc.Messages;
                         formChat.AddMessageHistory();
+                        formChat.RemoveWaitingBar();
                         //formChat.Show();
                     }));
                 }

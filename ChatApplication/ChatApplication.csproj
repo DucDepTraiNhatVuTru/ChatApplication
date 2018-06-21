@@ -41,6 +41,10 @@
     <Reference Include="ImageConverter">
       <HintPath>..\ChatProtocol\bin\Debug\ImageConverter.dll</HintPath>
     </Reference>
+    <Reference Include="OzekiSDK, Version=1.8.22.0, Culture=neutral, PublicKeyToken=4812fb35129b8487, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Ozeki\Ozeki SDK\SDK\NET4\OzekiSDK.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleTCP, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleTCP.1.0.24\lib\net45\SimpleTCP.dll</HintPath>
       <Private>True</Private>
@@ -213,12 +217,19 @@
       <Project>{4A04BDEA-6817-4679-8C08-7B096BD8F9CC}</Project>
       <Name>GoogleDriveApiv3</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PhoneCall\PhoneCall.csproj">
+      <Project>{f577b1ba-9ea4-4358-9b83-679851d4fe88}</Project>
+      <Name>PhoneCall</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Asset\pen.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Asset\Group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Asset\call.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

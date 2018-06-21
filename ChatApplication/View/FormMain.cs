@@ -17,6 +17,8 @@ using Telerik.WinControls.Layouts;
 using Telerik.WinControls.Primitives;
 using System.IO;
 using ChatApplication.Util;
+using PhoneCall;
+using PhoneCall.Ozeki;
 
 namespace ChatApplication.View
 {
@@ -26,6 +28,7 @@ namespace ChatApplication.View
         private Account _account;
         public IDictionary<string, FormChat> FormChatOpening = new Dictionary<string, FormChat>();
         public IDictionary<string, FormChatGroups> FormChatGroupsOpening = new Dictionary<string, FormChatGroups>();
+        IAudioCall call;
         public FormMain()
         {
             InitializeComponent();
@@ -64,7 +67,15 @@ namespace ChatApplication.View
             _account = account;
             Init();
             _client.OnNewRecieve += _client_OnNewRecieve;
-            
+
+
+            /*
+            Thread thread = new Thread(delegate ()
+            {
+                call = new OzekiAudioCall();
+                call.RegisterAccount(_account);
+            });
+            thread.Start();*/
         }
 
         private void _client_OnNewRecieve(byte opcode, ChatProtocol.Protocol.IProtocol ptc)
@@ -120,8 +131,9 @@ namespace ChatApplication.View
                 _client.RequestGetListFriendRequest(_account.Email);
             if (!_client.IsSending)
                 _client.RequsetGetListFriend(_account.Email);
-            _client.RequestGetListFriendIRequest(_account.Email);
 
+
+            _client.RequestGetListFriendIRequest(_account.Email);
         }
 
         private void _radlvFriendList_ItemMouseDown(object sender, ListViewItemMouseEventArgs e)
@@ -217,6 +229,10 @@ namespace ChatApplication.View
         //click vào item trong groupChat
         private void _radLVGroupChat_ItemMouseClick(object sender, ListViewItemEventArgs e)
         {
+
+            MessageBox.Show(e.Item.Value.ToString());
+            OpenFormChatGroup(e.Item.Value.ToString());
+            /*
             var formChatGroup = new FormChatGroups(_client, GetGroupFromListGroup(e.Item.Value.ToString()));
             
             Thread thread = new Thread(delegate ()
@@ -229,6 +245,7 @@ namespace ChatApplication.View
             });
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
+            */
         }
 
         private void _radlvFriendList_ItemMouseClick(object sender, ListViewItemEventArgs e)
@@ -243,7 +260,7 @@ namespace ChatApplication.View
             {
                 form.Invoke(new MethodInvoker(delegate ()
                 {
-                    form.Focus();
+                    form.Activate();
                 }));
                 return;
             }
@@ -261,9 +278,41 @@ namespace ChatApplication.View
             thread.Start();
         }
 
-        private void Form_OnClose(string email)
+        public void OpenFormChatGroup(string groupId)
         {
-            FormChatOpening.Remove(email);
+            FormChatGroups formChatGroup;
+            if(FormChatGroupsOpening.TryGetValue(groupId, out formChatGroup))
+            {
+                formChatGroup.Invoke(new MethodInvoker(delegate ()
+                {
+                    formChatGroup.Activate();
+                }));
+
+                return;
+            }
+
+            formChatGroup = new FormChatGroups(_client, GetGroupFromListGroup(groupId));
+            formChatGroup.Close += FormChatGroup_Close;
+            Thread thread = new Thread(delegate ()
+            {
+                lock (this)
+                {
+                    FormChatGroupsOpening.Add(groupId, formChatGroup);
+                }
+                formChatGroup.ShowDialog();
+            });
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+        }
+
+        private void FormChatGroup_Close(string email)
+        {
+            FormChatGroupsOpening.Remove(email);
+        }
+
+        private void Form_OnClose(string groupId)
+        {
+            FormChatOpening.Remove(groupId);
         }
 
         private void _btnClose_Click(object sender, EventArgs e)
@@ -409,5 +458,7 @@ namespace ChatApplication.View
                 _tabPageFriendRequest.Text = "(" + number + ") Lời mời kết bạn";
             else _tabPageFriendRequest.Text = "Lời mời kết bạn";
         }
+
+      
     }
 }

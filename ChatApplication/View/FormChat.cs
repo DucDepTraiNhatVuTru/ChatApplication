@@ -15,13 +15,15 @@ using GoogleDriveApiv3;
 using ChatApplication.Util;
 using System.IO;
 using System.Threading;
+using Ozeki.VoIP;
+using PhoneCall;
 
 namespace ChatApplication.View
 {
     public partial class FormChat : Form
     {
         private IClient _client;
-        private Account _user;
+        private ChatDataModel.Account _user;
         public List<ChatDataModel.ChatMessage> AllMessage = new List<ChatDataModel.ChatMessage>();
         public event Action<string> OnClose;
         Author authorMe, authorFriend;
@@ -30,6 +32,8 @@ namespace ChatApplication.View
         private FormChung.Picture controlsAdded;
         private bool _isGotHistory = false;
         public List<ChatDataModel.ChatMessage> Messages = new List<ChatDataModel.ChatMessage>();
+        private RadWaitingBar waitingBarControl = null;
+        IAudioCall _phoneCall;
         public bool IsGotHistory
         {
             get
@@ -49,7 +53,7 @@ namespace ChatApplication.View
             InitializeComponent();
         }
 
-        public FormChat(IClient client, Account account)
+        public FormChat(IClient client, ChatDataModel.Account account)
         {
             InitializeComponent();
             _client = client;
@@ -73,6 +77,8 @@ namespace ChatApplication.View
             _rcChatlog.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
             _rcChatlog.ChatElement.SendButtonElement.Click += SendButtonElement_Click;
             _rcChatlog.ChatElement.MessagesViewElement.BackColor = Color.White;
+
+            //_phoneCall = phoneCall;
         }
         
         private void SendButtonElement_Click(object sender, EventArgs e)
@@ -160,6 +166,21 @@ namespace ChatApplication.View
             _rcChatlog.AddMessage(mess);
         }
 
+        private void _ptbCall_Click(object sender, EventArgs e)
+        {
+            if (Instance.InCommingCall)
+            {
+                Instance.InCommingCall = false;
+                _phoneCall.Answer();
+                return;
+            }
+            if (_phoneCall.GetPhoneCall() != null)
+            {
+                return;
+            }
+            _phoneCall.CreateCall(_user.Email);
+        }
+
         public void AddMessageHistory()
         {
             var me = Instance.CurrentUser.Email;
@@ -194,6 +215,30 @@ namespace ChatApplication.View
                 }
             }
             //IsGotHistory = true;
+        }
+
+        public void AddWaitingBar()
+        {
+            Thread thread = new Thread(delegate ()
+            {
+                RadWaitingBar waitingBar = new RadWaitingBar();
+                waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+                waitingBar.Size = new Size(_rcChatlog.Size.Width, _rcChatlog.Height);
+                waitingBar.WaitingSpeed = 10;
+                waitingBar.BackColor = Color.White;
+                waitingBarControl = waitingBar;
+                _rcChatlog.Invoke(new MethodInvoker(delegate ()
+                {
+                    _rcChatlog.Controls.Add(waitingBar);
+                    waitingBar.StartWaiting();
+                }));
+            });
+            thread.Start();
+        }
+
+        public void RemoveWaitingBar()
+        {
+            _rcChatlog.Controls.Remove(waitingBarControl);
         }
     }
 }

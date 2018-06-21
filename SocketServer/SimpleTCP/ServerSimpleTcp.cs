@@ -42,7 +42,7 @@ namespace SocketServer.SimpleTCP
                     var packets = SplitPacket(e.Data);
                     foreach (var pk in packets)
                     {
-                        Thread.Sleep(50);
+                        Thread.Sleep(150);
                         Thread t = new Thread(delegate ()
                         {
                             var pack = new BasicPacket();

@@ -28,6 +28,7 @@ namespace ChatApplication.View
         public List<ChatGroupMessage> messages = new List<ChatGroupMessage>();
         private RadWaitingBar waitingBarControl = null;
         private bool _isLoadHistory = false;
+        public event Action<string> Close;
         public FormChatGroups()
         {
             InitializeComponent();
@@ -300,6 +301,14 @@ namespace ChatApplication.View
         public void ShowMessage(string message, string tittle)
         {
             MessageBox.Show(message, tittle);
+        }
+
+        private void FormChatGroups_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Close != null)
+            {
+                Close.Invoke(_group.Id);
+            }
         }
     }
 }

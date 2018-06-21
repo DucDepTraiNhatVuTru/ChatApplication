@@ -13,5 +13,6 @@ namespace ChatApplication.Util
         public static List<Account> ListFriends = new List<Account>();
         public static List<Group> ListGroups = new List<Group>();
         public static List<Account> ListUserAskAddFriend = new List<Account>();
+        public static bool InCommingCall = false;
     }
 }

@@ -17,6 +17,7 @@ using Telerik.WinControls.Layouts;
 using Telerik.WinControls.Primitives;
 using System.IO;
 using ChatApplication.Util;
+using Ozeki.VoIP;
 using PhoneCall;
 using PhoneCall.Ozeki;
 
@@ -25,10 +26,13 @@ namespace ChatApplication.View
     public partial class FormMain : Form
     {
         private IClient _client;
-        private Account _account;
+        private ChatDataModel.Account _account;
         public IDictionary<string, FormChat> FormChatOpening = new Dictionary<string, FormChat>();
         public IDictionary<string, FormChatGroups> FormChatGroupsOpening = new Dictionary<string, FormChatGroups>();
-        IAudioCall call;
+        IAudioCall _call;
+        /*private ISoftPhone _softPhone;
+        private IPhoneLine _phoneLine;
+        private IPhoneCall _call;*/
         public FormMain()
         {
             InitializeComponent();
@@ -40,7 +44,7 @@ namespace ChatApplication.View
             {
                 Thread thread = new Thread(delegate ()
                 {
-                    var image = Image.FromStream(GoogleDriveFilesRepository.DownloadFile(((Account)e.Item.DataBoundItem).AvatarDriveID));
+                    var image = Image.FromStream(GoogleDriveFilesRepository.DownloadFile(((ChatDataModel.Account)e.Item.DataBoundItem).AvatarDriveID));
                     _radlvFriendList.Invoke(new MethodInvoker(delegate ()
                     {
                         e.Item.Image = ImageConverter.ImageResize.ResizeImageCircle(image, 46);
@@ -48,7 +52,7 @@ namespace ChatApplication.View
                 });
                 thread.Start();
             }
-            catch(Exception ex)
+            catch
             {
                 MessageBox.Show("không có kết nổi , xin kiểm tra lại internet!");
                 _radlvFriendList_ItemDataBound(sender, e);
@@ -60,7 +64,7 @@ namespace ChatApplication.View
            // e.VisualItem = new CustomItemListFriends();
         }
 
-        public FormMain(IClient client, Account account)
+        public FormMain(IClient client, ChatDataModel.Account account)
         {
             InitializeComponent();
             _client = client;
@@ -68,15 +72,57 @@ namespace ChatApplication.View
             Init();
             _client.OnNewRecieve += _client_OnNewRecieve;
 
-
-            /*
             Thread thread = new Thread(delegate ()
             {
-                call = new OzekiAudioCall();
-                call.RegisterAccount(_account);
+                _call = new OzekiAudioCall();
+                _call.RegisterAccount(_account);
+                
+                _call.ConnectMedia();
+                _call.SoftPhoneInComingCall += _call_SoftPhoneInComingCall;
+                MessageBox.Show("OKe");
             });
-            thread.Start();*/
+            thread.Start();
         }
+
+        private void _call_SoftPhoneInComingCall(string callerName)
+        {
+            FormInComingCall formInComingCall = new FormInComingCall(_call, callerName);
+            Thread thread = new Thread(delegate ()
+            {
+                formInComingCall.ShowDialog();
+            });
+            thread.Start();
+        }
+
+        /*private void InitializeSoftPhone()
+        {
+            try
+            {
+                var licenseCode =
+"UDoyMDMzLTEyLTI1LFVQOjIwMzMtMDEtMDEsTUNDOjMwLE1QTDozMCxNU0xDOjMwLE1GQzozMCxHNzI5OnRydWUsTVdQQzozMCxNSVBDOjMwfFg1dF" +
+"BsTWRTNHNDeGFLa1Yyd3V5WHU5VGlOQkV4aG9KYit3WXdERDA3blRMWFh0WnYvOHRnQThLaGtoZ05XNVE5MjRUUjgwV1p4cVNFK0g2VGw2bHRRPT0=";
+                var userName = "I-Warez 2015";
+                Ozeki.Common.LicenseManager.Instance.SetLicense(userName, licenseCode);
+                _softPhone = SoftPhoneFactory.CreateSoftPhone(SoftPhoneFactory.GetLocalIP(), 5700, 6000);
+                //_softPhone.IncomingCall += _softPhone_IncomingCall;
+                var tach = _account.Email.Split('@');
+                SIPAccount sa = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.109", 5056);
+                _phoneLine = _softPhone.CreatePhoneLine(sa);
+                _softPhone.RegisterPhoneLine(_phoneLine);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }*/
+
+        /* private void _softPhone_IncomingCall(object sender, Ozeki.Media.VoIPEventArgs<IPhoneCall> e)
+         {
+             _call = e.Item;
+             //gọi events statechange
+             Instance.InCommingCall = true;
+         }*/
 
         private void _client_OnNewRecieve(byte opcode, ChatProtocol.Protocol.IProtocol ptc)
         {
@@ -103,8 +149,6 @@ namespace ChatApplication.View
 
             _radlvFriendList.AllowEdit = false;
             _radlvFriendList.AllowRemove = false;
-            _radlvFriendList.ItemSpacing = 5;
-            _radlvFriendList.ShowGridLines = true;
             _radlvFriendList.VisualItemCreating += VisualItemCreating;
             _radlvFriendList.ItemDataBound += _radlvFriendList_ItemDataBound;
             _radlvFriendList.ItemSize = new Size(_radlvFriendList.ItemSize.Width, 50);
@@ -145,8 +189,8 @@ namespace ChatApplication.View
                 cancelFriend.Text = "Hủy kết bạn";
                 cancelFriend.Click += delegate
                 {
-                     var dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((Account)e.Item.DataBoundItem).Name + " khỏi danh sách bạn bè?", "Cảnh báo!", MessageBoxButtons.OKCancel);
-                     if (dialogResult == DialogResult.OK) { _client.RequetsDeleteFriend(_account.Email, ((Account)e.Item.DataBoundItem).Email);
+                     var dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((ChatDataModel.Account)e.Item.DataBoundItem).Name + " khỏi danh sách bạn bè?", "Cảnh báo!", MessageBoxButtons.OKCancel);
+                     if (dialogResult == DialogResult.OK) { _client.RequetsDeleteFriend(_account.Email, ((ChatDataModel.Account)e.Item.DataBoundItem).Email);
                          _radlvFriendList.Items.Remove(e.Item);
                      }
                 };
@@ -161,7 +205,7 @@ namespace ChatApplication.View
 
         private void _radLVFriendRequest_ItemMouseClick(object sender, ListViewItemEventArgs e)
         {
-            var dialogResult = MessageBox.Show(((Account)e.Item.DataBoundItem).Name + " đã gửi một lời mời kết bạn!", "Lời mời kết bạn", MessageBoxButtons.YesNoCancel);
+            var dialogResult = MessageBox.Show(((ChatDataModel.Account)e.Item.DataBoundItem).Name + " đã gửi một lời mời kết bạn!", "Lời mời kết bạn", MessageBoxButtons.YesNoCancel);
             // isAccept = 1 là đồng ý
             // isAccept = 0 là hủy
             int isAccept = -1;
@@ -177,7 +221,7 @@ namespace ChatApplication.View
             {
                 return;
             }
-            _client.RequestAcceptAddFriend(1, ((Account)e.Item.DataBoundItem).Email, _account.Email);
+            _client.RequestAcceptAddFriend(isAccept, ((ChatDataModel.Account)e.Item.DataBoundItem).Email, _account.Email);
             _radLVFriendRequest.Items.Remove(e.Item);
             UpdateFriendRequestCount(_radLVFriendRequest.Items.Count);
         }
@@ -194,7 +238,7 @@ namespace ChatApplication.View
         {
             Thread thread = new Thread(delegate ()
             {
-                var image = Image.FromStream(GoogleDriveFilesRepository.DownloadFile(((Account)e.Item.DataBoundItem).AvatarDriveID));
+                var image = Image.FromStream(GoogleDriveFilesRepository.DownloadFile(((ChatDataModel.Account)e.Item.DataBoundItem).AvatarDriveID));
                 _radlvFriendList.Invoke(new MethodInvoker(delegate ()
                 {
                     e.Item.Image = ImageConverter.ImageResize.ResizeImageCircle(image, 42);
@@ -350,9 +394,9 @@ namespace ChatApplication.View
             return _ptbAvatar;
         }
 
-        public void LoadFriendList(List<Account> accounts)
+        public void LoadFriendList(List<ChatDataModel.Account> accounts)
         {
-            BindingList<Account> listUser = new BindingList<Account>();
+            BindingList<ChatDataModel.Account> listUser = new BindingList<ChatDataModel.Account>();
             foreach (var item in accounts)
             {
                 listUser.Add(item);
@@ -387,7 +431,7 @@ namespace ChatApplication.View
             return null;
         }
 
-        private Account GetAccountFromFriendList(string email)
+        private ChatDataModel.Account GetAccountFromFriendList(string email)
         {
             foreach(var item in Instance.ListFriends)
             {
@@ -440,9 +484,9 @@ namespace ChatApplication.View
             LoadGroupList(Instance.ListGroups);
         }
 
-        public void LoadListUserFriendRequest(List<Account> accounts)
+        public void LoadListUserFriendRequest(List<ChatDataModel.Account> accounts)
         {
-            BindingList<Account> list = new BindingList<Account>();
+            BindingList<ChatDataModel.Account> list = new BindingList<ChatDataModel.Account>();
             foreach(var item in accounts)
             {
                 list.Add(item);
@@ -458,7 +502,5 @@ namespace ChatApplication.View
                 _tabPageFriendRequest.Text = "(" + number + ") Lời mời kết bạn";
             else _tabPageFriendRequest.Text = "Lời mời kết bạn";
         }
-
-      
     }
 }

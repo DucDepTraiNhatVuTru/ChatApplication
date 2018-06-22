@@ -26,7 +26,7 @@ namespace ChatProtocol.Handle
             }
             catch (Exception ex)
             {
-                toView += "\n insert group message failed!";
+                toView += "\n insert group message failed \n detail : "+ex.Message;
             }
 
             var accounts = GetUserInGroupExceptMe(ptc.message.GroupReceive, ptc.message.Sender);

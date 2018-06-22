@@ -79,7 +79,7 @@ namespace ChatApplication.View
         {
             var groupName = "No Name Yet";
             var listEmail = new List<string>();
-            foreach(var item in _radLVFriends.Items)
+            foreach(var item in _radLVFriends.CheckedItems)
             {
                 listEmail.Add(((Account)item.DataBoundItem).Email);
             }
@@ -89,6 +89,13 @@ namespace ChatApplication.View
             }
             var group = new Group(Guid.NewGuid().ToString(), groupName, _me.Email, DateTime.Now);
             _client.RequestCreateGroupChat(group, listEmail);
+            Reset();
+        }
+
+        private void Reset()
+        {
+            _txtGroupName.Text = "";
+            _radLVFriends.UncheckAllItems();
         }
     }
 }

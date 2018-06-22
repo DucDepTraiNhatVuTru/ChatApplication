@@ -30,12 +30,13 @@ namespace PhoneCall.Ozeki
         private bool localHeld;
 
         public event Action PhoneLineRegisterStateChange;
-        public event Action SoftPhoneInComingCall;
+        public event Action<string> SoftPhoneInComingCall;
         public event Action<int> CallStateChange;
 
         public OzekiAudioCall()
         {
-           /* var licenseCode =
+
+            /*var licenseCode =
 "UDoyMDMzLTEyLTI1LFVQOjIwMzMtMDEtMDEsTUNDOjMwLE1QTDozMCxNU0xDOjMwLE1GQzozMCxHNzI5OnRydWUsTVdQQzozMCxNSVBDOjMwfFg1dF" +
 "BsTWRTNHNDeGFLa1Yyd3V5WHU5VGlOQkV4aG9KYit3WXdERDA3blRMWFh0WnYvOHRnQThLaGtoZ05XNVE5MjRUUjgwV1p4cVNFK0g2VGw2bHRRPT0=";
             var userName = "I-Warez 2015";
@@ -47,7 +48,11 @@ namespace PhoneCall.Ozeki
         private void SoftPhone_IncomingCall(object sender, VoIPEventArgs<IPhoneCall> e)
         {
             call = e.Item;
-
+            WireUpCallEvents();
+            if (SoftPhoneInComingCall != null)
+            {
+                SoftPhoneInComingCall.Invoke(call.DialInfo.CallerDisplay);
+            }
         }
 
         private void WireUpCallEvents()
@@ -120,7 +125,8 @@ namespace PhoneCall.Ozeki
 
         public void RegisterAccount(ChatDataModel.Account account)
         {
-            sipAccount = new SIPAccount(true, account.Name, account.Email, account.Email, account.Password, "192.168.0.109",5060);
+            var tach = account.Email.Split('@');
+            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.109",5060);
             try
             {
                 phoneLine = softPhone.CreatePhoneLine(sipAccount);

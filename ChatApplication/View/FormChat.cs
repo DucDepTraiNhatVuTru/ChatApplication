@@ -33,7 +33,7 @@ namespace ChatApplication.View
         private bool _isGotHistory = false;
         public List<ChatDataModel.ChatMessage> Messages = new List<ChatDataModel.ChatMessage>();
         private RadWaitingBar waitingBarControl = null;
-        IAudioCall _phoneCall;
+        //IAudioCall _phoneCall;
         public bool IsGotHistory
         {
             get
@@ -77,6 +77,7 @@ namespace ChatApplication.View
             _rcChatlog.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
             _rcChatlog.ChatElement.SendButtonElement.Click += SendButtonElement_Click;
             _rcChatlog.ChatElement.MessagesViewElement.BackColor = Color.White;
+            _rcChatlog.AutoScroll = false;
 
             //_phoneCall = phoneCall;
         }
@@ -168,7 +169,7 @@ namespace ChatApplication.View
 
         private void _ptbCall_Click(object sender, EventArgs e)
         {
-            if (Instance.InCommingCall)
+           /* if (Instance.InCommingCall)
             {
                 Instance.InCommingCall = false;
                 _phoneCall.Answer();
@@ -178,7 +179,7 @@ namespace ChatApplication.View
             {
                 return;
             }
-            _phoneCall.CreateCall(_user.Email);
+            _phoneCall.CreateCall(_user.Email);*/
         }
 
         public void AddMessageHistory()

@@ -127,6 +127,12 @@
     <Compile Include="View\FormFindFriends.Designer.cs">
       <DependentUpon>FormFindFriends.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormInComingCall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormInComingCall.Designer.cs">
+      <DependentUpon>FormInComingCall.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormFindFriends.resx">
       <DependentUpon>FormFindFriends.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormInComingCall.resx">
+      <DependentUpon>FormInComingCall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
@@ -230,6 +239,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asset\call.png" />
+    <None Include="Asset\callling.gif" />
+    <Content Include="Asset\telephone-ring-01a.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

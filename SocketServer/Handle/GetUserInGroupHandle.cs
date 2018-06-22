@@ -25,7 +25,7 @@ namespace ChatProtocol.Handle
             }
             catch (Exception ex)
             {
-                toString += "\n Get list failed";
+                toString += "\n Get list failed \n detail : " + ex.Message;
             }
             return toString;
         }

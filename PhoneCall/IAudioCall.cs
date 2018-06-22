@@ -15,7 +15,7 @@ namespace PhoneCall
         event Action PhoneLineRegisterStateChange;
         void ConnectMedia();
         void DisconnectMedia();
-        event Action SoftPhoneInComingCall;
+        event Action<string> SoftPhoneInComingCall;
         event Action<int> CallStateChange;
         void CreateCall(string dial);
         void Answer();

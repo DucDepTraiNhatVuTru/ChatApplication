@@ -33,7 +33,7 @@ namespace ChatApplication.View
         private bool _isGotHistory = false;
         public List<ChatDataModel.ChatMessage> Messages = new List<ChatDataModel.ChatMessage>();
         private RadWaitingBar waitingBarControl = null;
-        //IAudioCall _phoneCall;
+        IAudioCall _phoneCall;
         public bool IsGotHistory
         {
             get
@@ -53,7 +53,7 @@ namespace ChatApplication.View
             InitializeComponent();
         }
 
-        public FormChat(IClient client, ChatDataModel.Account account)
+        public FormChat(IClient client, ChatDataModel.Account account, IAudioCall phoneCall)
         {
             InitializeComponent();
             _client = client;
@@ -79,9 +79,24 @@ namespace ChatApplication.View
             _rcChatlog.ChatElement.MessagesViewElement.BackColor = Color.White;
             _rcChatlog.AutoScroll = false;
 
-            //_phoneCall = phoneCall;
+            _phoneCall = phoneCall;
+            _phoneCall.CallStateChange += _phoneCall_CallStateChange;
         }
-        
+
+        private void _phoneCall_CallStateChange(MyCallState state)
+        {
+            if (state == MyCallState.Answered)
+            {
+                FormInCall formInCall;
+                Thread thread = new Thread(delegate ()
+                {
+                    formInCall = new FormInCall(_phoneCall, _user);
+                    formInCall.ShowDialog();
+                });
+                thread.Start();
+            }
+        }
+
         private void SendButtonElement_Click(object sender, EventArgs e)
         {
             if (mediaMessageDriveId != "")
@@ -169,17 +184,16 @@ namespace ChatApplication.View
 
         private void _ptbCall_Click(object sender, EventArgs e)
         {
-           /* if (Instance.InCommingCall)
+            try
             {
-                Instance.InCommingCall = false;
-                _phoneCall.Answer();
-                return;
+                var tach = _user.Email.Split('@');
+                _phoneCall.CreateCall(tach[0]);
             }
-            if (_phoneCall.GetPhoneCall() != null)
+            catch (Exception)
             {
-                return;
+
+                throw;
             }
-            _phoneCall.CreateCall(_user.Email);*/
         }
 
         public void AddMessageHistory()

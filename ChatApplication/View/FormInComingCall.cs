@@ -37,6 +37,7 @@ namespace ChatApplication.View
             thread.Start();
 
             this.FormClosed +=delegate{
+                player.Stop();
                 thread.Abort();
             };
         }
@@ -44,6 +45,7 @@ namespace ChatApplication.View
         private void _btnPickUp_Click(object sender, EventArgs e)
         {
             _call.Answer();
+            this.Close();
         }
     }
 }

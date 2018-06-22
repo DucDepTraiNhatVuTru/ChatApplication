@@ -30,9 +30,6 @@ namespace ChatApplication.View
         public IDictionary<string, FormChat> FormChatOpening = new Dictionary<string, FormChat>();
         public IDictionary<string, FormChatGroups> FormChatGroupsOpening = new Dictionary<string, FormChatGroups>();
         IAudioCall _call;
-        /*private ISoftPhone _softPhone;
-        private IPhoneLine _phoneLine;
-        private IPhoneCall _call;*/
         public FormMain()
         {
             InitializeComponent();
@@ -93,36 +90,6 @@ namespace ChatApplication.View
             });
             thread.Start();
         }
-
-        /*private void InitializeSoftPhone()
-        {
-            try
-            {
-                var licenseCode =
-"UDoyMDMzLTEyLTI1LFVQOjIwMzMtMDEtMDEsTUNDOjMwLE1QTDozMCxNU0xDOjMwLE1GQzozMCxHNzI5OnRydWUsTVdQQzozMCxNSVBDOjMwfFg1dF" +
-"BsTWRTNHNDeGFLa1Yyd3V5WHU5VGlOQkV4aG9KYit3WXdERDA3blRMWFh0WnYvOHRnQThLaGtoZ05XNVE5MjRUUjgwV1p4cVNFK0g2VGw2bHRRPT0=";
-                var userName = "I-Warez 2015";
-                Ozeki.Common.LicenseManager.Instance.SetLicense(userName, licenseCode);
-                _softPhone = SoftPhoneFactory.CreateSoftPhone(SoftPhoneFactory.GetLocalIP(), 5700, 6000);
-                //_softPhone.IncomingCall += _softPhone_IncomingCall;
-                var tach = _account.Email.Split('@');
-                SIPAccount sa = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.109", 5056);
-                _phoneLine = _softPhone.CreatePhoneLine(sa);
-                _softPhone.RegisterPhoneLine(_phoneLine);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }*/
-
-        /* private void _softPhone_IncomingCall(object sender, Ozeki.Media.VoIPEventArgs<IPhoneCall> e)
-         {
-             _call = e.Item;
-             //gọi events statechange
-             Instance.InCommingCall = true;
-         }*/
 
         private void _client_OnNewRecieve(byte opcode, ChatProtocol.Protocol.IProtocol ptc)
         {
@@ -276,20 +243,6 @@ namespace ChatApplication.View
 
             MessageBox.Show(e.Item.Value.ToString());
             OpenFormChatGroup(e.Item.Value.ToString());
-            /*
-            var formChatGroup = new FormChatGroups(_client, GetGroupFromListGroup(e.Item.Value.ToString()));
-            
-            Thread thread = new Thread(delegate ()
-            {
-                lock (this)
-                {
-                    FormChatGroupsOpening.Add(e.Item.Value.ToString(), formChatGroup);
-                }
-                formChatGroup.ShowDialog();
-            });
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
-            */
         }
 
         private void _radlvFriendList_ItemMouseClick(object sender, ListViewItemEventArgs e)
@@ -308,7 +261,7 @@ namespace ChatApplication.View
                 }));
                 return;
             }
-            var formChat = new FormChat(_client, GetAccountFromFriendList(email));
+            var formChat = new FormChat(_client, GetAccountFromFriendList(email),_call);
             formChat.OnClose += Form_OnClose;
             Thread thread = new Thread(delegate ()
             {

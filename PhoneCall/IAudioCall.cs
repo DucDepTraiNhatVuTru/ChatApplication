@@ -16,9 +16,11 @@ namespace PhoneCall
         void ConnectMedia();
         void DisconnectMedia();
         event Action<string> SoftPhoneInComingCall;
-        event Action<int> CallStateChange;
+        event Action<MyCallState> CallStateChange;
         void CreateCall(string dial);
         void Answer();
+        void Reject();
+        void HangUp();
         IPhoneCall GetPhoneCall();
         RegState GetPhoneLineInformation();
     }

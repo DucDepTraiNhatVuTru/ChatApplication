@@ -31,7 +31,7 @@ namespace PhoneCall.Ozeki
 
         public event Action PhoneLineRegisterStateChange;
         public event Action<string> SoftPhoneInComingCall;
-        public event Action<int> CallStateChange;
+        public event Action<MyCallState> CallStateChange;
 
         public OzekiAudioCall()
         {
@@ -67,7 +67,7 @@ namespace PhoneCall.Ozeki
 
         private void Call_CallStateChanged(object sender, CallStateChangedArgs e)
         {
-            MyCallState tmp;
+            MyCallState tmp = MyCallState.DoNotthing;
             if (e.State == CallState.Answered)
             {
                 StartDevices();
@@ -94,6 +94,10 @@ namespace PhoneCall.Ozeki
             if (e.State == CallState.LocalHeld)
             {
                 StopDevices();
+            }
+            if (CallStateChange != null)
+            {
+                CallStateChange.Invoke(tmp);
             }
         }
 
@@ -126,7 +130,7 @@ namespace PhoneCall.Ozeki
         public void RegisterAccount(ChatDataModel.Account account)
         {
             var tach = account.Email.Split('@');
-            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.109",5060);
+            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.43.198",5060);
             try
             {
                 phoneLine = softPhone.CreatePhoneLine(sipAccount);
@@ -185,6 +189,15 @@ namespace PhoneCall.Ozeki
             call.Answer();
         }
 
+        public void Reject()
+        {
+            call.Reject();
+        }
+
+        public void HangUp()
+        {
+            call.HangUp();
+        }
         public IPhoneCall GetPhoneCall()
         {
             return call;

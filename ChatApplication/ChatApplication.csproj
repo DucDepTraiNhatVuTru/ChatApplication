@@ -127,6 +127,12 @@
     <Compile Include="View\FormFindFriends.Designer.cs">
       <DependentUpon>FormFindFriends.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormInCall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormInCall.Designer.cs">
+      <DependentUpon>FormInCall.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormInComingCall.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormFindFriends.resx">
       <DependentUpon>FormFindFriends.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormInCall.resx">
+      <DependentUpon>FormInCall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormInComingCall.resx">
       <DependentUpon>FormInComingCall.cs</DependentUpon>
@@ -240,6 +249,7 @@
   <ItemGroup>
     <Content Include="Asset\call.png" />
     <None Include="Asset\callling.gif" />
+    <Content Include="Asset\phone-calling-1.wav" />
     <Content Include="Asset\telephone-ring-01a.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

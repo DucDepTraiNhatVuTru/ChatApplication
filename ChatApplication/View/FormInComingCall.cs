@@ -47,5 +47,11 @@ namespace ChatApplication.View
             _call.Answer();
             this.Close();
         }
+
+        private void _btnTuChoi_Click(object sender, EventArgs e)
+        {
+            _call.Reject();
+            this.Close();
+        }
     }
 }

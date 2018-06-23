@@ -30,6 +30,7 @@ namespace ChatApplication.View
         public IDictionary<string, FormChat> FormChatOpening = new Dictionary<string, FormChat>();
         public IDictionary<string, FormChatGroups> FormChatGroupsOpening = new Dictionary<string, FormChatGroups>();
         IAudioCall _call;
+        private RadWaitingBar _waitingBar = null;
         public FormMain()
         {
             InitializeComponent();
@@ -64,6 +65,7 @@ namespace ChatApplication.View
         public FormMain(IClient client, ChatDataModel.Account account)
         {
             InitializeComponent();
+            AddWaitingBar();
             _client = client;
             _account = account;
             Init();
@@ -76,13 +78,39 @@ namespace ChatApplication.View
                 
                 _call.ConnectMedia();
                 _call.SoftPhoneInComingCall += _call_SoftPhoneInComingCall;
-                MessageBox.Show("OKe");
+
+                RemoveWatingBar();
             });
             thread.Start();
         }
 
+        public void AddWaitingBar()
+        {
+            Thread thread = new Thread(delegate ()
+            {
+                RadWaitingBar waitingBar = new RadWaitingBar();
+                waitingBar.Size = new Size(30, 30);
+                waitingBar.Location = new Point(this.Width / 2, this.Height / 2);
+                waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+                waitingBar.WaitingSpeed = 10;
+                _radlvFriendList.Controls.Add(waitingBar);
+                waitingBar.StartWaiting();
+                _waitingBar = waitingBar;
+            });
+            thread.Start();
+        }
+
+        public void RemoveWatingBar()
+        {
+            _radlvFriendList.Invoke(new MethodInvoker(delegate ()
+            {
+                _radlvFriendList.Controls.Remove(_radlvFriendList);
+            }));
+        }
+
         private void _call_SoftPhoneInComingCall(string callerName)
         {
+            Instance.InCommingCall = true;
             FormInComingCall formInComingCall = new FormInComingCall(_call, callerName);
             Thread thread = new Thread(delegate ()
             {

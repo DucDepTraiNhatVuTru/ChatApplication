@@ -31,9 +31,9 @@
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.dotsLineWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.DotsLineWaitingBarIndicatorElement();
             this._lbCaller = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._btnPickUp = new System.Windows.Forms.Button();
             this._btnTuChoi = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -49,6 +49,7 @@
             this.radWaitingBar1.WaitingSpeed = 80;
             this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.DotsLine;
             ((Telerik.WinControls.UI.RadWaitingBarElement)(this.radWaitingBar1.GetChildAt(0))).WaitingSpeed = 80;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.DotsLine;
             ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
             // 
             // dotsLineWaitingBarIndicatorElement1
@@ -64,16 +65,6 @@
             this._lbCaller.Size = new System.Drawing.Size(63, 25);
             this._lbCaller.TabIndex = 0;
             this._lbCaller.Text = "label1";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ChatApplication.Properties.Resources.callling;
-            this.pictureBox1.Location = new System.Drawing.Point(61, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(54, 41);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // _btnPickUp
             // 
@@ -103,6 +94,17 @@
             this._btnTuChoi.TabIndex = 3;
             this._btnTuChoi.Text = "Từ chối";
             this._btnTuChoi.UseVisualStyleBackColor = false;
+            this._btnTuChoi.Click += new System.EventHandler(this._btnTuChoi_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ChatApplication.Properties.Resources.callling;
+            this.pictureBox1.Location = new System.Drawing.Point(61, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(54, 41);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // FormInComingCall
             // 

@@ -67,6 +67,12 @@
   <ItemGroup>
     <Compile Include="Custom\CustomItemListFriends.cs" />
     <Compile Include="Custom\User.cs" />
+    <Compile Include="FormCall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCall.Designer.cs">
+      <DependentUpon>FormCall.cs</DependentUpon>
+    </Compile>
     <Compile Include="Handle\AddUserToGroupHandle.cs" />
     <Compile Include="Handle\AskBeFriendHandle.cs" />
     <Compile Include="Handle\ChatHistoryHandle.cs" />
@@ -151,6 +157,9 @@
     <Compile Include="View\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormCall.resx">
+      <DependentUpon>FormCall.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -94,6 +94,7 @@
             this.Controls.Add(this._ptbAvatar);
             this.Name = "FormInCall";
             this.Text = "FormInCall";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormInCall_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

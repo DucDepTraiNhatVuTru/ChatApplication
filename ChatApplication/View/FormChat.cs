@@ -34,6 +34,7 @@ namespace ChatApplication.View
         public List<ChatDataModel.ChatMessage> Messages = new List<ChatDataModel.ChatMessage>();
         private RadWaitingBar waitingBarControl = null;
         IAudioCall _phoneCall;
+        FormCall _formCall = null;
         public bool IsGotHistory
         {
             get
@@ -87,14 +88,15 @@ namespace ChatApplication.View
         {
             if (state == MyCallState.Answered)
             {
-                FormInCall formInCall;
+                _formCall.Close();
                 Thread thread = new Thread(delegate ()
                 {
-                    formInCall = new FormInCall(_phoneCall, _user);
-                    formInCall.ShowDialog();
+                    FormInCall form = new FormInCall(_phoneCall, _user);
+                    form.ShowDialog();
                 });
                 thread.Start();
             }
+            //if(state == MyCallState.)
         }
 
         private void SendButtonElement_Click(object sender, EventArgs e)
@@ -194,6 +196,13 @@ namespace ChatApplication.View
 
                 throw;
             }
+            Thread thread = new Thread(delegate ()
+            {
+                var formCall = new FormCall(_phoneCall, _user);
+                _formCall = formCall;
+                formCall.ShowDialog();
+            });
+            thread.Start();
         }
 
         public void AddMessageHistory()

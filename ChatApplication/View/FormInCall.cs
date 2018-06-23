@@ -26,8 +26,16 @@ namespace ChatApplication.View
             _timerThoiLuongCuocGoi.Start();
             _timerThoiLuongCuocGoi.Tick += _timerThoiLuongCuocGoi_Tick;
         }
+        public FormInCall(string name)
+        {
+            InitializeComponent();
+            _timerThoiLuongCuocGoi.Start();
+            _timerThoiLuongCuocGoi.Tick += _timerThoiLuongCuocGoi_Tick;
+            _lbName.Text = name;
+        }
         public FormInCall(IAudioCall phoneCall, Account account)
         {
+            InitializeComponent();
             _phoneCall = phoneCall;
             _account = account;
             _lbName.Text = _account.Name;
@@ -64,6 +72,11 @@ namespace ChatApplication.View
             _phoneCall.HangUp();
             //gửi server lưu lại cuộc gọi
             this.Close();
+        }
+
+        private void FormInCall_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _phoneCall.HangUp();
         }
     }
 }

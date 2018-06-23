@@ -35,12 +35,6 @@ namespace PhoneCall.Ozeki
 
         public OzekiAudioCall()
         {
-
-            /*var licenseCode =
-"UDoyMDMzLTEyLTI1LFVQOjIwMzMtMDEtMDEsTUNDOjMwLE1QTDozMCxNU0xDOjMwLE1GQzozMCxHNzI5OnRydWUsTVdQQzozMCxNSVBDOjMwfFg1dF" +
-"BsTWRTNHNDeGFLa1Yyd3V5WHU5VGlOQkV4aG9KYit3WXdERDA3blRMWFh0WnYvOHRnQThLaGtoZ05XNVE5MjRUUjgwV1p4cVNFK0g2VGw2bHRRPT0=";
-            var userName = "I-Warez 2015";
-            LicenseManager.Instance.SetLicense(userName, licenseCode);*/
             softPhone = SoftPhoneFactory.CreateSoftPhone(SoftPhoneFactory.GetLocalIP(), 5700, 5750);
             softPhone.IncomingCall += SoftPhone_IncomingCall;
         }
@@ -130,7 +124,7 @@ namespace PhoneCall.Ozeki
         public void RegisterAccount(ChatDataModel.Account account)
         {
             var tach = account.Email.Split('@');
-            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.43.198",5060);
+            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.109",5060);
             try
             {
                 phoneLine = softPhone.CreatePhoneLine(sipAccount);

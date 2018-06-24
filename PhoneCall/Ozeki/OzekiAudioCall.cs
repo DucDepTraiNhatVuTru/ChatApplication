@@ -22,6 +22,8 @@ namespace PhoneCall.Ozeki
         PhoneCallAudioSender mediaSender = new PhoneCallAudioSender();
         PhoneCallAudioReceiver mediaReceiver = new PhoneCallAudioReceiver();
         SIPAccount sipAccount;
+        ConferenceRoom conferenceRoom;
+        private IPhoneCall _grCall;
 
         private bool inComingCall;
 
@@ -37,6 +39,12 @@ namespace PhoneCall.Ozeki
         {
             softPhone = SoftPhoneFactory.CreateSoftPhone(SoftPhoneFactory.GetLocalIP(), 5700, 5750);
             softPhone.IncomingCall += SoftPhone_IncomingCall;
+        }
+
+        public void InitializeConferenceRoom()
+        {
+            conferenceRoom = new ConferenceRoom();
+            conferenceRoom.StartConferencing();
         }
 
         private void SoftPhone_IncomingCall(object sender, VoIPEventArgs<IPhoneCall> e)
@@ -61,6 +69,8 @@ namespace PhoneCall.Ozeki
 
         private void Call_CallStateChanged(object sender, CallStateChangedArgs e)
         {
+            IPhoneCall grCall = sender as IPhoneCall;
+            _grCall = grCall;
             MyCallState tmp = MyCallState.DoNotthing;
             if (e.State == CallState.Answered)
             {
@@ -83,11 +93,21 @@ namespace PhoneCall.Ozeki
                 mediaSender.Detach();
                 WireDownCallEvents();
                 call = null;
+                tmp = MyCallState.CallEnd;
             }
 
             if (e.State == CallState.LocalHeld)
             {
                 StopDevices();
+            }
+            if (e.State == CallState.Busy)
+            {
+                
+                tmp = MyCallState.Busy;
+            }
+            if (e.State == CallState.Cancelled)
+            {
+                tmp = MyCallState.Canceled;
             }
             if (CallStateChange != null)
             {
@@ -124,7 +144,7 @@ namespace PhoneCall.Ozeki
         public void RegisterAccount(ChatDataModel.Account account)
         {
             var tach = account.Email.Split('@');
-            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.109",5060);
+            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.43.198",5060);
             try
             {
                 phoneLine = softPhone.CreatePhoneLine(sipAccount);
@@ -200,6 +220,33 @@ namespace PhoneCall.Ozeki
         public RegState GetPhoneLineInformation()
         {
             return phoneLineInformation;
+        }
+
+        public string GetCallId()
+        {
+            return call.CallID;
+        }
+
+        public void RegisterGroup(Group group)
+        {
+            //var tach = account.Email.Split('@');
+            //sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.43.198", 5060);
+            sipAccount = new SIPAccount(true, group.Name, group.Id, group.Id, "123456", "192.168.43.198", 5060);
+            try
+            {
+                phoneLine = softPhone.CreatePhoneLine(sipAccount);
+                phoneLine.RegistrationStateChanged += PhoneLine_RegistrationStateChanged;
+                softPhone.RegisterPhoneLine(phoneLine);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void AddUserToRoom()
+        {
+            conferenceRoom.AddToConference(_grCall);
         }
     }
 }

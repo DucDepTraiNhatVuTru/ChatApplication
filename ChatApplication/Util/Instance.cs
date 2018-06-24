@@ -1,4 +1,5 @@
-﻿using ChatDataModel;
+﻿using ChatApplication.View;
+using ChatDataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace ChatApplication.Util
         public static List<Group> ListGroups = new List<Group>();
         public static List<Account> ListUserAskAddFriend = new List<Account>();
         public static bool InCommingCall = false;
+        public static Dictionary<string, FormInComingCall> CommingCalls = new Dictionary<string, FormInComingCall>();
     }
 }

@@ -35,6 +35,7 @@ namespace ChatApplication.View
         private RadWaitingBar waitingBarControl = null;
         IAudioCall _phoneCall;
         FormCall _formCall = null;
+        FormInComingCall _currentFormInCommingCall = null;
         public bool IsGotHistory
         {
             get
@@ -96,7 +97,10 @@ namespace ChatApplication.View
                 });
                 thread.Start();
             }
-            //if(state == MyCallState.)
+            if(state == MyCallState.Busy)
+            {
+                _formCall.Close();
+            }
         }
 
         private void SendButtonElement_Click(object sender, EventArgs e)

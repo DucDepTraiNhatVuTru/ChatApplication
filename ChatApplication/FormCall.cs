@@ -53,7 +53,7 @@ namespace ChatApplication
 
         private void _btnHangUp_Click(object sender, EventArgs e)
         {
-            _phoneCall.HangUp();
+            _phoneCall.Reject();
             this.Close();
         }
     }

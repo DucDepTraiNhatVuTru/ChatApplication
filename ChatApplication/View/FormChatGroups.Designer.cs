@@ -34,8 +34,10 @@
             this._btnAddUserToGroup = new System.Windows.Forms.Button();
             this._btnOutOfGroup = new System.Windows.Forms.Button();
             this.dotsRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.DotsRingWaitingBarIndicatorElement();
+            this._ptbCall = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._radchatChatGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._radLVListFriendInGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbCall)).BeginInit();
             this.SuspendLayout();
             // 
             // _radchatChatGroup
@@ -96,11 +98,23 @@
             this.dotsRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.dotsRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
             // 
+            // _ptbCall
+            // 
+            this._ptbCall.Image = global::ChatApplication.Properties.Resources.call;
+            this._ptbCall.Location = new System.Drawing.Point(662, 7);
+            this._ptbCall.Name = "_ptbCall";
+            this._ptbCall.Size = new System.Drawing.Size(30, 30);
+            this._ptbCall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this._ptbCall.TabIndex = 4;
+            this._ptbCall.TabStop = false;
+            this._ptbCall.Click += new System.EventHandler(this._ptbCall_Click);
+            // 
             // FormChatGroups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 394);
+            this.Controls.Add(this._ptbCall);
             this.Controls.Add(this._btnOutOfGroup);
             this.Controls.Add(this._btnAddUserToGroup);
             this.Controls.Add(this._lbGroupName);
@@ -112,6 +126,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormChatGroups_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this._radchatChatGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._radLVListFriendInGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbCall)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,5 +140,6 @@
         private System.Windows.Forms.Button _btnAddUserToGroup;
         private System.Windows.Forms.Button _btnOutOfGroup;
         private Telerik.WinControls.UI.DotsRingWaitingBarIndicatorElement dotsRingWaitingBarIndicatorElement1;
+        private System.Windows.Forms.PictureBox _ptbCall;
     }
 }

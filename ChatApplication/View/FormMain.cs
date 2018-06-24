@@ -65,23 +65,46 @@ namespace ChatApplication.View
         public FormMain(IClient client, ChatDataModel.Account account)
         {
             InitializeComponent();
-            AddWaitingBar();
+            //AddWaitingBar();
             _client = client;
             _account = account;
             Init();
             _client.OnNewRecieve += _client_OnNewRecieve;
 
+            RegisPhoneLine();
+
+
+        }
+
+        private void RegisPhoneLine()
+        {
             Thread thread = new Thread(delegate ()
             {
                 _call = new OzekiAudioCall();
                 _call.RegisterAccount(_account);
-                
+
                 _call.ConnectMedia();
                 _call.SoftPhoneInComingCall += _call_SoftPhoneInComingCall;
-
-                RemoveWatingBar();
+                _call.CallStateChange += _call_CallStateChange;
+                //RemoveWatingBar();
             });
             thread.Start();
+        }
+
+        private void _call_CallStateChange(MyCallState state)
+        {
+            if (state == MyCallState.Canceled)
+            {
+                lock (this)
+                {
+                    FormInComingCall f;
+                    if (Instance.CommingCalls.TryGetValue(_call.GetCallId(), out f))
+                    {
+                        f.Close();
+                    }
+                    Instance.CommingCalls.Remove(_call.GetCallId());
+                }
+            }
         }
 
         public void AddWaitingBar()
@@ -112,6 +135,10 @@ namespace ChatApplication.View
         {
             Instance.InCommingCall = true;
             FormInComingCall formInComingCall = new FormInComingCall(_call, callerName);
+            lock (this)
+            {
+                Instance.CommingCalls.Add(_call.GetCallId(), formInComingCall);
+            }
             Thread thread = new Thread(delegate ()
             {
                 formInComingCall.ShowDialog();

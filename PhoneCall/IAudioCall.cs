@@ -12,6 +12,7 @@ namespace PhoneCall
     public interface IAudioCall
     {
         void RegisterAccount(ChatDataModel.Account account);
+        void RegisterGroup(ChatDataModel.Group group);
         event Action PhoneLineRegisterStateChange;
         void ConnectMedia();
         void DisconnectMedia();
@@ -23,5 +24,8 @@ namespace PhoneCall
         void HangUp();
         IPhoneCall GetPhoneCall();
         RegState GetPhoneLineInformation();
+        string GetCallId();
+        void InitializeConferenceRoom();
+        void AddUserToRoom();
     }
 }

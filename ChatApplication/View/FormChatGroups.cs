@@ -2,6 +2,8 @@
 using ChatDataModel;
 using ClientSocket;
 using GoogleDriveApiv3;
+using PhoneCall;
+using PhoneCall.Ozeki;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +31,7 @@ namespace ChatApplication.View
         private RadWaitingBar waitingBarControl = null;
         private bool _isLoadHistory = false;
         public event Action<string> Close;
+        private IAudioCall _call = null;
         public FormChatGroups()
         {
             InitializeComponent();
@@ -54,6 +57,29 @@ namespace ChatApplication.View
             _btnAddUserToGroup.Click += _btnAddUserToGroup_Click;
 
             _client.RequestGetHistoryGroupChat(_me.Email, _group.Id);
+
+            RegisPhoneLine();
+        }
+
+        private void RegisPhoneLine()
+        {
+            Thread thread = new Thread(delegate ()
+            {
+                _call = new OzekiAudioCall();
+                _call.RegisterGroup(_group);
+                _call.InitializeConferenceRoom();
+                _call.CallStateChange += _call_CallStateChange;
+            });
+            thread.Start();
+        }
+
+        private void _call_CallStateChange(MyCallState state)
+        {
+            if (state == MyCallState.Answered)
+            {
+                _call.AddUserToRoom();
+                MessageBox.Show("Ok");
+            }
         }
 
         private void _btnAddUserToGroup_Click(object sender, EventArgs e)
@@ -304,6 +330,26 @@ namespace ChatApplication.View
             if (Close != null)
             {
                 Close.Invoke(_group.Id);
+            }
+        }
+
+        private void _ptbCall_Click(object sender, EventArgs e)
+        {
+            foreach(var item in _userInGroup)
+            {
+                if (item.Email != _me.Email)
+                {
+                    var tach = item.Email.Split('@');
+                    try
+                    {
+                        _call.CreateCall(tach[0]);
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
             }
         }
     }

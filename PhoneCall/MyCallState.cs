@@ -8,6 +8,6 @@ namespace PhoneCall
 {
     public enum MyCallState
     {
-        DoNotthing,Answered, InCall, LocalHeld
+        DoNotthing,Answered, InCall, LocalHeld,Rejected,CallEnd,Busy,Canceled
     }
 }

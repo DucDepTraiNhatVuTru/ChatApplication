@@ -32,9 +32,11 @@
             this._lbFriendsName = new System.Windows.Forms.Label();
             this._ptbCall = new System.Windows.Forms.PictureBox();
             this._ptbFriendsAvatar = new System.Windows.Forms.PictureBox();
+            this._ptbVideoCall = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._rcChatlog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbCall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbFriendsAvatar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbVideoCall)).BeginInit();
             this.SuspendLayout();
             // 
             // _rcChatlog
@@ -77,12 +79,24 @@
             this._ptbFriendsAvatar.TabIndex = 1;
             this._ptbFriendsAvatar.TabStop = false;
             // 
+            // _ptbVideoCall
+            // 
+            this._ptbVideoCall.Image = global::ChatApplication.Properties.Resources.call;
+            this._ptbVideoCall.Location = new System.Drawing.Point(605, 12);
+            this._ptbVideoCall.Name = "_ptbVideoCall";
+            this._ptbVideoCall.Size = new System.Drawing.Size(30, 30);
+            this._ptbVideoCall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this._ptbVideoCall.TabIndex = 3;
+            this._ptbVideoCall.TabStop = false;
+            this._ptbVideoCall.Click += new System.EventHandler(this._ptbVideoCall_Click);
+            // 
             // FormChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(671, 394);
+            this.Controls.Add(this._ptbVideoCall);
             this.Controls.Add(this._ptbCall);
             this.Controls.Add(this._lbFriendsName);
             this.Controls.Add(this._ptbFriendsAvatar);
@@ -94,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this._rcChatlog)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbCall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbFriendsAvatar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbVideoCall)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,5 +120,6 @@
         private System.Windows.Forms.PictureBox _ptbFriendsAvatar;
         private System.Windows.Forms.Label _lbFriendsName;
         private System.Windows.Forms.PictureBox _ptbCall;
+        private System.Windows.Forms.PictureBox _ptbVideoCall;
     }
 }

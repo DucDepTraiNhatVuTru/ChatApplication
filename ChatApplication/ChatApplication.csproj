@@ -109,6 +109,12 @@
     <Compile Include="View\FormAddUserToGroup.Designer.cs">
       <DependentUpon>FormAddUserToGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\CallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CallForm.Designer.cs">
+      <DependentUpon>CallForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormChat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormAddUserToGroup.resx">
       <DependentUpon>FormAddUserToGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CallForm.resx">
+      <DependentUpon>CallForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormChat.resx">
       <DependentUpon>FormChat.cs</DependentUpon>

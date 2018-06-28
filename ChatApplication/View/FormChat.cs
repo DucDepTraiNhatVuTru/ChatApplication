@@ -89,13 +89,21 @@ namespace ChatApplication.View
         {
             if (state == MyCallState.Answered)
             {
-                _formCall.Close();
+                /*_formCall.Close();
                 Thread thread = new Thread(delegate ()
                 {
                     FormInCall form = new FormInCall(_phoneCall, _user);
                     form.ShowDialog();
                 });
+                thread.Start();*/
+                Thread thread = new Thread(delegate ()
+                {
+                    _phoneCall.StartCamera();
+                    _phoneCall.ConnectMedia();
+                    _phoneCall.ShowFormCall();
+                });
                 thread.Start();
+                
             }
             if(state == MyCallState.Busy)
             {
@@ -260,6 +268,21 @@ namespace ChatApplication.View
                     _rcChatlog.Controls.Add(waitingBar);
                     waitingBar.StartWaiting();
                 }));
+            });
+            thread.Start();
+        }
+
+        private void _ptbVideoCall_Click(object sender, EventArgs e)
+        {
+            /*var tach = _user.Email.Split('@');
+            _phoneCall.CreateCall("1111");
+            _phoneCall.ModifyCallStyle(MyCallStyle.AudioVideo);*/
+
+            _phoneCall.CreateCall("1111");
+            Thread thread = new Thread(delegate ()
+            {
+                CallForm callForn = new CallForm(_phoneCall);
+                callForn.ShowDialog();
             });
             thread.Start();
         }

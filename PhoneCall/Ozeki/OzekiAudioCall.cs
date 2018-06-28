@@ -7,6 +7,9 @@ using ChatDataModel;
 using Ozeki.VoIP;
 using Ozeki.Media;
 using Ozeki.Common;
+using Ozeki.Camera;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace PhoneCall.Ozeki
 {
@@ -21,8 +24,14 @@ namespace PhoneCall.Ozeki
         MediaConnector connector = new MediaConnector();
         PhoneCallAudioSender mediaSender = new PhoneCallAudioSender();
         PhoneCallAudioReceiver mediaReceiver = new PhoneCallAudioReceiver();
+        PhoneCallVideoReceiver videoReceiver = new PhoneCallVideoReceiver();
+        PhoneCallVideoSender videoSender = new PhoneCallVideoSender();
         SIPAccount sipAccount;
         ConferenceRoom conferenceRoom;
+        OzekiCamera camera;
+        ImageProvider<Image> remoteProvider = new DrawingImageProvider();
+        ImageProvider<Image> localProvider = new DrawingImageProvider();
+        IVideoSender remoteVideo, localVideo;
         private IPhoneCall _grCall;
 
         private bool inComingCall;
@@ -39,6 +48,20 @@ namespace PhoneCall.Ozeki
         {
             softPhone = SoftPhoneFactory.CreateSoftPhone(SoftPhoneFactory.GetLocalIP(), 5700, 5750);
             softPhone.IncomingCall += SoftPhone_IncomingCall;
+        }
+
+        public void StartCamera()
+        {
+            var data = new CameraURLBuilderData { DeviceTypeFilter = DiscoverDeviceType.USB };
+            var myCameraBuilder = new CameraURLBuilderWF(data);
+            var result = myCameraBuilder.ShowDialog();
+            if(result!= System.Windows.Forms.DialogResult.OK)
+            {
+                return;
+            }
+
+            camera = new OzekiCamera(myCameraBuilder.CameraURL);
+            camera.Start();
         }
 
         public void InitializeConferenceRoom()
@@ -77,6 +100,8 @@ namespace PhoneCall.Ozeki
                 StartDevices();
                 mediaReceiver.AttachToCall(call);
                 mediaSender.AttachToCall(call);
+                videoReceiver.AttachToCall(call);
+                videoSender.AttachToCall(call);
                 tmp = MyCallState.Answered;
             }
 
@@ -91,6 +116,8 @@ namespace PhoneCall.Ozeki
                 StopDevices();
                 mediaReceiver.Detach();
                 mediaSender.Detach();
+                videoSender.Detach();
+                videoReceiver.Detach();
                 WireDownCallEvents();
                 call = null;
                 tmp = MyCallState.CallEnd;
@@ -102,11 +129,12 @@ namespace PhoneCall.Ozeki
             }
             if (e.State == CallState.Busy)
             {
-                
+                StopDevices();
                 tmp = MyCallState.Busy;
             }
             if (e.State == CallState.Cancelled)
             {
+                StopDevices();
                 tmp = MyCallState.Canceled;
             }
             if (CallStateChange != null)
@@ -126,6 +154,11 @@ namespace PhoneCall.Ozeki
             {
                 speaker.Start();
             }
+
+            if (camera != null)
+            {
+                camera.Start();
+            }
         }
 
         private void StopDevices()
@@ -139,12 +172,17 @@ namespace PhoneCall.Ozeki
             {
                 speaker.Stop();
             }
+
+            if (camera != null)
+            {
+                camera.Stop();
+            }
         }
 
         public void RegisterAccount(ChatDataModel.Account account)
         {
             var tach = account.Email.Split('@');
-            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.43.198",5060);
+            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.109",5060);
             try
             {
                 phoneLine = softPhone.CreatePhoneLine(sipAccount);
@@ -176,6 +214,14 @@ namespace PhoneCall.Ozeki
             {
                 connector.Connect(mediaReceiver, speaker);
             }
+
+            if (camera != null)
+            {
+                connector.Connect(camera.VideoChannel,localProvider);
+                connector.Connect(camera.VideoChannel, videoSender);
+            }
+
+            connector.Connect(videoReceiver,remoteProvider);
         }
 
         public void DisconnectMedia()
@@ -189,6 +235,14 @@ namespace PhoneCall.Ozeki
             {
                 connector.Disconnect(mediaReceiver, speaker);
             }
+
+            if(camera!= null)
+            {
+                connector.Disconnect(camera.VideoChannel, localProvider);
+                connector.Disconnect(camera.VideoChannel, videoSender);
+            }
+
+            connector.Disconnect(videoReceiver, remoteProvider);
         }
 
         public void CreateCall(string dial)
@@ -229,9 +283,7 @@ namespace PhoneCall.Ozeki
 
         public void RegisterGroup(Group group)
         {
-            //var tach = account.Email.Split('@');
-            //sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.43.198", 5060);
-            sipAccount = new SIPAccount(true, group.Name, group.Id, group.Id, "123456", "192.168.43.198", 5060);
+            sipAccount = new SIPAccount(true, group.Name, group.Id, group.Id, "123456", "192.168.0.109", 5060);
             try
             {
                 phoneLine = softPhone.CreatePhoneLine(sipAccount);
@@ -247,6 +299,62 @@ namespace PhoneCall.Ozeki
         public void AddUserToRoom()
         {
             conferenceRoom.AddToConference(_grCall);
+        }
+
+        public void ModifyCallStyle(MyCallStyle style)
+        {
+            if (style == MyCallStyle.Audio)
+            {
+                call.ModifyCallType(CallType.Audio);
+            }else if (style == MyCallStyle.Video)
+            {
+                call.ModifyCallType(CallType.Video);
+            }else if (style == MyCallStyle.AudioVideo)
+            {
+                call.ModifyCallType(CallType.AudioVideo);
+            }
+        }
+
+        public ImageProvider<Image> GetRemoteProvider()
+        {
+            return remoteProvider;
+        }
+
+        public ImageProvider<Image> GetLocalProvider()
+        {
+            return localProvider;
+        }
+
+        public IVideoSender GetRemoteVideo()
+        {
+            return remoteVideo;
+        }
+
+        public IVideoSender GetLocalVideo()
+        {
+            return localVideo;
+        }
+
+        public void ShowFormCall()
+        {
+            Form form = new Form();
+            form.Size = new Size(774, 440);
+            VideoViewerWF remoteViewer = new VideoViewerWF();
+            remoteViewer.Location = new Point(0, 0);
+            remoteViewer.Size = new Size(696, 434);
+            remoteViewer.SetImageProvider(remoteProvider);
+            remoteViewer.Start();
+
+            VideoViewerWF localViewer = new VideoViewerWF();
+            localViewer.Location = new Point(702, 375);
+            localViewer.Size = new Size(69, 62);
+            localViewer.SetImageProvider(localProvider);
+            localViewer.Start();
+
+            form.Size = new Size(774, 440);
+            form.Controls.Add(remoteViewer);
+            form.Controls.Add(localViewer);
+            form.ShowDialog();
         }
     }
 }

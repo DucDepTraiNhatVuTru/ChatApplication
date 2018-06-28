@@ -82,11 +82,9 @@ namespace ChatApplication.View
             {
                 _call = new OzekiAudioCall();
                 _call.RegisterAccount(_account);
-
                 _call.ConnectMedia();
                 _call.SoftPhoneInComingCall += _call_SoftPhoneInComingCall;
                 _call.CallStateChange += _call_CallStateChange;
-                //RemoveWatingBar();
             });
             thread.Start();
         }
@@ -104,6 +102,16 @@ namespace ChatApplication.View
                     }
                     Instance.CommingCalls.Remove(_call.GetCallId());
                 }
+            }
+            if(state == MyCallState.Answered)
+            {
+                Thread thread = new Thread(delegate ()
+                {
+                    _call.StartCamera();
+                    _call.ConnectMedia();
+                    _call.ShowFormCall();
+                });
+                thread.Start();
             }
         }
 

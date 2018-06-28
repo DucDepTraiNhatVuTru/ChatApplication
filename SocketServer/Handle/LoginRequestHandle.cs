@@ -14,11 +14,24 @@ namespace ChatProtocol.Handle
     {
         private object syncLock = new object();
         private object syncLock1 = new object();
+        private object syncLock2 = new object();
         public string Handling(IProtocol protocol, IChatClient client)
         {
             var ptc = protocol as LoginRequestProtocol;
             string toView = "[" + DateTime.Now + "] : request login ";
             int isAccept = 0;
+
+            IChatClient _client;
+            lock (syncLock2)
+            {
+                if (!Instance.OnlineUser.TryGetValue(ptc.Email, out _client))
+                {
+                    isAccept = 0;
+                    toView += "\n reject login";
+                    return toView;
+                }
+            }
+
             var account = GetAccount(ptc.Email, ptc.Password);
             if (account.Email != ptc.Email)
             {

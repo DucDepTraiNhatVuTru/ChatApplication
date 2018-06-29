@@ -337,6 +337,8 @@ namespace PhoneCall.Ozeki
         }
 
         private bool IsCameraStarted = true;
+        private int min = 0;
+        private int sec = 0;
         public void ShowFormCall()
         {
             Form form = new Form();
@@ -349,7 +351,7 @@ namespace PhoneCall.Ozeki
             Button closeCamera = new Button();
             closeCamera.Location = new Point(655, 200);
             closeCamera.Size = new Size(125, 25);
-            closeCamera.Text = "Close Camera";
+            closeCamera.Text = "Tắt camera";
             closeCamera.Click += CloseCamera_Click;
 
             Button hangUp = new Button();
@@ -357,6 +359,23 @@ namespace PhoneCall.Ozeki
             hangUp.Size = new Size(125, 25);
             hangUp.Text = "Tắt máy";
             hangUp.Click += HangUp_Click;
+
+            Label _lbTime = new Label();
+            _lbTime.Location = new Point(710, 485);
+            _lbTime.Text = "00:00";
+
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Start();
+            timer.Tick += delegate{
+                sec++;
+                if (sec >= 60)
+                {
+                    min++;
+                    sec = 0;
+                }
+                _lbTime.Text = min + ":" + sec;
+            };
 
             VideoViewerWF remoteViewer = new VideoViewerWF();
             remoteViewer.Location = new Point(0, 0);
@@ -370,6 +389,7 @@ namespace PhoneCall.Ozeki
             localViewer.SetImageProvider(localProvider);
             localViewer.Start();
 
+            form.Controls.Add(_lbTime);
             form.Controls.Add(hangUp);
             form.Controls.Add(closeCamera);
             form.Controls.Add(remoteViewer);
@@ -379,6 +399,12 @@ namespace PhoneCall.Ozeki
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
+            try
+            {
+                call.HangUp();
+            }
+            catch
+            {}
             if (FormVideoCallClose != null)
                 FormVideoCallClose.Invoke();
         }

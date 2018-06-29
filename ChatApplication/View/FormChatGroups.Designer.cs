@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChatGroups));
             this._radchatChatGroup = new Telerik.WinControls.UI.RadChat();
             this._radLVListFriendInGroup = new Telerik.WinControls.UI.RadListView();
             this._lbGroupName = new System.Windows.Forms.Label();
@@ -120,8 +121,9 @@
             this.Controls.Add(this._lbGroupName);
             this.Controls.Add(this._radLVListFriendInGroup);
             this.Controls.Add(this._radchatChatGroup);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormChatGroups";
-            this.Text = "FormChatGroups";
+            this.Text = "Chatting";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormChatGroups_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormChatGroups_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this._radchatChatGroup)).EndInit();

@@ -92,6 +92,8 @@ namespace ChatProtocol
                     return new AcceptFriendRequestProtocol();
                 case 43:
                     return new DeleteFriendRequestProtocol();
+                case 99:
+                    return new LogoutProtocol();
                 default:
                     throw new Exception("chưa hỗ trợ opcode");
             }

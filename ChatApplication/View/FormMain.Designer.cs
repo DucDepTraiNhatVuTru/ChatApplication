@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this._lbUserName = new System.Windows.Forms.Label();
             this._radlvFriendList = new Telerik.WinControls.UI.RadListView();
             this._tabControlMain = new System.Windows.Forms.TabControl();
@@ -182,8 +183,9 @@
             this.Controls.Add(this._lbUserName);
             this.Controls.Add(this._ptbAvatar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
-            this.Text = "FormTest";
+            this.Text = "Chat đi";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this._radlvFriendList)).EndInit();
             this._tabControlMain.ResumeLayout(false);

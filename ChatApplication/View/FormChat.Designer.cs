@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChat));
             this._rcChatlog = new Telerik.WinControls.UI.RadChat();
             this._lbFriendsName = new System.Windows.Forms.Label();
+            this._ptbVideoCall = new System.Windows.Forms.PictureBox();
             this._ptbCall = new System.Windows.Forms.PictureBox();
             this._ptbFriendsAvatar = new System.Windows.Forms.PictureBox();
-            this._ptbVideoCall = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._rcChatlog)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbVideoCall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbCall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbFriendsAvatar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._ptbVideoCall)).BeginInit();
             this.SuspendLayout();
             // 
             // _rcChatlog
@@ -60,6 +61,17 @@
             this._lbFriendsName.TabIndex = 1;
             this._lbFriendsName.Text = "label1";
             // 
+            // _ptbVideoCall
+            // 
+            this._ptbVideoCall.Image = global::ChatApplication.Properties.Resources.videocall;
+            this._ptbVideoCall.Location = new System.Drawing.Point(605, 12);
+            this._ptbVideoCall.Name = "_ptbVideoCall";
+            this._ptbVideoCall.Size = new System.Drawing.Size(30, 30);
+            this._ptbVideoCall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this._ptbVideoCall.TabIndex = 3;
+            this._ptbVideoCall.TabStop = false;
+            this._ptbVideoCall.Click += new System.EventHandler(this._ptbVideoCall_Click);
+            // 
             // _ptbCall
             // 
             this._ptbCall.Image = global::ChatApplication.Properties.Resources.call;
@@ -79,17 +91,6 @@
             this._ptbFriendsAvatar.TabIndex = 1;
             this._ptbFriendsAvatar.TabStop = false;
             // 
-            // _ptbVideoCall
-            // 
-            this._ptbVideoCall.Image = global::ChatApplication.Properties.Resources.call;
-            this._ptbVideoCall.Location = new System.Drawing.Point(605, 12);
-            this._ptbVideoCall.Name = "_ptbVideoCall";
-            this._ptbVideoCall.Size = new System.Drawing.Size(30, 30);
-            this._ptbVideoCall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this._ptbVideoCall.TabIndex = 3;
-            this._ptbVideoCall.TabStop = false;
-            this._ptbVideoCall.Click += new System.EventHandler(this._ptbVideoCall_Click);
-            // 
             // FormChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,14 +102,15 @@
             this.Controls.Add(this._lbFriendsName);
             this.Controls.Add(this._ptbFriendsAvatar);
             this.Controls.Add(this._rcChatlog);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormChat";
-            this.Text = "FormChat";
+            this.Text = "Chatting";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormChat_FormClosed);
             this.Load += new System.EventHandler(this.FormChat_Load);
             ((System.ComponentModel.ISupportInitialize)(this._rcChatlog)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbVideoCall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbCall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._ptbFriendsAvatar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._ptbVideoCall)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -97,5 +97,10 @@ namespace ChatApplication.View
             _txtGroupName.Text = "";
             _radLVFriends.UncheckAllItems();
         }
+
+        private void FormCreateGroup_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddFriend));
             this._ptbAvatar = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this._lbName = new System.Windows.Forms.Label();
@@ -106,7 +107,7 @@
             this._lbThongBao.ForeColor = System.Drawing.Color.Red;
             this._lbThongBao.Location = new System.Drawing.Point(12, 188);
             this._lbThongBao.Name = "_lbThongBao";
-            this._lbThongBao.Size = new System.Drawing.Size(0, 21);
+            this._lbThongBao.Size = new System.Drawing.Size(0, 13);
             this._lbThongBao.TabIndex = 6;
             // 
             // FormAddFriend
@@ -122,8 +123,9 @@
             this.Controls.Add(this._lbName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._ptbAvatar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAddFriend";
-            this.Text = "FormAddFriend";
+            this.Text = "Thêm bạn bè";
             ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

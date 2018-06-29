@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreateGroup));
             this._txtGroupName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this._radLVFriends = new Telerik.WinControls.UI.RadListView();
@@ -97,8 +98,10 @@
             this.Controls.Add(this._radLVFriends);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._txtGroupName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCreateGroup";
-            this.Text = "FormCreateGroup";
+            this.Text = "Tạo cuộc trò chuyện nhóm";
+            this.Load += new System.EventHandler(this.FormCreateGroup_Load);
             ((System.ComponentModel.ISupportInitialize)(this._radLVFriends)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

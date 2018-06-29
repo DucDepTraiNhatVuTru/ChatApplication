@@ -58,6 +58,8 @@ namespace ChatProtocol
                     return new AcceptAddFriendHandle();
                 case 43:
                     return new DeleteFriendHandle();
+                case 99:
+                    return new LogoutHandle();
                 default:
                     throw new Exception("chưa hỗ trợ opcode!");
             }

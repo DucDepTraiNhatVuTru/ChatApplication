@@ -31,6 +31,7 @@ namespace ChatApplication.View
         public IDictionary<string, FormChatGroups> FormChatGroupsOpening = new Dictionary<string, FormChatGroups>();
         IAudioCall _call;
         private RadWaitingBar _waitingBar = null;
+        bool videoOn = false;
         public FormMain()
         {
             InitializeComponent();
@@ -112,9 +113,20 @@ namespace ChatApplication.View
                     Instance.CommingCalls.Remove(_call.GetCallId());
                 }
             }
-            if(state == MyCallState.Answered )
+            if (state == MyCallState.Answered && Instance._isVideoOn == false )
             {
-                bool videoOn = false;
+                lock (this)
+                {
+                    Instance._isVideoOn = true;
+                }
+                Thread thread = new Thread(delegate ()
+                {
+                    _call.StartCamera();
+                    _call.ConnectMedia();
+                    _call.ShowFormCall();
+                });
+                thread.Start();
+                /*
                 lock (this)
                 {
                     videoOn = Instance._isVideoOn;
@@ -133,6 +145,8 @@ namespace ChatApplication.View
                     });
                     thread.Start();
                 }
+                */
+
             }
         }
 

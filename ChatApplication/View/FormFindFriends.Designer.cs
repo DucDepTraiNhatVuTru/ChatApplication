@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFindFriends));
             this._txtSearch = new System.Windows.Forms.TextBox();
             this._btnSearch = new System.Windows.Forms.Button();
             this._radLVSearchResult = new Telerik.WinControls.UI.RadListView();
@@ -71,8 +72,9 @@
             this.Controls.Add(this._radLVSearchResult);
             this.Controls.Add(this._btnSearch);
             this.Controls.Add(this._txtSearch);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormFindFriends";
-            this.Text = "FormFindFriends";
+            this.Text = "Tìm bạn bè";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormFindFriends_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this._radLVSearchResult)).EndInit();
             this.ResumeLayout(false);

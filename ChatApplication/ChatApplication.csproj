@@ -266,6 +266,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asset\call.png" />
+    <Content Include="Asset\chaticon.ico" />
+    <Content Include="Asset\chaticon.png" />
+    <Content Include="Asset\videocall.png" />
     <None Include="Asset\callling.gif" />
     <Content Include="Asset\phone-calling-1.wav" />
     <Content Include="Asset\telephone-ring-01a.wav" />

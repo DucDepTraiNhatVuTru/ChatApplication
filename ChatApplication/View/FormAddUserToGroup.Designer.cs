@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddUserToGroup));
             this._radListFriendToAddToGroup = new Telerik.WinControls.UI.RadListView();
             this._btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -70,8 +71,9 @@
             this.ClientSize = new System.Drawing.Size(203, 332);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this._btnOK);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAddUserToGroup";
-            this.Text = "FormAddUserToGroup";
+            this.Text = "Thêm bạn bè vào nhóm chat";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormAddUserToGroup_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this._radListFriendToAddToGroup)).EndInit();
             this.panel1.ResumeLayout(false);

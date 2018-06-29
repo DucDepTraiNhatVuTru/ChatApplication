@@ -87,24 +87,6 @@ namespace ChatApplication.View
 
         private void _phoneCall_CallStateChange(MyCallState state)
         {
-            if (state == MyCallState.Answered)
-            {
-                /*_formCall.Close();
-                Thread thread = new Thread(delegate ()
-                {
-                    FormInCall form = new FormInCall(_phoneCall, _user);
-                    form.ShowDialog();
-                });
-                thread.Start();*/
-                Thread thread = new Thread(delegate ()
-                {
-                    _phoneCall.StartCamera();
-                    _phoneCall.ConnectMedia();
-                    _phoneCall.ShowFormCall();
-                });
-                thread.Start();
-                
-            }
             if(state == MyCallState.Busy)
             {
                 _formCall.Close();
@@ -274,17 +256,22 @@ namespace ChatApplication.View
 
         private void _ptbVideoCall_Click(object sender, EventArgs e)
         {
-            /*var tach = _user.Email.Split('@');
-            _phoneCall.CreateCall("1111");
-            _phoneCall.ModifyCallStyle(MyCallStyle.AudioVideo);*/
-
-            _phoneCall.CreateCall("1111");
-            Thread thread = new Thread(delegate ()
+            var tach = _user.Email.Split('@');
+            _phoneCall.CreateCall(tach[0]);
+            _phoneCall.StartCamera();
+            _phoneCall.ConnectMedia();
+            _phoneCall.ModifyCallStyle(MyCallStyle.AudioVideo);
+            _phoneCall.ShowFormCall();
+            lock (this)
+            {
+                Instance._isVideoOn = true;
+            }
+            /*Thread thread = new Thread(delegate ()
             {
                 CallForm callForn = new CallForm(_phoneCall);
                 callForn.ShowDialog();
             });
-            thread.Start();
+            thread.Start();*/
         }
 
         public void RemoveWaitingBar()

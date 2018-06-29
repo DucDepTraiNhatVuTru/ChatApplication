@@ -85,8 +85,17 @@ namespace ChatApplication.View
                 _call.ConnectMedia();
                 _call.SoftPhoneInComingCall += _call_SoftPhoneInComingCall;
                 _call.CallStateChange += _call_CallStateChange;
+                _call.FormVideoCallClose += _call_FormVideoCallClose;
             });
             thread.Start();
+        }
+
+        private void _call_FormVideoCallClose()
+        {
+            lock (this)
+            {
+                Instance._isVideoOn = false;
+            }
         }
 
         private void _call_CallStateChange(MyCallState state)
@@ -103,15 +112,27 @@ namespace ChatApplication.View
                     Instance.CommingCalls.Remove(_call.GetCallId());
                 }
             }
-            if(state == MyCallState.Answered)
+            if(state == MyCallState.Answered )
             {
-                Thread thread = new Thread(delegate ()
+                bool videoOn = false;
+                lock (this)
                 {
-                    _call.StartCamera();
-                    _call.ConnectMedia();
-                    _call.ShowFormCall();
-                });
-                thread.Start();
+                    videoOn = Instance._isVideoOn;
+                }
+                if (!videoOn)
+                {
+                    lock (this)
+                    {
+                        Instance._isVideoOn = true;
+                    }
+                    Thread thread = new Thread(delegate ()
+                    {
+                        _call.StartCamera();
+                        _call.ConnectMedia();
+                        _call.ShowFormCall();
+                    });
+                    thread.Start();
+                }
             }
         }
 

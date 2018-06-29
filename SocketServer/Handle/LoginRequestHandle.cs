@@ -15,6 +15,7 @@ namespace ChatProtocol.Handle
         private object syncLock = new object();
         private object syncLock1 = new object();
         private object syncLock2 = new object();
+        private object syncLock3 = new object();
         public string Handling(IProtocol protocol, IChatClient client)
         {
             var ptc = protocol as LoginRequestProtocol;
@@ -24,7 +25,7 @@ namespace ChatProtocol.Handle
             IChatClient _client;
             lock (syncLock2)
             {
-                if (!Instance.OnlineUser.TryGetValue(ptc.Email, out _client))
+                if (Instance.OnlineUser.TryGetValue(ptc.Email, out _client))
                 {
                     isAccept = 0;
                     toView += "\n reject login";
@@ -45,8 +46,10 @@ namespace ChatProtocol.Handle
             client.ResponseLogin(isAccept, account);
             toView += "\n accept login";
 
-            Instance.OnlineUser.Add(ptc.Email, client);
-
+            lock (syncLock3)
+            {
+                Instance.OnlineUser.Add(ptc.Email, client);
+            }
             //SendMessageHadNotSended(client, ptc.Email);
 
             return toView;
@@ -64,8 +67,6 @@ namespace ChatProtocol.Handle
 
         private void SendMessageHadNotSended(IChatClient client, string email)
         {
-            //List<ChatMessage> list = Instance.MessageHadNotSended;
-
             foreach(var item in Instance.MessageHadNotSended.ToList())
             {
                 if (item.Receiver == email)

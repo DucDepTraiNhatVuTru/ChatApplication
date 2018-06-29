@@ -16,5 +16,6 @@ namespace ChatApplication.Util
         public static List<Account> ListUserAskAddFriend = new List<Account>();
         public static bool InCommingCall = false;
         public static Dictionary<string, FormInComingCall> CommingCalls = new Dictionary<string, FormInComingCall>();
+        public static bool _isVideoOn = false;
     }
 }

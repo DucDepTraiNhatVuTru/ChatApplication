@@ -19,6 +19,7 @@ namespace PhoneCall
         void DisconnectMedia();
         event Action<string> SoftPhoneInComingCall;
         event Action<MyCallState> CallStateChange;
+        event Action FormVideoCallClose;
         void CreateCall(string dial);
         void Answer();
         void Reject();

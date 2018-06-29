@@ -43,6 +43,7 @@ namespace PhoneCall.Ozeki
         public event Action PhoneLineRegisterStateChange;
         public event Action<string> SoftPhoneInComingCall;
         public event Action<MyCallState> CallStateChange;
+        public event Action FormVideoCallClose;
 
         public OzekiAudioCall()
         {
@@ -335,26 +336,75 @@ namespace PhoneCall.Ozeki
             return localVideo;
         }
 
+        private bool IsCameraStarted = true;
         public void ShowFormCall()
         {
             Form form = new Form();
-            form.Size = new Size(774, 440);
+            form.Text = "cuộc gọi video";
+            form.Size = new Size(800, 500);
+            form.BackColor = Color.White;
+            form.FormBorderStyle = FormBorderStyle.FixedSingle;
+            form.FormClosing += Form_FormClosing;
+
+            Button closeCamera = new Button();
+            closeCamera.Location = new Point(655, 200);
+            closeCamera.Size = new Size(125, 25);
+            closeCamera.Text = "Close Camera";
+            closeCamera.Click += CloseCamera_Click;
+
+            Button hangUp = new Button();
+            hangUp.Location = new Point(655, 235);
+            hangUp.Size = new Size(125, 25);
+            hangUp.Text = "Tắt máy";
+            hangUp.Click += HangUp_Click;
+
             VideoViewerWF remoteViewer = new VideoViewerWF();
             remoteViewer.Location = new Point(0, 0);
-            remoteViewer.Size = new Size(696, 434);
+            remoteViewer.Size = new Size(650, 500);
             remoteViewer.SetImageProvider(remoteProvider);
             remoteViewer.Start();
 
             VideoViewerWF localViewer = new VideoViewerWF();
-            localViewer.Location = new Point(702, 375);
-            localViewer.Size = new Size(69, 62);
+            localViewer.Location = new Point(655, 350);
+            localViewer.Size = new Size(150, 150);
             localViewer.SetImageProvider(localProvider);
             localViewer.Start();
 
-            form.Size = new Size(774, 440);
+            form.Controls.Add(hangUp);
+            form.Controls.Add(closeCamera);
             form.Controls.Add(remoteViewer);
             form.Controls.Add(localViewer);
             form.ShowDialog();
+        }
+
+        private void Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (FormVideoCallClose != null)
+                FormVideoCallClose.Invoke();
+        }
+
+        private void HangUp_Click(object sender, EventArgs e)
+        {
+            var hangupButton = sender as Button;
+            hangupButton.FindForm().Close();
+            call.HangUp();
+        }
+
+        private void CloseCamera_Click(object sender, EventArgs e)
+        {
+            Button currentButton = sender as Button;
+            if (IsCameraStarted)
+            {
+                currentButton.Text = "Mở Camera";
+                IsCameraStarted = true;
+                camera.Stop();
+            }
+            else if (!IsCameraStarted)
+            {
+                currentButton.Text = "Tắt Camera";
+                IsCameraStarted = false;
+                StartCamera();
+            }
         }
     }
 }

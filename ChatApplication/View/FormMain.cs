@@ -539,5 +539,14 @@ namespace ChatApplication.View
                 _tabPageFriendRequest.Text = "(" + number + ") Lời mời kết bạn";
             else _tabPageFriendRequest.Text = "Lời mời kết bạn";
         }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _client.Logout(_account.Email);
+           foreach(var item in this.OwnedForms)
+            {
+                item.Close();
+            }
+        }
     }
 }

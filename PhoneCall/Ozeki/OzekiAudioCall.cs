@@ -387,7 +387,10 @@ namespace PhoneCall.Ozeki
         {
             var hangupButton = sender as Button;
             hangupButton.FindForm().Close();
-            call.HangUp();
+            if (!call.CallState.IsCallEnded())
+            {
+                call.HangUp();
+            }
         }
 
         private void CloseCamera_Click(object sender, EventArgs e)
@@ -396,14 +399,15 @@ namespace PhoneCall.Ozeki
             if (IsCameraStarted)
             {
                 currentButton.Text = "Mở Camera";
-                IsCameraStarted = true;
+                IsCameraStarted = false;
                 camera.Stop();
             }
             else if (!IsCameraStarted)
             {
                 currentButton.Text = "Tắt Camera";
-                IsCameraStarted = false;
+                IsCameraStarted = true ;
                 StartCamera();
+                ConnectMedia();
             }
         }
     }

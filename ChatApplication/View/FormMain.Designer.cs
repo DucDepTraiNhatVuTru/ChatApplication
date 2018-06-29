@@ -34,21 +34,21 @@
             this._tabPageFriend = new System.Windows.Forms.TabPage();
             this._tabPageGroupChat = new System.Windows.Forms.TabPage();
             this._radLVGroupChat = new Telerik.WinControls.UI.RadListView();
+            this._tabPageFriendRequest = new System.Windows.Forms.TabPage();
+            this._radLVFriendRequest = new Telerik.WinControls.UI.RadListView();
             this._btnAddFriend = new System.Windows.Forms.Button();
             this._btnCreateGroupChat = new System.Windows.Forms.Button();
             this._ptbChinhSua = new System.Windows.Forms.PictureBox();
             this._ptbAvatar = new System.Windows.Forms.PictureBox();
-            this._tabPageFriendRequest = new System.Windows.Forms.TabPage();
-            this._radLVFriendRequest = new Telerik.WinControls.UI.RadListView();
             ((System.ComponentModel.ISupportInitialize)(this._radlvFriendList)).BeginInit();
             this._tabControlMain.SuspendLayout();
             this._tabPageFriend.SuspendLayout();
             this._tabPageGroupChat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._radLVGroupChat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).BeginInit();
             this._tabPageFriendRequest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._radLVFriendRequest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // _lbUserName
@@ -113,6 +113,24 @@
             this._radLVGroupChat.Size = new System.Drawing.Size(259, 373);
             this._radLVGroupChat.TabIndex = 0;
             // 
+            // _tabPageFriendRequest
+            // 
+            this._tabPageFriendRequest.Controls.Add(this._radLVFriendRequest);
+            this._tabPageFriendRequest.Location = new System.Drawing.Point(4, 22);
+            this._tabPageFriendRequest.Name = "_tabPageFriendRequest";
+            this._tabPageFriendRequest.Size = new System.Drawing.Size(265, 379);
+            this._tabPageFriendRequest.TabIndex = 2;
+            this._tabPageFriendRequest.Text = "Lời mời kết bạn";
+            this._tabPageFriendRequest.UseVisualStyleBackColor = true;
+            // 
+            // _radLVFriendRequest
+            // 
+            this._radLVFriendRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._radLVFriendRequest.Location = new System.Drawing.Point(0, 0);
+            this._radLVFriendRequest.Name = "_radLVFriendRequest";
+            this._radLVFriendRequest.Size = new System.Drawing.Size(265, 379);
+            this._radLVFriendRequest.TabIndex = 9;
+            // 
             // _btnAddFriend
             // 
             this._btnAddFriend.Location = new System.Drawing.Point(115, 78);
@@ -151,24 +169,6 @@
             this._ptbAvatar.TabIndex = 2;
             this._ptbAvatar.TabStop = false;
             // 
-            // _tabPageFriendRequest
-            // 
-            this._tabPageFriendRequest.Controls.Add(this._radLVFriendRequest);
-            this._tabPageFriendRequest.Location = new System.Drawing.Point(4, 22);
-            this._tabPageFriendRequest.Name = "_tabPageFriendRequest";
-            this._tabPageFriendRequest.Size = new System.Drawing.Size(265, 379);
-            this._tabPageFriendRequest.TabIndex = 2;
-            this._tabPageFriendRequest.Text = "Lời mời kết bạn";
-            this._tabPageFriendRequest.UseVisualStyleBackColor = true;
-            // 
-            // _radLVFriendRequest
-            // 
-            this._radLVFriendRequest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._radLVFriendRequest.Location = new System.Drawing.Point(0, 0);
-            this._radLVFriendRequest.Name = "_radLVFriendRequest";
-            this._radLVFriendRequest.Size = new System.Drawing.Size(265, 379);
-            this._radLVFriendRequest.TabIndex = 9;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,15 +184,16 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMain";
             this.Text = "FormTest";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this._radlvFriendList)).EndInit();
             this._tabControlMain.ResumeLayout(false);
             this._tabPageFriend.ResumeLayout(false);
             this._tabPageGroupChat.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._radLVGroupChat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).EndInit();
             this._tabPageFriendRequest.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._radLVFriendRequest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbChinhSua)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._ptbAvatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

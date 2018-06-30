@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SocketServer;
 using SocketServer.SimpleTCP;
+using PBX.OzekiPBX;
 
 namespace ServerApp
 {
@@ -13,10 +14,14 @@ namespace ServerApp
         static void Main(string[] args)
         {
             var _server = new ServerSimpleTcp();
+            var _PBX = new OzekiPBX();
+            _PBX.SetUp(5060);
             Console.WriteLine("press enter to start server");
             Console.ReadLine();
             _server.Start("127.0.0.1", 2018);
-            Console.WriteLine("server is started!");
+            _PBX.Start();
+            Console.WriteLine("server start at 127.0.0.1:2018");
+            Console.WriteLine("PBX start at " + _PBX.GetPBXIP());
             _server.OnNewConnect += _server_OnNewConnect;
             _server.OnNewMessage += _server_OnNewMessage;
 

@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PBX\PBX.csproj">
+      <Project>{fe91260f-35fe-4c6d-a96d-4ab1be188bf3}</Project>
+      <Name>PBX</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SocketServer\SocketServer.csproj">
       <Project>{05d16c42-f824-4aa2-bcd1-122e9b752c98}</Project>
       <Name>SocketServer</Name>

@@ -266,12 +266,6 @@ namespace ChatApplication.View
             {
                 Instance._isVideoOn = true;
             }
-            /*Thread thread = new Thread(delegate ()
-            {
-                CallForm callForn = new CallForm(_phoneCall);
-                callForn.ShowDialog();
-            });
-            thread.Start();*/
         }
 
         public void RemoveWaitingBar()

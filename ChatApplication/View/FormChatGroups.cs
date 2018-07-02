@@ -45,7 +45,7 @@ namespace ChatApplication.View
             _lbGroupName.Text = group.Name;
             lock (this)
             {
-                _me = Instance.CurrentUser;
+                _me = Util.Instance.CurrentUser;
             }
             _authorMe = new Author(null, _me.Name);
             LoadMyAvatar(_me.AvatarDriveID);

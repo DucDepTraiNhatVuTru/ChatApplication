@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SocketServer;
 using SocketServer.SimpleTCP;
 using PBX.OzekiPBX;
+using System.Threading;
 
 namespace ServerApp
 {
@@ -19,7 +20,11 @@ namespace ServerApp
             Console.WriteLine("press enter to start server");
             Console.ReadLine();
             _server.Start("127.0.0.1", 2018);
-            _PBX.Start();
+            Thread thread = new Thread(delegate ()
+            {
+                _PBX.Start();
+            });
+            thread.Start();
             Console.WriteLine("server start at 127.0.0.1:2018");
             Console.WriteLine("PBX start at " + _PBX.GetPBXIP());
             _server.OnNewConnect += _server_OnNewConnect;

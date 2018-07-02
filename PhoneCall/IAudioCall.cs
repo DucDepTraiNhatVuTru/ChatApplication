@@ -12,6 +12,7 @@ namespace PhoneCall
 {
     public interface IAudioCall
     {
+        bool IsShowFormCall { get; set; }
         void RegisterAccount(ChatDataModel.Account account);
         void RegisterGroup(ChatDataModel.Group group);
         event Action PhoneLineRegisterStateChange;
@@ -36,5 +37,6 @@ namespace PhoneCall
         IVideoSender GetLocalVideo();
         void StartCamera();
         void ShowFormCall();
+        bool IsICall { get; set; }
     }
 }

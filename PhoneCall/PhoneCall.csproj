@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Instance.cs" />
     <Compile Include="IVideoProvider.cs" />
     <Compile Include="MyCallStyle.cs" />
     <Compile Include="MyCallState.cs" />

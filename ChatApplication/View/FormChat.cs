@@ -64,8 +64,8 @@ namespace ChatApplication.View
             string myName = "";
             lock (this)
             {
-                imageMe = GoogleDriveFilesRepository.DownloadFile(Instance.CurrentUser.AvatarDriveID);
-                myName = Instance.CurrentUser.Name;
+                imageMe = GoogleDriveFilesRepository.DownloadFile(Util.Instance.CurrentUser.AvatarDriveID);
+                myName = Util.Instance.CurrentUser.Name;
             }
             imageFriend = GoogleDriveFilesRepository.DownloadFile(_user.AvatarDriveID);
             _ptbFriendsAvatar.Image = Image.FromStream(imageFriend);
@@ -75,7 +75,7 @@ namespace ChatApplication.View
             authorFriend = new Author(Image.FromStream(imageFriend), _user.Name);
             _rcChatlog.Author = authorMe;
             //gửi yêu cầu lấy lịch sử chat
-            _client.RequestGetHistory(Instance.CurrentUser.Email, _user.Email);
+            _client.RequestGetHistory(Util.Instance.CurrentUser.Email, _user.Email);
             _rcChatlog.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
             _rcChatlog.ChatElement.SendButtonElement.Click += SendButtonElement_Click;
             _rcChatlog.ChatElement.MessagesViewElement.BackColor = Color.White;
@@ -98,7 +98,7 @@ namespace ChatApplication.View
             if (mediaMessageDriveId != "")
             {
                 ChatMediaMessage message = new ChatMediaMessage(imageWillSend, new Size(128, 128), null, authorMe, DateTime.Now);
-                _client.SendMessage(new ChatDataModel.ChatMessage(Instance.CurrentUser.Email, _user.Email, "", mediaMessageDriveId, DateTime.Now));
+                _client.SendMessage(new ChatDataModel.ChatMessage(Util.Instance.CurrentUser.Email, _user.Email, "", mediaMessageDriveId, DateTime.Now));
                 _rcChatlog.AddMessage(message);
                 mediaMessageDriveId = "";
                 _rcChatlog.Controls.Remove(controlsAdded);
@@ -139,7 +139,7 @@ namespace ChatApplication.View
         private void _rcChatlog_SendMessage(object sender, SendMessageEventArgs e)
         {
                 ChatTextMessage mesage = e.Message as ChatTextMessage;
-                _client.SendMessage(new ChatDataModel.ChatMessage(Instance.CurrentUser.Email, _user.Email, mesage.Message, "", mesage.TimeStamp));
+            _client.SendMessage(new ChatDataModel.ChatMessage(Util.Instance.CurrentUser.Email, _user.Email, mesage.Message, "", mesage.TimeStamp));
         }
 
         private void FormChat_FormClosed(object sender, FormClosedEventArgs e)
@@ -201,7 +201,7 @@ namespace ChatApplication.View
 
         public void AddMessageHistory()
         {
-            var me = Instance.CurrentUser.Email;
+            var me = Util.Instance.CurrentUser.Email;
             foreach(var item in AllMessage)
             {
                 if (item.ImageMessageDriveID != "")
@@ -256,16 +256,17 @@ namespace ChatApplication.View
 
         private void _ptbVideoCall_Click(object sender, EventArgs e)
         {
-            var tach = _user.Email.Split('@');
-            _phoneCall.CreateCall(tach[0]);
-            _phoneCall.StartCamera();
-            _phoneCall.ConnectMedia();
-            _phoneCall.ModifyCallStyle(MyCallStyle.AudioVideo);
-            _phoneCall.ShowFormCall();
-            lock (this)
+            Thread thread = new Thread(delegate ()
             {
-                Instance._isVideoOn = true;
-            }
+                var tach = _user.Email.Split('@');
+                _phoneCall.CreateCall(tach[0]);
+                _phoneCall.StartCamera();
+                _phoneCall.ConnectMedia();
+                _phoneCall.ModifyCallStyle(MyCallStyle.AudioVideo);
+                _phoneCall.ShowFormCall();
+                _phoneCall.IsShowFormCall = true;
+            });
+            thread.Start();
         }
 
         public void RemoveWaitingBar()

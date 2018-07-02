@@ -83,7 +83,7 @@ namespace ChatApplication.View
             {
                 _call = new OzekiAudioCall();
                 _call.RegisterAccount(_account);
-                _call.ConnectMedia();
+                //_call.ConnectMedia();
                 _call.SoftPhoneInComingCall += _call_SoftPhoneInComingCall;
                 _call.CallStateChange += _call_CallStateChange;
                 _call.FormVideoCallClose += _call_FormVideoCallClose;
@@ -95,7 +95,7 @@ namespace ChatApplication.View
         {
             lock (this)
             {
-                Instance._isVideoOn = false;
+                Util.Instance._isVideoOn = false;
             }
         }
 
@@ -106,26 +106,26 @@ namespace ChatApplication.View
                 lock (this)
                 {
                     FormInComingCall f;
-                    if (Instance.CommingCalls.TryGetValue(_call.GetCallId(), out f))
+                    if (Util.Instance.CommingCalls.TryGetValue(_call.GetCallId(), out f))
                     {
                         f.Close();
                     }
-                    Instance.CommingCalls.Remove(_call.GetCallId());
+                    Util.Instance.CommingCalls.Remove(_call.GetCallId());
                 }
             }
-            if (state == MyCallState.Answered && Instance._isVideoOn == false )
+            if (state == MyCallState.Answered  )
             {
-                lock (this)
+                if (!_call.IsICall)
                 {
-                    Instance._isVideoOn = true;
+                    Thread thread = new Thread(delegate ()
+                    {
+                        _call.StartCamera();
+                        _call.ConnectMedia();
+                        _call.ShowFormCall();
+                        _call.IsShowFormCall = true;
+                    });
+                    thread.Start();
                 }
-                Thread thread = new Thread(delegate ()
-                {
-                    _call.StartCamera();
-                    _call.ConnectMedia();
-                    _call.ShowFormCall();
-                });
-                thread.Start();
                 /*
                 lock (this)
                 {
@@ -176,11 +176,11 @@ namespace ChatApplication.View
 
         private void _call_SoftPhoneInComingCall(string callerName)
         {
-            Instance.InCommingCall = true;
+            Util.Instance.InCommingCall = true;
             FormInComingCall formInComingCall = new FormInComingCall(_call, callerName);
             lock (this)
             {
-                Instance.CommingCalls.Add(_call.GetCallId(), formInComingCall);
+                Util.Instance.CommingCalls.Add(_call.GetCallId(), formInComingCall);
             }
             Thread thread = new Thread(delegate ()
             {
@@ -484,7 +484,7 @@ namespace ChatApplication.View
 
         private ChatDataModel.Account GetAccountFromFriendList(string email)
         {
-            foreach(var item in Instance.ListFriends)
+            foreach(var item in Util.Instance.ListFriends)
             {
                 if (item.Email == email)
                 {
@@ -496,7 +496,7 @@ namespace ChatApplication.View
 
         private Group GetGroupFromListGroup(string groupId)
         {
-            foreach(var item in Instance.ListGroups)
+            foreach(var item in Util.Instance.ListGroups)
             {
                 if (item.Id == groupId)
                 {
@@ -524,15 +524,15 @@ namespace ChatApplication.View
 
         public void RemoveGroup(string groupId)
         {
-            foreach(var item in Instance.ListGroups)
+            foreach(var item in Util.Instance.ListGroups)
             {
                 if (item.Id == groupId)
                 {
-                    Instance.ListGroups.Remove(item);
+                    Util.Instance.ListGroups.Remove(item);
                     break;
                 }
             }
-            LoadGroupList(Instance.ListGroups);
+            LoadGroupList(Util.Instance.ListGroups);
         }
 
         public void LoadListUserFriendRequest(List<ChatDataModel.Account> accounts)

@@ -33,6 +33,8 @@ namespace PhoneCall.Ozeki
         ImageProvider<Image> localProvider = new DrawingImageProvider();
         IVideoSender remoteVideo, localVideo;
         private IPhoneCall _grCall;
+        public bool IsCameraStart { get; set; }
+        public bool IsICall { get; set; }
 
         private bool inComingCall;
 
@@ -44,6 +46,7 @@ namespace PhoneCall.Ozeki
         public event Action<string> SoftPhoneInComingCall;
         public event Action<MyCallState> CallStateChange;
         public event Action FormVideoCallClose;
+        public bool IsShowFormCall { get; set; }
 
         public OzekiAudioCall()
         {
@@ -53,16 +56,19 @@ namespace PhoneCall.Ozeki
 
         public void StartCamera()
         {
-            var data = new CameraURLBuilderData { DeviceTypeFilter = DiscoverDeviceType.USB };
-            var myCameraBuilder = new CameraURLBuilderWF(data);
-            var result = myCameraBuilder.ShowDialog();
-            if(result!= System.Windows.Forms.DialogResult.OK)
+            if (Instance.IsLocalCameraUsed == false)
             {
-                return;
-            }
+                var data = new CameraURLBuilderData { DeviceTypeFilter = DiscoverDeviceType.USB };
+                var myCameraBuilder = new CameraURLBuilderWF(data);
+                var result = myCameraBuilder.ShowDialog();
+                if (result != System.Windows.Forms.DialogResult.OK)
+                {
+                    return;
+                }
 
-            camera = new OzekiCamera(myCameraBuilder.CameraURL);
-            camera.Start();
+                camera = new OzekiCamera(myCameraBuilder.CameraURL);
+                camera.Start();
+            }
         }
 
         public void InitializeConferenceRoom()
@@ -183,7 +189,7 @@ namespace PhoneCall.Ozeki
         public void RegisterAccount(ChatDataModel.Account account)
         {
             var tach = account.Email.Split('@');
-            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.109",5060);
+            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.143",5060);
             try
             {
                 phoneLine = softPhone.CreatePhoneLine(sipAccount);
@@ -216,10 +222,16 @@ namespace PhoneCall.Ozeki
                 connector.Connect(mediaReceiver, speaker);
             }
 
-            if (camera != null)
+            //if (camera != null)
             {
-                connector.Connect(camera.VideoChannel,localProvider);
-                connector.Connect(camera.VideoChannel, videoSender);
+                //if (Instance.IsLocalCameraUsed == false)
+                {
+                    Instance.SendingVideo = camera.VideoChannel;
+                    Instance.LocalProvider.Add(new DrawingImageProvider());
+                    connector.Connect(Instance.SendingVideo, Instance.LocalProvider[Instance.LocalProvider.Count-1]);
+                    Instance.IsLocalCameraUsed = true;
+                }
+                    connector.Connect(Instance.SendingVideo, videoSender);
             }
 
             connector.Connect(videoReceiver,remoteProvider);
@@ -239,7 +251,7 @@ namespace PhoneCall.Ozeki
 
             if(camera!= null)
             {
-                connector.Disconnect(camera.VideoChannel, localProvider);
+                //connector.Disconnect(camera.VideoChannel, Instance.LocalProvider);
                 connector.Disconnect(camera.VideoChannel, videoSender);
             }
 
@@ -251,6 +263,7 @@ namespace PhoneCall.Ozeki
             call = softPhone.CreateCallObject(phoneLine, dial);
             WireUpCallEvents();
             call.Start();
+            IsICall = true;
         }
 
         public void Answer()
@@ -362,6 +375,7 @@ namespace PhoneCall.Ozeki
 
             Label _lbTime = new Label();
             _lbTime.Location = new Point(710, 485);
+            
             _lbTime.Text = "00:00";
 
             Timer timer = new Timer();
@@ -374,7 +388,7 @@ namespace PhoneCall.Ozeki
                     min++;
                     sec = 0;
                 }
-                _lbTime.Text = min + ":" + sec;
+                _lbTime.Text = min.ToString() + ":" + sec.ToString();
             };
 
             VideoViewerWF remoteViewer = new VideoViewerWF();
@@ -386,7 +400,7 @@ namespace PhoneCall.Ozeki
             VideoViewerWF localViewer = new VideoViewerWF();
             localViewer.Location = new Point(655, 350);
             localViewer.Size = new Size(150, 150);
-            localViewer.SetImageProvider(localProvider);
+            localViewer.SetImageProvider(Instance.LocalProvider[Instance.LocalProvider.Count-1]);
             localViewer.Start();
 
             form.Controls.Add(_lbTime);
@@ -395,10 +409,13 @@ namespace PhoneCall.Ozeki
             form.Controls.Add(remoteViewer);
             form.Controls.Add(localViewer);
             form.ShowDialog();
+
+            IsShowFormCall = true;
         }
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
+            IsShowFormCall = false;
             try
             {
                 call.HangUp();

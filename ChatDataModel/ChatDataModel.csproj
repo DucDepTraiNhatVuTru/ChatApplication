@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="Call.cs" />
     <Compile Include="ChatGroupMessage.cs" />
     <Compile Include="ChatMessage.cs" />
     <Compile Include="FriendResquestNotExcept.cs" />

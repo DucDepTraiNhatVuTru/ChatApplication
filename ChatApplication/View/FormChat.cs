@@ -78,11 +78,20 @@ namespace ChatApplication.View
             _client.RequestGetHistory(Util.Instance.CurrentUser.Email, _user.Email);
             _rcChatlog.ChatElement.ShowToolbarButtonElement.Click += ShowToolbarButtonElement_Click;
             _rcChatlog.ChatElement.SendButtonElement.Click += SendButtonElement_Click;
+            _rcChatlog.CardActionClicked += _rcChatlog_CardActionClicked;
             _rcChatlog.ChatElement.MessagesViewElement.BackColor = Color.White;
             _rcChatlog.AutoScroll = false;
 
             _phoneCall = phoneCall;
             _phoneCall.CallStateChange += _phoneCall_CallStateChange;
+        }
+
+        private void _rcChatlog_CardActionClicked(object sender, CardActionEventArgs e)
+        {
+            if (e.Action.Text == "Call")
+            {
+                VideoCall(e.UserData.ToString());
+            }
         }
 
         private void _phoneCall_CallStateChange(MyCallState state)
@@ -95,6 +104,7 @@ namespace ChatApplication.View
 
         private void SendButtonElement_Click(object sender, EventArgs e)
         {
+            /*
             if (mediaMessageDriveId != "")
             {
                 ChatMediaMessage message = new ChatMediaMessage(imageWillSend, new Size(128, 128), null, authorMe, DateTime.Now);
@@ -105,11 +115,11 @@ namespace ChatApplication.View
                 _rcChatlog.ChatElement.InputTextBox.TextBoxItem.Enabled = true;
                 _rcChatlog.ChatElement.InputTextBox.TextBoxItem.Text = "";
             }
+            */
         }
 
         private void ShowToolbarButtonElement_Click(object sender, EventArgs e)
         {
-            OpenFileDialog open = new OpenFileDialog();
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "Choose Image";
             dialog.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
@@ -117,15 +127,10 @@ namespace ChatApplication.View
             {
                 string path = dialog.InitialDirectory + @"\" + dialog.FileName;
                 var fileID = GoogleDriveFilesRepository.UploadFile(path.Substring(1));
-                mediaMessageDriveId = fileID;
-                FormChung.Picture picture = new FormChung.Picture();
-                picture.Close += Picture_Close;
-                picture.Location = new Point(2, _rcChatlog.Size.Height - 110);
-                imageWillSend = Image.FromFile(Path.Combine(dialog.InitialDirectory, dialog.FileName));
-                picture.AddImage(imageWillSend);
-                controlsAdded = picture;
-                _rcChatlog.Controls.Add(picture);
-                _rcChatlog.ChatElement.InputTextBox.TextBoxItem.Enabled = false;
+                var image = Image.FromFile(Path.Combine(dialog.InitialDirectory, dialog.FileName));
+                ChatMediaMessage message = new ChatMediaMessage(image, new Size(128, 128), null, authorMe, DateTime.Now);
+                _rcChatlog.AddMessage(message);
+                _client.SendMessage(new ChatDataModel.ChatMessage(Util.Instance.CurrentUser.Email, _user.Email, "", fileID,null, DateTime.Now));
             }
         }
 
@@ -139,7 +144,7 @@ namespace ChatApplication.View
         private void _rcChatlog_SendMessage(object sender, SendMessageEventArgs e)
         {
                 ChatTextMessage mesage = e.Message as ChatTextMessage;
-            _client.SendMessage(new ChatDataModel.ChatMessage(Util.Instance.CurrentUser.Email, _user.Email, mesage.Message, "", mesage.TimeStamp));
+            _client.SendMessage(new ChatDataModel.ChatMessage(Util.Instance.CurrentUser.Email, _user.Email, mesage.Message, "",null, mesage.TimeStamp));
         }
 
         private void FormChat_FormClosed(object sender, FormClosedEventArgs e)
@@ -184,6 +189,7 @@ namespace ChatApplication.View
             {
                 var tach = _user.Email.Split('@');
                 _phoneCall.CreateCall(tach[0]);
+                _phoneCall.ModifyCallStyle(MyCallStyle.Audio);
             }
             catch (Exception)
             {
@@ -231,8 +237,27 @@ namespace ChatApplication.View
                         _rcChatlog.AddMessage(message);
                     }
                 }
+                else if (item.Call != null)
+                {
+                    var tittle = "";
+                    if (item.Call.Called) tittle = "Cuộc gọi";
+                    else tittle = "Cuộc gọi nhỡ";
+                    List<ChatCardAction> actions = new List<ChatCardAction>();
+                    actions.Add(new ChatCardAction("Call"));
+                    if (item.Sender == me)
+                    {
+                        ChatImageCardDataItem card = new ChatImageCardDataItem(null, tittle, "bạn & " + authorFriend.Name, TimeSpan.FromSeconds(item.Call.Duration).ToString(@"mm\:ss"), actions, item.Receiver);
+                        ChatCardMessage message = new ChatCardMessage(card, authorMe, item.TimeSend);
+                        _rcChatlog.AddMessage(message);
+                    }
+                    else
+                    {
+                        ChatImageCardDataItem card = new ChatImageCardDataItem(null, tittle, "bạn & " + authorFriend.Name, TimeSpan.FromSeconds(item.Call.Duration).ToString(@"mm\:ss"), actions, item.Sender);
+                        ChatCardMessage message = new ChatCardMessage(card, authorFriend, item.TimeSend);
+                        _rcChatlog.AddMessage(message);
+                    }
+                }
             }
-            //IsGotHistory = true;
         }
 
         public void AddWaitingBar()
@@ -256,10 +281,15 @@ namespace ChatApplication.View
 
         private void _ptbVideoCall_Click(object sender, EventArgs e)
         {
+            var tach = _user.Email.Split('@');
+            VideoCall(tach[0]);
+        }
+
+        private void VideoCall(string dial)
+        {
             Thread thread = new Thread(delegate ()
             {
-                var tach = _user.Email.Split('@');
-                _phoneCall.CreateCall(tach[0]);
+                _phoneCall.CreateCall(dial);
                 _phoneCall.StartCamera();
                 _phoneCall.ConnectMedia();
                 _phoneCall.ModifyCallStyle(MyCallStyle.AudioVideo);
@@ -267,6 +297,11 @@ namespace ChatApplication.View
                 _phoneCall.IsShowFormCall = true;
             });
             thread.Start();
+        }
+
+        private void _rcChatlog_Click(object sender, EventArgs e)
+        {
+
         }
 
         public void RemoveWaitingBar()

@@ -14,14 +14,11 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            /* IAccountDAO db = new AccountDAOSQL();
-             var l = db.GetListFriendNotInGroup("minhduc@gmail.com","abcd");
-             foreach(var item in l)
-             {
-                 Console.WriteLine(item.Name);
-             }*/
-            var db = new FriendDAOSQL();
-            Console.WriteLine(db.Delete("minhduc@gmail.com", "tranthanh@gmail.com"));
+            var db = new ChatMessageDAOSQL();
+            foreach(var item in db.AllMessage("minhduc@gmail.com", "congphuong@gmail.com"))
+            {
+                Console.WriteLine(item.Id);
+            }
             Console.ReadLine();
         }
     }

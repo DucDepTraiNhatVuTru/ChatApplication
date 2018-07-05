@@ -49,6 +49,7 @@
             this._rcChatlog.Text = "_radchatChatLog";
             this._rcChatlog.TimeSeparatorInterval = System.TimeSpan.Parse("1.00:00:00");
             this._rcChatlog.SendMessage += new Telerik.WinControls.UI.SendMessageEventHandler(this._rcChatlog_SendMessage);
+            this._rcChatlog.Click += new System.EventHandler(this._rcChatlog_Click);
             ((Telerik.WinControls.UI.ChatMessagesViewElement)(this._rcChatlog.GetChildAt(0).GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             // 
             // _lbFriendsName

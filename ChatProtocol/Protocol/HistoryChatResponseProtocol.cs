@@ -17,8 +17,8 @@ namespace ChatProtocol.Protocol
             if (tach.Length < 1) return false;
             foreach(var item in tach)
             {
-                var message = ParseMessage(item);
-                if (message != null)
+                var message = new ChatMessage();
+                if (message.Parse(item))
                 {
                     Messages.Add(message);
                 }

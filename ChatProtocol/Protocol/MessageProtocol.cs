@@ -26,8 +26,11 @@ namespace ChatProtocol.Protocol
             Message.Receiver = tach[2];
             Message.Message = tach[3];
             Message.ImageMessageDriveID = tach[4];
+            Call call = new Call();
+            if (call.Parse(tach[5])) return false;
+            Message.Call = call;
             DateTime time;
-            if (!DateTime.TryParse(tach[5], out time)) return false;
+            if (!DateTime.TryParse(tach[6], out time)) return false;
             Message.TimeSend = time;
             return true;
         }
@@ -40,6 +43,7 @@ namespace ChatProtocol.Protocol
             data += Message.Receiver + "\0";
             data += Message.Message + "\0";
             data += Message.ImageMessageDriveID + "\0";
+            data += Message.Call.ToString() + "\0";
             data += Message.TimeSend + "\0";
             return Encoding.Unicode.GetBytes(data);
         }

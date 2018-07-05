@@ -38,5 +38,6 @@ namespace PhoneCall
         void StartCamera();
         void ShowFormCall();
         bool IsICall { get; set; }
+        void CallDuration();
     }
 }

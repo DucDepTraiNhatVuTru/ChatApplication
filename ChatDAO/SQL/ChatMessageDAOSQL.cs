@@ -22,7 +22,7 @@ namespace ChatDAO
             try
             {
                 Connect();
-                string sql = "INSERT INTO ChatMessage VALUES ('" + message.Sender + "','" + message.Receiver + "',N'" + message.Message + "','" + message.ImageMessageDriveID + "','" + message.TimeSend + "')";
+                string sql = "INSERT INTO ChatMessage VALUES ('" + message.Sender + "','" + message.Receiver + "',N'" + message.Message + "','" + message.ImageMessageDriveID + "','" + message.Call.ID + "','" + message.TimeSend + "')";
                 return con.ExecuteNonQuery(sql);
             }
             catch (Exception ex)
@@ -39,7 +39,8 @@ namespace ChatDAO
             try
             {
                 Connect();
-                string sql = "SELECT * FROM ChatMessage WHERE (Sender = '" + user1 + "' AND Receiver = '" + user2 + "') OR (Sender = '" + user2 + "' AND Receiver = '" + user1 + "')";
+                //string sql = "SELECT * FROM ChatMessage WHERE (Sender = '" + user1 + "' AND Receiver = '" + user2 + "') OR (Sender = '" + user2 + "' AND Receiver = '" + user1 + "')";
+                string sql = "SELECT M.Id, Sender, Receiver, Message,ImageMessageDriveId, CallID, CallDuration, Called, Time FROM (SELECT * FROM ChatMessage WHERE ( ChatMessage.Sender ='" + user1 + "' AND ChatMessage.Receiver = '" + user2 + "' ) OR (ChatMessage.Sender = '" + user2 + "' AND ChatMessage.Receiver = '" + user1 + "')) M LEFT JOIN Call ON ( CallID = Call.ID )";
                 var data = con.GetData(sql);
                 List<ChatMessage> listMessage = new List<ChatMessage>();
                 if (data.HasRows)
@@ -51,8 +52,13 @@ namespace ChatDAO
                         string receiver = data.GetString(2);
                         string message = data.GetString(3);
                         string image = data.GetString(4);
-                        DateTime time = (DateTime)data.GetValue(5);
-                        listMessage.Add(new ChatMessage(id, sender, receiver, message, image, time));
+                        string callId = data.GetValue(5).ToString();
+                        int callDuration = 0;
+                        if (!int.TryParse(data.GetOrdinal("CallDuration").ToString(), out callDuration)) callDuration = 0;
+                        bool called = false;
+                        if (!bool.TryParse(data.GetValue(7).ToString(), out called)) called = false;
+                        DateTime time = (DateTime)data.GetValue(8);
+                        listMessage.Add(new ChatMessage(id, sender, receiver, message, image, new Call(callId, callDuration, called), time));
                     }
                 }
                 return listMessage;

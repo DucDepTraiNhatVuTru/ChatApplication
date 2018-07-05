@@ -115,6 +115,11 @@ namespace ChatApplication.View
             }
             if (state == MyCallState.Answered  )
             {
+                Thread t = new Thread(delegate ()
+                {
+                    _call.CallDuration();
+                });
+                t.Start();
                 if (!_call.IsICall)
                 {
                     Thread thread = new Thread(delegate ()
@@ -126,27 +131,6 @@ namespace ChatApplication.View
                     });
                     thread.Start();
                 }
-                /*
-                lock (this)
-                {
-                    videoOn = Instance._isVideoOn;
-                }
-                if (!videoOn)
-                {
-                    lock (this)
-                    {
-                        Instance._isVideoOn = true;
-                    }
-                    Thread thread = new Thread(delegate ()
-                    {
-                        _call.StartCamera();
-                        _call.ConnectMedia();
-                        _call.ShowFormCall();
-                    });
-                    thread.Start();
-                }
-                */
-
             }
         }
 

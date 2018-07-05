@@ -41,10 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICallDAO.cs" />
     <Compile Include="IFriendRequestNotExceptDAO.cs" />
     <Compile Include="IFriendDAO.cs" />
     <Compile Include="IGroupDAO.cs" />
     <Compile Include="SQL\AccountDAOSQL.cs" />
+    <Compile Include="SQL\CallDAOSQL.cs" />
     <Compile Include="SQL\ChatGroupMessageDAOSQL.cs" />
     <Compile Include="SQL\ChatMessageDAOSQL.cs" />
     <Compile Include="IAccountDAO.cs" />

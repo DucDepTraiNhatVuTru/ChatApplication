@@ -33,14 +33,9 @@ namespace PhoneCall.Ozeki
         ImageProvider<Image> localProvider = new DrawingImageProvider();
         IVideoSender remoteVideo, localVideo;
         private IPhoneCall _grCall;
+        Label _lbTime;
         public bool IsCameraStart { get; set; }
         public bool IsICall { get; set; }
-
-        private bool inComingCall;
-
-        private string reDialNumber;
-
-        private bool localHeld;
 
         public event Action PhoneLineRegisterStateChange;
         public event Action<string> SoftPhoneInComingCall;
@@ -373,23 +368,9 @@ namespace PhoneCall.Ozeki
             hangUp.Text = "Tắt máy";
             hangUp.Click += HangUp_Click;
 
-            Label _lbTime = new Label();
-            _lbTime.Location = new Point(710, 485);
-            
-            _lbTime.Text = "00:00";
-
-            Timer timer = new Timer();
-            timer.Interval = 1000;
-            timer.Start();
-            timer.Tick += delegate{
-                sec++;
-                if (sec >= 60)
-                {
-                    min++;
-                    sec = 0;
-                }
-                _lbTime.Text = min.ToString() + ":" + sec.ToString();
-            };
+           /* _lbTime = new Label();
+            _lbTime.Location = new Point(710, 325);
+            _lbTime.Text = "00:00";*/
 
             VideoViewerWF remoteViewer = new VideoViewerWF();
             remoteViewer.Location = new Point(0, 0);
@@ -451,6 +432,29 @@ namespace PhoneCall.Ozeki
                 IsCameraStarted = true ;
                 StartCamera();
                 ConnectMedia();
+            }
+        }
+
+        Timer timer = new Timer();
+        public void CallDuration()
+        {
+            if (call.CallState == CallState.Answered)
+            {
+                timer.Interval = 1000;
+                timer.Start();
+                timer.Tick += delegate
+                {
+                    sec++;
+                    if (sec >= 60)
+                    {
+                        min++;
+                        sec = 0;
+                    }
+                    _lbTime.Invoke(new MethodInvoker(delegate ()
+                    {
+                        _lbTime.Text = min.ToString() + ":" + sec.ToString();
+                    }));
+                };
             }
         }
     }

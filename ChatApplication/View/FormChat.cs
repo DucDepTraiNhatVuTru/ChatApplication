@@ -128,7 +128,8 @@ namespace ChatApplication.View
                 string path = dialog.InitialDirectory + @"\" + dialog.FileName;
                 var fileID = GoogleDriveFilesRepository.UploadFile(path.Substring(1));
                 var image = Image.FromFile(Path.Combine(dialog.InitialDirectory, dialog.FileName));
-                ChatMediaMessage message = new ChatMediaMessage(image, new Size(128, 128), null, authorMe, DateTime.Now);
+                var displayImage = ResizeImagePercentage(image);
+                ChatMediaMessage message = new ChatMediaMessage(displayImage, displayImage.Size, null, authorMe, DateTime.Now);
                 _rcChatlog.AddMessage(message);
                 _client.SendMessage(new ChatDataModel.ChatMessage(Util.Instance.CurrentUser.Email, _user.Email, "", fileID,null, DateTime.Now));
             }
@@ -179,7 +180,8 @@ namespace ChatApplication.View
         {
             var stream = GoogleDriveFilesRepository.DownloadFile(message.ImageMessageDriveID);
             var img = Image.FromStream(stream);
-            ChatMediaMessage mess = new ChatMediaMessage(img, img.Size, null, authorFriend, message.TimeSend);
+            var displayImage = ResizeImagePercentage(img);
+            ChatMediaMessage mess = new ChatMediaMessage(displayImage, displayImage.Size, null, authorFriend, message.TimeSend);
             _rcChatlog.AddMessage(mess);
         }
 
@@ -214,14 +216,15 @@ namespace ChatApplication.View
                 if (item.ImageMessageDriveID != "")
                 {
                     var image = GoogleDriveFilesRepository.DownloadFile(item.ImageMessageDriveID);
+                    var displayImage = ResizeImagePercentage(Image.FromStream(image));
                     if (item.Sender == me)
                     {
-                        ChatMediaMessage message = new ChatMediaMessage(Image.FromStream(image), new Size(128, 128),null, authorMe, item.TimeSend);
+                        ChatMediaMessage message = new ChatMediaMessage(displayImage, displayImage.Size,null, authorMe, item.TimeSend);
                         _rcChatlog.AddMessage(message);
                     }
                     else
                     {
-                        ChatMediaMessage message = new ChatMediaMessage(Image.FromStream(image), new Size(128, 128), null, authorFriend, item.TimeSend);
+                        ChatMediaMessage message = new ChatMediaMessage(displayImage, displayImage.Size, null, authorFriend, item.TimeSend);
                         _rcChatlog.AddMessage(message);
                     }
                 }
@@ -316,6 +319,16 @@ namespace ChatApplication.View
         public void RemoveWaitingBar()
         {
             _rcChatlog.Controls.Remove(waitingBarControl);
+        }
+
+        public Image ResizeImagePercentage(Image image)
+        {
+            if (image.Size.Width > 256 || image.Size.Height > 256)
+            {
+                float percentage = (float)256 / Math.Max(image.Size.Width, image.Size.Height);
+                return ImageConverter.ImageResize.ResizeImagePercentage(image, percentage);
+            }
+            return image;
         }
     }
 }

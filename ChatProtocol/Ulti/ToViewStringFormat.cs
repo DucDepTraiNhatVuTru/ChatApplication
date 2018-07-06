@@ -16,7 +16,10 @@ namespace ChatProtocol.Ulti
 
         public ToViewStringFormat()
         {
-
+            IP = "";
+            User = "";
+            Handle = "";
+            Message = "";
         }
 
         public ToViewStringFormat(DateTime time, string ip, string user, string handle)

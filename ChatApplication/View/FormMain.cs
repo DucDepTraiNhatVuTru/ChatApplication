@@ -113,13 +113,14 @@ namespace ChatApplication.View
                     Util.Instance.CommingCalls.Remove(_call.GetCallId());
                 }
             }
-            if (state == MyCallState.Answered  )
+            if (state == MyCallState.Answered)
             {
-                Thread t = new Thread(delegate ()
-                {
-                    _call.CallDuration();
-                });
-                t.Start();
+                //_call.CallDuration();
+                //Thread t = new Thread(delegate ()
+                //{
+                //    _call.CallDuration();
+                //});
+                //t.Start();
                 if (!_call.IsICall)
                 {
                     Thread thread = new Thread(delegate ()
@@ -185,8 +186,7 @@ namespace ChatApplication.View
 
         private void Init()
         {
-            _ptbChinhSua.BackColor = Color.FromArgb(0, 255, 255, 255);
-            _ptbChinhSua.SizeMode = PictureBoxSizeMode.StretchImage;
+            //_ptbChinhSua.BackColor = Color.FromArgb(200, 255, 255, 255);
             _lbUserName.Text = _account.Name;
             Thread thread = new Thread(delegate ()
             {
@@ -224,8 +224,7 @@ namespace ChatApplication.View
                 _client.RequestGetListFriendRequest(_account.Email);
             if (!_client.IsSending)
                 _client.RequsetGetListFriend(_account.Email);
-
-
+            
             _client.RequestGetListFriendIRequest(_account.Email);
         }
 
@@ -322,8 +321,6 @@ namespace ChatApplication.View
         //click vào item trong groupChat
         private void _radLVGroupChat_ItemMouseClick(object sender, ListViewItemEventArgs e)
         {
-
-            MessageBox.Show(e.Item.Value.ToString());
             OpenFormChatGroup(e.Item.Value.ToString());
         }
 
@@ -501,9 +498,6 @@ namespace ChatApplication.View
         public void SendRequestGetUserInGroup(string groupId)
         {
             _client.RequestGetUserInGroup(_account.Email, groupId);
-            /*FormChatGroups form;
-            FormChatGroupsOpening.TryGetValue(groupId, out form);
-            form.Refresh();*/
         }
 
         public void RemoveGroup(string groupId)

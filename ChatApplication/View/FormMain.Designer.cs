@@ -37,8 +37,9 @@
             this._radLVGroupChat = new Telerik.WinControls.UI.RadListView();
             this._tabPageFriendRequest = new System.Windows.Forms.TabPage();
             this._radLVFriendRequest = new Telerik.WinControls.UI.RadListView();
-            this._btnAddFriend = new System.Windows.Forms.Button();
+            this._btnStream = new System.Windows.Forms.Button();
             this._btnCreateGroupChat = new System.Windows.Forms.Button();
+            this._btnAddFriend = new System.Windows.Forms.Button();
             this._ptbChinhSua = new System.Windows.Forms.PictureBox();
             this._ptbAvatar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._radlvFriendList)).BeginInit();
@@ -132,38 +133,53 @@
             this._radLVFriendRequest.Size = new System.Drawing.Size(265, 379);
             this._radLVFriendRequest.TabIndex = 9;
             // 
-            // _btnAddFriend
+            // _btnStream
             // 
-            this._btnAddFriend.Location = new System.Drawing.Point(115, 78);
-            this._btnAddFriend.Name = "_btnAddFriend";
-            this._btnAddFriend.Size = new System.Drawing.Size(39, 30);
-            this._btnAddFriend.TabIndex = 7;
-            this._btnAddFriend.Text = "button1";
-            this._btnAddFriend.UseVisualStyleBackColor = true;
+            this._btnStream.FlatAppearance.BorderSize = 0;
+            this._btnStream.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnStream.Image = global::ChatApplication.Properties.Resources.stream;
+            this._btnStream.Location = new System.Drawing.Point(193, 77);
+            this._btnStream.Name = "_btnStream";
+            this._btnStream.Size = new System.Drawing.Size(32, 32);
+            this._btnStream.TabIndex = 9;
+            this._btnStream.UseVisualStyleBackColor = true;
             // 
             // _btnCreateGroupChat
             // 
-            this._btnCreateGroupChat.Image = global::ChatApplication.Properties.Resources.Group;
-            this._btnCreateGroupChat.Location = new System.Drawing.Point(160, 78);
+            this._btnCreateGroupChat.FlatAppearance.BorderSize = 0;
+            this._btnCreateGroupChat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnCreateGroupChat.Image = ((System.Drawing.Image)(resources.GetObject("_btnCreateGroupChat.Image")));
+            this._btnCreateGroupChat.Location = new System.Drawing.Point(155, 77);
             this._btnCreateGroupChat.Name = "_btnCreateGroupChat";
-            this._btnCreateGroupChat.Size = new System.Drawing.Size(39, 30);
+            this._btnCreateGroupChat.Size = new System.Drawing.Size(32, 32);
             this._btnCreateGroupChat.TabIndex = 8;
             this._btnCreateGroupChat.UseVisualStyleBackColor = true;
             // 
+            // _btnAddFriend
+            // 
+            this._btnAddFriend.FlatAppearance.BorderSize = 0;
+            this._btnAddFriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnAddFriend.Image = global::ChatApplication.Properties.Resources.findfriend;
+            this._btnAddFriend.Location = new System.Drawing.Point(117, 77);
+            this._btnAddFriend.Name = "_btnAddFriend";
+            this._btnAddFriend.Size = new System.Drawing.Size(32, 32);
+            this._btnAddFriend.TabIndex = 7;
+            this._btnAddFriend.UseVisualStyleBackColor = true;
+            // 
             // _ptbChinhSua
             // 
-            this._ptbChinhSua.Image = global::ChatApplication.Properties.Resources.pen;
+            this._ptbChinhSua.Image = global::ChatApplication.Properties.Resources.editpicture;
             this._ptbChinhSua.InitialImage = null;
             this._ptbChinhSua.Location = new System.Drawing.Point(85, 87);
             this._ptbChinhSua.Name = "_ptbChinhSua";
             this._ptbChinhSua.Size = new System.Drawing.Size(20, 21);
+            this._ptbChinhSua.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this._ptbChinhSua.TabIndex = 4;
             this._ptbChinhSua.TabStop = false;
             this._ptbChinhSua.Click += new System.EventHandler(this._ptbChinhSua_Click);
             // 
             // _ptbAvatar
             // 
-            this._ptbAvatar.Image = global::ChatApplication.Properties.Resources.hello;
             this._ptbAvatar.Location = new System.Drawing.Point(5, 12);
             this._ptbAvatar.Name = "_ptbAvatar";
             this._ptbAvatar.Size = new System.Drawing.Size(100, 96);
@@ -176,6 +192,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(280, 523);
+            this.Controls.Add(this._btnStream);
             this.Controls.Add(this._btnCreateGroupChat);
             this.Controls.Add(this._btnAddFriend);
             this.Controls.Add(this._tabControlMain);
@@ -214,5 +231,6 @@
         private System.Windows.Forms.Button _btnCreateGroupChat;
         private System.Windows.Forms.TabPage _tabPageFriendRequest;
         private Telerik.WinControls.UI.RadListView _radLVFriendRequest;
+        private System.Windows.Forms.Button _btnStream;
     }
 }

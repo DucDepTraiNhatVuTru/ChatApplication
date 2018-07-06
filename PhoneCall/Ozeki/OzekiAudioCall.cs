@@ -10,6 +10,7 @@ using Ozeki.Common;
 using Ozeki.Camera;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace PhoneCall.Ozeki
 {
@@ -112,6 +113,7 @@ namespace PhoneCall.Ozeki
             {
                 StartDevices();
                 tmp = MyCallState.InCall;
+                CallDuration();
             }
 
             if (e.State.IsCallEnded() == true)
@@ -124,6 +126,7 @@ namespace PhoneCall.Ozeki
                 WireDownCallEvents();
                 call = null;
                 tmp = MyCallState.CallEnd;
+                Instance.IsLocalCameraUsed = false;
             }
 
             if (e.State == CallState.LocalHeld)
@@ -369,9 +372,8 @@ namespace PhoneCall.Ozeki
             hangUp.Text = "Tắt máy";
             hangUp.Click += HangUp_Click;
 
-           /* _lbTime = new Label();
+            _lbTime = new Label();
             _lbTime.Location = new Point(710, 325);
-            _lbTime.Text = "00:00";*/
 
             VideoViewerWF remoteViewer = new VideoViewerWF();
             remoteViewer.Location = new Point(0, 0);
@@ -395,6 +397,8 @@ namespace PhoneCall.Ozeki
             IsShowFormCall = true;
         }
 
+
+
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             IsShowFormCall = false;
@@ -412,10 +416,11 @@ namespace PhoneCall.Ozeki
         {
             var hangupButton = sender as Button;
             hangupButton.FindForm().Close();
-            if (!call.CallState.IsCallEnded())
+            try
             {
                 call.HangUp();
             }
+            catch{ }
         }
 
         private void CloseCamera_Click(object sender, EventArgs e)
@@ -436,27 +441,23 @@ namespace PhoneCall.Ozeki
             }
         }
 
-        Timer timer = new Timer();
+        System.Windows.Forms.Timer timer;
         public void CallDuration()
         {
-            if (call.CallState == CallState.Answered)
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            var tick = sender as System.Windows.Forms.Timer;
+            sec++;
+            _lbTime.Invoke(new MethodInvoker(delegate ()
             {
-                timer.Interval = 1000;
-                timer.Start();
-                timer.Tick += delegate
-                {
-                    sec++;
-                    if (sec >= 60)
-                    {
-                        min++;
-                        sec = 0;
-                    }
-                    _lbTime.Invoke(new MethodInvoker(delegate ()
-                    {
-                        _lbTime.Text = min.ToString() + ":" + sec.ToString();
-                    }));
-                };
-            }
+                _lbTime.Text = TimeSpan.FromSeconds(sec).ToString(@"mm\:ss");
+            }));
         }
     }
 }

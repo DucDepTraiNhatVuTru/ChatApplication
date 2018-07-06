@@ -64,7 +64,7 @@
             // 
             // _ptbVideoCall
             // 
-            this._ptbVideoCall.Image = global::ChatApplication.Properties.Resources.videocall;
+            this._ptbVideoCall.Image = ((System.Drawing.Image)(resources.GetObject("_ptbVideoCall.Image")));
             this._ptbVideoCall.Location = new System.Drawing.Point(605, 12);
             this._ptbVideoCall.Name = "_ptbVideoCall";
             this._ptbVideoCall.Size = new System.Drawing.Size(30, 30);
@@ -75,7 +75,7 @@
             // 
             // _ptbCall
             // 
-            this._ptbCall.Image = global::ChatApplication.Properties.Resources.call;
+            this._ptbCall.Image = ((System.Drawing.Image)(resources.GetObject("_ptbCall.Image")));
             this._ptbCall.Location = new System.Drawing.Point(569, 12);
             this._ptbCall.Name = "_ptbCall";
             this._ptbCall.Size = new System.Drawing.Size(30, 30);

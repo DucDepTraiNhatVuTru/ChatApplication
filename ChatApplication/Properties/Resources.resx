@@ -118,31 +118,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\pen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Asset\exit;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hello" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Asset\hello.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="call" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Asset\call.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="editImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\editImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="findfriend" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\findfriend.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="groups" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\groups.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="videocall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\videocall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stream" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\stream.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Asset\background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Asset\pen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="createAccount" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\createAccount.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Group" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Asset\Group.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="createAccount" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Asset\createAccount.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="callling" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Asset\callling.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="videocall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Asset\videocall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="seacrh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\seacrh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="call" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\call.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="groups1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\groups.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editpicture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Asset\editpicture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

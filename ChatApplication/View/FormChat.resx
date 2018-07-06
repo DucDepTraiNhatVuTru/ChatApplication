@@ -118,6 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="_ptbVideoCall.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAANZJREFUSEvtlU0KwjAQRnMUj+JKxSOr6NKfY6g3cK9+DzswJEPJgLrRB4+a6fRr
+        mrRYfoqFPMrbcGT8Ngi7y4eT8VymmMiNZJYcGcNJ+nDzIFNspQ9YS+CGvm5ST1EHWQBr7utm+glYFh9g
+        T8BaR3swkyn8HqyGscFGM2PO7WU6HJbyKv1Mx6Q39bpeZBQ05ll6pnL3+tkSBfQIFuxrDf6ijBDVGuqm
+        XiGqNdRNvUJUa6ibeoWo1lA39QpRraFu6hW63qKPfwd8lVwQBUXSm/5P+PNNSnkCTtDp3AKiQtMAAAAA
+        SUVORK5CYII=
+</value>
+  </data>
+  <data name="_ptbCall.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAANlJREFUOE/N0j/rQVEcx/ErIgaDshiMv8VDUAaj0WCxmMhjsBl/g4nFaDCwMFFS
+        lL+PgiRm5QF4f85N2e45ZfCpV51zu33P/Z779b6ZHCZImp1j/nDHDFs4F1mjjhC6cC7yRMxfeg2ckDU7
+        y+xR8Zfm9Jq/tE8eV6RQxAUZOOUfS0TRwgHvtqwSxhAjRDDACmkoupPAi9XpC/ShIm3oQqs4Y4PAIgmo
+        FX2NCpZwRBM9WP1i9T7GHJ8va070bGp2AdGddKA/UkYcGrYbNPbWKWCHB9Saxv5n4nkv8vYk1N+ZiUYA
+        AAAASUVORK5CYII=
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAMMOAADDDgAAAAAAAAAA

@@ -98,10 +98,6 @@
       <Project>{cfb156f4-4d54-4562-8bf1-dce3a33f9ecd}</Project>
       <Name>ImageConverter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SocketServer\SocketServer.csproj">
-      <Project>{05d16c42-f824-4aa2-bcd1-122e9b752c98}</Project>
-      <Name>SocketServer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

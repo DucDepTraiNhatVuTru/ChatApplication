@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ChatProtocol.Protocol;
 using ChatDataModel;
-using SocketServer.Protocol;
 using ChatDAO.SQL;
 
 namespace SocketServer.Handle

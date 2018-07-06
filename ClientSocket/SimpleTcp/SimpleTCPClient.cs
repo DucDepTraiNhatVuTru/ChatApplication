@@ -8,7 +8,6 @@ using SimpleTCP;
 using ChatProtocol.Protocol;
 using ChatProtocol.Packet;
 using ChatProtocol;
-using SocketServer.Protocol;
 
 namespace ClientSocket.SimpleTcp
 {

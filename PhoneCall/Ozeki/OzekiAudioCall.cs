@@ -49,7 +49,7 @@ namespace PhoneCall.Ozeki
             softPhone.IncomingCall += SoftPhone_IncomingCall;
         }
 
-        public void StartCamera()
+        public bool StartCamera()
         {
             if (Instance.IsLocalCameraUsed == false)
             {
@@ -58,12 +58,13 @@ namespace PhoneCall.Ozeki
                 var result = myCameraBuilder.ShowDialog();
                 if (result != System.Windows.Forms.DialogResult.OK)
                 {
-                    return;
+                    return false;
                 }
 
                 camera = new OzekiCamera(myCameraBuilder.CameraURL);
                 camera.Start();
             }
+            return true;
         }
 
         public void InitializeConferenceRoom()

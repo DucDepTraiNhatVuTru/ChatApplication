@@ -45,12 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IGroupCall.cs" />
     <Compile Include="Instance.cs" />
     <Compile Include="IVideoProvider.cs" />
     <Compile Include="MyCallStyle.cs" />
     <Compile Include="MyCallState.cs" />
     <Compile Include="IAudioCall.cs" />
     <Compile Include="Ozeki\OzekiAudioCall.cs" />
+    <Compile Include="Ozeki\OzekiGroupCall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\CallView.cs">
       <SubType>UserControl</SubType>

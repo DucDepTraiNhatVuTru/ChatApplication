@@ -35,7 +35,7 @@ namespace PhoneCall
         ImageProvider<Image> GetLocalProvider();
         IVideoSender GetRemoteVideo();
         IVideoSender GetLocalVideo();
-        void StartCamera();
+        bool StartCamera();
         void ShowFormCall();
         bool IsICall { get; set; }
         void CallDuration();

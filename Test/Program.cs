@@ -17,7 +17,7 @@ namespace Test
             var db = new ChatMessageDAOSQL();
             foreach(var item in db.AllMessage("minhduc@gmail.com", "congphuong@gmail.com"))
             {
-                Console.WriteLine(item.Id);
+                Console.WriteLine(item.Call.Duration);
             }
             Console.ReadLine();
         }

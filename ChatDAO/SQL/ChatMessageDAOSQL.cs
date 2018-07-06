@@ -54,7 +54,7 @@ namespace ChatDAO
                         string image = data.GetString(4);
                         string callId = data.GetValue(5).ToString();
                         int callDuration = 0;
-                        if (!int.TryParse(data.GetOrdinal("CallDuration").ToString(), out callDuration)) callDuration = 0;
+                        if (!int.TryParse(data.GetValue(6).ToString(), out callDuration)) callDuration = 0;
                         bool called = false;
                         if (!bool.TryParse(data.GetValue(7).ToString(), out called)) called = false;
                         DateTime time = (DateTime)data.GetValue(8);

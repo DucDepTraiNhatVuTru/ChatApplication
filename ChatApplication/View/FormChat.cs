@@ -190,6 +190,7 @@ namespace ChatApplication.View
                 var tach = _user.Email.Split('@');
                 _phoneCall.CreateCall(tach[0]);
                 _phoneCall.ModifyCallStyle(MyCallStyle.Audio);
+                _phoneCall.ShowFormCall();
             }
             catch (Exception)
             {
@@ -244,6 +245,7 @@ namespace ChatApplication.View
                     else tittle = "Cuộc gọi nhỡ";
                     List<ChatCardAction> actions = new List<ChatCardAction>();
                     actions.Add(new ChatCardAction("Call"));
+                    MessageBox.Show(item.Call.Duration.ToString());
                     if (item.Sender == me)
                     {
                         ChatImageCardDataItem card = new ChatImageCardDataItem(null, tittle, "bạn & " + authorFriend.Name, TimeSpan.FromSeconds(item.Call.Duration).ToString(@"mm\:ss"), actions, item.Receiver);
@@ -289,8 +291,15 @@ namespace ChatApplication.View
         {
             Thread thread = new Thread(delegate ()
             {
-                _phoneCall.CreateCall(dial);
-                _phoneCall.StartCamera();
+                if (!_phoneCall.StartCamera()) { return; }
+                try
+                {
+                    _phoneCall.CreateCall(dial);
+                }
+                catch 
+                {
+                    MessageBox.Show("Người dùng hiện không thể thực hiên cuộc gọi", "thông báo");
+                }
                 _phoneCall.ConnectMedia();
                 _phoneCall.ModifyCallStyle(MyCallStyle.AudioVideo);
                 _phoneCall.ShowFormCall();

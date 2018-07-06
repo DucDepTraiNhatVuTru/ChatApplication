@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocketServer.Protocol
+namespace ChatProtocol.Protocol
 {
     public class GetListAskBeFriendRequestProtocol : IProtocol
     {

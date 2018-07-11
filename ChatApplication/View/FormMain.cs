@@ -116,11 +116,11 @@ namespace ChatApplication.View
             if (state == MyCallState.Answered)
             {
                 //_call.CallDuration();
-                //Thread t = new Thread(delegate ()
-                //{
-                //    _call.CallDuration();
-                //});
-                //t.Start();
+                Thread t = new Thread(delegate ()
+                {
+                    _call.CallDuration();
+                });
+                t.Start();
                 if (!_call.IsICall)
                 {
                     Thread thread = new Thread(delegate ()
@@ -539,6 +539,16 @@ namespace ChatApplication.View
             {
                 item.Close();
             }
+        }
+
+        private void _btnStream_Click(object sender, EventArgs e)
+        {
+            Thread thread = new Thread(delegate ()
+            {
+                var formListLiveStream = new FormListLiveStream();
+                formListLiveStream.ShowDialog();
+            });
+            thread.Start();
         }
     }
 }

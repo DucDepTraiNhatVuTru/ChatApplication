@@ -27,7 +27,7 @@ namespace ChatProtocol.Protocol
             Message.Message = tach[3];
             Message.ImageMessageDriveID = tach[4];
             Call call = new Call();
-            if (call.Parse(tach[5])) return false;
+            if (!call.Parse(tach[5])) return false;
             Message.Call = call;
             DateTime time;
             if (!DateTime.TryParse(tach[6], out time)) return false;

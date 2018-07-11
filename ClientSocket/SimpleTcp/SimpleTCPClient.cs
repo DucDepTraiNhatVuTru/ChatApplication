@@ -279,5 +279,12 @@ namespace ClientSocket.SimpleTcp
             ptc.UserDelete = emailDelete;
             SendPacket(43, ptc);
         }
+
+        public void RequestCreateLiveStream(string email)
+        {
+            var ptc = new LiveStreamRequestProtocol();
+            ptc.Email = email;
+            SendPacket(45, ptc);
+        }
     }
 }

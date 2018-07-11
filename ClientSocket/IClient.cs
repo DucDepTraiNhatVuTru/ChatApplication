@@ -38,5 +38,6 @@ namespace ClientSocket
         void RequestDeleteFriendInvatation(string sender, string receiver);
         void RequestAcceptAddFriend(int isAccept, string userRequest, string userAccept);
         void RequetsDeleteFriend(string emailRequest, string emailDelete);
+        void RequestCreateLiveStream(string email);
     }
 }

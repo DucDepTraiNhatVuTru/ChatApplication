@@ -71,6 +71,8 @@
     <Compile Include="Protocol\KickUserOutGroupResponseProtocol.cs" />
     <Compile Include="Protocol\LeaveGroupRequestProtocol.cs" />
     <Compile Include="Protocol\LeaveGroupResponseProtocol.cs" />
+    <Compile Include="Protocol\LiveStreamRequestProtocol.cs" />
+    <Compile Include="Protocol\LiveStreamResponseProtocol.cs" />
     <Compile Include="Protocol\LogoutProtocol.cs" />
     <Compile Include="Protocol\MessageProtocol.cs" />
     <Compile Include="Protocol\CreateAccountProtocol.cs" />

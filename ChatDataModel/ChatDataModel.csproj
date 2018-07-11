@@ -47,6 +47,7 @@
     <Compile Include="ChatMessage.cs" />
     <Compile Include="FriendResquestNotExcept.cs" />
     <Compile Include="Group.cs" />
+    <Compile Include="LiveStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

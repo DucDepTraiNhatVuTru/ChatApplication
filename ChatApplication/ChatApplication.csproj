@@ -156,6 +156,12 @@
     <Compile Include="View\FormInComingCall.Designer.cs">
       <DependentUpon>FormInComingCall.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormListLiveStream.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormListLiveStream.Designer.cs">
+      <DependentUpon>FormListLiveStream.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormInComingCall.resx">
       <DependentUpon>FormInComingCall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormListLiveStream.resx">
+      <DependentUpon>FormListLiveStream.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

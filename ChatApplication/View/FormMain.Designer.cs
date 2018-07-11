@@ -143,6 +143,7 @@
             this._btnStream.Size = new System.Drawing.Size(32, 32);
             this._btnStream.TabIndex = 9;
             this._btnStream.UseVisualStyleBackColor = true;
+            this._btnStream.Click += new System.EventHandler(this._btnStream_Click);
             // 
             // _btnCreateGroupChat
             // 

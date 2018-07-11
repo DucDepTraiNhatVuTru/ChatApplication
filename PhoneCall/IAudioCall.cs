@@ -39,5 +39,6 @@ namespace PhoneCall
         void ShowFormCall();
         bool IsICall { get; set; }
         void CallDuration();
+        int GetDuration();
     }
 }

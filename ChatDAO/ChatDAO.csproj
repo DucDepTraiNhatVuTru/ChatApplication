@@ -45,6 +45,7 @@
     <Compile Include="IFriendRequestNotExceptDAO.cs" />
     <Compile Include="IFriendDAO.cs" />
     <Compile Include="IGroupDAO.cs" />
+    <Compile Include="ILiveStreamDAO.cs" />
     <Compile Include="SQL\AccountDAOSQL.cs" />
     <Compile Include="SQL\CallDAOSQL.cs" />
     <Compile Include="SQL\ChatGroupMessageDAOSQL.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="SQL\FriendRequestNotExceptDAOSQL.cs" />
     <Compile Include="SQL\GroupsDAOSQL.cs" />
     <Compile Include="IChatGroupMessageDAO.cs" />
+    <Compile Include="SQL\LiveStreamDAOSQL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChatDataModel\ChatDataModel.csproj">

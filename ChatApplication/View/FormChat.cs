@@ -96,9 +96,14 @@ namespace ChatApplication.View
 
         private void _phoneCall_CallStateChange(MyCallState state)
         {
-            if(state == MyCallState.Busy)
+            if (state == MyCallState.Busy)
             {
+                _client.SendMessage(new ChatDataModel.ChatMessage(Util.Instance.CurrentUser.Email, _user.Email, "", "", new Call(Guid.NewGuid().ToString(), 0, false), DateTime.Now));
                 _formCall.Close();
+            }
+            else if (state == MyCallState.CallEnd)
+            {
+                _client.SendMessage(new ChatDataModel.ChatMessage(Util.Instance.CurrentUser.Email, _user.Email, "", "", new Call(Guid.NewGuid().ToString(), _phoneCall.GetDuration(), true), DateTime.Now));
             }
         }
 
@@ -248,7 +253,6 @@ namespace ChatApplication.View
                     else tittle = "Cuộc gọi nhỡ";
                     List<ChatCardAction> actions = new List<ChatCardAction>();
                     actions.Add(new ChatCardAction("Call"));
-                    MessageBox.Show(item.Call.Duration.ToString());
                     if (item.Sender == me)
                     {
                         ChatImageCardDataItem card = new ChatImageCardDataItem(null, tittle, "bạn & " + authorFriend.Name, TimeSpan.FromSeconds(item.Call.Duration).ToString(@"mm\:ss"), actions, item.Receiver);
@@ -301,8 +305,9 @@ namespace ChatApplication.View
                 }
                 catch 
                 {
-                    MessageBox.Show("Người dùng hiện không thể thực hiên cuộc gọi", "thông báo");
+                    MessageBox.Show("Hiện tại không thể thực hiện cuộc gọi với người dùng", "Thông báo");
                 }
+                
                 _phoneCall.ConnectMedia();
                 _phoneCall.ModifyCallStyle(MyCallStyle.AudioVideo);
                 _phoneCall.ShowFormCall();

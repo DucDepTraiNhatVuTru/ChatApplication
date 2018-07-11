@@ -127,6 +127,7 @@ namespace PhoneCall.Ozeki
                 call = null;
                 tmp = MyCallState.CallEnd;
                 Instance.IsLocalCameraUsed = false;
+                timer.Stop();
             }
 
             if (e.State == CallState.LocalHeld)
@@ -143,10 +144,16 @@ namespace PhoneCall.Ozeki
                 StopDevices();
                 tmp = MyCallState.Canceled;
             }
+            if(e.State == CallState.Completed)
+            {
+                tmp = MyCallState.CallEnd;
+            }
+           
             if (CallStateChange != null)
             {
                 CallStateChange.Invoke(tmp);
             }
+            
         }
 
         private void StartDevices()
@@ -188,7 +195,7 @@ namespace PhoneCall.Ozeki
         public void RegisterAccount(ChatDataModel.Account account)
         {
             var tach = account.Email.Split('@');
-            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.143",5060);
+            sipAccount = new SIPAccount(true, tach[0], tach[0], tach[0], tach[0], "192.168.0.86",5060);
             try
             {
                 phoneLine = softPhone.CreatePhoneLine(sipAccount);
@@ -374,6 +381,7 @@ namespace PhoneCall.Ozeki
 
             _lbTime = new Label();
             _lbTime.Location = new Point(710, 325);
+            _lbTime.Text = "Đang gọi ... ";
 
             VideoViewerWF remoteViewer = new VideoViewerWF();
             remoteViewer.Location = new Point(0, 0);
@@ -441,16 +449,18 @@ namespace PhoneCall.Ozeki
             }
         }
 
-        System.Windows.Forms.Timer timer;
+        System.Timers.Timer timer;
         public void CallDuration()
         {
-            timer = new System.Windows.Forms.Timer();
-            timer.Interval = 1000;
-            timer.Tick += Timer_Tick;
+            timer = new System.Timers.Timer(1000);
+            //timer.Interval = 1000;
+            timer.Enabled = true;
+            //timer.Elapsed += new EEventHandler(Timer_Tick);
+            timer.Elapsed += Timer_Elapsed;
             timer.Start();
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             var tick = sender as System.Windows.Forms.Timer;
             sec++;
@@ -458,6 +468,22 @@ namespace PhoneCall.Ozeki
             {
                 _lbTime.Text = TimeSpan.FromSeconds(sec).ToString(@"mm\:ss");
             }));
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            MessageBox.Show("Xin chào!");
+            var tick = sender as System.Windows.Forms.Timer;
+            sec++;
+            _lbTime.Invoke(new MethodInvoker(delegate ()
+            {
+                _lbTime.Text = TimeSpan.FromSeconds(sec).ToString(@"mm\:ss");
+            }));
+        }
+
+        public int GetDuration()
+        {
+            return sec;
         }
     }
 }

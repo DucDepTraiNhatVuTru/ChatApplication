@@ -91,6 +91,10 @@ namespace ChatProtocol
                     return new AcceptFriendRequestProtocol();
                 case 43:
                     return new DeleteFriendRequestProtocol();
+                case 45:
+                    return new LiveStreamRequestProtocol();
+                case 46:
+                    return new LiveStreamResponseProtocol();
                 case 99:
                     return new LogoutProtocol();
                 default:

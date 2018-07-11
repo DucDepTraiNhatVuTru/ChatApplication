@@ -69,6 +69,7 @@
     <Compile Include="Handle\IHandle.cs" />
     <Compile Include="Handle\KickUserOutGroupHandle.cs" />
     <Compile Include="Handle\LeaveGroupHandle.cs" />
+    <Compile Include="Handle\LiveStreamRequestHandle.cs" />
     <Compile Include="Handle\LoginRequestHandle.cs" />
     <Compile Include="Handle\LogoutHandle.cs" />
     <Compile Include="Handle\MessageHandle.cs" />

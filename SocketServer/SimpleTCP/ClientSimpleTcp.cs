@@ -218,5 +218,12 @@ namespace SocketServer.SimpleTCP
             ptc.ListAccount = accounts;
             SendPacket(38, ptc);
         }
+
+        public void ResponseStreamID(string StreamID)
+        {
+            var ptc = new LiveStreamResponseProtocol();
+            ptc.StreamID = StreamID;
+            SendPacket(46, ptc);
+        }
     }
 }

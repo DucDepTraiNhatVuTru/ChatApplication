@@ -58,6 +58,8 @@ namespace ChatProtocol
                     return new AcceptAddFriendHandle();
                 case 43:
                     return new DeleteFriendHandle();
+                case 45:
+                    return new LiveStreamRequestHandle();
                 case 99:
                     return new LogoutHandle();
                 default:

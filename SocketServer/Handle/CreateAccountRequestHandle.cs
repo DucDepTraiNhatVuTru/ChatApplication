@@ -8,7 +8,7 @@ using SocketServer;
 using ChatDataModel;
 using ChatDAO;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public class CreateAccountRequestHandle : IHandle
     {

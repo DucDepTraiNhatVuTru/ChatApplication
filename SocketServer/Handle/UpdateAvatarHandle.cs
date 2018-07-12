@@ -7,7 +7,7 @@ using ChatProtocol.Protocol;
 using SocketServer;
 using ChatDAO;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public class UpdateAvatarHandle : IHandle
     {

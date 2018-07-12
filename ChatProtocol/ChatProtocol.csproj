@@ -56,6 +56,7 @@
     <Compile Include="Protocol\FindUserRequestProtocol.cs" />
     <Compile Include="Protocol\FindUserResponseProtocol.cs" />
     <Compile Include="Protocol\GetFriendNotInGroupRequestProtocol.cs" />
+    <Compile Include="Protocol\GetFriendStreamingRequestProtocol.cs" />
     <Compile Include="Protocol\GetGroupChatRequestProtocol.cs" />
     <Compile Include="Protocol\GetGroupChatResponseProtocol.cs" />
     <Compile Include="Protocol\GetListAskFriendRequestProtocol.cs" />

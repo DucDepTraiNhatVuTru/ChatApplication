@@ -8,8 +8,9 @@ using SocketServer;
 using ChatDataModel;
 using ChatDAO.SQL;
 using ChatDAO;
+using ChatProtocol.Ulti;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public class AskBeFriendRequestHandle : IHandle
     {
@@ -19,7 +20,7 @@ namespace ChatProtocol.Handle
         public string Handling(IProtocol protocol, IChatClient client)
         {
             var ptc = protocol as AskBeFriendRequestProtocol;
-            var toView = new Ulti.ToViewStringFormat(DateTime.Now, client.GetEndPoint().ToString(), ptc.SenderEmail, "Send a friend requset to user[" + ptc.ReceiverEmail + "]");
+            var toView = new ToViewStringFormat(DateTime.Now, client.GetEndPoint().ToString(), ptc.SenderEmail, "Send a friend requset to user[" + ptc.ReceiverEmail + "]");
             
 
             try

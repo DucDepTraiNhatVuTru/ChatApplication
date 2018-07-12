@@ -12,11 +12,12 @@ namespace PhoneCall
         bool StartCamera();
         void ConnectMicrophone();
         void ConnectSpeaker();
-        void ConnectProvider();
+        void ConnectLiverProvider();
+        void ConnectViewerProvider();
         void ConnectVideoSender();
         void StartMicrophone();
         void StartSpeaker();
-        void StartCamrera();
         void ShowUI();
+        void StartStream();
     }
 }

@@ -95,6 +95,8 @@ namespace ChatProtocol
                     return new LiveStreamRequestProtocol();
                 case 46:
                     return new LiveStreamResponseProtocol();
+                case 47:
+                    return new GetFriendStreamingRequestProtocol();
                 case 99:
                     return new LogoutProtocol();
                 default:

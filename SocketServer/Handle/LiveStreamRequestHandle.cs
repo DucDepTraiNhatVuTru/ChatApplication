@@ -20,7 +20,7 @@ namespace SocketServer.Handle
             client.ResponseStreamID(streamID);
             lock (synclock)
             {
-                Instance.Streaming.Add(streamID, client);
+                Instance.Streaming.Add(ptc.Email, streamID);
             }
             return toView.ToString();
         }

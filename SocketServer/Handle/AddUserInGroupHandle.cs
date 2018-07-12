@@ -10,7 +10,7 @@ using ChatDAO;
 using ChatDAO.SQL;
 using ChatDataModel;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public class AddUserInGroupHandle : IHandle
     {

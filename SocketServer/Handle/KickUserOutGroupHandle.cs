@@ -9,7 +9,7 @@ using ChatDAO;
 using ChatDAO.SQL;
 using ChatDataModel;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public class KickUserOutGroupHandle : IHandle
     {
@@ -20,7 +20,7 @@ namespace ChatProtocol.Handle
         public string Handling(IProtocol protocol, IChatClient client)
         {
             var ptc = protocol as KickUserOutGroupRequestProtocol;
-            Ulti.ToViewStringFormat toVIew = new Ulti.ToViewStringFormat(DateTime.Now, client.GetEndPoint().ToString(), ptc.EmailRequest, " request kick [user:" + ptc.KickEmail + "] out group [" + ptc.GroupId + "]");
+            ChatProtocol.Ulti.ToViewStringFormat toVIew = new ChatProtocol.Ulti.ToViewStringFormat(DateTime.Now, client.GetEndPoint().ToString(), ptc.EmailRequest, " request kick [user:" + ptc.KickEmail + "] out group [" + ptc.GroupId + "]");
 
             //check is this user create group
             bool _isUserCreateGroup;

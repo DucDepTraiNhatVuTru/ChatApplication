@@ -7,6 +7,7 @@ using ChatProtocol.Protocol;
 using SocketServer;
 using ChatDataModel;
 using ChatDAO;
+using SocketServer.Handle;
 
 namespace ChatProtocol.Handle
 {

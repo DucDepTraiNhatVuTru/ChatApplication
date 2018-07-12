@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public interface IHandle
     {

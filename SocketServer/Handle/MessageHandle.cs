@@ -9,7 +9,7 @@ using ChatDataModel;
 using ChatDAO;
 using ChatDAO.SQL;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public class MessageHandle : IHandle
     {

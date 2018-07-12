@@ -9,7 +9,7 @@ using ChatDataModel;
 using ChatDAO;
 using ChatDAO.SQL;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public class CreateGroupChatHandle : IHandle
     {
@@ -19,7 +19,7 @@ namespace ChatProtocol.Handle
         public string Handling(IProtocol protocol, IChatClient client)
         {
             var ptc = protocol as CreateGroupRequestProtocol;
-            var toView = new Ulti.ToViewStringFormat(DateTime.Now, client.GetEndPoint().ToString(), ptc.Group.UserCreate, " request create a group with name " + ptc.Group.Name);
+            var toView = new ChatProtocol.Ulti.ToViewStringFormat(DateTime.Now, client.GetEndPoint().ToString(), ptc.Group.UserCreate, " request create a group with name " + ptc.Group.Name);
 
             int insert = 0;
             try

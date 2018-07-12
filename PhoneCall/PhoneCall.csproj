@@ -69,6 +69,10 @@
       <Project>{6dbc97a4-3339-4614-8f88-ff5f8b49d47c}</Project>
       <Name>ChatDataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FormChung\FormChung.csproj">
+      <Project>{684b69a7-1efe-484d-beb8-17033f0f1d39}</Project>
+      <Name>FormChung</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\CallView.resx">

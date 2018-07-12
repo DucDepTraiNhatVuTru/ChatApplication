@@ -12,6 +12,6 @@ namespace SocketServer
     {
         public static IDictionary<string, IChatClient> OnlineUser = new Dictionary<string, IChatClient>();
         public static List<ChatMessage> MessageHadNotSended = new List<ChatMessage>();
-        public static IDictionary<string, IChatClient> Streaming = new Dictionary<string, IChatClient>();
+        public static IDictionary<string, string> Streaming = new Dictionary<string, string>();
     }
 }

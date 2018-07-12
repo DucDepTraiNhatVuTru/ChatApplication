@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FormChung;
 
 namespace PhoneCall.Ozeki
 {
-    public class OzekiLiveStream:ILiveStream
+    public class OzekiLiveStream : ILiveStream
     {
         private ISoftPhone softPhone;
         private IPhoneLine phoneLine;
@@ -36,7 +37,7 @@ namespace PhoneCall.Ozeki
             conferenceRoom = new ConferenceRoom();
             conferenceRoom.StartConferencing();
         }
-        
+
         public void Register(string streamID)
         {
             sipAccount = new SIPAccount(true, streamID, streamID, streamID, streamID, "192.168.0.86", 5060);
@@ -86,7 +87,12 @@ namespace PhoneCall.Ozeki
             }
         }
 
-        public void ConnectProvider()
+        public void ConnectLiverProvider()
+        {
+            connector.Connect(camera.VideoChannel, provider);
+        }
+
+        public void ConnectViewerProvider()
         {
             connector.Connect(videoReceiver, provider);
         }
@@ -95,6 +101,21 @@ namespace PhoneCall.Ozeki
         {
             if (camera != null)
                 connector.Connect(camera.VideoChannel, videoSender);
+        }
+
+        public void ConnectVideoReceiver()
+        {
+            connector.Connect(videoReceiver, provider);
+        }
+
+        public void ConnectAudioSender()
+        {
+            connector.Connect(microphone, audioSender);
+        }
+
+        public void ConnectAudioReceiver()
+        {
+            connector.Connect(audioReceiver, speaker);
         }
 
         public void StartMicrophone()
@@ -109,31 +130,59 @@ namespace PhoneCall.Ozeki
                 speaker.Start();
         }
 
-        public void StartCamrera()
-        {
-            if (camera != null)
-                camera.Start();
-        }
-
         public void ShowUI()
         {
             Form form = new Form();
             form.Size = new Size(960, 450);
+            form.Text = "Phát video trực tiếp";
 
             VideoViewerWF videoViewer = new VideoViewerWF();
             videoViewer.Location = new Point(0, 0);
             videoViewer.Size = new Size(800, 450);
+            videoViewer.SetImageProvider(provider);
+            form.Controls.Add(videoViewer);
 
+            CommentBoxControl commentControls = new CommentBoxControl();
+            commentControls.Location = new Point(810, 0);
+            form.Controls.Add(commentControls);
+
+            form.ShowDialog();
         }
 
         private void PhoneLine_RegistrationStateChanged(object sender, RegistrationStateChangedArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         private void SoftPhone_IncomingCall(object sender, global::Ozeki.Media.VoIPEventArgs<IPhoneCall> e)
         {
-            throw new NotImplementedException();
+            call = e.Item;
+            call.Answer();   
+        }
+
+        public void CreateCallToStream(string dial)
+        {
+            call = softPhone.CreateCallObject(phoneLine, dial);
+            call.ModifyCallType(CallType.AudioVideo);
+            call.Start();
+        }
+
+        public void StartStream()
+        {
+            StartCamera();
+            StartMicrophone();
+            ConnectMicrophone();
+            ConnectVideoSender();
+            ConnectLiverProvider();
+        }
+
+        public void WatchStream(string streamID)
+        {
+            CreateCallToStream(streamID);
+            StartSpeaker();
+            ConnectSpeaker();
+            ConnectVideoReceiver();
+            ConnectViewerProvider();
         }
     }
 }

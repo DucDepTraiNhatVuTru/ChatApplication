@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ChatProtocol.Protocol;
 using SocketServer;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public class LogoutHandle : IHandle
     {

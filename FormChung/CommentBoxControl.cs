@@ -7,23 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace FormChung
 {
     public partial class CommentBoxControl : UserControl
     {
-        private TextBox _txtCommentInput;
         public CommentBoxControl()
         {
             InitializeComponent();
+            _listControlComment.AutoSizeItems = true;
+            DescriptionTextListDataItem item = new DescriptionTextListDataItem();
+            //item.Image =  Image.FromFile(@"D:\ThucTap\avartar.jpg");
+            item.Text = "Minh Đức";
+            item.DescriptionText = "xin chàooooo";
+            _listControlComment.Items.Add(item);
         }
 
-        private void InitTextBox()
+        public void AddComment(string name, string comment, Image image, int time)
         {
-            _txtCommentInput = new TextBox();
-            _txtCommentInput.Multiline = true;
-            _txtCommentInput.Size = new Size(this.Width, 50);
-            _txtCommentInput.Location = new Point();
+            TimeSpan t = TimeSpan.FromSeconds(time);
+            DescriptionTextListDataItem item = new DescriptionTextListDataItem();
+            item.Image = image;
+            item.Text = "[" + t.ToString(@"mm/:ss") + "]" + name;
+            item.DescriptionText = comment;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace TestForm
         public Form1()
         {
             InitializeComponent();
-            StartCam();
+            /*StartCam();
             localProvider = new DrawingImageProvider();
             localView = new VideoViewerWF();
             localView.Location = new Point(0, 0);
@@ -40,7 +40,7 @@ namespace TestForm
             localView.Start();
             remoteView.Start();
             ConnectMedia();
-
+            */
 
             
 

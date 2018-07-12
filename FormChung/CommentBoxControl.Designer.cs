@@ -67,7 +67,7 @@
             // 
             this._listControlComment.Location = new System.Drawing.Point(0, 0);
             this._listControlComment.Name = "_listControlComment";
-            this._listControlComment.Size = new System.Drawing.Size(273, 291);
+            this._listControlComment.Size = new System.Drawing.Size(276, 294);
             this._listControlComment.TabIndex = 0;
             // 
             // CommentBoxControl

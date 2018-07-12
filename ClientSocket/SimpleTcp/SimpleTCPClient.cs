@@ -286,5 +286,12 @@ namespace ClientSocket.SimpleTcp
             ptc.Email = email;
             SendPacket(45, ptc);
         }
+
+        public void RequestGetListFriendStreaming(string email)
+        {
+            var ptc = new GetFriendStreamingRequestProtocol();
+            ptc.Email = email;
+            SendPacket(47, ptc);
+        }
     }
 }

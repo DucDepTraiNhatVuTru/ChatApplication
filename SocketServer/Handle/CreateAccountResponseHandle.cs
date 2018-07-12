@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ChatProtocol.Protocol;
 using SocketServer;
+using SocketServer.Handle;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public class CreateAccountResponseHandle : IHandle
     {

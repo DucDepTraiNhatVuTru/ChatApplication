@@ -9,7 +9,7 @@ using ChatDAO;
 using ChatDAO.SQL;
 using ChatDataModel;
 
-namespace ChatProtocol.Handle
+namespace SocketServer.Handle
 {
     public class LeaveGroupHandle : IHandle
     {
@@ -18,7 +18,7 @@ namespace ChatProtocol.Handle
         public string Handling(IProtocol protocol, IChatClient client)
         {
             var ptc = protocol as LeaveGroupRequestProtocol;
-            var toView = new Ulti.ToViewStringFormat(DateTime.Now, client.GetEndPoint().ToString(), ptc.Email, "leave group [" + ptc.GroupId + "]");
+            var toView = new ChatProtocol.Ulti.ToViewStringFormat(DateTime.Now, client.GetEndPoint().ToString(), ptc.Email, "leave group [" + ptc.GroupId + "]");
 
             int rowAffect = 0;
             try

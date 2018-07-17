@@ -32,5 +32,6 @@ namespace SocketServer
         void ResponseGetListUserRequestAddFriend(List<Account> accounts);
         void ResponseGetListUserIRequestAddFriend(List<Account> accounts);
         void ResponseStreamID(string StreamID);
+        void ResponseListUserStreaming(List<AccountStream> accounts);
     }
 }

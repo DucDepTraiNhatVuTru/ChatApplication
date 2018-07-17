@@ -60,6 +60,8 @@ namespace SocketServer
                     return new DeleteFriendHandle();
                 case 45:
                     return new LiveStreamRequestHandle();
+                case 47:
+                    return new GetListFriendStreaming();
                 case 99:
                     return new LogoutHandle();
                 default:

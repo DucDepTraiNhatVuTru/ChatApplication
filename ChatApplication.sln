@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneCall", "PhoneCall\Phon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBX", "PBX\PBX.csproj", "{FE91260F-35FE-4C6D-A96D-4AB1BE188BF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveStream", "LiveStream\LiveStream.csproj", "{52D0D204-ECAA-4D8D-98BB-ED64C0333401}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPSocketServer", "UDPSocketServer\UDPSocketServer.csproj", "{D6B77E45-F1C5-488F-AD07-D2D7F9279F1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +103,14 @@ Global
 		{FE91260F-35FE-4C6D-A96D-4AB1BE188BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE91260F-35FE-4C6D-A96D-4AB1BE188BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE91260F-35FE-4C6D-A96D-4AB1BE188BF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52D0D204-ECAA-4D8D-98BB-ED64C0333401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52D0D204-ECAA-4D8D-98BB-ED64C0333401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52D0D204-ECAA-4D8D-98BB-ED64C0333401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52D0D204-ECAA-4D8D-98BB-ED64C0333401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6B77E45-F1C5-488F-AD07-D2D7F9279F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6B77E45-F1C5-488F-AD07-D2D7F9279F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6B77E45-F1C5-488F-AD07-D2D7F9279F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6B77E45-F1C5-488F-AD07-D2D7F9279F1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,6 +37,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ChatProtocol\bin\Debug\ChatProtocol.dll</HintPath>
     </Reference>
+    <Reference Include="CSCore, Version=1.2.1.2, Culture=neutral, PublicKeyToken=5a08f2b6f4415dea, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSCore.1.2.1.2\lib\net35-client\CSCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.27, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="ImageConverter">
       <HintPath>..\ChatProtocol\bin\Debug\ImageConverter.dll</HintPath>
@@ -82,6 +86,7 @@
     <Compile Include="Handle\GetGroupHandle.cs" />
     <Compile Include="Handle\GetListFriendNotInGroupHandle.cs" />
     <Compile Include="Handle\GetListFriendsResponseHandle.cs" />
+    <Compile Include="Handle\GetListFriendStreaming.cs" />
     <Compile Include="Handle\GetListUserIAskBeFriend.cs" />
     <Compile Include="Handle\GetUserInGroupHandle.cs" />
     <Compile Include="Handle\GroupMessageHandle.cs" />
@@ -91,6 +96,7 @@
     <Compile Include="Handle\KickUserOutGroupHandle.cs" />
     <Compile Include="Handle\LeaveGroupHandle.cs" />
     <Compile Include="Handle\ListUserAskBeFriend.cs" />
+    <Compile Include="Handle\LiveStreamHandle.cs" />
     <Compile Include="Handle\LoginResponseHandle.cs" />
     <Compile Include="Handle\MessageHandle.cs" />
     <Compile Include="Handle\UpdateAvatarResponseHandle.cs" />
@@ -262,6 +268,10 @@
       <Project>{4A04BDEA-6817-4679-8C08-7B096BD8F9CC}</Project>
       <Name>GoogleDriveApiv3</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LiveStream\LiveStream.csproj">
+      <Project>{52d0d204-ecaa-4d8d-98bb-ed64c0333401}</Project>
+      <Name>LiveStream</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhoneCall\PhoneCall.csproj">
       <Project>{f577b1ba-9ea4-4358-9b83-679851d4fe88}</Project>
       <Name>PhoneCall</Name>
@@ -280,6 +290,7 @@
     <Content Include="Asset\group %282%29.png" />
     <Content Include="Asset\Group.png" />
     <Content Include="Asset\groups.png" />
+    <Content Include="Asset\refresh.png" />
     <Content Include="Asset\seacrh.png" />
     <Content Include="Asset\search.png" />
     <Content Include="Asset\stream.png" />

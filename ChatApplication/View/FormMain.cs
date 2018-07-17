@@ -545,7 +545,7 @@ namespace ChatApplication.View
         {
             Thread thread = new Thread(delegate ()
             {
-                var formListLiveStream = new FormListLiveStream();
+                var formListLiveStream = new FormListLiveStream(_client);
                 formListLiveStream.ShowDialog();
             });
             thread.Start();

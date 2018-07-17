@@ -28,7 +28,7 @@ namespace SocketServer.Handle
                 toView.Message += "error to use db\n detail : " + ex.Message;
             }
 
-            var listFriendStreaming = new List<ChatDataModel.Account>();
+            var listFriendStreaming = new List<ChatDataModel.AccountStream>();
             foreach(var item in listFriend)
             {
                 lock (this)
@@ -36,13 +36,13 @@ namespace SocketServer.Handle
                     string value = "";
                     if(Instance.Streaming.TryGetValue(item.Email, out value))
                     {
-                        listFriendStreaming.Add(item);
+                        Console.WriteLine(value);
+                        listFriendStreaming.Add(new ChatDataModel.AccountStream(item.Name, item.AvatarDriveID, value));
                     }
                 }
             }
-
-            // gửi về danh sách này.
-
+            
+            client.ResponseListUserStreaming(listFriendStreaming);
             return toView.ToString();
         }
 

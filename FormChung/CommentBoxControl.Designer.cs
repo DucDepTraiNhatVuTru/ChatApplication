@@ -38,10 +38,10 @@
             // 
             // _txtInputComment
             // 
-            this._txtInputComment.Location = new System.Drawing.Point(3, 300);
+            this._txtInputComment.Location = new System.Drawing.Point(0, 413);
             this._txtInputComment.Multiline = true;
             this._txtInputComment.Name = "_txtInputComment";
-            this._txtInputComment.Size = new System.Drawing.Size(233, 34);
+            this._txtInputComment.Size = new System.Drawing.Size(209, 34);
             this._txtInputComment.TabIndex = 0;
             // 
             // _btnSend
@@ -49,7 +49,7 @@
             this._btnSend.FlatAppearance.BorderSize = 0;
             this._btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnSend.Image = global::FormChung.Properties.Resources.Send;
-            this._btnSend.Location = new System.Drawing.Point(236, 300);
+            this._btnSend.Location = new System.Drawing.Point(210, 413);
             this._btnSend.Name = "_btnSend";
             this._btnSend.Size = new System.Drawing.Size(40, 34);
             this._btnSend.TabIndex = 1;
@@ -60,14 +60,14 @@
             this._panelListCmt.Controls.Add(this._listControlComment);
             this._panelListCmt.Location = new System.Drawing.Point(0, 0);
             this._panelListCmt.Name = "_panelListCmt";
-            this._panelListCmt.Size = new System.Drawing.Size(276, 294);
+            this._panelListCmt.Size = new System.Drawing.Size(250, 407);
             this._panelListCmt.TabIndex = 2;
             // 
             // _listControlComment
             // 
             this._listControlComment.Location = new System.Drawing.Point(0, 0);
             this._listControlComment.Name = "_listControlComment";
-            this._listControlComment.Size = new System.Drawing.Size(276, 294);
+            this._listControlComment.Size = new System.Drawing.Size(250, 407);
             this._listControlComment.TabIndex = 0;
             // 
             // CommentBoxControl
@@ -78,7 +78,7 @@
             this.Controls.Add(this._btnSend);
             this.Controls.Add(this._txtInputComment);
             this.Name = "CommentBoxControl";
-            this.Size = new System.Drawing.Size(276, 337);
+            this.Size = new System.Drawing.Size(250, 450);
             this._panelListCmt.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._listControlComment)).EndInit();
             this.ResumeLayout(false);

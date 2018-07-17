@@ -50,6 +50,10 @@ namespace ChatApplication.Handle
                     return new AskBeFriendHandle();
                 case 38:
                     return new GetListUserIAskBeFriend();
+                case 46:
+                    return new LiveStreamHandle();
+                case 48:
+                    return new GetListFriendStreaming();
                 default:
                     throw new Exception("Chưa hỗ trợ opcode");
             }

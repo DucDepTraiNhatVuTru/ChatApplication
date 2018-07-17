@@ -225,5 +225,12 @@ namespace SocketServer.SimpleTCP
             ptc.StreamID = StreamID;
             SendPacket(46, ptc);
         }
+
+        public void ResponseListUserStreaming(List<AccountStream> accounts)
+        {
+            var ptc = new GetListUserStreamResponseProtocol();
+            ptc.AccountStream = accounts;
+            SendPacket(48, ptc);
+        }
     }
 }

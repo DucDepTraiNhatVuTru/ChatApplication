@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FormChung;
+using AForge.Imaging;
 
-namespace PhoneCall.Ozeki
+namespace LiveStream.Ozeki
 {
-    public class OzekiLiveStream : ILiveStream
-    {
+    public class OzekiLiveStream { 
         private ISoftPhone softPhone;
         private IPhoneLine phoneLine;
         private RegState phoneLineInformation;
@@ -28,7 +28,7 @@ namespace PhoneCall.Ozeki
         private PhoneCallAudioReceiver audioReceiver = new PhoneCallAudioReceiver();
         private PhoneCallVideoSender videoSender = new PhoneCallVideoSender();
         private PhoneCallVideoReceiver videoReceiver = new PhoneCallVideoReceiver();
-        private ImageProvider<Image> provider;
+        private ImageProvider<System.Drawing.Image> provider;
 
         public OzekiLiveStream()
         {
@@ -53,22 +53,19 @@ namespace PhoneCall.Ozeki
             }
         }
 
-        public bool StartCamera()
+        public void StartCamera()
         {
-            if (Instance.IsLocalCameraUsed == false)
-            {
-                var data = new CameraURLBuilderData { DeviceTypeFilter = DiscoverDeviceType.USB };
-                var myCameraBuilder = new CameraURLBuilderWF(data);
-                var result = myCameraBuilder.ShowDialog();
-                if (result != System.Windows.Forms.DialogResult.OK)
-                {
-                    return false;
-                }
 
-                camera = new OzekiCamera(myCameraBuilder.CameraURL);
-                camera.Start();
+            var data = new CameraURLBuilderData { DeviceTypeFilter = DiscoverDeviceType.USB };
+            var myCameraBuilder = new CameraURLBuilderWF(data);
+            var result = myCameraBuilder.ShowDialog();
+            if (result != System.Windows.Forms.DialogResult.OK)
+            {
+                return;
             }
-            return true;
+
+            camera = new OzekiCamera(myCameraBuilder.CameraURL);
+            camera.Start();
         }
 
         public void ConnectMicrophone()
@@ -89,16 +86,14 @@ namespace PhoneCall.Ozeki
 
         public void ConnectLiverProvider()
         {
-            MediaConnector connect = new MediaConnector();
             provider = new DrawingImageProvider();
-            connect.Connect(camera.VideoChannel, provider);
+            connector.Connect(camera.VideoChannel, provider);
         }
     
         public void ConnectViewerProvider()
         {
-            MediaConnector connect = new MediaConnector();
             provider = new DrawingImageProvider();
-            connect.Connect(videoReceiver, provider);
+            connector.Connect(videoReceiver, provider);
         }
 
         public void ConnectVideoSender()
@@ -139,7 +134,7 @@ namespace PhoneCall.Ozeki
             Form form = new Form();
             form.Size = new Size(1080, 490);
             form.FormBorderStyle = FormBorderStyle.FixedSingle;
-            form.Text = "Phát video trực tiếp";
+            form.Text = "Video trực tiếp";
 
             VideoViewerWF videoViewer = new VideoViewerWF();
             videoViewer.Location = new Point(0, 0);
@@ -162,7 +157,6 @@ namespace PhoneCall.Ozeki
 
         private void SoftPhone_IncomingCall(object sender, global::Ozeki.Media.VoIPEventArgs<IPhoneCall> e)
         {
-            MessageBox.Show("Incoming call");
             call = e.Item;
             call.Answer();
             AttachSendCall();
@@ -190,7 +184,6 @@ namespace PhoneCall.Ozeki
         {
             CreateCallToStream(streamID);
             ConnectSpeaker();
-            ConnectViewerProvider();
             ShowUI();
         }
 
@@ -220,9 +213,12 @@ namespace PhoneCall.Ozeki
         {
             if (e.State == CallState.Answered)
             {
+                MessageBox.Show("tra loi");
                 StartSpeaker();
-                call.Answer();
-                AttachReceiveCall(); 
+                StartMicrophone();
+                AttachSendCall();
+                AttachReceiveCall();
+                ConnectViewerProvider();
             }
         }
     }

@@ -39,6 +39,7 @@ namespace ChatApplication.View
                 _cbListCam.Items.Add(item.Name);
             }
             _cbListCam.SelectionStart = 0;
+            _cbListCam.Text = _media.GetCameraDevices()[0].Name;
         }
 
         private void InitComboBoxSpeaker()
@@ -48,6 +49,7 @@ namespace ChatApplication.View
                 _cbListSpeaker.Items.Add(item.FriendlyName);
             }
             _cbListSpeaker.SelectionStart = 0;
+            _cbListSpeaker.Text = _media.GetSpeakerDevices()[0].FriendlyName;
         }
 
         private void InitComboBoxMicrophone()
@@ -57,12 +59,16 @@ namespace ChatApplication.View
                 _cbListMic.Items.Add(item.FriendlyName);
             }
             _cbListMic.SelectionStart = 0;
+            _cbListMic.Text = _media.GetMicrophoneDevices()[0].FriendlyName;
         }
 
         private void _btnApply_Click(object sender, EventArgs e)
         {
+            int camIdx = (_cbListCam.SelectedIndex < 0 ? 0 : _cbListCam.SelectedIndex);
+            int micIdx = (_cbListMic.SelectedIndex < 0 ? 0 : _cbListMic.SelectedIndex);
+            int speakerIdx = (_cbListSpeaker.SelectedIndex < 0 ? 0 : _cbListSpeaker.SelectedIndex);
             if (ApplyDevices != null)
-                ApplyDevices.Invoke(_media.GetCameraDevices()[_cbListCam.SelectedIndex], _media.GetMicrophoneDevices()[_cbListMic.SelectedIndex], _media.GetSpeakerDevices()[_cbListSpeaker.SelectedIndex]);
+                ApplyDevices.Invoke(_media.GetCameraDevices()[camIdx], _media.GetMicrophoneDevices()[micIdx], _media.GetSpeakerDevices()[speakerIdx]);
             this.Close();
         }
     }

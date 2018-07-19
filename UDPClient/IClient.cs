@@ -12,5 +12,6 @@ namespace UDPClient
     {
         void Send(IPEndPoint endpoint,byte[] data);
         void Receive();
+        void RequestStartStream(string streamID, IPEndPoint server);
     }
 }

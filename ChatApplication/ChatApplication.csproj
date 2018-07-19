@@ -305,6 +305,10 @@
       <Project>{f577b1ba-9ea4-4358-9b83-679851d4fe88}</Project>
       <Name>PhoneCall</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UDPClient\UDPClient.csproj">
+      <Project>{61bc4f76-08bd-4419-8e77-c0e2f0b9c428}</Project>
+      <Name>UDPClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Asset\pen.png" />
@@ -322,6 +326,7 @@
     <Content Include="Asset\refresh.png" />
     <Content Include="Asset\seacrh.png" />
     <Content Include="Asset\search.png" />
+    <Content Include="Asset\setting.png" />
     <Content Include="Asset\stream.png" />
     <Content Include="Asset\videocall.png" />
     <None Include="Asset\callling.gif" />

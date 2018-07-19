@@ -44,7 +44,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\IProtocol.cs" />
     <Compile Include="Protocol\ProtocolFactory.cs" />
+    <Compile Include="Protocol\StartStreamRequestProtocol.cs" />
     <Compile Include="Protocol\StreamingProtocol.cs" />
+    <Compile Include="Protocol\WatchStreamRequestProtocol.cs" />
     <Compile Include="StreamPacket.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

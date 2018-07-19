@@ -33,6 +33,13 @@ namespace UDPClient
             thread.Start();
         }
 
+        public void RequestStartStream(string streamID, IPEndPoint server)
+        {
+            StartStreamRequestProtocol ptc = new StartStreamRequestProtocol();
+            ptc.StreamID = streamID;
+            Send(server, ptc.ToBytes());
+        }
+
         public void Send(IPEndPoint endpoint,byte[] data)
         {
             _client.Send(data, data.Length, endpoint);

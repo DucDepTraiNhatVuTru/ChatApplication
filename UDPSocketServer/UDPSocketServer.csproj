@@ -42,6 +42,9 @@
   <ItemGroup>
     <Compile Include="Handle\HandleFactory.cs" />
     <Compile Include="Handle\IHandle.cs" />
+    <Compile Include="Handle\StrartStreamRequestHandle.cs" />
+    <Compile Include="Handle\StreamingHandle.cs" />
+    <Compile Include="Handle\WatchStreamRequestHandle.cs" />
     <Compile Include="Instance.cs" />
     <Compile Include="IServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

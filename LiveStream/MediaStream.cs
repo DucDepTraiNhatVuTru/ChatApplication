@@ -22,7 +22,6 @@ namespace LiveStream
         private VideoCaptureDevice _video;
         private WasapiCapture _soundIn = new WasapiCapture(true, CSCore.CoreAudioAPI.AudioClientShareMode.Shared, 30);
         private IWaveSource _source;
-        private DmoEchoEffect _echoSource;
         private WasapiOut _soundOut = new WasapiOut();
         private byte[] _buffer = new byte[1024];
         public event Action<Bitmap,byte[]> OnVideoNewFrame;
@@ -57,6 +56,7 @@ namespace LiveStream
 
         public void RecordAudio(MMDevice device)
         {
+            if (_soundIn.RecordingState == RecordingState.Recording) _soundIn.Stop();
             _soundIn.Device = device;
             _soundIn.Initialize();
             var src = new SoundInSource(_soundIn);
@@ -77,8 +77,10 @@ namespace LiveStream
             //StartAudio();
         }
 
-        public void StartAudio()
+        public void StartAudio(MMDevice speaker)
         {
+            if (_soundOut.PlaybackState == PlaybackState.Playing) _soundOut.Stop();
+            _soundOut.Device = speaker;
             _soundOut.Initialize(_source);
             _soundOut.Play();
         }

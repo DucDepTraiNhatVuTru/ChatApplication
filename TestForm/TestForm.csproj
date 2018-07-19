@@ -119,6 +119,10 @@
       <Project>{52d0d204-ecaa-4d8d-98bb-ed64c0333401}</Project>
       <Name>LiveStream</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StreamProtocol\StreamProtocol.csproj">
+      <Project>{21262f9d-9140-4b67-9deb-291685339c2a}</Project>
+      <Name>StreamProtocol</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

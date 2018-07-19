@@ -12,6 +12,7 @@ namespace ImageConverter
     {
         public static Image ResizeImage(Image image, int width, int height)
         {
+            if (image == null) return image;
             Bitmap bitmap = new Bitmap(width, height);
             Graphics graphic = Graphics.FromImage((Image)bitmap);
             graphic.DrawImage(image, 0, 0, width, height);

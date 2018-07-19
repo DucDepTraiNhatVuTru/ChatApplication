@@ -44,11 +44,18 @@ namespace ChatApplication.View
 
         private void _radListFriendStreaming_ItemMouseClick(object sender, Telerik.WinControls.UI.ListViewItemEventArgs e)
         {
-            Thread thread = new Thread(delegate ()
+            /*Thread thread = new Thread(delegate ()
             {
                 OzekiLiveStream live = new OzekiLiveStream();
                 live.Register(Guid.NewGuid().ToString());
                 live.WatchStream(((AccountStream)e.Item.DataBoundItem).StreamID);
+            });
+            thread.Start();*/
+
+            FormLiveStream stream = new FormLiveStream(_client, ((AccountStream)e.Item.DataBoundItem).StreamID);
+            Thread thread = new Thread(delegate ()
+            {
+                stream.ShowDialog();
             });
             thread.Start();
         }

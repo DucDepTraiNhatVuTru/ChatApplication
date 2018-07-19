@@ -14,9 +14,12 @@ namespace ImageConverter
     {
         public static byte[] ConvertImageToByteArray(Image image)
         {
-            MemoryStream stream = new MemoryStream();
-            image.Save(stream, ImageFormat.Jpeg);
-            return stream.ToArray();
+           /* MemoryStream stream = new MemoryStream();
+            image.Save(stream, image.RawFormat);
+            stream.Position = 0;
+            return stream.ToArray();*/
+            System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
+            return (byte[])converter.ConvertTo(image, typeof(byte[]));
         }
 
         public static Image CovertByteArrayToImage(byte[] imageArray)

@@ -33,6 +33,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\AForge.NET\Framework\Release\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\AForge.NET\Framework\Release\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\AForge.NET\Framework\Release\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
     <Reference Include="ChatProtocol, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ChatProtocol\bin\Debug\ChatProtocol.dll</HintPath>
@@ -41,7 +53,6 @@
       <HintPath>..\packages\CSCore.1.2.1.2\lib\net35-client\CSCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.27, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="ImageConverter">
       <HintPath>..\ChatProtocol\bin\Debug\ImageConverter.dll</HintPath>
     </Reference>
@@ -108,6 +119,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Util\Instance.cs" />
+    <Compile Include="View\DeviceSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DeviceSetting.Designer.cs">
+      <DependentUpon>DeviceSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormAddFriend.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +185,12 @@
     <Compile Include="View\FormListLiveStream.Designer.cs">
       <DependentUpon>FormListLiveStream.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormLiveStream.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormLiveStream.Designer.cs">
+      <DependentUpon>FormLiveStream.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +211,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DeviceSetting.resx">
+      <DependentUpon>DeviceSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormAddFriend.resx">
       <DependentUpon>FormAddFriend.cs</DependentUpon>
@@ -218,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormListLiveStream.resx">
       <DependentUpon>FormListLiveStream.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormLiveStream.resx">
+      <DependentUpon>FormLiveStream.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

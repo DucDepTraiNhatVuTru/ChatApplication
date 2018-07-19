@@ -48,9 +48,9 @@
     <Compile Include="UDPServer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChatProtocol\ChatProtocol.csproj">
-      <Project>{148e8028-b9c6-4312-a6af-e0dec0ad09c9}</Project>
-      <Name>ChatProtocol</Name>
+    <ProjectReference Include="..\StreamProtocol\StreamProtocol.csproj">
+      <Project>{21262f9d-9140-4b67-9deb-291685339c2a}</Project>
+      <Name>StreamProtocol</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

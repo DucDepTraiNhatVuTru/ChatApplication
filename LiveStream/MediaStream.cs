@@ -14,32 +14,36 @@ using System.Threading.Tasks;
 
 namespace LiveStream
 {
-    public class StreamAForge
+    public class MediaStream
     {
         private FilterInfoCollection _devices;
+        private MMDeviceCollection _speakers;
+        private MMDeviceCollection _microphones;
         private VideoCaptureDevice _video;
-        //private MMDevice _audioDevices;
         private WasapiCapture _soundIn = new WasapiCapture(true, CSCore.CoreAudioAPI.AudioClientShareMode.Shared, 30);
         private IWaveSource _source;
         private DmoEchoEffect _echoSource;
         private WasapiOut _soundOut = new WasapiOut();
         private byte[] _buffer = new byte[1024];
-        /* private WaveInEvent wavein;
-         private WaveOutEvent waveout;
-         private WaveFileWriter writer;*/
-        //private AsioOut _audio = new AsioOut(AsioOut.GetDriverNames()[1]);
         public event Action<Bitmap,byte[]> OnVideoNewFrame;
-        public FilterInfoCollection GetListDevices()
+        public FilterInfoCollection GetCameraDevices()
         {
             _devices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             return _devices;
         }
 
-        public MMDeviceCollection GetListAudioDevices()
+        public MMDeviceCollection GetSpeakerDevices()
+        {
+            var deviceEnum = new MMDeviceEnumerator();
+            _speakers = deviceEnum.EnumAudioEndpoints(DataFlow.Render, DeviceState.Active);
+            return _speakers;
+        }
+
+        public MMDeviceCollection GetMicrophoneDevices()
         {
             var deviceEnumerator = new MMDeviceEnumerator();
-            var deviceCollection = deviceEnumerator.EnumAudioEndpoints(DataFlow.Capture, DeviceState.Active);
-            return deviceCollection;
+            _microphones = deviceEnumerator.EnumAudioEndpoints(DataFlow.Capture, DeviceState.Active);
+            return _microphones;
         }
         
         public void StartVideo(string monikerString)
@@ -88,6 +92,26 @@ namespace LiveStream
         {
             _soundIn.Stop();
             _soundOut.Stop();
+        }
+
+        public FilterInfo GetDefaultCamera()
+        {
+            var devices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            return devices[0];
+        }
+
+        public MMDevice GetDefaultMicrophone()
+        {
+            var devicesEnum = new MMDeviceEnumerator();
+            var devicesCollection = devicesEnum.EnumAudioEndpoints(DataFlow.Capture, DeviceState.Active);
+            return devicesCollection[0];
+        }
+
+        public MMDevice GetDefaultSpeaker()
+        {
+            var devicesEnum = new MMDeviceEnumerator();
+            var devicesCollection = devicesEnum.EnumAudioEndpoints(DataFlow.Render, DeviceState.Active);
+            return devicesCollection[0];
         }
 
         /*public void StartAudio()

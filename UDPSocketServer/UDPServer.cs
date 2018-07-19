@@ -1,6 +1,5 @@
-﻿using ChatProtocol;
-using ChatProtocol.Packet;
-using ChatProtocol.Protocol;
+﻿using StreamProtocol;
+using StreamProtocol.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +14,8 @@ namespace UDPSocketServer
 {
     public class UDPServer : IServer
     {
-        IPEndPoint _ipEndPoint;
-        Socket _socket;
+        private IPEndPoint _ipEndPoint;
+        private Socket _socket;
 
         public event Action<string> OnReceive;
 
@@ -50,10 +49,10 @@ namespace UDPSocketServer
 
         public void NewRecieve(byte[] data, EndPoint endpoint)
         {
-            BasicPacket packet = new BasicPacket();
+            StreamPacket packet = new StreamPacket();
             if (!packet.Parse(data)) return;
             var protocol = ProtocolFactory.CreateProtocol(packet.Opcode);
-            //if(!protocol.Parse(packet.Data))
+            if (!protocol.Parse(packet.Data)) return;
             //viết một cái parse với đầu vào là byte[]
             var handle = HandleFactory.CreateHandle(packet.Opcode);
             var toview = handle.Handling(protocol, endpoint);

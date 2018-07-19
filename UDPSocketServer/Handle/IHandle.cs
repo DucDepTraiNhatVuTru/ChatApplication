@@ -1,4 +1,5 @@
-﻿using ChatProtocol.Protocol;
+﻿
+using StreamProtocol.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;

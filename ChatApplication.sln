@@ -37,6 +37,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveStream", "LiveStream\Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPSocketServer", "UDPSocketServer\UDPSocketServer.csproj", "{D6B77E45-F1C5-488F-AD07-D2D7F9279F1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamProtocol", "StreamProtocol\StreamProtocol.csproj", "{21262F9D-9140-4B67-9DEB-291685339C2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPClient", "UDPClient\UDPClient.csproj", "{61BC4F76-08BD-4419-8E77-C0E2F0B9C428}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +115,14 @@ Global
 		{D6B77E45-F1C5-488F-AD07-D2D7F9279F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6B77E45-F1C5-488F-AD07-D2D7F9279F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6B77E45-F1C5-488F-AD07-D2D7F9279F1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21262F9D-9140-4B67-9DEB-291685339C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21262F9D-9140-4B67-9DEB-291685339C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21262F9D-9140-4B67-9DEB-291685339C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21262F9D-9140-4B67-9DEB-291685339C2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61BC4F76-08BD-4419-8E77-C0E2F0B9C428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61BC4F76-08BD-4419-8E77-C0E2F0B9C428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61BC4F76-08BD-4419-8E77-C0E2F0B9C428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61BC4F76-08BD-4419-8E77-C0E2F0B9C428}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

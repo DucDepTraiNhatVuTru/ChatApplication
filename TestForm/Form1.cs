@@ -83,43 +83,6 @@ namespace TestForm
             
 
             
-            /*richTextBox1.Invoke(new MethodInvoker(delegate ()
-            {
-                richTextBox1.Text = "";
-                System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
-                var b = (byte[])converter.ConvertTo(bitmap, typeof(byte[]));
-                foreach (var item in b)
-                {
-                    richTextBox1.AppendText(item.ToString());
-                }
-            }));*/
-            /*Thread thread1 = new Thread(delegate ()
-            {
-                richTextBox1.Invoke(new MethodInvoker(delegate ()
-                {
-                    richTextBox1.Text = "";
-                    System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
-                    var b = (byte[])converter.ConvertTo(bitmap, typeof(byte[]));
-                    foreach (var item in b)
-                    {
-                        richTextBox1.AppendText(item.ToString());
-                    }
-                }));
-            });
-            thread1.Start();*/
-
-            /*Thread thread2 = new Thread(delegate ()
-            {
-                richTextBox2.Invoke(new MethodInvoker(delegate ()
-                {
-                    richTextBox2.Text = "";
-                    foreach (var item in buffer)
-                    {
-                        richTextBox2.AppendText(item.ToString());
-                    }
-                }));
-            });
-            thread2.Start();*/
             richTextBox2.Invoke(new MethodInvoker(delegate ()
             {
                 richTextBox2.Text = "";

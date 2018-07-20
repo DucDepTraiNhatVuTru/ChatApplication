@@ -11,7 +11,7 @@ namespace UDPSocketServer.Handle
     public class WatchStreamRequestHandle : IHandle
     {
         private object synlock = new object();
-        public string Handling(IProtocol protocol, IPEndPoint sender)
+        public string Handling(IProtocol protocol, EndPoint sender)
         {
             var ptc = protocol as WatchStreamRequestProtocol;
             List<IPEndPoint> listEndPoint = new List<IPEndPoint>();

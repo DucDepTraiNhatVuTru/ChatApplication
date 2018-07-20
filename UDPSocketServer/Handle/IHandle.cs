@@ -11,6 +11,6 @@ namespace UDPSocketServer.Handle
 {
     public interface IHandle
     {
-        string Handling(IProtocol protocol, IPEndPoint sender);
+        string Handling(IProtocol protocol, EndPoint sender);
     }
 }

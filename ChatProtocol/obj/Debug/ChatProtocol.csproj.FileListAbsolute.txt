@@ -1,0 +1,13 @@
+D:\ThucTap\ChatApplication\ChatProtocol\bin\Debug\ChatProtocol.dll
+D:\ThucTap\ChatApplication\ChatProtocol\bin\Debug\ChatProtocol.pdb
+D:\ThucTap\ChatApplication\ChatProtocol\bin\Debug\ChatDAO.dll
+D:\ThucTap\ChatApplication\ChatProtocol\bin\Debug\ChatDataModel.dll
+D:\ThucTap\ChatApplication\ChatProtocol\bin\Debug\ImageConverter.dll
+D:\ThucTap\ChatApplication\ChatProtocol\bin\Debug\Database.dll
+D:\ThucTap\ChatApplication\ChatProtocol\bin\Debug\ChatDAO.pdb
+D:\ThucTap\ChatApplication\ChatProtocol\bin\Debug\ChatDataModel.pdb
+D:\ThucTap\ChatApplication\ChatProtocol\bin\Debug\ImageConverter.pdb
+D:\ThucTap\ChatApplication\ChatProtocol\bin\Debug\Database.pdb
+D:\ThucTap\ChatApplication\ChatProtocol\obj\Debug\ChatProtocol.csprojResolveAssemblyReference.cache
+D:\ThucTap\ChatApplication\ChatProtocol\obj\Debug\ChatProtocol.dll
+D:\ThucTap\ChatApplication\ChatProtocol\obj\Debug\ChatProtocol.pdb

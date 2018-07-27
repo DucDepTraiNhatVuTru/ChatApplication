@@ -11,19 +11,24 @@ namespace UDPSocketServer.Handle
     public class StreamingHandle : IHandle
     {
         private object synlock = new object();
-        public string Handling(IProtocol protocol, EndPoint sender)
+        public string Handling(IProtocol protocol, EndPoint sender, IUDPClient sendback)
         {
             var ptc = protocol as StreamingProtocol;
-            List<IPEndPoint> watcher = new List<IPEndPoint>();
+            List<EndPoint> watcher = new List<EndPoint>();
             lock (synlock)
             {
                 if (!Instance.CurrentStream.TryGetValue(ptc.StreamID, out watcher))
                     return null;
             }
 
+            if (watcher.Count==0)
+            {
+                return null;
+            }
+
             foreach(var item in watcher)
             {
-                //gửi về cho mấy thằng này hình với audio
+                sendback.SendStream(ptc.StreamID, ptc.Image, ptc.Sound, item);
             }
             return null;
         }

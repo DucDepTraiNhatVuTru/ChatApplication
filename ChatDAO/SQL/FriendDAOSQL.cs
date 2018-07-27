@@ -14,7 +14,7 @@ namespace ChatDAO.SQL
 
         public void Connect()
         {
-            con.Connect(@"Data Source=MINHDUC\SQLEXPRESS;Initial Catalog=ChatDB;Persist Security Info=True;User ID=sa;Password=123456");
+            con.Connect(DBHelper.ConnecttionString);
         }
 
         public int Delete(string email1, string email2)

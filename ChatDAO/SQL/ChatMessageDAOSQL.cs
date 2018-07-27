@@ -15,7 +15,7 @@ namespace ChatDAO
 
         public void Connect()
         {
-            con.Connect(@"Data Source=MINHDUC\SQLEXPRESS;Initial Catalog=ChatDB;Persist Security Info=True;User ID=sa;Password=123456");
+            con.Connect(DBHelper.ConnecttionString);
         }
         public int Insert(ChatMessage message)
         {
@@ -39,7 +39,6 @@ namespace ChatDAO
             try
             {
                 Connect();
-                //string sql = "SELECT * FROM ChatMessage WHERE (Sender = '" + user1 + "' AND Receiver = '" + user2 + "') OR (Sender = '" + user2 + "' AND Receiver = '" + user1 + "')";
                 string sql = "SELECT M.Id, Sender, Receiver, Message,ImageMessageDriveId, CallID, CallDuration, Called, Time FROM (SELECT * FROM ChatMessage WHERE ( ChatMessage.Sender ='" + user1 + "' AND ChatMessage.Receiver = '" + user2 + "' ) OR (ChatMessage.Sender = '" + user2 + "' AND ChatMessage.Receiver = '" + user1 + "')) M LEFT JOIN Call ON ( CallID = Call.ID )";
                 var data = con.GetData(sql);
                 List<ChatMessage> listMessage = new List<ChatMessage>();

@@ -33,6 +33,7 @@
             this._btnRefresh = new System.Windows.Forms.Button();
             this._btnStream = new System.Windows.Forms.Button();
             this._btnAddFriend = new System.Windows.Forms.Button();
+            this._lbThongBao = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._radListFriendStreaming)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,9 +47,9 @@
             // 
             // _radListFriendStreaming
             // 
-            this._radListFriendStreaming.Location = new System.Drawing.Point(12, 48);
+            this._radListFriendStreaming.Location = new System.Drawing.Point(12, 83);
             this._radListFriendStreaming.Name = "_radListFriendStreaming";
-            this._radListFriendStreaming.Size = new System.Drawing.Size(249, 339);
+            this._radListFriendStreaming.Size = new System.Drawing.Size(249, 304);
             this._radListFriendStreaming.TabIndex = 9;
             // 
             // _btnRefresh
@@ -86,12 +87,24 @@
             this._btnAddFriend.TabIndex = 8;
             this._btnAddFriend.UseVisualStyleBackColor = true;
             // 
+            // _lbThongBao
+            // 
+            this._lbThongBao.AutoSize = true;
+            this._lbThongBao.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._lbThongBao.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this._lbThongBao.Location = new System.Drawing.Point(12, 50);
+            this._lbThongBao.Name = "_lbThongBao";
+            this._lbThongBao.Size = new System.Drawing.Size(207, 30);
+            this._lbThongBao.TabIndex = 0;
+            this._lbThongBao.Text = "Hiện không có ai đang phát trực tiếp, \r\nhãy tự tạo cho mình 1 video trực tiếp";
+            // 
             // FormListLiveStream
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(271, 399);
+            this.Controls.Add(this._lbThongBao);
             this.Controls.Add(this._btnRefresh);
             this.Controls.Add(this._btnStream);
             this.Controls.Add(this._radListFriendStreaming);
@@ -112,5 +125,6 @@
         private Telerik.WinControls.UI.RadListView _radListFriendStreaming;
         private System.Windows.Forms.Button _btnStream;
         private System.Windows.Forms.Button _btnRefresh;
+        private System.Windows.Forms.Label _lbThongBao;
     }
 }

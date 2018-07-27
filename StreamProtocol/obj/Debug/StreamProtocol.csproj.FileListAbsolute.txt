@@ -1,0 +1,4 @@
+D:\ThucTap\ChatApplication\StreamProtocol\bin\Debug\StreamProtocol.dll
+D:\ThucTap\ChatApplication\StreamProtocol\bin\Debug\StreamProtocol.pdb
+D:\ThucTap\ChatApplication\StreamProtocol\obj\Debug\StreamProtocol.dll
+D:\ThucTap\ChatApplication\StreamProtocol\obj\Debug\StreamProtocol.pdb

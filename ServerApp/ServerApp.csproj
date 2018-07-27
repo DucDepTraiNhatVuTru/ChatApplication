@@ -58,6 +58,10 @@
       <Project>{05d16c42-f824-4aa2-bcd1-122e9b752c98}</Project>
       <Name>SocketServer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UDPSocketServer\UDPSocketServer.csproj">
+      <Project>{d6b77e45-f1c5-488f-ad07-d2d7f9279f1f}</Project>
+      <Name>UDPSocketServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

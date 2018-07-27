@@ -15,18 +15,21 @@ namespace ServerApp
         static void Main(string[] args)
         {
             var _server = new ServerSimpleTcp();
-            var _PBX = new OzekiPBX();
-            _PBX.SetUp(5060);
+            var _streamServer = new UDPSocketServer.UDPServer();
+            /*var _PBX = new OzekiPBX();
+            _PBX.SetUp(5060);*/
             Console.WriteLine("press enter to start server");
             Console.ReadLine();
             _server.Start("127.0.0.1", 2018);
             Thread thread = new Thread(delegate ()
             {
-                _PBX.Start();
+                _streamServer.Start("127.0.0.1", 2019);
+                _streamServer.Recieve();
             });
             thread.Start();
+            _streamServer.OnReceive += _streamServer_OnReceive;
             Console.WriteLine("server start at 127.0.0.1:2018");
-            Console.WriteLine("PBX start at " + _PBX.GetPBXIP());
+            Console.WriteLine("stream server at 127.0.0.1:2019");
             _server.OnNewConnect += _server_OnNewConnect;
             _server.OnNewMessage += _server_OnNewMessage;
 
@@ -39,6 +42,11 @@ namespace ServerApp
                 }
             }
             _server.Stop();
+        }
+
+        private static void _streamServer_OnReceive(string obj)
+        {
+            Console.WriteLine(obj);
         }
 
         private static void _server_OnNewMessage(IChatClient arg1, string arg2)

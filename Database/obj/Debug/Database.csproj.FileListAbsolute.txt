@@ -1,0 +1,5 @@
+D:\ThucTap\ChatApplication\Database\bin\Debug\Database.dll
+D:\ThucTap\ChatApplication\Database\bin\Debug\Database.pdb
+D:\ThucTap\ChatApplication\Database\obj\Debug\Database.csprojResolveAssemblyReference.cache
+D:\ThucTap\ChatApplication\Database\obj\Debug\Database.dll
+D:\ThucTap\ChatApplication\Database\obj\Debug\Database.pdb

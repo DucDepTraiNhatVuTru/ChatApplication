@@ -1,0 +1,7 @@
+D:\ThucTap\ChatApplication\UDPClient\bin\Debug\UDPClient.dll
+D:\ThucTap\ChatApplication\UDPClient\bin\Debug\UDPClient.pdb
+D:\ThucTap\ChatApplication\UDPClient\bin\Debug\StreamProtocol.dll
+D:\ThucTap\ChatApplication\UDPClient\bin\Debug\StreamProtocol.pdb
+D:\ThucTap\ChatApplication\UDPClient\obj\Debug\UDPClient.csprojResolveAssemblyReference.cache
+D:\ThucTap\ChatApplication\UDPClient\obj\Debug\UDPClient.dll
+D:\ThucTap\ChatApplication\UDPClient\obj\Debug\UDPClient.pdb

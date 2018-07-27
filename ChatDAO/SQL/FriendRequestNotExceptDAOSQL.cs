@@ -15,7 +15,7 @@ namespace ChatDAO.SQL
 
         public void Connect()
         {
-            con.Connect(@"Data Source=MINHDUC\SQLEXPRESS;Initial Catalog=ChatDB;Persist Security Info=True;User ID=sa;Password=123456");
+            con.Connect(DBHelper.ConnecttionString);
         }
 
         public int Delete(FriendResquestNotExcept request)
@@ -28,7 +28,7 @@ namespace ChatDAO.SQL
             try
             {
                 Connect();
-                var sql = "DELETE FROM FriendRequestNotExcepted WHERE Sender = '" + request.Sender + "'AND Receiver = '" + request.Receiver + "'";
+                var sql = "DELETE FROM FriendRequest WHERE Sender = '" + request.Sender + "'AND Receiver = '" + request.Receiver + "'";
                 return con.ExecuteNonQuery(sql);
             }
             catch (Exception ex)
@@ -47,7 +47,7 @@ namespace ChatDAO.SQL
             try
             {
                 Connect();
-                var sql = "SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account,(SELECT FriendRequestNotExcepted.Receiver FROM FriendRequestNotExcepted WHERE FriendRequestNotExcepted.Sender = '" + email + "') AS T WHERE T.Receiver = Account.Email";
+                var sql = "SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account,(SELECT FriendRequest.Receiver FROM FriendRequest WHERE FriendRequest.Sender = '" + email + "') AS T WHERE T.Receiver = Account.Email";
                 var data = con.GetData(sql);
                 var accounts = new List<Account>();
                 if (data.HasRows)
@@ -81,7 +81,7 @@ namespace ChatDAO.SQL
             try
             {
                 Connect();
-                var sql = "SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account,(SELECT FriendRequestNotExcepted.Sender FROM FriendRequestNotExcepted WHERE FriendRequestNotExcepted.Receiver = '" + email + "') AS T WHERE T.Sender = Account.Email";
+                var sql = "SELECT Account.Email, Account.Password, Account.Name, Account.Avatar, Account.Gender, Account.TimeCreate FROM Account,(SELECT FriendRequest.Sender FROM FriendRequest WHERE FriendRequest.Receiver = '" + email + "') AS T WHERE T.Sender = Account.Email";
                 var data = con.GetData(sql);
                 var accounts = new List<Account>();
                 if (data.HasRows)
@@ -116,7 +116,7 @@ namespace ChatDAO.SQL
             try
             {
                 Connect();
-                var sql = "INSERT INTO FriendRequestNotExcepted VALUES ('" + requets.Sender + "','" + requets.Receiver + "','" + requets.Time + "')";
+                var sql = "INSERT INTO FriendRequest VALUES ('" + requets.Sender + "','" + requets.Receiver + "','" + requets.Time + "')";
                 return con.ExecuteNonQuery(sql);
             }
             catch (Exception ex)

@@ -1,0 +1,5 @@
+D:\ThucTap\ChatApplication\ImageConverter\bin\Debug\ImageConverter.dll
+D:\ThucTap\ChatApplication\ImageConverter\bin\Debug\ImageConverter.pdb
+D:\ThucTap\ChatApplication\ImageConverter\obj\Debug\ImageConverter.csprojResolveAssemblyReference.cache
+D:\ThucTap\ChatApplication\ImageConverter\obj\Debug\ImageConverter.dll
+D:\ThucTap\ChatApplication\ImageConverter\obj\Debug\ImageConverter.pdb

@@ -436,7 +436,6 @@ namespace ChatApplication.View
             _radlvFriendList.DataSource = listUser;
             _radlvFriendList.DisplayMember = "Name";
             _radlvFriendList.ValueMember = "Email";
-            
         }
 
         public void LoadGroupList(List<Group> groups)

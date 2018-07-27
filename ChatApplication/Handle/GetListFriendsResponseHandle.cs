@@ -16,11 +16,12 @@ namespace ChatApplication.Handle
         public void Handling(IProtocol protocol, Form form)
         {
             var ptc = protocol as GetListFriendsResponseProtocol;
+            if (!(form is FormMain)) return;
             var f = form as FormMain;
             Instance.ListFriends = ptc.ListAccount;
             f.Invoke(new MethodInvoker(delegate ()
             {
-                f.LoadFriendList(ptc.ListAccount);
+                f.LoadFriendList(Instance.ListFriends);
             }));
         }
     }

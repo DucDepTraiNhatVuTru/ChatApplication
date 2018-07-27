@@ -1,0 +1,15 @@
+D:\ThucTap\ChatApplication\PhoneCall\obj\Debug\PhoneCall.csprojResolveAssemblyReference.cache
+D:\ThucTap\ChatApplication\PhoneCall\obj\Debug\PhoneCall.UI.CallView.resources
+D:\ThucTap\ChatApplication\PhoneCall\obj\Debug\PhoneCall.csproj.GenerateResource.Cache
+D:\ThucTap\ChatApplication\PhoneCall\bin\Debug\PhoneCall.dll
+D:\ThucTap\ChatApplication\PhoneCall\bin\Debug\PhoneCall.pdb
+D:\ThucTap\ChatApplication\PhoneCall\bin\Debug\ChatDataModel.dll
+D:\ThucTap\ChatApplication\PhoneCall\bin\Debug\FormChung.dll
+D:\ThucTap\ChatApplication\PhoneCall\bin\Debug\OzekiSDK.dll
+D:\ThucTap\ChatApplication\PhoneCall\bin\Debug\Telerik.WinControls.UI.dll
+D:\ThucTap\ChatApplication\PhoneCall\bin\Debug\Telerik.WinControls.dll
+D:\ThucTap\ChatApplication\PhoneCall\bin\Debug\TelerikCommon.dll
+D:\ThucTap\ChatApplication\PhoneCall\bin\Debug\ChatDataModel.pdb
+D:\ThucTap\ChatApplication\PhoneCall\bin\Debug\FormChung.pdb
+D:\ThucTap\ChatApplication\PhoneCall\obj\Debug\PhoneCall.dll
+D:\ThucTap\ChatApplication\PhoneCall\obj\Debug\PhoneCall.pdb

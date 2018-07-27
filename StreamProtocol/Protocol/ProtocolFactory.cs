@@ -13,6 +13,8 @@ namespace StreamProtocol.Protocol
             switch (opcode)
             {
                 case 1:
+                    return new StartStreamRequestProtocol();
+                case 2:
                     return new StreamingProtocol();
                 default:
                     throw new Exception("chưa hỗ trợ opcode");

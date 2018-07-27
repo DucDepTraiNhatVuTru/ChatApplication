@@ -1,0 +1,14 @@
+D:\ThucTap\ChatApplication\SocketServer\obj\Debug\SocketServer.csprojResolveAssemblyReference.cache
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\SocketServer.dll
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\SocketServer.pdb
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\ChatDAO.dll
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\ChatDataModel.dll
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\ChatProtocol.dll
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\SimpleTCP.dll
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\Database.dll
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\ChatDAO.pdb
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\ChatDataModel.pdb
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\ChatProtocol.pdb
+D:\ThucTap\ChatApplication\SocketServer\bin\Debug\Database.pdb
+D:\ThucTap\ChatApplication\SocketServer\obj\Debug\SocketServer.dll
+D:\ThucTap\ChatApplication\SocketServer\obj\Debug\SocketServer.pdb

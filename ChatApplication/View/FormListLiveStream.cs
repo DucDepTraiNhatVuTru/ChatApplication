@@ -44,18 +44,10 @@ namespace ChatApplication.View
 
         private void _radListFriendStreaming_ItemMouseClick(object sender, Telerik.WinControls.UI.ListViewItemEventArgs e)
         {
-            /*Thread thread = new Thread(delegate ()
-            {
-                OzekiLiveStream live = new OzekiLiveStream();
-                live.Register(Guid.NewGuid().ToString());
-                live.WatchStream(((AccountStream)e.Item.DataBoundItem).StreamID);
-            });
-            thread.Start();*/
-
-            FormLiveStream stream = new FormLiveStream(_client, ((AccountStream)e.Item.DataBoundItem).StreamID);
+            FormWatchStream watchStrem = new FormWatchStream(_client, ((AccountStream)e.Item.DataBoundItem).StreamID);
             Thread thread = new Thread(delegate ()
             {
-                stream.ShowDialog();
+                watchStrem.ShowDialog();
             });
             thread.Start();
         }
@@ -100,9 +92,8 @@ namespace ChatApplication.View
         {
             Thread thread = new Thread(delegate ()
             {
-                OzekiLiveStream stream = new OzekiLiveStream();
-                stream.Register(streamId);
-                stream.StartStream();
+                FormLiveStream liveStream = new FormLiveStream(_client, streamId);
+                liveStream.ShowDialog();
             });
             thread.Start();
         }
@@ -117,11 +108,21 @@ namespace ChatApplication.View
             _radListFriendStreaming.DataSource = list;
             _radListFriendStreaming.DisplayMember = "Name";
             _radListFriendStreaming.ValueMember = "StreamID";
+
+            SetContentLabelThongBao(accounts.Count);
         }
 
         private void _btnRefresh_Click(object sender, EventArgs e)
         {
             _client.RequestGetListFriendStreaming(_me.Email);
+        }
+
+        private void SetContentLabelThongBao(int users)
+        {
+            if(users>0)
+            {
+                _lbThongBao.Text = "Bạn bè của bạn đang phát trực tiếp! hãy khám phá xem họ đang làm gì!";
+            }
         }
     }
 }

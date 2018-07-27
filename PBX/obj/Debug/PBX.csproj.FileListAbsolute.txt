@@ -1,0 +1,6 @@
+D:\ThucTap\ChatApplication\PBX\bin\Debug\PBX.dll
+D:\ThucTap\ChatApplication\PBX\bin\Debug\PBX.pdb
+D:\ThucTap\ChatApplication\PBX\bin\Debug\OzekiSDK.dll
+D:\ThucTap\ChatApplication\PBX\obj\Debug\PBX.csprojResolveAssemblyReference.cache
+D:\ThucTap\ChatApplication\PBX\obj\Debug\PBX.dll
+D:\ThucTap\ChatApplication\PBX\obj\Debug\PBX.pdb

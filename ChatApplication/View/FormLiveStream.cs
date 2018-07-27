@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,19 +39,24 @@ namespace ChatApplication.View
             _streamClient = new UDPClient.UDPClient();
             _streamID = streamID;
 
-            _streamClient.RequestStartStream(_streamID, _serverAddress);
-
             _mediaStream.OnVideoNewFrame += _mediaStream_OnVideoNewFrame;
             _mediaStream.StartVideo(_mediaStream.GetDefaultCamera().MonikerString);
             _mediaStream.RecordAudio(_mediaStream.GetDefaultMicrophone());
             _mediaStream.StartAudio(_mediaStream.GetDefaultSpeaker());
 
             InitializeComponent();
+
+            _streamClient.RequestStartStream(_streamID, _serverAddress);
         }
 
         private void _mediaStream_OnVideoNewFrame(Bitmap frame, byte[] audioSample)
         {
             _ptbVideoView.Image = ImageConverter.ImageResize.ResizeImage(frame, 800, 450);
+            Thread thread = new Thread(delegate ()
+            {
+                _streamClient.SendStream(_streamID, ImageConverter.ImageConverter.ConvertImageToByteArray(frame), audioSample, _serverAddress);
+            });
+            thread.Start();
         }
 
         private void _btnSetting_Click(object sender, EventArgs e)

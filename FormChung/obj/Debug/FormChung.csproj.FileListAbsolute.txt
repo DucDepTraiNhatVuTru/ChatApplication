@@ -1,0 +1,15 @@
+D:\ThucTap\ChatApplication\FormChung\obj\Debug\FormChung.csprojResolveAssemblyReference.cache
+D:\ThucTap\ChatApplication\FormChung\obj\Debug\FormChung.ChatLogControl.resources
+D:\ThucTap\ChatApplication\FormChung\obj\Debug\FormChung.CommentBoxControl.resources
+D:\ThucTap\ChatApplication\FormChung\obj\Debug\FormChung.Picture.resources
+D:\ThucTap\ChatApplication\FormChung\obj\Debug\FormChung.Properties.Resources.resources
+D:\ThucTap\ChatApplication\FormChung\obj\Debug\FormChung.csproj.GenerateResource.Cache
+D:\ThucTap\ChatApplication\FormChung\obj\Debug\FormChung.dll.licenses
+D:\ThucTap\ChatApplication\FormChung\bin\Debug\FormChung.dll.config
+D:\ThucTap\ChatApplication\FormChung\bin\Debug\FormChung.dll
+D:\ThucTap\ChatApplication\FormChung\bin\Debug\FormChung.pdb
+D:\ThucTap\ChatApplication\FormChung\bin\Debug\Telerik.WinControls.dll
+D:\ThucTap\ChatApplication\FormChung\bin\Debug\Telerik.WinControls.UI.dll
+D:\ThucTap\ChatApplication\FormChung\bin\Debug\TelerikCommon.dll
+D:\ThucTap\ChatApplication\FormChung\obj\Debug\FormChung.dll
+D:\ThucTap\ChatApplication\FormChung\obj\Debug\FormChung.pdb

@@ -15,7 +15,7 @@ namespace ChatDAO.SQL
 
         public void Connect()
         {
-            con.Connect(@"Data Source=MINHDUC\SQLEXPRESS;Initial Catalog=ChatDB;Persist Security Info=True;User ID=sa;Password=123456");
+            con.Connect(@"Data Source=DESKTOP-9927S41\SQLEXPRESS;Initial Catalog=Chat;Persist Security Info=True;User ID=sa;Password=123456");
         }
         public int Insert(Call call)
         {

@@ -43,7 +43,6 @@ namespace UDPSocketServer
                     IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
                     EndPoint endpoint = (EndPoint)(sender);
                     byte[] data = new byte[1];
-                    //_socket.ReceiveFrom(data, ref endpoint);
                     data = _socket.Receive(ref sender);
                     NewRecieve(data, sender);
                 }

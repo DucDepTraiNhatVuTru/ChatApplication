@@ -67,3 +67,6 @@ D:\ThucTap\ChatApplication\ChatApplication\bin\Debug\Newtonsoft.Json.xml
 D:\ThucTap\ChatApplication\ChatApplication\obj\Debug\ChatApplication.exe
 D:\ThucTap\ChatApplication\ChatApplication\obj\Debug\ChatApplication.pdb
 D:\ThucTap\ChatApplication\ChatApplication\obj\Debug\ChatApplication.View.FormWatchStream.resources
+D:\ChatApp\ChatApplication\ChatApplication\ChatApplication\bin\Debug\ChatApplication.exe.config
+D:\ChatApp\ChatApplication\ChatApplication\ChatApplication\obj\Debug\ChatApplication.exe
+D:\ChatApp\ChatApplication\ChatApplication\ChatApplication\obj\Debug\ChatApplication.pdb

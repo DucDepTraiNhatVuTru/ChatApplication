@@ -62,7 +62,7 @@ namespace UDPClient
         {
             int length = data.Length;
             int index = 0;
-            int count = 500;
+            int count = 491;
             List<byte[]> result = new List<byte[]>();
             while (length >= 0)
             {
@@ -74,7 +74,7 @@ namespace UDPClient
                         result.Add(stream.ToArray());
                         index += count;
                         length -= count;
-                        if (length < 500)
+                        if (length < 491)
                         {
                             count = length;
                         }
